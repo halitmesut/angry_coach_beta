@@ -67,6 +67,8 @@ class ReportPage extends StatelessWidget {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.ideographic,
                   children: [
                     Text(
                       "Alınan",
@@ -74,15 +76,15 @@ class ReportPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(
-                      width: 15,
+                      width: 5,
                     ),
                     Text(
                       "1980",
-                      style: TextStyle(fontSize: 35),
+                      style: TextStyle(fontSize: 55),
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(
-                      width: 15,
+                      width: 5,
                     ),
                     Text(
                       "kcal",
@@ -162,37 +164,14 @@ class ReportPage extends StatelessWidget {
                     SizedBox(
                       width: 30,
                     ),
-                    Image.asset("assets/2:4.png"),
+                    Icon(
+                      Icons.soup_kitchen_outlined,
+                    ),
                     SizedBox(
                       width: 30,
                     ),
                     Text(
-                      "Haftalık Hediyem",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 1),
-            Expanded(
-              flex: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Image.asset("assets/2:4.png"),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      "Koçumun Aylık Hediyesi",
+                      "Yenen Gıdalar",
                       style: TextStyle(fontSize: 18),
                     ),
                   ],
@@ -213,13 +192,13 @@ class ReportPage extends StatelessWidget {
                       width: 30,
                     ),
                     Icon(
-                      Icons.route,
+                      Icons.call_merge,
                     ),
                     SizedBox(
                       width: 30,
                     ),
                     Text(
-                      "Kilo Değişim Programım",
+                      "Alınan Kaloriler",
                       style: TextStyle(fontSize: 18),
                     ),
                   ],
@@ -240,14 +219,40 @@ class ReportPage extends StatelessWidget {
                       width: 30,
                     ),
                     Icon(
-                      Icons.restaurant_menu,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      Icons.call_made,
                     ),
                     SizedBox(
                       width: 30,
                     ),
                     Text(
-                      "Diyet Programım",
+                      "Makro Besinler",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 1),
+            Expanded(
+              flex: 10,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Icon(
+                      Icons.call_split,
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Text(
+                      "Besin Değerleri",
                       style: TextStyle(fontSize: 18),
                     ),
                   ],
@@ -271,14 +276,13 @@ class ReportPage extends StatelessWidget {
                       width: 30,
                     ),
                     Icon(
-                      Icons.thumbs_up_down,
-                      color: Colors.lightBlue,
+                      Icons.self_improvement,
                     ),
                     SizedBox(
                       width: 30,
                     ),
                     Text(
-                      "Koçumun Bana Tavrı",
+                      "Gelişim Haritam",
                       style: TextStyle(fontSize: 18),
                     ),
                   ],

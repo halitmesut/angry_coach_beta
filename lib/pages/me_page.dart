@@ -144,7 +144,9 @@ class MePage extends StatelessWidget {
                     SizedBox(
                       width: 30,
                     ),
-                    Image.asset("assets/2:4.png"),
+                    Icon(
+                      Icons.cruelty_free,
+                    ),
                     SizedBox(
                       width: 30,
                     ),
