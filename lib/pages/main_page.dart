@@ -1,0 +1,97 @@
+import 'package:angry_coach_beta/pages/coach_page.dart';
+import 'package:angry_coach_beta/pages/me_page.dart';
+import 'package:angry_coach_beta/pages/nutrition_page.dart';
+import 'package:angry_coach_beta/pages/report_page.dart';
+import 'package:angry_coach_beta/pages/setting_page.dart';
+import 'package:flutter/material.dart';
+
+class MainPage extends StatelessWidget {
+  const MainPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MainScreen();
+  }
+}
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int currentIndex = 0;
+  final List<Widget> screens = [
+    const CoachPage(),
+    const MePage(),
+    const NutritionPage(),
+    const ReportPage(),
+    const SettingPage(),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromARGB(211, 0, 0, 0),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 29, 29, 29),
+        title: Image.asset(
+          'assets/DevIstanbul2.png',
+          fit: BoxFit.cover,
+          height: 50,
+        ),
+      ),
+      body: IndexedStack(index: currentIndex, children: screens),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Color.fromARGB(223, 0, 0, 0),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Color.fromARGB(140, 195, 201, 166),
+        iconSize: 25,
+        selectedFontSize: 13,
+        unselectedFontSize: 12,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.sports,
+            ),
+            label: "Coach",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.emoji_emotions,
+            ),
+            label: "Me",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.restaurant,
+            ),
+            label: "Nutrition",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.insights,
+            ),
+            label: "Report",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.settings_suggest_rounded,
+            ),
+            label: "Setting",
+          )
+        ],
+      ),
+    );
+  }
+}
