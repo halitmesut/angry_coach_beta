@@ -19,7 +19,7 @@ class ReportPage extends StatelessWidget {
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                      children: const [
                         Text(
                           "Hedef",
                           style: TextStyle(color: Colors.white),
@@ -37,7 +37,7 @@ class ReportPage extends StatelessWidget {
                       child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                      children: const [
                         Text(
                           "Kalan",
                           style: TextStyle(color: Colors.white),
@@ -69,7 +69,7 @@ class ReportPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.baseline,
                   textBaseline: TextBaseline.ideographic,
-                  children: [
+                  children: const [
                     Text(
                       "Alınan",
                       style: TextStyle(fontSize: 16),
@@ -112,7 +112,7 @@ class ReportPage extends StatelessWidget {
                     children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text("Yağ"),
                           Text(
                             "120 gr",
@@ -123,7 +123,7 @@ class ReportPage extends StatelessWidget {
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text("Karbonhidrat"),
                           Text(
                             "310 gr",
@@ -134,7 +134,7 @@ class ReportPage extends StatelessWidget {
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text("Protein"),
                           Text(
                             "98 gr",
@@ -160,7 +160,7 @@ class ReportPage extends StatelessWidget {
                 ),
                 margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
                 child: Row(
-                  children: [
+                  children: const [
                     SizedBox(
                       width: 30,
                     ),
@@ -187,7 +187,7 @@ class ReportPage extends StatelessWidget {
                 ),
                 margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
                 child: Row(
-                  children: [
+                  children: const [
                     SizedBox(
                       width: 30,
                     ),
@@ -214,7 +214,7 @@ class ReportPage extends StatelessWidget {
                 ),
                 margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
                 child: Row(
-                  children: [
+                  children: const [
                     SizedBox(
                       width: 30,
                     ),
@@ -241,7 +241,7 @@ class ReportPage extends StatelessWidget {
                 ),
                 margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
                 child: Row(
-                  children: [
+                  children: const [
                     SizedBox(
                       width: 30,
                     ),
@@ -271,7 +271,7 @@ class ReportPage extends StatelessWidget {
                 ),
                 margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
                 child: Row(
-                  children: [
+                  children: const [
                     SizedBox(
                       width: 30,
                     ),
