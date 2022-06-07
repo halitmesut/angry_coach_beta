@@ -1,3 +1,4 @@
+import 'package:angry_coach_beta/extract/widgets.dart';
 import 'package:flutter/material.dart';
 
 class NutritionPage extends StatelessWidget {
@@ -6,7 +7,7 @@ class NutritionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(90, 91, 89, 89),
+      backgroundColor: const Color.fromARGB(90, 91, 89, 89),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         child: Column(
@@ -20,278 +21,92 @@ class NutritionPage extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/tea.png"),
-                            Text(
-                              "Çay",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/milk.png"),
-                            Text(
-                              "Süt",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/cofee.png"),
-                            Text(
-                              "Kahve",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/water.png"),
-                            Text(
-                              "Su",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/tea.png",
+                          text: "Tea"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/milk.png",
+                          text: "Milk"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/cofee.png",
+                          text: "Cofee"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/water.png",
+                          text: "Water"),
                     ],
                   ),
                   Row(
                     children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/bread.png"),
-                            Text(
-                              "Ekmek",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/olive.png"),
-                            Text(
-                              "Zeytin",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              "assets/nutritions/cheese.png",
-                              height: 50,
-                              width: 40,
-                            ),
-                            Text(
-                              "Peynir",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/egg.png"),
-                            Text(
-                              "Yumurta",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/bread.png",
+                          text: "Bread"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/olive.png",
+                          text: "Olive"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/cheese.png",
+                          text: "Cheese"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/egg.png",
+                          text: "Egg"),
                     ],
                   ),
                   Row(
                     children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/cake.png"),
-                            Text(
-                              "Pasta",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/meatball.png"),
-                            Text(
-                              "Köfte",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/fish.png"),
-                            Text(
-                              "Balık",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/chicken.png"),
-                            Text(
-                              "Tavuk",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/cake.png",
+                          text: "Cake"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/meatball.png",
+                          text: "Meatball"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/fish.png",
+                          text: "Fish"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/chicken.png",
+                          text: "Chicken"),
                     ],
                   ),
                   Row(
                     children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/spagetti.png"),
-                            Text(
-                              "Makarna",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/rice.png"),
-                            Text(
-                              "Pilav",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/nutritions/banana.png"),
-                            Text(
-                              "Muz",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Image.asset("assets/nutritions/salad.png"),
-                            Text(
-                              "Salata",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/spagetti.png",
+                          text: "Spagetti"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/rice.png",
+                          text: "Rice"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/banana.png",
+                          text: "Banana"),
+                      iconAndText(
+                          imagesAssetPath: "assets/nutritions/salad.png",
+                          text: "Salad"),
                     ],
                   ),
                 ],
               ),
             ),
             Expanded(
-              flex: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
-                ),
-                margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Icon(
-                      Icons.flatware,
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      "Yediğin Besini Gir",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 1),
+                flex: 10,
+                child: NormalListItem(
+                    textInput: "Yediğin Besini Gir",
+                    iconData: Icons.flatware,
+                    iconColors: Colors.black,
+                    topLeftCornerRadius: 30,
+                    topRightCornerRadius: 30,
+                    bottomLeftCornerRadius: 0,
+                    bottomRightCornerRadius: 0)),
+            const SizedBox(height: 1),
             Expanded(
-              flex: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30)),
-                ),
-                margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Icon(
-                      Icons.draw,
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      "Aldığın Kaloriyi Gir",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                flex: 10,
+                child: NormalListItem(
+                    textInput: "Yediğin Besini Gir",
+                    iconData: Icons.draw,
+                    iconColors: Colors.black,
+                    topLeftCornerRadius: 0,
+                    topRightCornerRadius: 0,
+                    bottomLeftCornerRadius: 30,
+                    bottomRightCornerRadius: 30)),
             Expanded(flex: 2, child: Container()),
           ],
         ),

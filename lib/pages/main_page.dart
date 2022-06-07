@@ -33,9 +33,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(211, 0, 0, 0),
+      backgroundColor: const Color.fromARGB(211, 0, 0, 0),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 29, 29, 29),
+        backgroundColor: const Color.fromARGB(255, 29, 29, 29),
         title: Image.asset(
           'assets/DevIstanbul2.png',
           fit: BoxFit.cover,
@@ -45,9 +45,9 @@ class _MainScreenState extends State<MainScreen> {
       body: IndexedStack(index: currentIndex, children: screens),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color.fromARGB(223, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(223, 0, 0, 0),
         selectedItemColor: Colors.white,
-        unselectedItemColor: Color.fromARGB(140, 195, 201, 166),
+        unselectedItemColor: const Color.fromARGB(140, 195, 201, 166),
         iconSize: 25,
         selectedFontSize: 13,
         unselectedFontSize: 12,
@@ -61,33 +61,23 @@ class _MainScreenState extends State<MainScreen> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.sports,
-            ),
+            icon: Icon(Icons.sports),
             label: "Coach",
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.emoji_emotions,
-            ),
+            icon: Icon(Icons.emoji_emotions),
             label: "Me",
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.restaurant,
-            ),
+            icon: Icon(Icons.restaurant),
             label: "Nutrition",
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.insights,
-            ),
+            icon: Icon(Icons.insights),
             label: "Report",
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.settings_suggest_rounded,
-            ),
+            icon: Icon(Icons.settings_suggest_rounded),
             label: "Setting",
           )
         ],

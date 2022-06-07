@@ -1,3 +1,4 @@
+import 'package:angry_coach_beta/extract/widgets.dart';
 import 'package:flutter/material.dart';
 
 class CoachPage extends StatelessWidget {
@@ -6,7 +7,7 @@ class CoachPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(90, 91, 89, 89),
+      backgroundColor: const Color.fromARGB(90, 91, 89, 89),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         child: Column(
@@ -44,149 +45,62 @@ class CoachPage extends StatelessWidget {
             Expanded(flex: 2, child: Container()),
             Expanded(
               flex: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
-                ),
-                margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Icon(
-                      Icons.check_circle,
-                      color: Colors.green,
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      "Günlük besin girişi",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
+              child: NormalListItem(
+                textInput: "Günlük Besin Girişi",
+                iconData: Icons.check_circle,
+                iconColors: Colors.green,
+                topLeftCornerRadius: 30,
+                topRightCornerRadius: 30,
+                bottomLeftCornerRadius: 0,
+                bottomRightCornerRadius: 0,
               ),
             ),
-            SizedBox(height: 1),
+            const SizedBox(height: 1),
             Expanded(
               flex: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Icon(
-                      Icons.check_circle,
-                      color: Colors.green,
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      "Kalori miktarı",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
+              child: NormalListItem(
+                textInput: "Kalori Miktarı",
+                iconData: Icons.check_circle,
+                iconColors: Colors.green,
+                topLeftCornerRadius: 0,
+                topRightCornerRadius: 0,
+                bottomLeftCornerRadius: 0,
+                bottomRightCornerRadius: 0,
               ),
             ),
-            SizedBox(height: 1),
+            const SizedBox(height: 1),
             Expanded(
-              flex: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Icon(
-                      Icons.cancel,
-                      color: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      "Vitamin alımı",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 1),
+                flex: 10,
+                child: NormalListItem(
+                    textInput: "Vitamin Alımı",
+                    iconData: Icons.cancel,
+                    iconColors: Colors.red,
+                    topLeftCornerRadius: 0,
+                    topRightCornerRadius: 0,
+                    bottomLeftCornerRadius: 0,
+                    bottomRightCornerRadius: 0)),
+            const SizedBox(height: 1),
             Expanded(
-              flex: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Icon(
-                      Icons.cancel,
-                      color: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      "Makro dengesi",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 1),
+                flex: 10,
+                child: NormalListItem(
+                    textInput: "Makro Dengesi",
+                    iconData: Icons.cancel,
+                    iconColors: Colors.red,
+                    topLeftCornerRadius: 0,
+                    topRightCornerRadius: 0,
+                    bottomLeftCornerRadius: 0,
+                    bottomRightCornerRadius: 0)),
+            const SizedBox(height: 1),
             Expanded(
-              flex: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30)),
-                ),
-                margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Icon(
-                      Icons.cancel,
-                      color: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      "Su tüketimi",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                flex: 10,
+                child: NormalListItem(
+                    textInput: "Su Tüketimi",
+                    iconData: Icons.cancel,
+                    iconColors: Colors.red,
+                    topLeftCornerRadius: 0,
+                    topRightCornerRadius: 0,
+                    bottomLeftCornerRadius: 30,
+                    bottomRightCornerRadius: 30)),
             Expanded(flex: 2, child: Container()),
           ],
         ),
