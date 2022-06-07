@@ -108,23 +108,90 @@ class NormalListItem extends StatelessWidget {
   }
 }
 
-class iconAndText extends StatelessWidget {
-  iconAndText({required this.imagesAssetPath, required this.text});
+class IconAndText extends StatelessWidget {
+  IconAndText(
+      {required this.imagesAssetPath,
+      required this.text,
+      required this.containersChild});
   late String imagesAssetPath;
   late String text;
+  late Widget containersChild;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.asset(imagesAssetPath),
-          Text(
-            text,
-            style: TextStyle(color: Colors.white),
-          ),
-        ],
+      child: GestureDetector(
+        onTap: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (context) => Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(40),
+                      child: containersChild,
+                    ),
+                  ),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+              ));
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(imagesAssetPath),
+            Text(
+              text,
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SettingsButton extends StatelessWidget {
+  late String title;
+
+  SettingsButton({Key? key, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        showModalBottomSheet(
+            context: context,
+            builder: (context) => const Center(
+                  child: Text("hello bottom sheet"),
+                ),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+            ));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white),
+            ),
+            Expanded(
+              child: Container(
+                height: 20,
+                color: const Color.fromARGB(2, 0, 0, 0),
+              ),
+            ),
+            const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.white,
+              size: 18,
+            )
+          ],
+        ),
       ),
     );
   }
