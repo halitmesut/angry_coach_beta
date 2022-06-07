@@ -1,3 +1,4 @@
+import 'package:angry_coach_beta/extract/widgets.dart';
 import 'package:flutter/material.dart';
 
 class SettingPage extends StatefulWidget {
@@ -40,6 +41,7 @@ class _SettingPageState extends State<SettingPage> {
             SettingsButton(title: "Ağırlık Birimi"),
             narrowDivider(),
             SettingsButton(title: "Tavsi Edilen Günlük Kalori"),
+            narrowDivider(),
             const SizedBox(height: 30),
             Row(
               children: [
@@ -61,6 +63,7 @@ class _SettingPageState extends State<SettingPage> {
             SettingsButton(title: "Ağırlık Birimi"),
             narrowDivider(),
             SettingsButton(title: "Tavsi Edilen Günlük Kalori"),
+            narrowDivider(),
           ],
         ),
       ),
@@ -87,54 +90,6 @@ class _SettingPageState extends State<SettingPage> {
     return const Divider(
       thickness: 1,
       color: Colors.blueGrey,
-    );
-  }
-}
-
-class SettingsButton extends StatelessWidget {
-  late String title;
-
-  SettingsButton({Key? key, required this.title}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        showModalBottomSheet(
-            context: context,
-            builder: (context) => const Center(
-                  child: Text("hello bottom sheet"),
-                ),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-            ));
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white),
-            ),
-            Expanded(
-              child: Container(
-                height: 20,
-                color: const Color.fromARGB(2, 0, 0, 0),
-              ),
-            ),
-            const Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.white,
-              size: 18,
-            )
-          ],
-        ),
-      ),
     );
   }
 }

@@ -79,8 +79,8 @@ class MePage extends StatelessWidget {
             Expanded(
               flex: 10,
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                padding: const EdgeInsets.symmetric(vertical: 0),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
