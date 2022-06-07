@@ -118,67 +118,107 @@ class ReportPage extends StatelessWidget {
             Expanded(flex: 2, child: Container()),
             Expanded(
               flex: 10,
-              child: NormalListItem(
-                  textInput: "Yenen Gıdalar",
-                  iconData: Icons.soup_kitchen_outlined,
-                  iconColors: Colors.black,
-                  topLeftCornerRadius: 30,
-                  topRightCornerRadius: 30,
-                  bottomLeftCornerRadius: 0,
-                  bottomRightCornerRadius: 0),
+              child: GestureDetector(
+                onTap: () {
+                  containersChild(context, Text("qwe"));
+                },
+                child: NormalListItem(
+                    textInput: "Yenen Gıdalar",
+                    iconData: Icons.soup_kitchen_outlined,
+                    iconColors: Colors.black,
+                    topLeftCornerRadius: 30,
+                    topRightCornerRadius: 30,
+                    bottomLeftCornerRadius: 0,
+                    bottomRightCornerRadius: 0),
+              ),
             ),
             SizedBox(height: 1),
             Expanded(
               flex: 10,
-              child: NormalListItem(
-                  textInput: "Alınan Kaloriler",
-                  iconData: Icons.call_merge,
-                  iconColors: Colors.black,
-                  topLeftCornerRadius: 0,
-                  topRightCornerRadius: 0,
-                  bottomLeftCornerRadius: 0,
-                  bottomRightCornerRadius: 0),
+              child: GestureDetector(
+                onTap: () {
+                  containersChild(context, Text("qwe"));
+                },
+                child: NormalListItem(
+                    textInput: "Alınan Kaloriler",
+                    iconData: Icons.call_merge,
+                    iconColors: Colors.black,
+                    topLeftCornerRadius: 0,
+                    topRightCornerRadius: 0,
+                    bottomLeftCornerRadius: 0,
+                    bottomRightCornerRadius: 0),
+              ),
             ),
             SizedBox(height: 1),
             Expanded(
               flex: 10,
-              child: NormalListItem(
-                  textInput: "Makro Besinler",
-                  iconData: Icons.call_made,
-                  iconColors: Colors.black,
-                  topLeftCornerRadius: 0,
-                  topRightCornerRadius: 0,
-                  bottomLeftCornerRadius: 0,
-                  bottomRightCornerRadius: 0),
+              child: GestureDetector(
+                onTap: () {
+                  containersChild(context, Text("qwe"));
+                },
+                child: NormalListItem(
+                    textInput: "Makro Besinler",
+                    iconData: Icons.call_made,
+                    iconColors: Colors.black,
+                    topLeftCornerRadius: 0,
+                    topRightCornerRadius: 0,
+                    bottomLeftCornerRadius: 0,
+                    bottomRightCornerRadius: 0),
+              ),
             ),
             SizedBox(height: 1),
             Expanded(
               flex: 10,
-              child: NormalListItem(
-                  textInput: "Besin Değerleri",
-                  iconData: Icons.call_split,
-                  iconColors: Colors.black,
-                  topLeftCornerRadius: 0,
-                  topRightCornerRadius: 0,
-                  bottomLeftCornerRadius: 0,
-                  bottomRightCornerRadius: 0),
+              child: GestureDetector(
+                onTap: () {
+                  containersChild(context, Text("qwe"));
+                },
+                child: NormalListItem(
+                    textInput: "Besin Değerleri",
+                    iconData: Icons.call_split,
+                    iconColors: Colors.black,
+                    topLeftCornerRadius: 0,
+                    topRightCornerRadius: 0,
+                    bottomLeftCornerRadius: 0,
+                    bottomRightCornerRadius: 0),
+              ),
             ),
             const SizedBox(height: 1),
             Expanded(
               flex: 10,
-              child: NormalListItem(
-                  textInput: "Gelişim Haritam",
-                  iconData: Icons.self_improvement,
-                  iconColors: Colors.black,
-                  topLeftCornerRadius: 0,
-                  topRightCornerRadius: 0,
-                  bottomLeftCornerRadius: 30,
-                  bottomRightCornerRadius: 30),
+              child: GestureDetector(
+                onTap: () {
+                  containersChild(context, Text("qwe"));
+                },
+                child: NormalListItem(
+                    textInput: "Gelişim Haritam",
+                    iconData: Icons.self_improvement,
+                    iconColors: Colors.black,
+                    topLeftCornerRadius: 0,
+                    topRightCornerRadius: 0,
+                    bottomLeftCornerRadius: 30,
+                    bottomRightCornerRadius: 30),
+              ),
             ),
             Expanded(flex: 2, child: Container()),
           ],
         ),
       ),
     );
+  }
+
+  Future<dynamic> containersChild(
+      BuildContext context, Widget containersChild) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) => Center(
+              child: Container(
+                padding: const EdgeInsets.all(40),
+                child: containersChild,
+              ),
+            ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+        ));
   }
 }
