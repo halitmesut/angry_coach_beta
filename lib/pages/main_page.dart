@@ -35,9 +35,9 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(211, 0, 0, 0),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 29, 29, 29),
+        backgroundColor: Color.fromARGB(255, 15, 15, 15),
         title: Image.asset(
-          'assets/DevIstanbul2.png',
+          'assets/angrycoach.png',
           fit: BoxFit.cover,
           height: 50,
         ),
@@ -45,7 +45,7 @@ class _MainScreenState extends State<MainScreen> {
       body: IndexedStack(index: currentIndex, children: screens),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color.fromARGB(223, 0, 0, 0),
+        backgroundColor: Color.fromARGB(255, 15, 15, 15),
         selectedItemColor: Colors.white,
         unselectedItemColor: const Color.fromARGB(140, 195, 201, 166),
         iconSize: 25,

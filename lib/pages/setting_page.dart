@@ -1,4 +1,15 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
+import 'package:angry_coach_beta/pages/settings_pages/Notifications_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/basal_metabolic_rate_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/body_mass_index_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/connect_us_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/email_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/height_weight_age_gender_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/language_and_country_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/log_out_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/measurement_unit_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/name_and_email_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/privacy_and_security_screen.dart';
 import 'package:flutter/material.dart';
 
 class SettingPage extends StatefulWidget {
@@ -28,20 +39,45 @@ class _SettingPageState extends State<SettingPage> {
             ),
             normalDivider(),
             const SizedBox(height: 5),
-            SettingsButton(title: "İsim"),
+            SettingsButton(
+                title: "Name and Email",
+                destinationScreenWidgetName: const NameAndEmailScreen()),
             narrowDivider(),
-            SettingsButton(title: "Email"),
+            SettingsButton(
+                title: "Language And Country",
+                destinationScreenWidgetName: const LanguageAndCountryScreen()),
             narrowDivider(),
-            SettingsButton(title: "Bölge"),
+            SettingsButton(
+                title: "Measurement Units",
+                destinationScreenWidgetName: const MeasurementUnitScreen()),
             narrowDivider(),
-            SettingsButton(title: "Dil"),
+            SettingsButton(
+                title: "Height, Weight, Age and Gender",
+                destinationScreenWidgetName:
+                    const HeightWeightAgeAndGenderScreen()),
             narrowDivider(),
-            SettingsButton(title: "Enerji Birimi"),
+            SettingsButton(
+                title: "Recalculate My Daily Calories",
+                destinationScreenWidgetName:
+                    const RecalculateMyDailyCaloriesScreen()),
             narrowDivider(),
-            SettingsButton(title: "Ağırlık Birimi"),
+            const SizedBox(height: 30),
+            Row(
+              children: [
+                const SizedBox(width: 15),
+                const Icon(Icons.settings, color: Colors.green),
+                const SizedBox(width: 20),
+                titleName(title: "Additional Tools", size: 25),
+              ],
+            ),
+            normalDivider(),
+            SettingsButton(
+                title: "Body Mass Index Calculator",
+                destinationScreenWidgetName: const BmiScreen()),
             narrowDivider(),
-            SettingsButton(title: "Tavsi Edilen Günlük Kalori"),
-            narrowDivider(),
+            SettingsButton(
+                title: "Basal Metabolic Rate",
+                destinationScreenWidgetName: const BasalMetabolicRateScreen()),
             const SizedBox(height: 30),
             Row(
               children: [
@@ -52,17 +88,21 @@ class _SettingPageState extends State<SettingPage> {
               ],
             ),
             normalDivider(),
-            SettingsButton(title: "Ağırlık Birimi"),
+            SettingsButton(
+                title: "Notificatios",
+                destinationScreenWidgetName: const NotificationsScreen()),
             narrowDivider(),
-            SettingsButton(title: "Tavsi Edilen Günlük Kalori"),
+            SettingsButton(
+                title: "Privacy and Security",
+                destinationScreenWidgetName: const PrivacyAndSecurityScreen()),
             narrowDivider(),
-            SettingsButton(title: "Ağırlık Birimi"),
+            SettingsButton(
+                title: "Connect us",
+                destinationScreenWidgetName: const ConnectUsScreen()),
             narrowDivider(),
-            SettingsButton(title: "Tavsi Edilen Günlük Kalori"),
-            narrowDivider(),
-            SettingsButton(title: "Ağırlık Birimi"),
-            narrowDivider(),
-            SettingsButton(title: "Tavsi Edilen Günlük Kalori"),
+            SettingsButton(
+                title: "Log Out",
+                destinationScreenWidgetName: const LogOutScreen()),
             narrowDivider(),
           ],
         ),

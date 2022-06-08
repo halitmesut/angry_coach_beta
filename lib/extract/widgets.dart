@@ -151,21 +151,22 @@ class IconAndText extends StatelessWidget {
 
 class SettingsButton extends StatelessWidget {
   late String title;
+  late Widget destinationScreenWidgetName;
 
-  SettingsButton({Key? key, required this.title}) : super(key: key);
+  SettingsButton(
+      {Key? key,
+      required this.title,
+      required this.destinationScreenWidgetName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showModalBottomSheet(
-            context: context,
-            builder: (context) => const Center(
-                  child: Text("hello bottom sheet"),
-                ),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-            ));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => destinationScreenWidgetName));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
