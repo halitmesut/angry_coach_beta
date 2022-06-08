@@ -47,15 +47,15 @@ class OnBoardingPage extends StatelessWidget {
 
             next: const Icon(
               Icons.arrow_forward,
-              color: Colors.deepOrangeAccent,
+              color: Colors.purple,
             ),
             showSkipButton: true,
             skip: const Text(
               "Atla",
-              style: TextStyle(color: Colors.deepOrangeAccent, fontSize: 18),
+              style: TextStyle(color: Colors.purple, fontSize: 18),
             ),
             dotsDecorator: getDotsDecoration(),
-            globalBackgroundColor: Colors.white,
+            globalBackgroundColor: Color.fromARGB(57, 155, 39, 176),
             //noktalara basınca sayfanın değişmesi
             isProgressTap: true,
             //noktaların görünmesi
@@ -68,10 +68,10 @@ class OnBoardingPage extends StatelessWidget {
 
   DotsDecorator getDotsDecoration() {
     return DotsDecorator(
-      color: Colors.orange,
-      activeColor: Colors.deepOrangeAccent,
+      color: Colors.purple,
+      activeColor: Colors.purple,
       size: const Size(10, 10),
-      activeSize: const Size(22, 12),
+      activeSize: const Size(18, 13),
       activeShape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     );

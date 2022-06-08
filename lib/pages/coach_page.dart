@@ -23,7 +23,7 @@ class CoachPage extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(flex: 2, child: Container()),
+            Spacer(flex: 2),
             Expanded(
               flex: 30,
               child: GestureDetector(

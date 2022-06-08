@@ -22,7 +22,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int currentIndex = 0;
+  int currentIndex = 2;
   final List<Widget> screens = [
     const CoachPage(),
     const MePage(),

@@ -1,6 +1,5 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:angry_coach_beta/pages/coach_page.dart';
 
 class MePage extends StatelessWidget {
   const MePage({Key? key}) : super(key: key);
