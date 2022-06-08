@@ -33,9 +33,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(211, 0, 0, 0),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 15, 15, 15),
         title: Image.asset(
           'assets/angrycoach.png',
           fit: BoxFit.cover,
@@ -45,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
       body: IndexedStack(index: currentIndex, children: screens),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color.fromARGB(255, 15, 15, 15),
+        backgroundColor: const Color(0xff0a0e21),
         selectedItemColor: Colors.white,
         unselectedItemColor: const Color.fromARGB(140, 195, 201, 166),
         iconSize: 25,

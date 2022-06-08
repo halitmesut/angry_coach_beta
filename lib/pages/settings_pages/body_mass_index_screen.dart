@@ -205,20 +205,102 @@ class _BmiScreenState extends State<BmiScreen> {
           ),
           BottomButton(
             onTap: () {
-              CalculatorBrain calc =
-                  CalculatorBrain(weight: weight, height: height);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ResultPage(
-                    bmiResult: calc.calculateBMI(),
-                    resultText: calc.getResult(),
-                    interpretation: calc.getInterpretation(),
-                  ),
-                ),
-              );
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) => Center(
+                        child: Container(
+                            child: ResultPage(
+                                bmiResult: "1",
+                                resultText: "2",
+                                interpretation: "3")),
+                      ),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(30)),
+                  ));
             },
             buttonTitle: "CALCULATE",
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ReusableCards extends StatelessWidget {
+  final Color colour;
+  final Widget cardChild;
+
+  ReusableCards({required this.colour, required this.cardChild});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: cardChild,
+      margin: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+          color: colour, borderRadius: BorderRadius.circular(15.0)),
+    );
+  }
+}
+
+// CalculatorBrain calc =
+//     CalculatorBrain(weight: weight, height: height);
+// Navigator.push(
+//   context,
+//   MaterialPageRoute(
+//     builder: (context) => ResultPage(
+//       bmiResult: calc.calculateBMI(),
+//       resultText: calc.getResult(),
+//       interpretation: calc.getInterpretation(),
+//     ),
+//   ),
+// );
+
+class ResultPage extends StatelessWidget {
+  const ResultPage(
+      {required this.bmiResult,
+      required this.resultText,
+      required this.interpretation});
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
+  @override
+  Widget build(BuildContext context) {
+    double vertical;
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "YOUR RESULT",
+                  style: kTitleTextStyle,
+                ),
+                Text(
+                  resultText.toUpperCase(),
+                  style: kResultTextStyle,
+                ),
+                Text(
+                  bmiResult,
+                  style: kBMITextStyle,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    interpretation,
+                    style: kBodyTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -286,23 +368,6 @@ class IconContent extends StatelessWidget {
         ),
         Text(label, style: kLabelTextStyle),
       ],
-    );
-  }
-}
-
-class ReusableCards extends StatelessWidget {
-  final Color colour;
-  final Widget cardChild;
-
-  ReusableCards({required this.colour, required this.cardChild});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: cardChild,
-      margin: const EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-          color: colour, borderRadius: BorderRadius.circular(15.0)),
     );
   }
 }

@@ -1,5 +1,7 @@
+import 'dart:ui';
+
+import 'package:angry_coach_beta/pages/introduction_pages/name.dart';
 import 'package:flutter/material.dart';
-import 'package:angry_coach_beta/pages/onboarding_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,10 +12,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       title: title,
-      home: const OnBoardingPage(),
+      theme: ThemeData(
+        primaryColor: const Color(0xff0a0e21),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 14, 19, 45),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xff0a0e21),
+        ),
+        primarySwatch: Colors.purple,
+      ),
+      themeMode: ThemeMode.light,
+      home: const NameScreen(),
     );
   }
 }

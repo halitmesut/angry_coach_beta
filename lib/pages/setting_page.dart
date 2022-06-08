@@ -23,7 +23,6 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(90, 91, 89, 89),
       body: Container(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: ListView(
