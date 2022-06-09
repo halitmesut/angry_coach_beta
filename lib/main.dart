@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:angry_coach_beta/pages/introduction_pages/name.dart';
+import 'package:angry_coach_beta/pages/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -17,13 +16,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color(0xff0a0e21),
         scaffoldBackgroundColor: const Color.fromARGB(255, 14, 19, 45),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           backgroundColor: Color(0xff0a0e21),
+          backwardsCompatibility: false,
+          brightness: Brightness.dark,
         ),
         primarySwatch: Colors.purple,
       ),
       themeMode: ThemeMode.light,
-      home: const NameScreen(),
+      home: const MainScreen(),
     );
   }
 }
