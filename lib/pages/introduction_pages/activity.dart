@@ -97,7 +97,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                   if (userActivity != "") {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const MainPage()),
+                      MaterialPageRoute(builder: (_) => const MainPage()),
                     );
                   }
                 },
@@ -109,6 +109,12 @@ class _ActivityScreenState extends State<ActivityScreen> {
     );
   }
 }
+
+//  {
+//       Navigator.push(
+//           context, MaterialPageRoute(builder: (_) => HomePage()));
+//     },
+
 
 
 //  Navigator.push(
