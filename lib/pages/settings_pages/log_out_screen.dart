@@ -1,3 +1,4 @@
+import 'package:angry_coach_beta/pages/log_in/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,8 @@ class _LogOutScreenState extends State<LogOutScreen> {
                 Column(
                   children: [
                     Text(
-                      "Güle Güle Böcek",
+                      //kullanıcının girmiş olduğu e mail burada yer alıyor
+                      user.email!,
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.grey[700],
@@ -180,6 +182,8 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       color: Colors.deepOrange,
                       onPressed: () {
                         FirebaseAuth.instance.signOut();
+
+                        Navigator.pop(context);
                       },
                       height: 60,
                       child: Text(

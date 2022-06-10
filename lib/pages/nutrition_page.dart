@@ -107,10 +107,10 @@ class NutritionPage extends StatelessWidget {
                 flex: 10,
                 child: GestureDetector(
                   onTap: (() {
-                    FirebaseAuth.instance.signOut();
+                    bottomSheetContainer(context, Text("aldığın besini gir"));
                   }),
                   child: NormalListItem(
-                      textInput: user.email!,
+                      textInput: "aldığın besini gir",
                       iconData: Icons.flatware,
                       iconColors: Colors.black,
                       topLeftCornerRadius: 30,

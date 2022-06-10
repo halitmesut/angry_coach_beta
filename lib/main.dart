@@ -1,6 +1,8 @@
 import 'package:angry_coach_beta/pages/introduction_pages/name.dart';
 import 'package:angry_coach_beta/home_page.dart';
+import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
 import 'package:angry_coach_beta/pages/log_in/login.dart';
+import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.hasData) {
             return HomePage();
           } else {
-            return SigninPage();
+            return AuthPage();
           }
         },
       ),
