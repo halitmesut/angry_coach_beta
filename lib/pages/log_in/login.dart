@@ -1,4 +1,5 @@
 import 'package:angry_coach_beta/main.dart';
+import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -32,16 +33,6 @@ class _SigninPageState extends State<SigninPage> {
         elevation: 0,
         brightness: Brightness.light,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.black,
-          ),
-        ),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -183,13 +174,19 @@ class _SigninPageState extends State<SigninPage> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text("Don't have an account?"),
-                    Text(
-                      "Sign Up",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                    TextButton(
+                      child: Text("Sign Up",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 18)),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignUpPage()));
+                      },
                     )
                   ],
                 )
@@ -223,43 +220,5 @@ class _SigninPageState extends State<SigninPage> {
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
-  }
-
-  Widget makeInput({label, obscureText = false}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: Colors.black87,
-          ),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TextField(
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.grey[400]!,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.grey[400]!,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 25,
-        )
-      ],
-    );
   }
 }
