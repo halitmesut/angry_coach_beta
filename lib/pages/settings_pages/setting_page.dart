@@ -4,7 +4,7 @@ import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/basal_metab
 import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/body_mass_index_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/body_mass_index_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/connect_us_screen.dart';
-import 'package:angry_coach_beta/pages/settings_pages/email_screen.dart';
+import 'package:angry_coach_beta/pages/settings_pages/recalculate_calories_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/height_weight_age_gender_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/language_and_country_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/log_out_screen.dart';
