@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       themeMode: ThemeMode.light,
-      home: const MainScreen(),
+      home: const MainPage(),
     );
   }
 }

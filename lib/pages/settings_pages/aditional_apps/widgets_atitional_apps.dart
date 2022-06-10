@@ -27,14 +27,17 @@ class IconContent extends StatelessWidget {
 }
 
 class RoundIconButton extends StatelessWidget {
-  RoundIconButton({required this.icone, required this.onPress});
+  RoundIconButton(
+      {required this.icone, required this.onPress, required this.onLongPres});
 
   final IconData icone;
   Function()? onPress;
+  Function()? onLongPres;
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
+      onLongPress: onLongPres,
       child: Icon(
         icone,
         color: Color.fromARGB(255, 173, 173, 173),
@@ -90,57 +93,6 @@ class ReusableCards extends StatelessWidget {
       margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
           color: colour, borderRadius: BorderRadius.circular(15.0)),
-    );
-  }
-}
-
-class ResultPage extends StatelessWidget {
-  const ResultPage(
-      {required this.bmiResult,
-      required this.resultText,
-      required this.interpretation});
-  final String bmiResult;
-  final String resultText;
-  final String interpretation;
-
-  @override
-  Widget build(BuildContext context) {
-    double vertical;
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "YOUR RESULT",
-                  style: kTitleTextStyle,
-                ),
-                Text(
-                  resultText.toUpperCase(),
-                  style: kResultTextStyle,
-                ),
-                Text(
-                  bmiResult,
-                  style: kBMITextStyle,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    interpretation,
-                    style: kBodyTextStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

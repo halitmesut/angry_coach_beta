@@ -1,23 +1,23 @@
-import 'package:angry_coach_beta/calculate_brain/bmi_calculate.dart';
 import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/constants_aditional_apps.dart';
 import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/widgets_atitional_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/calculator_brain.dart';
 
 enum Gender {
   male,
   female,
 }
 
-class BmiScreen extends StatefulWidget {
-  const BmiScreen({Key? key}) : super(key: key);
+class BodyMassIndexScreen extends StatefulWidget {
+  const BodyMassIndexScreen({Key? key}) : super(key: key);
 
   @override
-  State<BmiScreen> createState() => _BmiScreenState();
+  State<BodyMassIndexScreen> createState() => _BodyMassIndexScreenState();
 }
 
-class _BmiScreenState extends State<BmiScreen> {
-  Gender? selectedGender;
+class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
+  Gender selectedGenderBody = Gender.female;
   int height = 170;
   int weight = 60;
   int age = 30;
@@ -40,13 +40,14 @@ class _BmiScreenState extends State<BmiScreen> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        selectedGender = Gender.male;
+                        selectedGenderBody = Gender.male;
                       });
+                      print(selectedGenderBody);
                     },
                     child: ReusableCards(
                       cardChild: IconContent(
                           icon: FontAwesomeIcons.mars, label: "MALE"),
-                      colour: selectedGender == Gender.male
+                      colour: selectedGenderBody == Gender.male
                           ? kActiveCardColor
                           : kInactiveCardColor,
                     ),
@@ -56,13 +57,14 @@ class _BmiScreenState extends State<BmiScreen> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        selectedGender = Gender.female;
+                        selectedGenderBody = Gender.female;
                       });
+                      print(selectedGenderBody);
                     },
                     child: ReusableCards(
                       cardChild: IconContent(
                           icon: FontAwesomeIcons.venus, label: "FEMALE"),
-                      colour: selectedGender == Gender.female
+                      colour: selectedGenderBody == Gender.female
                           ? kActiveCardColor
                           : kInactiveCardColor,
                     ),
@@ -109,6 +111,7 @@ class _BmiScreenState extends State<BmiScreen> {
                       setState(() {
                         height = newValue.round();
                       });
+                      print(height);
                     },
                   ),
                 ],
@@ -136,10 +139,17 @@ class _BmiScreenState extends State<BmiScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundIconButton(
+                              onLongPres: () {
+                                setState(() {
+                                  age = age - 10;
+                                });
+                                print(age);
+                              },
                               icone: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
                                   weight--;
+                                  print(weight);
                                 });
                               },
                             ),
@@ -147,10 +157,17 @@ class _BmiScreenState extends State<BmiScreen> {
                               width: 15.0,
                             ),
                             RoundIconButton(
+                              onLongPres: () {
+                                setState(() {
+                                  age = age + 10;
+                                });
+                                print(age);
+                              },
                               icone: FontAwesomeIcons.plus,
                               onPress: () {
                                 setState(() {
                                   weight++;
+                                  print(weight);
                                 });
                               },
                             )
@@ -178,10 +195,17 @@ class _BmiScreenState extends State<BmiScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundIconButton(
+                              onLongPres: () {
+                                setState(() {
+                                  age = age + 10;
+                                });
+                                print(age);
+                              },
                               icone: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
                                   age--;
+                                  print(age);
                                 });
                               },
                             ),
@@ -189,11 +213,18 @@ class _BmiScreenState extends State<BmiScreen> {
                               width: 15.0,
                             ),
                             RoundIconButton(
+                              onLongPres: () {
+                                setState(() {
+                                  age = age + 10;
+                                });
+                                print(age);
+                              },
                               icone: FontAwesomeIcons.plus,
                               onPress: () {
                                 setState(() {
                                   age++;
                                 });
+                                print(age);
                               },
                             )
                           ],
@@ -207,19 +238,37 @@ class _BmiScreenState extends State<BmiScreen> {
           ),
           BottomButton(
             onTap: () {
+              CalculatorBrain calc = CalculatorBrain(
+                  age: age,
+                  weight: weight,
+                  height: height,
+                  selecteddGender: selectedGenderBody);
               showModalBottomSheet(
                   context: context,
-                  builder: (context) => Center(
-                        child: Container(
-                            child: ResultPage(
-                                bmiResult: "1",
-                                resultText: "2",
-                                interpretation: "3")),
+                  builder: (context) => Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            calc.getStatusExplanation(),
+                            style: kResultTextStyle,
+                          ),
+                          Text(
+                            calc.boadyMassIndex(),
+                            style: kBMITextStyle,
+                          ),
+                          Text(
+                            calc.getInterpretation(),
+                            style: kBodyTextStyle,
+                            textAlign: TextAlign.center,
+                          )
+                        ],
                       ),
-                  shape: const RoundedRectangleBorder(
+                  shape: RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(30)),
-                  ));
+                  ),
+                  backgroundColor: Color(0xff0a0e21));
             },
             buttonTitle: "CALCULATE",
           ),
@@ -228,18 +277,3 @@ class _BmiScreenState extends State<BmiScreen> {
     );
   }
 }
-
-
-// CalculatorBrain calc =
-//     CalculatorBrain(weight: weight, height: height);
-// Navigator.push(
-//   context,
-//   MaterialPageRoute(
-//     builder: (context) => ResultPage(
-//       bmiResult: calc.calculateBMI(),
-//       resultText: calc.getResult(),
-//       interpretation: calc.getInterpretation(),
-//     ),
-//   ),
-// );
-

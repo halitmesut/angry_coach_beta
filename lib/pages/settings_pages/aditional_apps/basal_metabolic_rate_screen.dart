@@ -1,7 +1,9 @@
+import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/calculator_brain.dart';
 import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/constants_aditional_apps.dart';
 import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/widgets_atitional_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/body_mass_index_screen.dart';
 
 class BasalMetabolicRateScreen extends StatefulWidget {
   const BasalMetabolicRateScreen({Key? key}) : super(key: key);
@@ -11,13 +13,8 @@ class BasalMetabolicRateScreen extends StatefulWidget {
       _BasalMetabolicRateScreenState();
 }
 
-enum Gender {
-  male,
-  female,
-}
-
 class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
-  Gender? selectedGender;
+  Gender selectedGenderbasal = Gender.female;
   int height = 170;
   int weight = 60;
   int age = 30;
@@ -27,7 +24,7 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff0a0b21),
-        title: Text("Body Mass Index Calculator"),
+        title: Text("Basal Metabolismic Rate Index"),
       ),
       backgroundColor: Color.fromARGB(255, 12, 13, 39),
       body: Column(
@@ -40,13 +37,14 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        selectedGender = Gender.male;
+                        selectedGenderbasal = Gender.male;
                       });
+                      print(selectedGenderbasal);
                     },
                     child: ReusableCards(
                       cardChild: IconContent(
                           icon: FontAwesomeIcons.mars, label: "MALE"),
-                      colour: selectedGender == Gender.male
+                      colour: selectedGenderbasal == Gender.male
                           ? kActiveCardColor
                           : kInactiveCardColor,
                     ),
@@ -56,13 +54,14 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        selectedGender = Gender.female;
+                        selectedGenderbasal = Gender.female;
                       });
+                      print(selectedGenderbasal);
                     },
                     child: ReusableCards(
                       cardChild: IconContent(
                           icon: FontAwesomeIcons.venus, label: "FEMALE"),
-                      colour: selectedGender == Gender.female
+                      colour: selectedGenderbasal == Gender.female
                           ? kActiveCardColor
                           : kInactiveCardColor,
                     ),
@@ -109,6 +108,7 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                       setState(() {
                         height = newValue.round();
                       });
+                      print(height);
                     },
                   ),
                 ],
@@ -136,22 +136,36 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundIconButton(
+                              onLongPres: () {
+                                setState(() {
+                                  weight = weight - 10;
+                                });
+                                print(weight);
+                              },
                               icone: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
                                   weight--;
                                 });
+                                print(weight);
                               },
                             ),
                             SizedBox(
                               width: 15.0,
                             ),
                             RoundIconButton(
+                              onLongPres: () {
+                                setState(() {
+                                  weight = weight + 10;
+                                });
+                                print(weight);
+                              },
                               icone: FontAwesomeIcons.plus,
                               onPress: () {
                                 setState(() {
                                   weight++;
                                 });
+                                print(weight);
                               },
                             )
                           ],
@@ -178,11 +192,18 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundIconButton(
+                              onLongPres: () {
+                                setState(() {
+                                  age = age - 10;
+                                });
+                                print(age);
+                              },
                               icone: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
                                   age--;
                                 });
+                                print(age);
                               },
                             ),
                             SizedBox(
@@ -190,10 +211,17 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                             ),
                             RoundIconButton(
                               icone: FontAwesomeIcons.plus,
+                              onLongPres: () {
+                                setState(() {
+                                  age = age + 10;
+                                });
+                                print(age);
+                              },
                               onPress: () {
                                 setState(() {
                                   age++;
                                 });
+                                print(age);
                               },
                             )
                           ],
@@ -206,22 +234,33 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
             ),
           ),
           BottomButton(
-            onTap: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (context) => Center(
-                        child: Container(
-                            child: ResultPage(
-                                bmiResult: "1",
-                                resultText: "2",
-                                interpretation: "3")),
-                      ),
-                  shape: const RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(30)),
-                  ));
-            },
             buttonTitle: "CALCULATE",
+            onTap: () {
+              CalculatorBrain calc = CalculatorBrain(
+                  age: age,
+                  weight: weight,
+                  height: height,
+                  selecteddGender: selectedGenderbasal);
+              showModalBottomSheet(
+                backgroundColor: Color(0xff0a0e21),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                ),
+                context: context,
+                builder: (context) => Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(calc.getBasalMetabolismicRate(),
+                        style: kResultTextStyle),
+                    Text(
+                        "vücudun temel fonksiyonlarını çalıştırması için gereksinim duyduğu minumum enerjinin kilojul biriminden ifadesidir.",
+                        style: kBodyTextStyle,
+                        textAlign: TextAlign.center)
+                  ],
+                ),
+              );
+            },
           ),
         ],
       ),

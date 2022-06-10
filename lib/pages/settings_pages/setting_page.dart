@@ -73,7 +73,7 @@ class _SettingPageState extends State<SettingPage> {
             normalDivider(),
             SettingsButton(
                 title: "Body Mass Index Calculator",
-                destinationScreenWidgetName: const BmiScreen()),
+                destinationScreenWidgetName: const BodyMassIndexScreen()),
             narrowDivider(),
             SettingsButton(
                 title: "Basal Metabolic Rate",
