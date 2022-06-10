@@ -1,8 +1,21 @@
 import 'package:angry_coach_beta/pages/introduction_pages/name.dart';
-import 'package:angry_coach_beta/pages/main_page.dart';
+import 'package:angry_coach_beta/home_page.dart';
+import 'package:angry_coach_beta/pages/log_in/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 // ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
@@ -11,6 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: title,
       theme: ThemeData(
@@ -24,7 +38,20 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       themeMode: ThemeMode.light,
-      home: const MainPage(),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text("something went Wrong!!!"));
+          } else if (snapshot.hasData) {
+            return HomePage();
+          } else {
+            return SigninPage();
+          }
+        },
+      ),
     );
   }
 }

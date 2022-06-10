@@ -1,4 +1,5 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class NutritionPage extends StatelessWidget {
@@ -6,6 +7,7 @@ class NutritionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -105,11 +107,10 @@ class NutritionPage extends StatelessWidget {
                 flex: 10,
                 child: GestureDetector(
                   onTap: (() {
-                    bottomSheetContainer(
-                        context, Text("you are in containercontani"));
+                    FirebaseAuth.instance.signOut();
                   }),
                   child: NormalListItem(
-                      textInput: "Yediğin Besini Gir",
+                      textInput: user.email!,
                       iconData: Icons.flatware,
                       iconColors: Colors.black,
                       topLeftCornerRadius: 30,

@@ -1,7 +1,24 @@
+import 'package:angry_coach_beta/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class SigninPage extends StatefulWidget {
   @override
+  State<SigninPage> createState() => _SigninPageState();
+}
+
+class _SigninPageState extends State<SigninPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -52,8 +69,79 @@ class LoginPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Column(
                     children: [
-                      makeInput(label: "Email"),
-                      makeInput(label: "Password", obscureText: true),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Email",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          TextField(
+                            controller: emailController,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.grey[400]!,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.grey[400]!,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 25,
+                          )
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Password",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          TextField(
+                            controller: passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.grey[400]!,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.grey[400]!,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 25,
+                          )
+                        ],
+                      ),
                       SizedBox(
                         height: 20,
                       )
@@ -77,10 +165,10 @@ class LoginPage extends StatelessWidget {
                       minWidth: double.infinity,
                       elevation: 0,
                       color: Colors.deepOrange,
-                      onPressed: () {},
+                      onPressed: singIn,
                       height: 60,
                       child: Text(
-                        "Login",
+                        "Sign In",
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 22),
                       ),
@@ -95,12 +183,13 @@ class LoginPage extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text("Don't have an account?"),
                     Text(
                       "Sign Up",
                       style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                     )
                   ],
                 )
@@ -110,8 +199,8 @@ class LoginPage extends StatelessWidget {
               height: MediaQuery.of(context).size.height / 3,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/login.png"),
-                  fit: BoxFit.cover,
+                  image: AssetImage("assets/angrycoachh.jpg"),
+                  fit: BoxFit.fitHeight,
                 ),
               ),
             )
@@ -119,6 +208,21 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future singIn() async {
+    showDialog(
+        context: context,
+        builder: (contex) => Center(child: CircularProgressIndicator()));
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
   Widget makeInput({label, obscureText = false}) {

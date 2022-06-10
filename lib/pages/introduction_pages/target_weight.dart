@@ -1,5 +1,5 @@
 import 'package:angry_coach_beta/pages/introduction_pages/activity.dart';
-import 'package:angry_coach_beta/pages/main_page.dart';
+import 'package:angry_coach_beta/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

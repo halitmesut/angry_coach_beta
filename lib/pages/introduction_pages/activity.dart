@@ -1,4 +1,4 @@
-import 'package:angry_coach_beta/pages/main_page.dart';
+import 'package:angry_coach_beta/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -97,7 +97,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                   if (userActivity != "") {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const MainPage()),
+                      MaterialPageRoute(builder: (_) => const HomePage()),
                     );
                   }
                 },

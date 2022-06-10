@@ -1,7 +1,7 @@
 import 'package:angry_coach_beta/pages/introduction_pages/age.dart';
 import 'package:angry_coach_beta/pages/introduction_pages/height.dart';
 import 'package:angry_coach_beta/pages/introduction_pages/weight.dart';
-import 'package:angry_coach_beta/pages/main_page.dart';
+import 'package:angry_coach_beta/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

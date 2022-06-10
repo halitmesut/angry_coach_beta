@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "241522638436",
+    "project_id": "angry-coach-beta",
+    "storage_bucket": "angry-coach-beta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241522638436:android:f186fdfec47d650c8b6971",
+        "android_client_info": {
+          "package_name": "com.example.angry_coach_beta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241522638436-85p6ka3j73bsu9l8nhah7l496o0dqut2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpoZxpFmQOrSWsMcNPZbeUxfeSssOlZLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241522638436-85p6ka3j73bsu9l8nhah7l496o0dqut2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "241522638436-2sob96s89iac9h2b67lbus2ack7k6437.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.testing.angryCoachBeta"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
