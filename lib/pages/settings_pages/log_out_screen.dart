@@ -146,7 +146,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       onPressed: () {},
                       height: 60,
                       child: Text(
-                        "Sign In",
+                        "Reset Password",
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 22),
                       ),
@@ -157,7 +157,37 @@ class _LogOutScreenState extends State<LogOutScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 30,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  child: Container(
+                    padding: EdgeInsets.only(top: 2, left: 2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border(
+                        bottom: BorderSide(color: Colors.black),
+                        top: BorderSide(color: Colors.black),
+                        left: BorderSide(color: Colors.black),
+                        right: BorderSide(color: Colors.black),
+                      ),
+                    ),
+                    child: MaterialButton(
+                      minWidth: double.infinity,
+                      elevation: 0,
+                      color: Colors.deepOrange,
+                      onPressed: () {},
+                      height: 60,
+                      child: Text(
+                        "Log Out",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 22),
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
