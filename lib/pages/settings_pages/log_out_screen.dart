@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LogOutScreen extends StatefulWidget {
@@ -10,6 +11,7 @@ class LogOutScreen extends StatefulWidget {
 class _LogOutScreenState extends State<LogOutScreen> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -176,7 +178,9 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       minWidth: double.infinity,
                       elevation: 0,
                       color: Colors.deepOrange,
-                      onPressed: () {},
+                      onPressed: () {
+                        FirebaseAuth.instance.signOut();
+                      },
                       height: 60,
                       child: Text(
                         "Log Out",
