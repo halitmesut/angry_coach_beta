@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/basal_metabolic_rate_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/body_mass_index_screen.dart';
 
 class CalculatorBrain {

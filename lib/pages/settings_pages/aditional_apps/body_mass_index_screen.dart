@@ -141,7 +141,7 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                             RoundIconButton(
                               onLongPres: () {
                                 setState(() {
-                                  age = age - 10;
+                                  weight = weight - 10;
                                 });
                                 print(age);
                               },
@@ -159,7 +159,7 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                             RoundIconButton(
                               onLongPres: () {
                                 setState(() {
-                                  age = age + 10;
+                                  weight = weight + 10;
                                 });
                                 print(age);
                               },
@@ -197,7 +197,7 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                             RoundIconButton(
                               onLongPres: () {
                                 setState(() {
-                                  age = age + 10;
+                                  age = age - 10;
                                 });
                                 print(age);
                               },
@@ -237,6 +237,7 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
             ),
           ),
           BottomButton(
+            buttonTitle: "CALCULATE",
             onTap: () {
               CalculatorBrain calc = CalculatorBrain(
                   age: age,
@@ -270,7 +271,6 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                   ),
                   backgroundColor: Color(0xff0a0e21));
             },
-            buttonTitle: "CALCULATE",
           ),
         ],
       ),
