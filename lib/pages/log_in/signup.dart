@@ -190,6 +190,11 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Future signUp() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (contex) => const Center(child: CircularProgressIndicator()));
+
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
@@ -197,12 +202,14 @@ class _SignUpPageState extends State<SignUpPage> {
     } on FirebaseAuthException catch (e) {
       print(e);
     }
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
-    // final isValid = formKey.currentState!.validate();
-    // if (!isValid) return;
-    // showDialog(
-    //     context: context,
-    //     barrierDismissible: true,
-    //     builder: (contex) => Center(child: CircularProgressIndicator()));
-//  navigatorKey.currentState!.popUntil((route) => route.isFirst);
+// final isValid = formKey.currentState!.validate();
+//  if (!isValid) return;
+
+
+
+
+
+//     
