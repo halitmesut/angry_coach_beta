@@ -23,10 +23,10 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff0a0b21),
-        title: Text("Basal Metabolismic Rate Index"),
+        backgroundColor: const Color(0xff0a0b21),
+        title: const Text("Basal Metabolismic Rate Index"),
       ),
-      backgroundColor: Color.fromARGB(255, 12, 13, 39),
+      backgroundColor: const Color.fromARGB(255, 12, 13, 39),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -39,7 +39,6 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                       setState(() {
                         selectedGenderbasal = Gender.male;
                       });
-                      print(selectedGenderbasal);
                     },
                     child: ReusableCards(
                       cardChild: IconContent(
@@ -56,7 +55,6 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                       setState(() {
                         selectedGenderbasal = Gender.female;
                       });
-                      print(selectedGenderbasal);
                     },
                     child: ReusableCards(
                       cardChild: IconContent(
@@ -76,7 +74,7 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "HEIGHT",
                     style: kLabelTextStyle,
                   ),
@@ -85,14 +83,14 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 30.0,
                       ),
                       Text(
                         height.toString(),
                         style: kNumberTextStyle,
                       ),
-                      Text(
+                      const Text(
                         "cm",
                         style: kLabelTextStyle,
                       )
@@ -108,7 +106,6 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                       setState(() {
                         height = newValue.round();
                       });
-                      print(height);
                     },
                   ),
                 ],
@@ -124,7 +121,7 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "WEIGHT",
                           style: kLabelTextStyle,
                         ),
@@ -140,17 +137,15 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                                 setState(() {
                                   weight = weight - 10;
                                 });
-                                print(weight);
                               },
                               icone: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
                                   weight--;
                                 });
-                                print(weight);
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 15.0,
                             ),
                             RoundIconButton(
@@ -158,14 +153,12 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                                 setState(() {
                                   weight = weight + 10;
                                 });
-                                print(weight);
                               },
                               icone: FontAwesomeIcons.plus,
                               onPress: () {
                                 setState(() {
                                   weight++;
                                 });
-                                print(weight);
                               },
                             )
                           ],
@@ -180,7 +173,7 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "AGE",
                           style: kLabelTextStyle,
                         ),
@@ -196,17 +189,15 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                                 setState(() {
                                   age = age - 10;
                                 });
-                                print(age);
                               },
                               icone: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
                                   age--;
                                 });
-                                print(age);
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 15.0,
                             ),
                             RoundIconButton(
@@ -215,13 +206,11 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                                 setState(() {
                                   age = age + 10;
                                 });
-                                print(age);
                               },
                               onPress: () {
                                 setState(() {
                                   age++;
                                 });
-                                print(age);
                               },
                             )
                           ],
@@ -242,7 +231,7 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                   height: height,
                   selecteddGender: selectedGenderbasal);
               showModalBottomSheet(
-                backgroundColor: Color(0xff0a0e21),
+                backgroundColor: const Color(0xff0a0e21),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
                 ),
@@ -253,7 +242,7 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                   children: [
                     Text(calc.getBasalMetabolismicRate(),
                         style: kResultTextStyle),
-                    Text(
+                    const Text(
                         "vücudun temel fonksiyonlarını çalıştırması için gereksinim duyduğu minumum enerjinin kilojul biriminden ifadesidir.",
                         style: kBodyTextStyle,
                         textAlign: TextAlign.center)
