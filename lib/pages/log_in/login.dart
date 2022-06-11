@@ -1,9 +1,12 @@
 import 'package:angry_coach_beta/main.dart';
 import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class SigninPage extends StatefulWidget {
+  final VoidCallback onClickedSignUp;
+  const SigninPage({required this.onClickedSignUp});
   @override
   State<SigninPage> createState() => _SigninPageState();
 }
@@ -172,24 +175,19 @@ class _SigninPageState extends State<SigninPage> {
                 SizedBox(
                   height: 5,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Don't have an account?"),
-                    TextButton(
-                      child: Text("Sign Up",
+                RichText(
+                    text: TextSpan(
+                        text: "Naccount",
+                        style: TextStyle(color: Colors.black, fontSize: 15),
+                        children: [
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = widget.onClickedSignUp,
+                          text: "Sign Up",
                           style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 18)),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignUpPage()));
-                      },
-                    )
-                  ],
-                )
+                              decoration: TextDecoration.underline,
+                              color: Colors.orange))
+                    ])),
               ],
             ),
             Container(
