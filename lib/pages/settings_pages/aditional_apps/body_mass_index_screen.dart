@@ -26,10 +26,10 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff0a0b21),
-        title: Text("Body Mass Index Calculator"),
+        backgroundColor: const Color(0xff0a0b21),
+        title: const Text("Body Mass Index Calculator"),
       ),
-      backgroundColor: Color.fromARGB(255, 12, 13, 39),
+      backgroundColor: const Color.fromARGB(255, 12, 13, 39),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -42,7 +42,6 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                       setState(() {
                         selectedGenderBody = Gender.male;
                       });
-                      print(selectedGenderBody);
                     },
                     child: ReusableCards(
                       cardChild: IconContent(
@@ -59,7 +58,6 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                       setState(() {
                         selectedGenderBody = Gender.female;
                       });
-                      print(selectedGenderBody);
                     },
                     child: ReusableCards(
                       cardChild: IconContent(
@@ -79,7 +77,7 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "HEIGHT",
                     style: kLabelTextStyle,
                   ),
@@ -88,14 +86,14 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 30.0,
                       ),
                       Text(
                         height.toString(),
                         style: kNumberTextStyle,
                       ),
-                      Text(
+                      const Text(
                         "cm",
                         style: kLabelTextStyle,
                       )
@@ -111,7 +109,6 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                       setState(() {
                         height = newValue.round();
                       });
-                      print(height);
                     },
                   ),
                 ],
@@ -127,7 +124,7 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "WEIGHT",
                           style: kLabelTextStyle,
                         ),
@@ -143,17 +140,15 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                                 setState(() {
                                   weight = weight - 10;
                                 });
-                                print(age);
                               },
                               icone: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
                                   weight--;
-                                  print(weight);
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 15.0,
                             ),
                             RoundIconButton(
@@ -161,13 +156,11 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                                 setState(() {
                                   weight = weight + 10;
                                 });
-                                print(age);
                               },
                               icone: FontAwesomeIcons.plus,
                               onPress: () {
                                 setState(() {
                                   weight++;
-                                  print(weight);
                                 });
                               },
                             )
@@ -183,7 +176,7 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "AGE",
                           style: kLabelTextStyle,
                         ),
@@ -199,17 +192,15 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                                 setState(() {
                                   age = age - 10;
                                 });
-                                print(age);
                               },
                               icone: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
                                   age--;
-                                  print(age);
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 15.0,
                             ),
                             RoundIconButton(
@@ -217,14 +208,12 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                                 setState(() {
                                   age = age + 10;
                                 });
-                                print(age);
                               },
                               icone: FontAwesomeIcons.plus,
                               onPress: () {
                                 setState(() {
                                   age++;
                                 });
-                                print(age);
                               },
                             )
                           ],
@@ -265,11 +254,11 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                           )
                         ],
                       ),
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(30)),
                   ),
-                  backgroundColor: Color(0xff0a0e21));
+                  backgroundColor: const Color(0xff0a0e21));
             },
           ),
         ],
