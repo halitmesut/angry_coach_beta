@@ -3,10 +3,17 @@ import 'package:angry_coach_beta/home_page.dart';
 import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
 import 'package:angry_coach_beta/pages/log_in/login.dart';
 import 'package:angry_coach_beta/pages/log_in/signup.dart';
+import 'package:angry_coach_beta/pages/log_in/utils.dart';
+import 'package:angry_coach_beta/pages/log_in/utils.dart';
+import 'package:angry_coach_beta/pages/log_in/utils.dart';
+import 'package:angry_coach_beta/pages/log_in/utils.dart';
+import 'package:angry_coach_beta/pages/log_in/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'pages/log_in/utils.dart';
+import 'pages/log_in/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +33,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //  scaffoldMessengerKey: Utils.
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: title,

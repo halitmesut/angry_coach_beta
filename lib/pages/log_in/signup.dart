@@ -1,4 +1,5 @@
 import 'package:angry_coach_beta/main.dart';
+import 'package:angry_coach_beta/pages/log_in/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -189,6 +190,8 @@ class _SignUpPageState extends State<SignUpPage> {
           password: passwordController.text.trim());
     } on FirebaseAuthException catch (e) {
       print(e);
+
+      // Utils.showSnackBar(e.message);
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
