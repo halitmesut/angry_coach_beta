@@ -40,22 +40,24 @@ class RoundIconButton extends StatelessWidget {
       onLongPress: onLongPres,
       child: Icon(
         icone,
-        color: Color.fromARGB(255, 173, 173, 173),
+        color: const Color.fromARGB(255, 173, 173, 173),
       ),
       onPressed: onPress,
       elevation: 6.0,
-      constraints: BoxConstraints.tightFor(
+      constraints: const BoxConstraints.tightFor(
         width: 56.0,
         height: 56.0,
       ),
-      shape: CircleBorder(),
-      fillColor: Color.fromARGB(255, 11, 17, 39),
+      shape: const CircleBorder(),
+      fillColor: const Color.fromARGB(255, 11, 17, 39),
     );
   }
 }
 
+// ignore: must_be_immutable
 class BottomButton extends StatelessWidget {
-  BottomButton({required this.onTap, required this.buttonTitle});
+  BottomButton({Key? key, required this.onTap, required this.buttonTitle})
+      : super(key: key);
   Function()? onTap;
   final String buttonTitle;
 
@@ -65,8 +67,8 @@ class BottomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         color: kBottomContainerColor,
-        margin: EdgeInsets.only(top: 10.0),
-        padding: EdgeInsets.only(bottom: 10.0),
+        margin: const EdgeInsets.only(top: 10.0),
+        padding: const EdgeInsets.only(bottom: 10.0),
         width: double.infinity,
         height: kBottomContainerHeight,
         child: Center(
@@ -84,7 +86,8 @@ class ReusableCards extends StatelessWidget {
   final Color colour;
   final Widget cardChild;
 
-  ReusableCards({required this.colour, required this.cardChild});
+  // ignore: use_key_in_widget_constructors
+  const ReusableCards({required this.colour, required this.cardChild});
 
   @override
   Widget build(BuildContext context) {
