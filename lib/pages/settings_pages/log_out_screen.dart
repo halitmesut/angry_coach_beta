@@ -1,4 +1,3 @@
-import 'package:angry_coach_beta/pages/log_in/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +56,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Email",
+                            "Password",
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w400,
@@ -92,7 +91,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Password",
+                            "Confirm Password",
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w400,
@@ -199,15 +198,6 @@ class _LogOutScreenState extends State<LogOutScreen> {
                 ),
               ],
             ),
-            Container(
-              height: MediaQuery.of(context).size.height / 3,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/angrycoachh.jpg"),
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-            )
           ],
         ),
       ),
