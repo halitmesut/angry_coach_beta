@@ -1,4 +1,5 @@
 import 'package:angry_coach_beta/main.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -65,20 +66,10 @@ class _SigninPageState extends State<SigninPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Email",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black87,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          TextField(
+                          TextFormField(
                             controller: emailController,
                             decoration: InputDecoration(
+                              labelText: "Email",
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
@@ -92,6 +83,13 @@ class _SigninPageState extends State<SigninPage> {
                                 ),
                               ),
                             ),
+                            textInputAction: TextInputAction.next,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (email) =>
+                                email != null && !EmailValidator.validate(email)
+                                    ? "Enter a valid Email"
+                                    : null,
                           ),
                           SizedBox(
                             height: 25,
@@ -101,21 +99,18 @@ class _SigninPageState extends State<SigninPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Password",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black87,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          TextField(
+                          TextFormField(
                             controller: passwordController,
                             obscureText: true,
+                            textInputAction: TextInputAction.next,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) =>
+                                value != null && value.length < 6
+                                    ? "Enter min 6 characters"
+                                    : null,
                             decoration: InputDecoration(
+                              labelText: "Password",
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
