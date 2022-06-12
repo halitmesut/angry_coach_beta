@@ -1,6 +1,8 @@
+import 'package:angry_coach_beta/providers/user_name_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class NameAndEmailScreen extends StatefulWidget {
   const NameAndEmailScreen({Key? key}) : super(key: key);
@@ -41,14 +43,14 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
                   color: Colors.grey[700],
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 25,
               ),
-              const Text("Kullanıcı adını değiştir",
+              Text("${context.watch<UserNamee>().userNamee}",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
               const SizedBox(
-                height: 25,
+                height: 20,
               ),
               TextFormField(
                 controller: nameController,
@@ -96,7 +98,15 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
                   elevation: 0,
                   color: Colors.deepOrange,
                   onPressed: () {
-                    print(nameController.text);
+                    if (nameController.text.length > 2) {
+                      context
+                          .read<UserNamee>()
+                          .setUserName(nameController.text);
+
+                      Navigator.pop(context);
+
+                      print(nameController.text);
+                    }
                   },
                   height: 60,
                   child: Text(
