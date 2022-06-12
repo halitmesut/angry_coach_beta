@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 
 class SignUpPage extends StatefulWidget {
-  final VoidCallback onClickedSignIn;
-  const SignUpPage({required this.onClickedSignIn});
+  const SignUpPage();
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
@@ -144,21 +143,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              RichText(
-                text: TextSpan(
-                  text: "Naccount",
-                  style: TextStyle(color: Colors.black, fontSize: 15),
-                  children: [
-                    TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = widget.onClickedSignIn,
-                        text: "Sign In",
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: Colors.orange))
-                  ],
-                ),
-              ),
               Container(
                 height: MediaQuery.of(context).size.height / 3,
                 decoration: BoxDecoration(
@@ -196,9 +180,3 @@ class _SignUpPageState extends State<SignUpPage> {
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
-
-
-
-
-
-//     

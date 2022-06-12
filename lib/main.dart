@@ -1,19 +1,9 @@
-import 'package:angry_coach_beta/pages/introduction_pages/name.dart';
 import 'package:angry_coach_beta/home_page.dart';
 import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
-import 'package:angry_coach_beta/pages/log_in/login.dart';
-import 'package:angry_coach_beta/pages/log_in/signup.dart';
-import 'package:angry_coach_beta/pages/log_in/utils.dart';
-import 'package:angry_coach_beta/pages/log_in/utils.dart';
-import 'package:angry_coach_beta/pages/log_in/utils.dart';
-import 'package:angry_coach_beta/pages/log_in/utils.dart';
-import 'package:angry_coach_beta/pages/log_in/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'pages/log_in/utils.dart';
-import 'pages/log_in/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,10 +30,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color(0xff0a0e21),
         scaffoldBackgroundColor: const Color.fromARGB(255, 14, 19, 45),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xff0a0e21),
-          backwardsCompatibility: false,
-          brightness: Brightness.dark,
         ),
         primarySwatch: Colors.purple,
       ),
@@ -52,11 +40,11 @@ class MyApp extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text("something went Wrong!!!"));
+            return const Center(child: Text("something went Wrong!!!"));
           } else if (snapshot.hasData) {
-            return HomePage();
+            return const HomePage();
           } else {
             return AuthPage();
           }
