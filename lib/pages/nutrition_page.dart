@@ -110,7 +110,7 @@ class NutritionPage extends StatelessWidget {
                     bottomSheetContainer(context, Text("aldığın besini gir"));
                   }),
                   child: NormalListItem(
-                      textInput: "aldığın besini gir",
+                      textInput: "Aldığın Besini Gir",
                       iconData: Icons.flatware,
                       iconColors: Colors.black,
                       topLeftCornerRadius: 30,
