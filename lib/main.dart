@@ -1,8 +1,12 @@
 import 'package:angry_coach_beta/home_page.dart';
 import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
 import 'package:angry_coach_beta/providers/user_country_provider.dart';
+import 'package:angry_coach_beta/providers/user_height_measurement_unit.dart';
 import 'package:angry_coach_beta/providers/user_language_provider.dart';
 import 'package:angry_coach_beta/providers/user_name_provider.dart';
+import 'package:angry_coach_beta/providers/user_volumu_measurement_unit.dart';
+import 'package:angry_coach_beta/providers/user_weight_measurement_unit.dart';
+import 'package:angry_coach_beta/providers/user_energy_measurement_unit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,7 +25,11 @@ void main() async {
     providers: [
       ChangeNotifierProvider(create: (_) => UserNamee()),
       ChangeNotifierProvider(create: (_) => UserCountry()),
-      ChangeNotifierProvider(create: (_) => UserLanguage())
+      ChangeNotifierProvider(create: (_) => UserLanguage()),
+      ChangeNotifierProvider(create: (_) => UserHeightMeasurementUnit()),
+      ChangeNotifierProvider(create: (_) => UserWeightMeasurementUnit()),
+      ChangeNotifierProvider(create: (_) => UserVolumeMeasurementUnit()),
+      ChangeNotifierProvider(create: (_) => UserEnergyMeasurementUnit()),
     ],
     child: MyApp(),
   ));
