@@ -1,3 +1,5 @@
+import 'package:angry_coach_beta/providers/user_properties_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:provider/provider.dart';
@@ -37,6 +39,50 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(
+                height: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Height unit",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text("${context.watch<UserProperties>().userHeight}"),
+                isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                            child: CupertinoPicker(
+                              itemExtent: 64,
+                              onSelectedItemChanged: (index) {
+                                context
+                                    .read<MeasuremetUnits>()
+                                    .getUserHeightUnit(heightUnits[index]);
+                              },
+                              children: heightUnits
+                                  .map(
+                                    (item) => Center(
+                                      child: Text(
+                                        item,
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
+              ),
               const SizedBox(
                 height: 50,
               ),
