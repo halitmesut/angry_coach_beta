@@ -46,7 +46,7 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
               SizedBox(
                 height: 25,
               ),
-              Text("${context.watch<UserNamee>().userNamee}",
+              Text("${context.watch<UserNamee>().userName}",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
               const SizedBox(

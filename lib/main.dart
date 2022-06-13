@@ -1,11 +1,15 @@
 import 'package:angry_coach_beta/home_page.dart';
 import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
+import 'package:angry_coach_beta/providers/user_country_provider.dart';
+import 'package:angry_coach_beta/providers/user_language_provider.dart';
 import 'package:angry_coach_beta/providers/user_name_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:country_picker/country_picker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +20,8 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => UserNamee()),
+      ChangeNotifierProvider(create: (_) => UserCountry()),
+      ChangeNotifierProvider(create: (_) => UserLanguage())
     ],
     child: MyApp(),
   ));
@@ -43,6 +49,35 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       themeMode: ThemeMode.light,
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ar'),
+        Locale('es'),
+        Locale('el'),
+        Locale('et'),
+        Locale('nb'),
+        Locale('nn'),
+        Locale('pl'),
+        Locale('pt'),
+        Locale('ru'),
+        Locale('hi'),
+        Locale('ne'),
+        Locale('uk'),
+        Locale('hr'),
+        Locale('tr'),
+        Locale.fromSubtags(
+            languageCode: 'zh',
+            scriptCode: 'Hans'), // Generic Simplified Chinese 'zh_Hans'
+        Locale.fromSubtags(
+            languageCode: 'zh',
+            scriptCode: 'Hant'), // Generic traditional Chinese 'zh_Hant'
+      ],
+      localizationsDelegates: const [
+        CountryLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
