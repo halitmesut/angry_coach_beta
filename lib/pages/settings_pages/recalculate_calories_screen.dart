@@ -14,13 +14,24 @@ class RecalculateMyDailyCaloriesScreen extends StatefulWidget {
 class _RecalculateMyDailyCaloriesScreenState
     extends State<RecalculateMyDailyCaloriesScreen> {
   final ages = [for (var i = 13; i <= 65; i++) i];
+  final height = [for (var i = 120; i <= 220; i++) i];
+  final weight = [for (var i = 40; i <= 180; i++) i];
+  final gender = ["Male", "Female"];
+  final dietGoal = [
+    "Weight loss",
+    "Slow weight loss",
+    "Maintain my current weight",
+    "Slow weight gain",
+    "Weight gain",
+  ];
+  final activityLevel = [
+    "Sedentary",
+    "Low active",
+    "Active",
+    "Very active",
+  ];
   @override
   Widget build(BuildContext context) {
-    String userGender = "x";
-    String userAge = "x";
-    String userHeight = "x";
-    String userWeight = "x";
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -94,10 +105,11 @@ class _RecalculateMyDailyCaloriesScreenState
               ),
               ListTile(
                 title: Text(
-                  "Gender",
+                  "Height",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text("Female"),
+                subtitle:
+                    Text("${context.watch<UserProperties>().userHeight}cm"),
                 isThreeLine: false,
                 trailing: Icon(
                   Icons.arrow_forward_ios,
@@ -107,53 +119,21 @@ class _RecalculateMyDailyCaloriesScreenState
                   showModalBottomSheet(
                       context: context,
                       builder: (context) => Center(
-                            child: Container(
-                              padding: const EdgeInsets.all(40),
-                              child: Column(
-                                children: [
-                                  TextButton(
-                                      onPressed: () {}, child: Text("Male")),
-                                  TextButton(
-                                      onPressed: () {}, child: Text("Female")),
-                                ],
-                              ),
-                            ),
-                          ),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(30)),
-                      ));
-                },
-              ),
-              const Divider(
-                height: 2,
-                thickness: 2,
-              ),
-              ListTile(
-                title: Text(
-                  "Activity Level",
-                  style: TextStyle(fontSize: 20),
-                ),
-                subtitle: Text("35 years"),
-                isThreeLine: false,
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 20,
-                ),
-                onTap: () {
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (context) => Center(
-                            child: Container(
-                              padding: const EdgeInsets.all(40),
-                              child: Column(
-                                children: [
-                                  TextButton(
-                                      onPressed: () {}, child: Text("Male")),
-                                  TextButton(
-                                      onPressed: () {}, child: Text("Female")),
-                                ],
-                              ),
+                            child: CupertinoPicker(
+                              itemExtent: 64,
+                              onSelectedItemChanged: (index) {
+                                context
+                                    .read<UserProperties>()
+                                    .getUserHeight(height[index]);
+                              },
+                              children: height
+                                  .map((item) => Center(
+                                        child: Text(
+                                          item.toString(),
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      ))
+                                  .toList(),
                             ),
                           ),
                       shape: const RoundedRectangleBorder(
@@ -171,7 +151,8 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Weight",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text("85 kg"),
+                subtitle:
+                    Text("${context.watch<UserProperties>().userWeight}cm"),
                 isThreeLine: false,
                 trailing: Icon(
                   Icons.arrow_forward_ios,
@@ -181,16 +162,21 @@ class _RecalculateMyDailyCaloriesScreenState
                   showModalBottomSheet(
                       context: context,
                       builder: (context) => Center(
-                            child: Container(
-                              padding: const EdgeInsets.all(40),
-                              child: Column(
-                                children: [
-                                  TextButton(
-                                      onPressed: () {}, child: Text("Male")),
-                                  TextButton(
-                                      onPressed: () {}, child: Text("Female")),
-                                ],
-                              ),
+                            child: CupertinoPicker(
+                              itemExtent: 64,
+                              onSelectedItemChanged: (index) {
+                                context
+                                    .read<UserProperties>()
+                                    .getUserWeight(weight[index]);
+                              },
+                              children: weight
+                                  .map((item) => Center(
+                                        child: Text(
+                                          item.toString(),
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      ))
+                                  .toList(),
                             ),
                           ),
                       shape: const RoundedRectangleBorder(
@@ -205,10 +191,10 @@ class _RecalculateMyDailyCaloriesScreenState
               ),
               ListTile(
                 title: Text(
-                  "Height",
+                  "Gender",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text("185 cm"),
+                subtitle: Text(context.watch<UserProperties>().userGender),
                 isThreeLine: false,
                 trailing: Icon(
                   Icons.arrow_forward_ios,
@@ -218,16 +204,21 @@ class _RecalculateMyDailyCaloriesScreenState
                   showModalBottomSheet(
                       context: context,
                       builder: (context) => Center(
-                            child: Container(
-                              padding: const EdgeInsets.all(40),
-                              child: Column(
-                                children: [
-                                  TextButton(
-                                      onPressed: () {}, child: Text("Male")),
-                                  TextButton(
-                                      onPressed: () {}, child: Text("Female")),
-                                ],
-                              ),
+                            child: CupertinoPicker(
+                              itemExtent: 64,
+                              onSelectedItemChanged: (index) {
+                                context
+                                    .read<UserProperties>()
+                                    .getUserGender(gender[index]);
+                              },
+                              children: gender
+                                  .map((item) => Center(
+                                        child: Text(
+                                          item,
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      ))
+                                  .toList(),
                             ),
                           ),
                       shape: const RoundedRectangleBorder(
@@ -245,7 +236,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Diet Goal",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text("Weight gain"),
+                subtitle: Text(context.watch<UserProperties>().userDietGoal),
                 isThreeLine: false,
                 trailing: Icon(
                   Icons.arrow_forward_ios,
@@ -255,16 +246,23 @@ class _RecalculateMyDailyCaloriesScreenState
                   showModalBottomSheet(
                       context: context,
                       builder: (context) => Center(
-                            child: Container(
-                              padding: const EdgeInsets.all(40),
-                              child: Column(
-                                children: [
-                                  TextButton(
-                                      onPressed: () {}, child: Text("Male")),
-                                  TextButton(
-                                      onPressed: () {}, child: Text("Female")),
-                                ],
-                              ),
+                            child: CupertinoPicker(
+                              itemExtent: 64,
+                              onSelectedItemChanged: (index) {
+                                context
+                                    .read<UserProperties>()
+                                    .getUserDietGoal(dietGoal[index]);
+                              },
+                              children: dietGoal
+                                  .map(
+                                    (item) => Center(
+                                      child: Text(
+                                        item,
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
                             ),
                           ),
                       shape: const RoundedRectangleBorder(
@@ -273,8 +271,55 @@ class _RecalculateMyDailyCaloriesScreenState
                       ));
                 },
               ),
-              SizedBox(
-                height: 25,
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Activity Level",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle:
+                    Text(context.watch<UserProperties>().userActivityLevel),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                          child: CupertinoPicker(
+                              itemExtent: 64,
+                              onSelectedItemChanged: (index) {
+                                context
+                                    .read<UserProperties>()
+                                    .getUserActivityLevel(activityLevel[index]);
+                              },
+                              children: activityLevel
+                                  .map(
+                                    (item) => Center(
+                                      child: Text(
+                                        item,
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                  )
+                                  .toList())),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
+              ),
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              Expanded(
+                child: SizedBox(),
               ),
               Container(
                 padding: EdgeInsets.only(top: 2, left: 2),
@@ -291,17 +336,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   minWidth: double.infinity,
                   elevation: 0,
                   color: Colors.deepOrange,
-                  onPressed: () {
-                    if (userHeight != "x" &&
-                        userWeight != "x" &&
-                        userAge != "x" &&
-                        userGender != "x") {
-                      print(userHeight);
-                      print(userWeight);
-                      print(userAge);
-                      print(userGender);
-                    }
-                  },
+                  onPressed: () {},
                   height: 60,
                   child: Text(
                     "Recalculate",
