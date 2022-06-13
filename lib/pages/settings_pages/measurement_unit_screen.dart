@@ -15,11 +15,6 @@ class MeasurementUnitScreen extends StatefulWidget {
 class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
   @override
   Widget build(BuildContext context) {
-    String unitOfLength = "x";
-    String unitOfWeight = "x";
-    String unitOfEnergy = "x";
-    String unitOfVolume = "x";
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,

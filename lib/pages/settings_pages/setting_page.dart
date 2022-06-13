@@ -2,10 +2,8 @@ import 'package:angry_coach_beta/extract/widgets.dart';
 import 'package:angry_coach_beta/pages/settings_pages/Notifications_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/basal_metabolic_rate_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/body_mass_index_screen.dart';
-import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/body_mass_index_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/connect_us_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/recalculate_calories_screen.dart';
-import 'package:angry_coach_beta/pages/settings_pages/height_weight_age_gender_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/language_and_country_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/log_out_screen.dart';
 import 'package:angry_coach_beta/pages/settings_pages/measurement_unit_screen.dart';
@@ -50,11 +48,6 @@ class _SettingPageState extends State<SettingPage> {
             SettingsButton(
                 title: "Measurement Units",
                 destinationScreenWidgetName: const MeasurementUnitScreen()),
-            narrowDivider(),
-            SettingsButton(
-                title: "Height, Weight, Age and Gender",
-                destinationScreenWidgetName:
-                    const HeightWeightAgeAndGenderScreen()),
             narrowDivider(),
             SettingsButton(
                 title: "Recalculate My Daily Calories",

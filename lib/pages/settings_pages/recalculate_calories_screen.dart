@@ -1,4 +1,7 @@
+import 'package:angry_coach_beta/providers/user_properties.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RecalculateMyDailyCaloriesScreen extends StatefulWidget {
   const RecalculateMyDailyCaloriesScreen({Key? key}) : super(key: key);
@@ -10,6 +13,7 @@ class RecalculateMyDailyCaloriesScreen extends StatefulWidget {
 
 class _RecalculateMyDailyCaloriesScreenState
     extends State<RecalculateMyDailyCaloriesScreen> {
+  final ages = [for (var i = 13; i <= 65; i++) i];
   @override
   Widget build(BuildContext context) {
     String userGender = "x";
@@ -32,37 +36,243 @@ class _RecalculateMyDailyCaloriesScreenState
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 25,
+              const Text(
+                "3400 Calories",
+                style: TextStyle(fontSize: 30),
               ),
-              TextButton(
-                  child: Text("Female"),
-                  onPressed: () {
-                    userGender = "Female";
-                    print(userGender);
-                  }),
-              TextButton(
-                  child: Text("35 years"),
-                  onPressed: () {
-                    userAge = "35";
-                    print(userAge);
-                  }),
-              TextButton(
-                  child: Text("78 kilos"),
-                  onPressed: () {
-                    userHeight = "kilo";
-                    print(userHeight);
-                  }),
-              TextButton(
-                  child: Text("170 cm"),
-                  onPressed: () {
-                    userWeight = "170";
-                    print(userWeight);
-                  }),
+              const Text("Your Recommended Daily Intake"),
+              SizedBox(height: 25),
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Age",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle:
+                    Text(context.watch<UserProperties>().userAge.toString()),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                              child: CupertinoPicker(
+                            itemExtent: 64,
+                            children: ages
+                                .map((item) => Center(
+                                      child: Text(
+                                        item.toString(),
+                                        style: TextStyle(fontSize: 32),
+                                      ),
+                                    ))
+                                .toList(),
+                            onSelectedItemChanged: (index) {
+                              context
+                                  .read<UserProperties>()
+                                  .getUserAge(ages[index]);
+                            },
+                          )),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
+              ),
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Gender",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text("Female"),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(40),
+                              child: Column(
+                                children: [
+                                  TextButton(
+                                      onPressed: () {}, child: Text("Male")),
+                                  TextButton(
+                                      onPressed: () {}, child: Text("Female")),
+                                ],
+                              ),
+                            ),
+                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
+              ),
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Activity Level",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text("35 years"),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(40),
+                              child: Column(
+                                children: [
+                                  TextButton(
+                                      onPressed: () {}, child: Text("Male")),
+                                  TextButton(
+                                      onPressed: () {}, child: Text("Female")),
+                                ],
+                              ),
+                            ),
+                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
+              ),
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Weight",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text("85 kg"),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(40),
+                              child: Column(
+                                children: [
+                                  TextButton(
+                                      onPressed: () {}, child: Text("Male")),
+                                  TextButton(
+                                      onPressed: () {}, child: Text("Female")),
+                                ],
+                              ),
+                            ),
+                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
+              ),
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Height",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text("185 cm"),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(40),
+                              child: Column(
+                                children: [
+                                  TextButton(
+                                      onPressed: () {}, child: Text("Male")),
+                                  TextButton(
+                                      onPressed: () {}, child: Text("Female")),
+                                ],
+                              ),
+                            ),
+                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
+              ),
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Diet Goal",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text("Weight gain"),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(40),
+                              child: Column(
+                                children: [
+                                  TextButton(
+                                      onPressed: () {}, child: Text("Male")),
+                                  TextButton(
+                                      onPressed: () {}, child: Text("Female")),
+                                ],
+                              ),
+                            ),
+                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
+              ),
               SizedBox(
                 height: 25,
               ),
@@ -94,7 +304,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   },
                   height: 60,
                   child: Text(
-                    "Set",
+                    "Recalculate",
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
                   ),
                   shape: RoundedRectangleBorder(
