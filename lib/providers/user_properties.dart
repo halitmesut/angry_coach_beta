@@ -5,21 +5,12 @@ class UserProperties with ChangeNotifier {
   String _userName = "";
   String get userName => _userName;
 
-  void setUserName(String inputNameController) {
+  void getUserName(String inputNameController) {
     _userName = inputNameController;
     notifyListeners();
   }
 
-// GENDER PROPERTY
-  String _userGender = "";
-  String get userGender => _userGender;
-
-  void setUserGender(String selectedGender) {
-    _userGender = selectedGender;
-    notifyListeners();
-  }
-
-// AGE PROPERTY
+  // AGE PROPERTY
   int _userAge = 0;
   int get userAge => _userAge;
 
@@ -28,6 +19,48 @@ class UserProperties with ChangeNotifier {
     notifyListeners();
   }
 
-// WEIGHT PROPERTY
+// GENDER PROPERTY
+  String _userGender = "";
+  String get userGender => _userGender;
 
+  void getUserGender(String selectedGender) {
+    _userGender = selectedGender;
+    notifyListeners();
+  }
+
+// HEIGHT PROPERTY
+  int _userHeight = 0;
+  int get userHeight => _userHeight;
+
+  void getUserHeight(int setUserHeight) {
+    _userHeight = setUserHeight;
+    notifyListeners();
+  }
+
+  // HEIGHT PROPERTY
+  int _userWeight = 0;
+  int get userWeight => _userWeight;
+
+  void getUserWeight(int setUserWeight) {
+    _userWeight = setUserWeight;
+    notifyListeners();
+  }
+
+  //  ACTIVITY LEVEL
+  String _userActivityLevel = "";
+  String get userActivityLevel => _userActivityLevel;
+
+  void getUserActivityLevel(String setUserActivityLevel) {
+    _userActivityLevel = setUserActivityLevel;
+    notifyListeners();
+  }
+
+  //  DIET GOAL
+  String _userDietGoal = "";
+  String get userDietGoal => _userDietGoal;
+
+  void getUserDietGoal(String setUserDietGoal) {
+    _userDietGoal = setUserDietGoal;
+    notifyListeners();
+  }
 }
