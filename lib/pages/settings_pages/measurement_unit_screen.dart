@@ -12,9 +12,9 @@ class MeasurementUnitScreen extends StatefulWidget {
 
 class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
   final heightUnits = ["Cm", "Inch"];
-  final weightUnit = [
-    "Kg",
-  ];
+  final weightUnits = ["Kg", "Lb"];
+  final volumeUnits = ["ml", "oz"];
+  final energyUnits = ["Calorie", "Joule"];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
           "Measurement Units",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
-        elevation: 0,
+        elevation: 3,
         brightness: Brightness.light,
         backgroundColor: Colors.white,
       ),
@@ -37,9 +37,8 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Divider(
+              SizedBox(
                 height: 2,
-                thickness: 2,
               ),
               ListTile(
                 title: Text(
@@ -49,6 +48,7 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                 subtitle:
                     Text("${context.watch<MeasuremetUnits>().heightUnit}"),
                 isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
@@ -88,11 +88,12 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
               ),
               ListTile(
                 title: Text(
-                  "Height unit",
+                  "Weight unit",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<MeasuremetUnits>().heightUnit),
+                subtitle: Text(context.watch<MeasuremetUnits>().weightUnit),
                 isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
@@ -106,9 +107,9 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                               onSelectedItemChanged: (index) {
                                 context
                                     .read<MeasuremetUnits>()
-                                    .getUserHeightUnit(heightUnits[index]);
+                                    .getUserWeightUnit(weightUnits[index]);
                               },
-                              children: heightUnits
+                              children: weightUnits
                                   .map(
                                     (item) => Center(
                                       child: Text(
@@ -132,11 +133,12 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
               ),
               ListTile(
                 title: Text(
-                  "Height unit",
+                  "Volume unit",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<MeasuremetUnits>().heightUnit),
+                subtitle: Text(context.watch<MeasuremetUnits>().volumeUnit),
                 isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
@@ -150,9 +152,9 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                               onSelectedItemChanged: (index) {
                                 context
                                     .read<MeasuremetUnits>()
-                                    .getUserHeightUnit(heightUnits[index]);
+                                    .getUserVolumeUnit(volumeUnits[index]);
                               },
-                              children: heightUnits
+                              children: volumeUnits
                                   .map(
                                     (item) => Center(
                                       child: Text(
@@ -176,11 +178,12 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
               ),
               ListTile(
                 title: Text(
-                  "Height unit",
+                  "Energy unit",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<MeasuremetUnits>().heightUnit),
+                subtitle: Text(context.watch<MeasuremetUnits>().energyUnit),
                 isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
@@ -194,9 +197,9 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                               onSelectedItemChanged: (index) {
                                 context
                                     .read<MeasuremetUnits>()
-                                    .getUserHeightUnit(heightUnits[index]);
+                                    .getUserEnergyUnit(energyUnits[index]);
                               },
-                              children: heightUnits
+                              children: energyUnits
                                   .map(
                                     (item) => Center(
                                       child: Text(
@@ -213,6 +216,10 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                             BorderRadius.vertical(top: Radius.circular(30)),
                       ));
                 },
+              ),
+              const Divider(
+                height: 2,
+                thickness: 2,
               ),
               Expanded(
                 child: SizedBox(),

@@ -1,4 +1,4 @@
-import 'package:angry_coach_beta/providers/user_name_provider.dart';
+import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -46,7 +46,7 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
               SizedBox(
                 height: 25,
               ),
-              Text("${context.watch<UserNamee>().userName}",
+              Text("${context.watch<UserProperties>().userName}",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
               const SizedBox(
@@ -100,8 +100,8 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
                   onPressed: () {
                     if (nameController.text.length > 2) {
                       context
-                          .read<UserNamee>()
-                          .setUserName(nameController.text);
+                          .read<UserProperties>()
+                          .getUserName(nameController.text);
 
                       Navigator.pop(context);
 

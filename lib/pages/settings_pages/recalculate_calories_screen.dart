@@ -1,4 +1,4 @@
-import 'package:angry_coach_beta/providers/user_properties.dart';
+import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +41,7 @@ class _RecalculateMyDailyCaloriesScreenState
           "Recalculate Daily Intake ",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
-        elevation: 0,
+        elevation: 3,
         brightness: Brightness.light,
         backgroundColor: Colors.white,
       ),
@@ -51,12 +51,13 @@ class _RecalculateMyDailyCaloriesScreenState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 20),
               const Text(
                 "3400 Calories",
                 style: TextStyle(fontSize: 30),
               ),
               const Text("Your Recommended Daily Intake"),
-              SizedBox(height: 25),
+              SizedBox(height: 20),
               const Divider(
                 height: 2,
                 thickness: 2,
@@ -69,6 +70,7 @@ class _RecalculateMyDailyCaloriesScreenState
                 subtitle:
                     Text(context.watch<UserProperties>().userAge.toString()),
                 isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
@@ -111,6 +113,7 @@ class _RecalculateMyDailyCaloriesScreenState
                 subtitle:
                     Text("${context.watch<UserProperties>().userHeight}cm"),
                 isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
@@ -154,6 +157,7 @@ class _RecalculateMyDailyCaloriesScreenState
                 subtitle:
                     Text("${context.watch<UserProperties>().userWeight}cm"),
                 isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
@@ -196,6 +200,7 @@ class _RecalculateMyDailyCaloriesScreenState
                 ),
                 subtitle: Text(context.watch<UserProperties>().userGender),
                 isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
@@ -238,6 +243,7 @@ class _RecalculateMyDailyCaloriesScreenState
                 ),
                 subtitle: Text(context.watch<UserProperties>().userDietGoal),
                 isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
@@ -283,6 +289,7 @@ class _RecalculateMyDailyCaloriesScreenState
                 subtitle:
                     Text(context.watch<UserProperties>().userActivityLevel),
                 isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
