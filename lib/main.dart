@@ -2,14 +2,9 @@ import 'package:angry_coach_beta/home_page.dart';
 import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
 import 'package:angry_coach_beta/providers/user_country_provider.dart';
 import 'package:angry_coach_beta/providers/user_gender.dart';
-import 'package:angry_coach_beta/providers/user_height_measurement_unit.dart';
 import 'package:angry_coach_beta/providers/user_language_provider.dart';
 import 'package:angry_coach_beta/providers/user_name_provider.dart';
-import 'package:angry_coach_beta/providers/user_volumu_measurement_unit.dart';
-import 'package:angry_coach_beta/providers/user_weight_measurement_unit.dart';
-import 'package:angry_coach_beta/providers/user_energy_measurement_unit.dart';
-import 'package:angry_coach_beta/providers/user_gender.dart';
-import 'package:angry_coach_beta/providers/user_properties.dart';
+import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:angry_coach_beta/providers/measuremet_units_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,12 +25,9 @@ void main() async {
       ChangeNotifierProvider(create: (_) => UserNamee()),
       ChangeNotifierProvider(create: (_) => UserCountry()),
       ChangeNotifierProvider(create: (_) => UserLanguage()),
-      ChangeNotifierProvider(create: (_) => UserHeightMeasurementUnit()),
-      ChangeNotifierProvider(create: (_) => UserWeightMeasurementUnit()),
-      ChangeNotifierProvider(create: (_) => UserVolumeMeasurementUnit()),
-      ChangeNotifierProvider(create: (_) => UserEnergyMeasurementUnit()),
       ChangeNotifierProvider(create: (_) => UserGender()),
       ChangeNotifierProvider(create: (_) => UserProperties()),
+      ChangeNotifierProvider(create: (_) => MeasuremetUnits()),
     ],
     child: MyApp(),
   ));

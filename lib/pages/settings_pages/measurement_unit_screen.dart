@@ -1,9 +1,7 @@
-import 'package:angry_coach_beta/providers/user_volumu_measurement_unit.dart';
+import 'package:angry_coach_beta/providers/measuremet_units_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:angry_coach_beta/providers/user_height_measurement_unit.dart';
-import 'package:angry_coach_beta/providers/user_weight_measurement_unit.dart';
-import 'package:angry_coach_beta/providers/user_energy_measurement_unit.dart';
 
 class MeasurementUnitScreen extends StatefulWidget {
   const MeasurementUnitScreen({Key? key}) : super(key: key);
@@ -13,6 +11,11 @@ class MeasurementUnitScreen extends StatefulWidget {
 }
 
 class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
+  final heightUnits = ["Cm", "Inch"];
+  final weightUnit = [
+    "Kg",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,203 +33,189 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 25,
+              const Divider(
+                height: 2,
+                thickness: 2,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                      child: Text("Height Unit"),
-                      onPressed: () {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (context) => Center(
-                                  child: Container(
-                                    padding: const EdgeInsets.all(40),
-                                    child: Column(
-                                      children: [
-                                        TextButton(
-                                            onPressed: () {
-                                              context
-                                                  .read<
-                                                      UserHeightMeasurementUnit>()
-                                                  .setUserHeightMeasurementUnit(
-                                                      "Cm");
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("Cm")),
-                                        TextButton(
-                                            onPressed: () {
-                                              context
-                                                  .read<
-                                                      UserHeightMeasurementUnit>()
-                                                  .setUserHeightMeasurementUnit(
-                                                      "Inch");
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("Inch")),
-                                      ],
+              ListTile(
+                title: Text(
+                  "Height unit",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle:
+                    Text("${context.watch<MeasuremetUnits>().heightUnit}"),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                            child: CupertinoPicker(
+                              itemExtent: 64,
+                              onSelectedItemChanged: (index) {
+                                context
+                                    .read<MeasuremetUnits>()
+                                    .getUserHeightUnit(heightUnits[index]);
+                              },
+                              children: heightUnits
+                                  .map(
+                                    (item) => Center(
+                                      child: Text(
+                                        item,
+                                        style: TextStyle(fontSize: 20),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(30)),
-                            ));
-                      }),
-                  Text(context
-                      .watch<UserHeightMeasurementUnit>()
-                      .userHeightMeasurementUnit),
-                ],
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                      child: Text("Weight Unit"),
-                      onPressed: () {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (context) => Center(
-                                  child: Container(
-                                    padding: const EdgeInsets.all(40),
-                                    child: Column(
-                                      children: [
-                                        TextButton(
-                                            onPressed: () {
-                                              context
-                                                  .read<
-                                                      UserWeightMeasurementUnit>()
-                                                  .setUserWeightMeasurementUnit(
-                                                      "Kg");
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("Kg")),
-                                        TextButton(
-                                            onPressed: () {
-                                              context
-                                                  .read<
-                                                      UserWeightMeasurementUnit>()
-                                                  .setUserWeightMeasurementUnit(
-                                                      "Lb");
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("Lb")),
-                                      ],
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Height unit",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text(context.watch<MeasuremetUnits>().heightUnit),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                            child: CupertinoPicker(
+                              itemExtent: 64,
+                              onSelectedItemChanged: (index) {
+                                context
+                                    .read<MeasuremetUnits>()
+                                    .getUserHeightUnit(heightUnits[index]);
+                              },
+                              children: heightUnits
+                                  .map(
+                                    (item) => Center(
+                                      child: Text(
+                                        item,
+                                        style: TextStyle(fontSize: 20),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(30)),
-                            ));
-                      }),
-                  Text(context
-                      .watch<UserWeightMeasurementUnit>()
-                      .userWeightMeasurementUnit),
-                ],
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                      child: Text("Volumu Unit"),
-                      onPressed: () {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (context) => Center(
-                                  child: Container(
-                                    padding: const EdgeInsets.all(40),
-                                    child: Column(
-                                      children: [
-                                        TextButton(
-                                            onPressed: () {
-                                              context
-                                                  .read<
-                                                      UserVolumeMeasurementUnit>()
-                                                  .setUserVolumeMeasurementUnit(
-                                                      "ml");
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("ml")),
-                                        TextButton(
-                                            onPressed: () {
-                                              context
-                                                  .read<
-                                                      UserVolumeMeasurementUnit>()
-                                                  .setUserVolumeMeasurementUnit(
-                                                      "oz");
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("oz")),
-                                      ],
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Height unit",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text(context.watch<MeasuremetUnits>().heightUnit),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                            child: CupertinoPicker(
+                              itemExtent: 64,
+                              onSelectedItemChanged: (index) {
+                                context
+                                    .read<MeasuremetUnits>()
+                                    .getUserHeightUnit(heightUnits[index]);
+                              },
+                              children: heightUnits
+                                  .map(
+                                    (item) => Center(
+                                      child: Text(
+                                        item,
+                                        style: TextStyle(fontSize: 20),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(30)),
-                            ));
-                      }),
-                  Text(context
-                      .watch<UserVolumeMeasurementUnit>()
-                      .userVolumeMeasurementUnit),
-                ],
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                      child: Text("Energy Unit"),
-                      onPressed: () {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (context) => Center(
-                                  child: Container(
-                                    padding: const EdgeInsets.all(40),
-                                    child: Column(
-                                      children: [
-                                        TextButton(
-                                            onPressed: () {
-                                              context
-                                                  .read<
-                                                      UserEnergyMeasurementUnit>()
-                                                  .setUserEnergyMeasurementUnit(
-                                                      "Calories");
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("Calories")),
-                                        TextButton(
-                                            onPressed: () {
-                                              context
-                                                  .read<
-                                                      UserEnergyMeasurementUnit>()
-                                                  .setUserEnergyMeasurementUnit(
-                                                      "Kilojoules");
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("Kilojoules")),
-                                      ],
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              ListTile(
+                title: Text(
+                  "Height unit",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text(context.watch<MeasuremetUnits>().heightUnit),
+                isThreeLine: false,
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                            child: CupertinoPicker(
+                              itemExtent: 64,
+                              onSelectedItemChanged: (index) {
+                                context
+                                    .read<MeasuremetUnits>()
+                                    .getUserHeightUnit(heightUnits[index]);
+                              },
+                              children: heightUnits
+                                  .map(
+                                    (item) => Center(
+                                      child: Text(
+                                        item,
+                                        style: TextStyle(fontSize: 20),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(30)),
-                            ));
-                      }),
-                  Text(context
-                      .watch<UserEnergyMeasurementUnit>()
-                      .userEnergyMeasurementUnit),
-                ],
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
               ),
-              SizedBox(
-                height: 25,
+              Expanded(
+                child: SizedBox(),
               ),
               Container(
                 padding: EdgeInsets.only(top: 2, left: 2),
