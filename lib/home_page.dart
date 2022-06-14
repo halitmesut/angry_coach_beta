@@ -3,7 +3,7 @@ import 'package:angry_coach_beta/pages/coach_page.dart';
 import 'package:angry_coach_beta/pages/me_page.dart';
 import 'package:angry_coach_beta/pages/nutrition_page.dart';
 import 'package:angry_coach_beta/pages/reports_page.dart';
-import 'package:angry_coach_beta/pages/settings_pages/setting_page.dart';
+import 'package:angry_coach_beta/pages/setting_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

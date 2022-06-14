@@ -1,9 +1,7 @@
 import 'package:angry_coach_beta/home_page.dart';
 import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
 import 'package:angry_coach_beta/providers/user_country_provider.dart';
-import 'package:angry_coach_beta/providers/user_gender.dart';
 import 'package:angry_coach_beta/providers/user_language_provider.dart';
-import 'package:angry_coach_beta/providers/user_name_provider.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +20,8 @@ void main() async {
   );
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => UserNamee()),
       ChangeNotifierProvider(create: (_) => UserCountry()),
       ChangeNotifierProvider(create: (_) => UserLanguage()),
-      ChangeNotifierProvider(create: (_) => UserGender()),
       ChangeNotifierProvider(create: (_) => UserProperties()),
       ChangeNotifierProvider(create: (_) => MeasuremetUnits()),
     ],

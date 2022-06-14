@@ -58,4 +58,21 @@ class UserProperties with ChangeNotifier {
     _userDietGoal = setUserDietGoal;
     notifyListeners();
   }
+
+// LANGUAGE
+  String _userLanguage = "";
+  String get userLanguage => _userLanguage;
+  void getUserLanguage(setUserLanguage) {
+    _userLanguage = setUserLanguage;
+    notifyListeners();
+  }
+
+// COUNTRY
+  String _userCountry = "";
+  String get userCountry => _userCountry;
+
+  void setUserCountry(String setUserCountry) {
+    _userCountry = setUserCountry;
+    notifyListeners();
+  }
 }

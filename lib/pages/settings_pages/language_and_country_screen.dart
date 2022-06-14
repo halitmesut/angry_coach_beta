@@ -19,6 +19,13 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
   Widget build(BuildContext context) {
     late String selectedCountry = "x";
     late String SelectedLanguage = "x";
+    final languageList = [
+      "English",
+      "Franch",
+      "Spanish",
+      "German",
+      "Turkish",
+    ];
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -29,13 +36,13 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
           "Country and Language",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
-        elevation: 0,
+        elevation: 3,
         brightness: Brightness.light,
         backgroundColor: Colors.white,
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -43,14 +50,15 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                 height: 2,
               ),
               ListTile(
-                title: Text(
-                  "Height unit",
+                title: const Text(
+                  "Language",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text("${context.watch<UserProperties>().userHeight}"),
+                subtitle:
+                    Text("${context.watch<UserProperties>().userLanguage}"),
                 isThreeLine: false,
                 visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -62,10 +70,10 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
                                 context
-                                    .read<MeasuremetUnits>()
-                                    .getUserHeightUnit(heightUnits[index]);
+                                    .read<UserProperties>()
+                                    .getUserLanguage(languageList[index]);
                               },
-                              children: heightUnits
+                              children: languageList
                                   .map(
                                     (item) => Center(
                                       child: Text(
@@ -83,17 +91,24 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                       ));
                 },
               ),
-              const SizedBox(
-                height: 50,
+              const Divider(
+                height: 2,
+                thickness: 2,
               ),
-              Text(context.watch<UserCountry>().userCountry,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
+              ListTile(
+                title: const Text(
+                  "Country",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle:
+                    Text("${context.watch<UserProperties>().userCountry}"),
+                isThreeLine: false,
+                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                ),
+                onTap: () {
                   showCountryPicker(
                     context: context,
                     //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
@@ -105,13 +120,13 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                       print('Select country: ${country.displayName}');
 
                       context
-                          .read<UserCountry>()
+                          .read<UserProperties>()
                           .setUserCountry(country.displayNameNoCountryCode);
                     },
                     // Optional. Sets the theme for the country list picker.
                     countryListTheme: CountryListThemeData(
                       // Optional. Sets the border radius for the bottomsheet.
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(40.0),
                         topRight: Radius.circular(40.0),
                       ),
@@ -129,58 +144,15 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                     ),
                   );
                 },
-                child: const Text('Show country picker'),
               ),
-              SizedBox(
-                height: 25,
+              const Divider(
+                height: 2,
+                thickness: 2,
               ),
-              Text(context.watch<UserLanguage>().userLanguage,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  showCountryPicker(
-                    context: context,
-
-                    //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
-                    exclude: <String>['KN', "MF"],
-                    favorite: <String>['tr'],
-                    //Optional. Shows phone code before the country name.
-                    showPhoneCode: false,
-                    onSelect: (Country country) {
-                      print('Select Language: ${country.displayName}');
-                      context
-                          .read<UserLanguage>()
-                          .setUserLanguage(country.displayName);
-                    },
-                    // Optional. Sets the theme for the country list picker.
-                    countryListTheme: CountryListThemeData(
-                      // Optional. Sets the border radius for the bottomsheet.
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40.0),
-                        topRight: Radius.circular(40.0),
-                      ),
-                      // Optional. Styles the search field.
-                      inputDecoration: InputDecoration(
-                        labelText: 'Search',
-                        hintText: 'Start typing to search',
-                        prefixIcon: const Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: const Color(0xFF8C98A8).withOpacity(0.2),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-                child: const Text('Show Language picker'),
-              ),
-              SizedBox(
-                height: 25,
+              Expanded(
+                child: SizedBox(
+                  height: 25,
+                ),
               ),
               Container(
                 padding: EdgeInsets.only(top: 2, left: 2),

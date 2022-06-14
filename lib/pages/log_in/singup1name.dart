@@ -1,9 +1,9 @@
 import 'package:angry_coach_beta/pages/log_in/signup2purpose.dart';
+import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:angry_coach_beta/providers/user_name_provider.dart';
 
 class SignUp1Name extends StatefulWidget {
   final VoidCallback onClickedSignIn;
@@ -72,7 +72,7 @@ class _SignUp1NameState extends State<SignUp1Name> {
               SizedBox(
                 height: 25,
               ),
-              Text("${context.watch<UserNamee>().userName}",
+              Text("${context.watch<UserProperties>().userName}",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
               SizedBox(
@@ -96,8 +96,8 @@ class _SignUp1NameState extends State<SignUp1Name> {
                   onPressed: () {
                     if (nameController.text.length > 2) {
                       context
-                          .read<UserNamee>()
-                          .setUserName(nameController.text);
+                          .read<UserProperties>()
+                          .getUserName(nameController.text);
 
                       Navigator.push(
                         context,
