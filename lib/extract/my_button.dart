@@ -33,7 +33,7 @@ class MyButton extends StatelessWidget {
         height: 60,
         child: Text(
           text,
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
