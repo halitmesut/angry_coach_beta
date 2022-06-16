@@ -121,7 +121,7 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
 
                       context
                           .read<UserProperties>()
-                          .setUserCountry(country.displayNameNoCountryCode);
+                          .getUserCountry(country.displayNameNoCountryCode);
                     },
                     // Optional. Sets the theme for the country list picker.
                     countryListTheme: CountryListThemeData(

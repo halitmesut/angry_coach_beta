@@ -1,5 +1,8 @@
+import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/pages/log_in/signup.dart';
+import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUp9SpeedOfChangeWeight extends StatelessWidget {
   const SignUp9SpeedOfChangeWeight({Key? key}) : super(key: key);
@@ -37,44 +40,43 @@ class SignUp9SpeedOfChangeWeight extends StatelessWidget {
               height: 25,
             ),
             const Text(
-                "Şimdi gelelim fasülyenin faydalarına. değişim normal mı olsun yavaş mı? ",
+                "Şimdi gelelim fasülyenin faydalarına. Beni ve kendini bu değişimde yüz üstü bırakmayacağına söz veriyor musun? ",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
             const SizedBox(
               height: 25,
             ),
-            TextButton(
-                onPressed: () {
-                  speedOfChangeWeight = 1;
-                  print(speedOfChangeWeight);
-                },
-                child: Text("yavaş")),
-            TextButton(
-                onPressed: () {
-                  speedOfChangeWeight = 2;
-                  print(speedOfChangeWeight);
-                },
-                child: Text("normal")),
-            SizedBox(
-              height: 25,
+            MyButton(
+              onPressedFunction: () {
+                context.read<UserProperties>().getUserPromise("I promise");
+              },
+              text: "I promise",
+              buttonColor:
+                  context.watch<UserProperties>().userPromise == "I promise"
+                      ? Color.fromARGB(255, 162, 194, 249)
+                      : Colors.white,
             ),
-            Container(
-              padding: EdgeInsets.only(top: 2, left: 2),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                border: Border(
-                  bottom: BorderSide(color: Colors.black),
-                  top: BorderSide(color: Colors.black),
-                  left: BorderSide(color: Colors.black),
-                  right: BorderSide(color: Colors.black),
-                ),
-              ),
-              child: MaterialButton(
-                minWidth: double.infinity,
-                elevation: 0,
-                color: Colors.deepOrange,
-                onPressed: () {
-                  if (speedOfChangeWeight == 1 || speedOfChangeWeight == 2) {
+            SizedBox(
+              height: 15,
+            ),
+            MyButton(
+              onPressedFunction: () {
+                context.read<UserProperties>().getUserPromise("I don't");
+              },
+              text: "I don't",
+              buttonColor:
+                  context.watch<UserProperties>().userPromise == "I don't"
+                      ? Color.fromARGB(255, 255, 41, 41)
+                      : Colors.white,
+            ),
+            SizedBox(
+              height: 85,
+            ),
+            MyButton(
+                onPressedFunction: () {
+                  if (Provider.of<UserProperties>(context, listen: false)
+                          .userPromise ==
+                      "I promise") {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -82,16 +84,8 @@ class SignUp9SpeedOfChangeWeight extends StatelessWidget {
                     );
                   }
                 },
-                height: 60,
-                child: Text(
-                  "keep meeting",
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-              ),
-            ),
+                text: "Finish",
+                buttonColor: Colors.deepOrange),
           ],
         ),
       ),

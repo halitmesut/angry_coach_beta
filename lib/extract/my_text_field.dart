@@ -36,10 +36,8 @@ class MyTextField extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            prefixIcon: Icon(
-              Icons.person,
-              color: Colors.black,
-            ),
+            prefixIcon: icon,
+            prefixIconColor: Colors.black,
             labelText: textLabel,
             labelStyle: TextStyle(color: Colors.black),
             enabledBorder: OutlineInputBorder(

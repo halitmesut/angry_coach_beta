@@ -1,3 +1,4 @@
+import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/main.dart';
 import 'package:angry_coach_beta/pages/log_in/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,68 +52,25 @@ class _SignUpPageState extends State<SignUpPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Create And Accound. It's Free.",
+                "Create an Accound. It's Free.",
                 style: TextStyle(
                   fontSize: 15,
-                  color: Colors.grey[700],
+                  color: Color.fromARGB(255, 32, 32, 32),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              TextFormField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  labelText: "Email",
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey[400]!,
-                    ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey[400]!,
-                    ),
-                  ),
-                ),
-                textInputAction: TextInputAction.next,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (email) =>
-                    email != null && !EmailValidator.validate(email)
-                        ? "Enter a valid Email"
-                        : null,
               ),
               SizedBox(
                 height: 25,
               ),
-              TextFormField(
-                controller: passwordController,
-                obscureText: true,
-                textInputAction: TextInputAction.next,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) => value != null && value.length < 6
-                    ? "Enter min 6 characters"
-                    : null,
-                decoration: InputDecoration(
-                  labelText: "Password",
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey[400]!,
-                    ),
+              MyTextField(
+                  textController: emailController,
+                  icon: Icon(
+                    Icons.alternate_email,
                   ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey[400]!,
-                    ),
-                  ),
-                ),
+                  textInputType: TextInputType.emailAddress,
+                  obscureText: false,
+                  textLabel: "Email"),
+              SizedBox(
+                height: 25,
               ),
               SizedBox(
                 height: 25,

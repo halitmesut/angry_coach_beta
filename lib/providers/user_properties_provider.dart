@@ -79,8 +79,17 @@ class UserProperties with ChangeNotifier {
   String _userCountry = "";
   String get userCountry => _userCountry;
 
-  void setUserCountry(String setUserCountry) {
+  void getUserCountry(String setUserCountry) {
     _userCountry = setUserCountry;
+    notifyListeners();
+  }
+
+  // USER PROMISE
+  String _userPromise = "";
+  String get userPromise => _userPromise;
+
+  void getUserPromise(String setUserPromise) {
+    _userPromise = setUserPromise;
     notifyListeners();
   }
 }
