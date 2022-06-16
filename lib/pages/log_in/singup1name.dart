@@ -36,10 +36,10 @@ class _SignUp1NameState extends State<SignUp1Name> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Bana AngryCoach derler. Senin adın ne?",
+              const Text("Bana AngryCoach derler. Senin adın ne?",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               TextFormField(

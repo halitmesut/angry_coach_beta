@@ -1,3 +1,4 @@
+import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/main.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,7 +31,7 @@ class _SigninPageState extends State<SigninPage> {
       appBar: AppBar(
         foregroundColor: Colors.black,
         title: Text(
-          "Login ",
+          "Angry Coach ",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
@@ -43,102 +44,44 @@ class _SigninPageState extends State<SigninPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Column(
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      "Welcome",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.grey[700],
-                      ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                children: [
+                  Text(
+                    "Welcome",
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.grey[700],
                     ),
-                    SizedBox(
-                      height: 20,
-                    )
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: Column(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextFormField(
-                            controller: emailController,
-                            decoration: InputDecoration(
-                              labelText: "Email",
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 10),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.grey[400]!,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.grey[400]!,
-                                ),
-                              ),
-                            ),
-                            textInputAction: TextInputAction.next,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (email) =>
-                                email != null && !EmailValidator.validate(email)
-                                    ? "Enter a valid Email"
-                                    : null,
-                          ),
-                          SizedBox(
-                            height: 25,
-                          )
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextFormField(
-                            controller: passwordController,
-                            obscureText: true,
-                            textInputAction: TextInputAction.next,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (value) =>
-                                value != null && value.length < 6
-                                    ? "Enter min 6 characters"
-                                    : null,
-                            decoration: InputDecoration(
-                              labelText: "Password",
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 10),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.grey[400]!,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.grey[400]!,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      )
-                    ],
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: Container(
+                  SizedBox(
+                    height: 25,
+                  ),
+                  MyTextField(
+                    textLabel: "Email",
+                    textController: emailController,
+                    icon: Icon(
+                      Icons.person,
+                    ),
+                    textInputType: TextInputType.emailAddress,
+                    obscureText: false,
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  MyTextField(
+                      textController: passwordController,
+                      icon: Icon(
+                        Icons.lock,
+                      ),
+                      textInputType: TextInputType.number,
+                      obscureText: true,
+                      textLabel: "Password"),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Container(
                     padding: EdgeInsets.only(top: 2, left: 2),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
@@ -151,7 +94,7 @@ class _SigninPageState extends State<SigninPage> {
                     ),
                     child: MaterialButton(
                       minWidth: double.infinity,
-                      elevation: 0,
+                      elevation: 10,
                       color: Colors.deepOrange,
                       onPressed: singIn,
                       height: 60,
@@ -165,34 +108,37 @@ class _SigninPageState extends State<SigninPage> {
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                RichText(
-                    text: TextSpan(
-                        text: "Naccount",
-                        style: TextStyle(color: Colors.black, fontSize: 15),
-                        children: [
-                      TextSpan(
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = widget.onClickedSignUp,
-                          text: "Sign Up",
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: Colors.orange))
-                    ])),
-              ],
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height / 3,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/angrycoachh.jpg"),
-                  fit: BoxFit.fitHeight,
-                ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  RichText(
+                      text: TextSpan(
+                          text: "Don't have an account?",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                          children: [
+                        TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = widget.onClickedSignUp,
+                            text: "Sign Up",
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                color: Colors.deepOrange))
+                      ])),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height / 3,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/angrycoachh.jpg"),
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
