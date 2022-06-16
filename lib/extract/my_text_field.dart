@@ -20,7 +20,7 @@ class MyTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       borderRadius: BorderRadius.circular(30),
-      elevation: 10,
+      elevation: 3,
       shadowColor: Colors.white,
       child: TextFormField(
         controller: textController,
@@ -28,6 +28,7 @@ class MyTextField extends StatelessWidget {
         keyboardType: textInputType,
         obscureText: obscureText,
         decoration: InputDecoration(
+            contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
@@ -41,7 +42,6 @@ class MyTextField extends StatelessWidget {
             ),
             labelText: textLabel,
             labelStyle: TextStyle(color: Colors.black),
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   width: 1,

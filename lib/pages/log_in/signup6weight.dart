@@ -1,7 +1,11 @@
+import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:angry_coach_beta/pages/log_in/signup7targe_weight.dart';
+import 'package:angry_coach_beta/providers/user_properties_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class SignUp6Weight extends StatefulWidget {
   const SignUp6Weight({Key? key}) : super(key: key);
@@ -13,10 +17,13 @@ class SignUp6Weight extends StatefulWidget {
 class _SignUp6WeightState extends State<SignUp6Weight> {
   @override
   Widget build(BuildContext context) {
+    final weight = [for (var i = 40; i <= 180; i++) i];
+
     final userWeightInput = TextEditingController();
     String userWeight = "ghg";
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -27,96 +34,78 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
         ),
         elevation: 0,
         brightness: Brightness.light,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
       ),
-      body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 25,
-              ),
-              const Text(
-                  "benim kilom 122. ama almam gereken 2 kilo daha ver. )",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
-              const SizedBox(
-                height: 25,
-              ),
-              TextField(
-                maxLength: 3,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black),
-                controller: userWeightInput,
-                inputFormatters: [
-                  FilteringTextInputFormatter(RegExp(r'[0-9]'), allow: true)
-                ],
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                        borderSide: BorderSide(color: Colors.deepOrange)),
-                    hintText: "sen kaç kilosun",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    helperStyle: TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    prefixIcon: SizedBox(
-                      width: 20,
-                    ),
-                    suffixIcon: IconButton(
-                        onPressed: () {
-                          userWeightInput.clear();
-                        },
-                        color: Colors.white,
-                        icon: const Icon(Icons.clear))),
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 2, left: 2),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border(
-                    bottom: BorderSide(color: Colors.black),
-                    top: BorderSide(color: Colors.black),
-                    left: BorderSide(color: Colors.black),
-                    right: BorderSide(color: Colors.black),
-                  ),
-                ),
-                child: MaterialButton(
-                  minWidth: double.infinity,
-                  elevation: 0,
-                  color: Colors.deepOrange,
-                  onPressed: () {
-                    userWeight = userWeightInput.text;
-                    if (userWeight != "" &&
-                        userWeightInput.text.length != 1 &&
-                        int.parse(userWeight) > 40 &&
-                        int.parse(userWeight) < 180) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SignUp7TargetWeight()),
-                      );
-                      print(userWeight);
-                    }
-                  },
-                  height: 60,
-                  child: Text(
-                    "keep meeting",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                ),
-              ),
-            ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/background.png"),
+            fit: BoxFit.cover,
           ),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 25,
+            ),
+            const Text("benim kilom 122. ama almam gereken 2 kilo daha ver. )",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
+            const SizedBox(
+              height: 25,
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            MyButton(
+                onPressedFunction: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Center(
+                              child: CupertinoPicker(
+                            itemExtent: 64,
+                            children: weight
+                                .map((item) => Center(
+                                      child: Text(
+                                        item.toString(),
+                                        style: TextStyle(fontSize: 32),
+                                      ),
+                                    ))
+                                .toList(),
+                            onSelectedItemChanged: (index) {
+                              context
+                                  .read<UserProperties>()
+                                  .getUserWeight(weight[index]);
+                            },
+                          )),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
+                      ));
+                },
+                text: context.watch<UserProperties>().userWeight.toString(),
+                buttonColor: Colors.white),
+            SizedBox(
+              height: 25,
+            ),
+            MyButton(
+                onPressedFunction: () {
+                  if (Provider.of<UserProperties>(context, listen: false)
+                          .userWeight !=
+                      0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUp7TargetWeight()),
+                    );
+                  }
+                },
+                text: "Keep meeting",
+                buttonColor: Colors.deepOrange),
+          ],
         ),
       ),
     );

@@ -35,11 +35,19 @@ class UserProperties with ChangeNotifier {
     notifyListeners();
   }
 
-// HEIGHT PROPERTY
+// WEIGHT PROPERTY
   int _userWeight = 0;
   int get userWeight => _userWeight;
   void getUserWeight(int setUserWeight) {
     _userWeight = setUserWeight;
+    notifyListeners();
+  }
+
+// TARGET WEIGHT PROPERTY
+  int _userTargetWeight = 0;
+  int get userTargetWeight => _userTargetWeight;
+  void getUserTargetWeight(int setUserTargetWeight) {
+    _userTargetWeight = setUserTargetWeight;
     notifyListeners();
   }
 
