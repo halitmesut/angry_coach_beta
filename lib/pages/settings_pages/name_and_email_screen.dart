@@ -1,3 +1,4 @@
+import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -52,35 +53,23 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
               const SizedBox(
                 height: 20,
               ),
-              TextFormField(
-                controller: nameController,
-                textInputAction: TextInputAction.next,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                inputFormatters: [
-                  FilteringTextInputFormatter(RegExp(r'[a-zA-ZŞşĞğÇçİıÖöÜü]'),
-                      allow: true)
-                ],
-                validator: (value) => value != null && value.length < 3
+              MyTextField(
+                textController: nameController,
+                icon: Icon(
+                  Icons.person,
+                  color: Colors.black,
+                ),
+                textInputType: TextInputType.name,
+                obscureText: false,
+                textLabel: "New name",
+                validate: (value) => value != null && value.length < 3
                     ? "Enter min 3 characters"
                     : null,
-                decoration: InputDecoration(
-                  labelText: "Name",
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey[400]!,
-                    ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey[400]!,
-                    ),
-                  ),
-                ),
               ),
-              const SizedBox(
-                height: 25,
+              Expanded(
+                child: SizedBox(
+                  height: 25,
+                ),
               ),
               Container(
                 padding: const EdgeInsets.only(top: 2, left: 2),

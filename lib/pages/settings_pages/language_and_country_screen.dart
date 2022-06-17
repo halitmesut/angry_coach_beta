@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:angry_coach_beta/providers/user_country_provider.dart';
-import 'package:angry_coach_beta/providers/user_language_provider.dart';
 
 class LanguageAndCountryScreen extends StatefulWidget {
   const LanguageAndCountryScreen({Key? key}) : super(key: key);
@@ -17,8 +15,6 @@ class LanguageAndCountryScreen extends StatefulWidget {
 class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
   @override
   Widget build(BuildContext context) {
-    late String selectedCountry = "x";
-    late String SelectedLanguage = "x";
     final languageList = [
       "English",
       "Franch",

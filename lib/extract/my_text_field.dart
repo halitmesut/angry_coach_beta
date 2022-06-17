@@ -7,7 +7,8 @@ class MyTextField extends StatelessWidget {
       required this.icon,
       required this.textInputType,
       required this.obscureText,
-      required this.textLabel})
+      required this.textLabel,
+      this.validate})
       : super(key: key);
 
   final TextEditingController textController;
@@ -15,6 +16,7 @@ class MyTextField extends StatelessWidget {
   final TextInputType textInputType;
   final bool obscureText;
   final String textLabel;
+  final String? Function(String?)? validate;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class MyTextField extends StatelessWidget {
       shadowColor: Colors.white,
       child: TextFormField(
         controller: textController,
+        validator: validate,
         cursorColor: Colors.black,
         keyboardType: textInputType,
         obscureText: obscureText,

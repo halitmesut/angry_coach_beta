@@ -30,6 +30,7 @@ class _SignUpPageState extends State<SignUpPage> {
     bool isLogin = true;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -40,16 +41,23 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         elevation: 0,
         brightness: Brightness.light,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
       ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: EdgeInsets.symmetric(horizontal: 40),
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: Form(
           key: formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 "Create an Accound. It's Free.",
@@ -62,15 +70,34 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 25,
               ),
               MyTextField(
-                  textController: emailController,
-                  icon: Icon(
-                    Icons.alternate_email,
-                  ),
-                  textInputType: TextInputType.emailAddress,
-                  obscureText: false,
-                  textLabel: "Email"),
+                textController: emailController,
+                icon: Icon(
+                  Icons.alternate_email,
+                  color: Colors.black,
+                ),
+                textInputType: TextInputType.emailAddress,
+                obscureText: false,
+                textLabel: "Email",
+                validate: (email) =>
+                    email != null && !EmailValidator.validate(email)
+                        ? "Enter a valid Email"
+                        : null,
+              ),
               SizedBox(
                 height: 25,
+              ),
+              MyTextField(
+                textController: passwordController,
+                icon: Icon(
+                  Icons.lock,
+                  color: Colors.black,
+                ),
+                textInputType: TextInputType.number,
+                obscureText: true,
+                textLabel: "Password",
+                validate: (value) => value != null && value.length < 6
+                    ? "Enter min 6 characters"
+                    : null,
               ),
               SizedBox(
                 height: 25,

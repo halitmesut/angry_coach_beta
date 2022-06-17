@@ -62,6 +62,7 @@ class _SigninPageState extends State<SigninPage> {
                 textController: emailController,
                 icon: Icon(
                   Icons.person,
+                  color: Colors.black,
                 ),
                 textInputType: TextInputType.emailAddress,
                 obscureText: false,
@@ -73,6 +74,7 @@ class _SigninPageState extends State<SigninPage> {
                   textController: passwordController,
                   icon: Icon(
                     Icons.lock,
+                    color: Colors.black,
                   ),
                   textInputType: TextInputType.number,
                   obscureText: true,
