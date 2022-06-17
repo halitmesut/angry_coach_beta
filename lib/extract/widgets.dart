@@ -88,7 +88,7 @@ class NormalListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color.fromARGB(255, 230, 230, 230),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(topLeftCornerRadius),
             topRight: Radius.circular(topRightCornerRadius),
@@ -140,7 +140,7 @@ class IconAndText extends StatelessWidget {
             Image.asset(imagesAssetPath),
             Text(
               text,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             ),
           ],
         ),
@@ -188,7 +188,7 @@ class SettingsButton extends StatelessWidget {
             ),
             const Icon(
               Icons.arrow_forward_ios,
-              color: Colors.white,
+              color: Colors.black,
               size: 18,
             )
           ],

@@ -35,7 +35,7 @@ class CoachPage extends StatelessWidget {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 230, 230, 230),
                     borderRadius: BorderRadius.all(Radius.circular(40)),
                   ),
                   child: const Center(

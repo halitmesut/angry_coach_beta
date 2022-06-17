@@ -22,11 +22,11 @@ class ReportPage extends StatelessWidget {
                       children: const [
                         Text(
                           "Hedef",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.black),
                         ),
                         Text(
                           "2700",
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+                          style: TextStyle(color: Colors.black, fontSize: 22),
                         )
                       ],
                     ),
@@ -40,11 +40,11 @@ class ReportPage extends StatelessWidget {
                       children: const [
                         Text(
                           "Kalan",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.black),
                         ),
                         Text(
                           "720",
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+                          style: TextStyle(color: Colors.black, fontSize: 22),
                         )
                       ],
                     ),
@@ -60,7 +60,7 @@ class ReportPage extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                 decoration: const BoxDecoration(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 230, 230, 230),
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30)),
@@ -101,7 +101,7 @@ class ReportPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 0),
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 230, 230, 230),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30),
                         bottomRight: Radius.circular(30)),

@@ -4,6 +4,7 @@ import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -41,7 +42,10 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xff0a0e21),
         scaffoldBackgroundColor: Color.fromARGB(255, 248, 248, 248),
         appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.transparent, elevation: 0),
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
         primarySwatch: Colors.purple,
       ),
       themeMode: ThemeMode.light,

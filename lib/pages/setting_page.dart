@@ -30,9 +30,12 @@ class _SettingPageState extends State<SettingPage> {
             Row(
               children: [
                 const SizedBox(width: 15),
-                const Icon(Icons.person, color: Colors.green),
+                const Icon(Icons.person, color: Colors.black),
                 const SizedBox(width: 20),
-                titleName(title: "Account", size: 25),
+                titleName(
+                  title: "Account",
+                  size: 25,
+                ),
               ],
             ),
             normalDivider(),
@@ -58,7 +61,7 @@ class _SettingPageState extends State<SettingPage> {
             Row(
               children: [
                 const SizedBox(width: 15),
-                const Icon(Icons.settings, color: Colors.green),
+                const Icon(Icons.add_box_sharp, color: Colors.black),
                 const SizedBox(width: 20),
                 titleName(title: "Additional Tools", size: 25),
               ],
@@ -75,8 +78,7 @@ class _SettingPageState extends State<SettingPage> {
             Row(
               children: [
                 const SizedBox(width: 15),
-                const Icon(Icons.settings,
-                    color: Color.fromARGB(255, 248, 248, 248)),
+                const Icon(Icons.settings, color: Colors.black),
                 const SizedBox(width: 20),
                 titleName(title: "App Settings", size: 25),
               ],
@@ -108,7 +110,7 @@ class _SettingPageState extends State<SettingPage> {
     return Text(
       title,
       style: TextStyle(
-          fontSize: size, fontWeight: FontWeight.w500, color: Colors.white),
+          fontSize: size, fontWeight: FontWeight.w500, color: Colors.black),
     );
   }
 
@@ -116,14 +118,14 @@ class _SettingPageState extends State<SettingPage> {
     return const Divider(
       height: 15,
       thickness: 3,
-      color: Colors.blueGrey,
+      color: Colors.black,
     );
   }
 
   Divider narrowDivider() {
     return const Divider(
       thickness: 1,
-      color: Colors.blueGrey,
+      color: Colors.black,
     );
   }
 }

@@ -26,12 +26,12 @@ class MePage extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.shopping_bag,
-                            color: Colors.white,
+                            color: Colors.black,
                             size: 30,
                           ),
                           Text(
                             "Mağaza",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                           )
                         ],
                       ),
@@ -48,12 +48,12 @@ class MePage extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.face_retouching_natural,
-                            color: Colors.white,
+                            color: Colors.black,
                             size: 30,
                           ),
                           Text(
                             "Kuaför",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                           )
                         ],
                       ),
@@ -75,7 +75,7 @@ class MePage extends StatelessWidget {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 230, 230, 230),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30),
                         topRight: Radius.circular(30)),
@@ -100,7 +100,7 @@ class MePage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 0),
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 230, 230, 230),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30),
                         bottomRight: Radius.circular(30)),
