@@ -37,18 +37,19 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset(
-          'assets/angrycoach.png',
-          fit: BoxFit.cover,
-          height: 50,
+        title: Text(
+          "AngryCoach",
+          style:
+              TextStyle(color: Color.fromARGB(255, 0, 94, 255), fontSize: 30),
         ),
       ),
       body: IndexedStack(index: currentIndex, children: screens),
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xff0a0e21),
-        selectedItemColor: Colors.white,
-        unselectedItemColor: const Color.fromARGB(140, 195, 201, 166),
+        backgroundColor: Color.fromARGB(255, 248, 248, 248),
+        selectedItemColor: Color.fromARGB(255, 37, 63, 66),
+        unselectedItemColor: Color.fromARGB(255, 164, 174, 176),
         iconSize: 25,
         selectedFontSize: 13,
         unselectedFontSize: 12,

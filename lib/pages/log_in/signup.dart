@@ -1,7 +1,6 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/main.dart';
-import 'package:angry_coach_beta/pages/log_in/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/background.png"),
+            image: AssetImage("assets/background3.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -102,7 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     : null,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
+                height: MediaQuery.of(context).size.height * 0.2,
               ),
               MyButton(
                 onPressedFunction: signUp,
@@ -134,6 +133,13 @@ class _SignUpPageState extends State<SignUpPage> {
           password: passwordController.text.trim());
     } on FirebaseAuthException catch (e) {
       print(e);
+      Fluttertoast.showToast(
+          msg: e.message!,
+          fontSize: 18,
+          gravity: ToastGravity.TOP,
+          backgroundColor: Colors.white,
+          textColor: Colors.black,
+          timeInSecForIosWeb: 5);
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }

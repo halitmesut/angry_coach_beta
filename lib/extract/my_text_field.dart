@@ -22,7 +22,7 @@ class MyTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       borderRadius: BorderRadius.circular(30),
-      elevation: 3,
+      elevation: 0,
       shadowColor: Colors.white,
       child: TextFormField(
         controller: textController,
@@ -36,7 +36,7 @@ class MyTextField extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
               borderSide: BorderSide(
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             prefixIcon: icon,
@@ -66,7 +66,12 @@ class MyTextField extends StatelessWidget {
                   color: Colors.black,
                 ),
                 borderRadius: BorderRadius.circular(30)),
-            errorBorder: InputBorder.none),
+            errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  width: 1,
+                  color: Colors.black,
+                ),
+                borderRadius: BorderRadius.circular(30))),
         textInputAction: TextInputAction.next,
       ),
     );

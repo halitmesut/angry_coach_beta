@@ -1,6 +1,7 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/main.dart';
+import 'package:angry_coach_beta/pages/log_in/forgot_password_page.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -89,7 +90,24 @@ class _SigninPageState extends State<SigninPage> {
                 buttonColor: Colors.deepOrange,
               ),
               SizedBox(
-                height: 5,
+                height: 10,
+              ),
+              GestureDetector(
+                child: Text(
+                  "Forgot Password?",
+                  style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ForgotPasswordPage()));
+                },
+              ),
+              SizedBox(
+                height: 10,
               ),
               RichText(
                   text: TextSpan(

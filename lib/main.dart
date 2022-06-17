@@ -1,6 +1,5 @@
 import 'package:angry_coach_beta/home_page.dart';
 import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
-import 'package:angry_coach_beta/pages/log_in/utils.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +9,6 @@ import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:angry_coach_beta/providers/measuremet_units_provider.dart';
-
-import 'pages/log_in/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,16 +34,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //scaffoldMessengerKey: Utils.messengerKey,
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: title,
       theme: ThemeData(
-        primaryColor: const Color(0xff0a0e21),
-        scaffoldBackgroundColor: const Color.fromARGB(255, 14, 19, 45),
+        primaryColor: Color(0xff0a0e21),
+        scaffoldBackgroundColor: Color.fromARGB(255, 248, 248, 248),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xff0a0e21),
-        ),
+            backgroundColor: Colors.transparent, elevation: 0),
         primarySwatch: Colors.purple,
       ),
       themeMode: ThemeMode.light,

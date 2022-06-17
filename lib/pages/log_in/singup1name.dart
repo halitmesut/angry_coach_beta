@@ -97,6 +97,9 @@ class _SignUp1NameState extends State<SignUp1Name> {
               text: "Keep meeting",
               buttonColor: Colors.deepOrange,
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.01,
+            ),
             RichText(
               text: TextSpan(
                 text: "Have an account?",
@@ -114,7 +117,7 @@ class _SignUp1NameState extends State<SignUp1Name> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: MediaQuery.of(context).size.height * 0.04,
             ),
           ],
         ),

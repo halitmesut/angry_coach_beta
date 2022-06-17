@@ -75,7 +75,8 @@ class _SettingPageState extends State<SettingPage> {
             Row(
               children: [
                 const SizedBox(width: 15),
-                const Icon(Icons.settings, color: Colors.green),
+                const Icon(Icons.settings,
+                    color: Color.fromARGB(255, 248, 248, 248)),
                 const SizedBox(width: 20),
                 titleName(title: "App Settings", size: 25),
               ],
