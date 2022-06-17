@@ -5,6 +5,7 @@ import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class SignUp6Weight extends StatefulWidget {
@@ -45,7 +46,7 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
         ),
         padding: EdgeInsets.symmetric(horizontal: 40),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
@@ -89,7 +90,7 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
                 text: context.watch<UserProperties>().userWeight.toString(),
                 buttonColor: Colors.white),
             SizedBox(
-              height: 25,
+              height: MediaQuery.of(context).size.height * 0.29,
             ),
             MyButton(
                 onPressedFunction: () {
@@ -101,10 +102,21 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
                       MaterialPageRoute(
                           builder: (context) => const SignUp7TargetWeight()),
                     );
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: "You must enter your weight.",
+                        fontSize: 18,
+                        gravity: ToastGravity.TOP,
+                        backgroundColor: Colors.white,
+                        textColor: Colors.black,
+                        timeInSecForIosWeb: 2);
                   }
                 },
                 text: "Keep meeting",
                 buttonColor: Colors.deepOrange),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.07,
+            ),
           ],
         ),
       ),

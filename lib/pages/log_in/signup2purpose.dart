@@ -3,6 +3,7 @@ import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:angry_coach_beta/pages/log_in/signup3age.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class SignUp2Purpose extends StatefulWidget {
@@ -35,7 +36,7 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
         padding: EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             const SizedBox(
               height: 25,
@@ -86,7 +87,7 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
                       : Colors.white,
             ),
             SizedBox(
-              height: 100,
+              height: MediaQuery.of(context).size.height * 0.1,
             ),
             MyButton(
               onPressedFunction: () {
@@ -97,10 +98,21 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
                     context,
                     MaterialPageRoute(builder: (context) => const SignUp3Age()),
                   );
+                } else {
+                  Fluttertoast.showToast(
+                      msg: "You should choose one.",
+                      fontSize: 18,
+                      gravity: ToastGravity.TOP,
+                      backgroundColor: Colors.white,
+                      textColor: Colors.black,
+                      timeInSecForIosWeb: 2);
                 }
               },
               text: "Keep meeting",
               buttonColor: Colors.deepOrange,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.07,
             ),
           ],
         ),

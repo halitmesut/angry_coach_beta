@@ -1,3 +1,4 @@
+import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/main.dart';
 import 'package:angry_coach_beta/pages/log_in/utils.dart';
@@ -5,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage();
@@ -57,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
           key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
                 "Create an Accound. It's Free.",
@@ -100,43 +102,16 @@ class _SignUpPageState extends State<SignUpPage> {
                     : null,
               ),
               SizedBox(
-                height: 25,
+                height: MediaQuery.of(context).size.height * 0.1,
               ),
-              Container(
-                padding: EdgeInsets.only(top: 2, left: 2),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border(
-                    bottom: BorderSide(color: Colors.black),
-                    top: BorderSide(color: Colors.black),
-                    left: BorderSide(color: Colors.black),
-                    right: BorderSide(color: Colors.black),
-                  ),
-                ),
-                child: MaterialButton(
-                  minWidth: double.infinity,
-                  elevation: 0,
-                  color: Colors.deepOrange,
-                  onPressed: signUp,
-                  height: 60,
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                ),
+              MyButton(
+                onPressedFunction: signUp,
+                text: "Sign Up",
+                buttonColor: Colors.deepOrange,
               ),
-              Container(
-                height: MediaQuery.of(context).size.height / 3,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/angrycoachh.jpg"),
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-              )
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.22,
+              ),
             ],
           ),
         ),
@@ -159,9 +134,18 @@ class _SignUpPageState extends State<SignUpPage> {
           password: passwordController.text.trim());
     } on FirebaseAuthException catch (e) {
       print(e);
-
-      // Utils.showSnackBar(e.message);
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
+
+
+// Container(
+//                 height: MediaQuery.of(context).size.height / 3,
+//                 decoration: BoxDecoration(
+//                   image: DecorationImage(
+//                     image: AssetImage("assets/angrycoachh.jpg"),
+//                     fit: BoxFit.fitHeight,
+//                   ),
+//                 ),
+//               )

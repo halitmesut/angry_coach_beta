@@ -3,6 +3,7 @@ import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:angry_coach_beta/pages/log_in/signup5height.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class SignUp4Gender extends StatelessWidget {
@@ -34,7 +35,7 @@ class SignUp4Gender extends StatelessWidget {
         ),
         padding: EdgeInsets.symmetric(horizontal: 40),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
@@ -69,7 +70,7 @@ class SignUp4Gender extends StatelessWidget {
                   : Colors.white,
             ),
             SizedBox(
-              height: 85,
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
             MyButton(
                 onPressedFunction: () {
@@ -82,10 +83,21 @@ class SignUp4Gender extends StatelessWidget {
                           builder: (context) => const SignUp5Height()),
                     );
                     print(gender);
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: "You have to choose your gender.",
+                        fontSize: 18,
+                        gravity: ToastGravity.TOP,
+                        backgroundColor: Colors.white,
+                        textColor: Colors.black,
+                        timeInSecForIosWeb: 2);
                   }
                 },
                 text: "Keep meeting",
-                buttonColor: Colors.deepOrange)
+                buttonColor: Colors.deepOrange),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.07,
+            ),
           ],
         ),
       ),

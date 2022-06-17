@@ -5,6 +5,7 @@ import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class SignUp1Name extends StatefulWidget {
@@ -43,9 +44,16 @@ class _SignUp1NameState extends State<SignUp1Name> {
         padding: EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const Text("Bana AngryCoach derler. Senin adın ne?",
+            Expanded(
+              flex: 2,
+              child: SizedBox(
+                height: 70,
+              ),
+            ),
+            const Text(
+                "Bana AngryCoach derler. Senin adın neBana AngryCoach derler",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
             const SizedBox(
@@ -55,12 +63,13 @@ class _SignUp1NameState extends State<SignUp1Name> {
                 textController: nameController,
                 icon: Icon(
                   Icons.person,
+                  color: Colors.black,
                 ),
                 textInputType: TextInputType.name,
                 obscureText: false,
                 textLabel: "Name"),
             SizedBox(
-              height: 70,
+              height: MediaQuery.of(context).size.height * 0.3,
             ),
             MyButton(
               onPressedFunction: () {
@@ -75,6 +84,14 @@ class _SignUp1NameState extends State<SignUp1Name> {
                   );
 
                   print(nameController.text);
+                } else {
+                  Fluttertoast.showToast(
+                      msg: "Your name must be at least 3 letters.",
+                      fontSize: 18,
+                      gravity: ToastGravity.TOP,
+                      backgroundColor: Colors.white,
+                      textColor: Colors.black,
+                      timeInSecForIosWeb: 2);
                 }
               },
               text: "Keep meeting",
@@ -95,6 +112,9 @@ class _SignUp1NameState extends State<SignUp1Name> {
                           fontWeight: FontWeight.bold))
                 ],
               ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
           ],
         ),

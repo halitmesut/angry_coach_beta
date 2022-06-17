@@ -22,6 +22,7 @@ dependencies:
   firebase_auth: ^3.3.19
   email_validator: ^2.0.1
   country_picker: ^2.0.15
+  fluttertoast: ^8.0.9
 
   
 

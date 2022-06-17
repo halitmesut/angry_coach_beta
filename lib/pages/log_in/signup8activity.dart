@@ -3,6 +3,7 @@ import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:angry_coach_beta/pages/log_in/signup9speed_of_change_weight.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class SignUp8Activity extends StatelessWidget {
@@ -40,7 +41,7 @@ class SignUp8Activity extends StatelessWidget {
         ),
         padding: EdgeInsets.symmetric(horizontal: 40),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
@@ -66,7 +67,7 @@ class SignUp8Activity extends StatelessWidget {
                   : Colors.white,
             ),
             SizedBox(
-              height: 15,
+              height: 10,
             ),
             MyButton(
               onPressedFunction: () {
@@ -81,7 +82,7 @@ class SignUp8Activity extends StatelessWidget {
                   : Colors.white,
             ),
             SizedBox(
-              height: 15,
+              height: 10,
             ),
             MyButton(
               onPressedFunction: () {
@@ -96,7 +97,7 @@ class SignUp8Activity extends StatelessWidget {
                   : Colors.white,
             ),
             SizedBox(
-              height: 15,
+              height: 10,
             ),
             MyButton(
               onPressedFunction: () {
@@ -111,10 +112,7 @@ class SignUp8Activity extends StatelessWidget {
                   : Colors.white,
             ),
             SizedBox(
-              height: 15,
-            ),
-            SizedBox(
-              height: 85,
+              height: MediaQuery.of(context).size.height * 0.027,
             ),
             MyButton(
                 onPressedFunction: () {
@@ -127,12 +125,20 @@ class SignUp8Activity extends StatelessWidget {
                           builder: (context) =>
                               const SignUp9SpeedOfChangeWeight()),
                     );
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: "You must select your activity level.",
+                        fontSize: 18,
+                        gravity: ToastGravity.TOP,
+                        backgroundColor: Colors.white,
+                        textColor: Colors.black,
+                        timeInSecForIosWeb: 2);
                   }
                 },
                 text: "Keep meeting",
                 buttonColor: Colors.deepOrange),
             SizedBox(
-              height: 25,
+              height: MediaQuery.of(context).size.height * 0.07,
             ),
           ],
         ),

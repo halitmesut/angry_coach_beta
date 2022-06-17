@@ -1,5 +1,6 @@
 import 'package:angry_coach_beta/home_page.dart';
 import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
+import 'package:angry_coach_beta/pages/log_in/utils.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:angry_coach_beta/providers/measuremet_units_provider.dart';
+
+import 'pages/log_in/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //  scaffoldMessengerKey: Utils.
+      //scaffoldMessengerKey: Utils.messengerKey,
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: title,

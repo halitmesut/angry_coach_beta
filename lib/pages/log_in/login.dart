@@ -5,6 +5,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SigninPage extends StatefulWidget {
   final VoidCallback onClickedSignUp;
@@ -120,7 +121,14 @@ class _SigninPageState extends State<SigninPage> {
           email: emailController.text.trim(),
           password: passwordController.text.trim());
     } on FirebaseAuthException catch (e) {
-      print(e);
+      print(e.message);
+      Fluttertoast.showToast(
+          msg: e.message!,
+          fontSize: 18,
+          gravity: ToastGravity.TOP,
+          backgroundColor: Colors.white,
+          textColor: Colors.black,
+          timeInSecForIosWeb: 2);
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
