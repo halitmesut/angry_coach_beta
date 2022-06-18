@@ -50,10 +50,10 @@ class SignUp4Gender extends StatelessWidget {
             ),
             MyButton(
               onPressedFunction: () {
-                context.read<UserProperties>().getUserGender("Kadın");
+                context.read<UserProperties>().getUserGender("Male");
               },
-              text: "Kadın",
-              buttonColor: context.watch<UserProperties>().userGender == "Kadın"
+              text: "Male",
+              buttonColor: context.watch<UserProperties>().userGender == "Male"
                   ? Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
@@ -62,12 +62,13 @@ class SignUp4Gender extends StatelessWidget {
             ),
             MyButton(
               onPressedFunction: () {
-                context.read<UserProperties>().getUserGender("Erkek");
+                context.read<UserProperties>().getUserGender("Female");
               },
-              text: "Erkek",
-              buttonColor: context.watch<UserProperties>().userGender == "Erkek"
-                  ? Color.fromARGB(255, 162, 194, 249)
-                  : Colors.white,
+              text: "Female",
+              buttonColor:
+                  context.watch<UserProperties>().userGender == "Female"
+                      ? Color.fromARGB(255, 162, 194, 249)
+                      : Colors.white,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.2,
@@ -82,7 +83,8 @@ class SignUp4Gender extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => const SignUp5Height()),
                     );
-                    print(gender);
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userGender);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You have to choose your gender.",

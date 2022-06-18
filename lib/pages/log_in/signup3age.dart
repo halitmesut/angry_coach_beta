@@ -95,6 +95,8 @@ class _SignUp3AgeState extends State<SignUp3Age> {
                       MaterialPageRoute(
                           builder: (context) => const SignUp4Gender()),
                     );
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userAge);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter your age.",

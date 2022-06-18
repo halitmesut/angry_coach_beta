@@ -12,10 +12,11 @@ class SignUp8Activity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final activityLevel = [
-      "Sedentary",
-      "Low active",
+      "Very Low Active",
+      "Low Active",
       "Active",
-      "Very active",
+      "Very Active",
+      "Very High Active"
     ];
 
     return Scaffold(
@@ -58,11 +59,11 @@ class SignUp8Activity extends StatelessWidget {
               onPressedFunction: () {
                 context
                     .read<UserProperties>()
-                    .getUserActivityLevel("Pek hareketli değil");
+                    .getUserActivityLevel("Very Low Active");
               },
               text: "Pek hareketli değil",
               buttonColor: context.watch<UserProperties>().userActivityLevel ==
-                      "Pek hareketli değil"
+                      "Very Low Active"
                   ? Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
@@ -73,11 +74,11 @@ class SignUp8Activity extends StatelessWidget {
               onPressedFunction: () {
                 context
                     .read<UserProperties>()
-                    .getUserActivityLevel("Az hareketli");
+                    .getUserActivityLevel("Low Active");
               },
               text: "Az hareketli",
               buttonColor: context.watch<UserProperties>().userActivityLevel ==
-                      "Az hareketli"
+                      "Low Active"
                   ? Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
@@ -86,15 +87,13 @@ class SignUp8Activity extends StatelessWidget {
             ),
             MyButton(
               onPressedFunction: () {
-                context
-                    .read<UserProperties>()
-                    .getUserActivityLevel("Hareketli");
+                context.read<UserProperties>().getUserActivityLevel("Active");
               },
               text: "Hareketli",
-              buttonColor: context.watch<UserProperties>().userActivityLevel ==
-                      "Hareketli"
-                  ? Color.fromARGB(255, 162, 194, 249)
-                  : Colors.white,
+              buttonColor:
+                  context.watch<UserProperties>().userActivityLevel == "Active"
+                      ? Color.fromARGB(255, 162, 194, 249)
+                      : Colors.white,
             ),
             SizedBox(
               height: 10,
@@ -103,11 +102,26 @@ class SignUp8Activity extends StatelessWidget {
               onPressedFunction: () {
                 context
                     .read<UserProperties>()
-                    .getUserActivityLevel("Çok hareketli");
+                    .getUserActivityLevel("Very Active");
               },
               text: "Çok hareketli",
               buttonColor: context.watch<UserProperties>().userActivityLevel ==
-                      "Çok hareketli"
+                      "Very Active"
+                  ? Color.fromARGB(255, 162, 194, 249)
+                  : Colors.white,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            MyButton(
+              onPressedFunction: () {
+                context
+                    .read<UserProperties>()
+                    .getUserActivityLevel("Very High Active");
+              },
+              text: "Çok Çok hareketli",
+              buttonColor: context.watch<UserProperties>().userActivityLevel ==
+                      "Very High Active"
                   ? Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
@@ -125,6 +139,8 @@ class SignUp8Activity extends StatelessWidget {
                           builder: (context) =>
                               const SignUp9SpeedOfChangeWeight()),
                     );
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userActivityLevel);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must select your activity level.",

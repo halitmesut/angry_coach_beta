@@ -100,6 +100,8 @@ class _SignUp7TargetWeightState extends State<SignUp7TargetWeight> {
                       MaterialPageRoute(
                           builder: (context) => const SignUp8Activity()),
                     );
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userTargetWeight);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter your target weight.",

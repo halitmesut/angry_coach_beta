@@ -25,10 +25,11 @@ class _RecalculateMyDailyCaloriesScreenState
     "Weight gain",
   ];
   final activityLevel = [
-    "Sedentary",
-    "Low active",
+    "Very Low Active",
+    "Low Active",
     "Active",
-    "Very active",
+    "Very Active",
+    "Very High Active"
   ];
   @override
   Widget build(BuildContext context) {
@@ -52,8 +53,11 @@ class _RecalculateMyDailyCaloriesScreenState
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 20),
-              const Text(
-                "3400 Calories",
+              Text(
+                context
+                    .watch<UserProperties>()
+                    .recommendedDailyIntake
+                    .toString(),
                 style: TextStyle(fontSize: 30),
               ),
               const Text("Your Recommended Daily Intake"),
@@ -343,7 +347,9 @@ class _RecalculateMyDailyCaloriesScreenState
                   minWidth: double.infinity,
                   elevation: 0,
                   color: Colors.deepOrange,
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<UserProperties>().getReccommendedDailyIntake();
+                  },
                   height: 60,
                   child: Text(
                     "Recalculate",

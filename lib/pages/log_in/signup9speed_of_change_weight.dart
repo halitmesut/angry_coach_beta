@@ -78,6 +78,25 @@ class SignUp9SpeedOfChangeWeight extends StatelessWidget {
                   if (Provider.of<UserProperties>(context, listen: false)
                           .userPromise ==
                       "I promise") {
+                    context.read<UserProperties>().getReccommendedDailyIntake();
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userName);
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userDietGoal);
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userAge);
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userGender);
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userHeight);
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userWeight);
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userActivityLevel);
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userPromise);
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .recommendedDailyIntake);
                     Navigator.push(
                       context,
                       MaterialPageRoute(

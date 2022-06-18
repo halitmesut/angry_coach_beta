@@ -92,4 +92,337 @@ class UserProperties with ChangeNotifier {
     _userPromise = setUserPromise;
     notifyListeners();
   }
+
+  // RECOMMENDED DAILY INTAKE
+
+  double _recommendedDailyIntake = 0;
+  int get recommendedDailyIntake => _recommendedDailyIntake.toInt();
+
+  void getReccommendedDailyIntake() {
+    if (_userGender == "Male" &&
+        _userActivityLevel == "Very Low Active" &&
+        _userDietGoal == "Weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.4 -
+              500;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very Low Active" &&
+        _userDietGoal == "Slow weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.4 -
+              250;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very Low Active" &&
+        _userDietGoal == "Maintain my current weight") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 1.4;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very Low Active" &&
+        _userDietGoal == "Slow weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.4 +
+              250;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very Low Active" &&
+        _userDietGoal == "Weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.4 +
+              500;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Low Active" &&
+        _userDietGoal == "Weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.6 -
+              500;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Low Active" &&
+        _userDietGoal == "Slow weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.6 -
+              250;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Low Active" &&
+        _userDietGoal == "Maintain my current weight") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 1.6;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Low Active" &&
+        _userDietGoal == "Slow weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.6 +
+              250;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Low Active" &&
+        _userDietGoal == "Weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.6 +
+              500;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Active" &&
+        _userDietGoal == "Weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.7 -
+              500;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Active" &&
+        _userDietGoal == "Slow weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.7 -
+              250;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Active" &&
+        _userDietGoal == "Maintain my current weight") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 1.7;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Active" &&
+        _userDietGoal == "Slow weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.7 +
+              250;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Active" &&
+        _userDietGoal == "Weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.7 +
+              500;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very Active" &&
+        _userDietGoal == "Weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  2.1 -
+              500;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very Active" &&
+        _userDietGoal == "Slow weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  2.1 -
+              250;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very Active" &&
+        _userDietGoal == "Maintain my current weight") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 2.1;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very Active" &&
+        _userDietGoal == "Slow weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  2.1 +
+              250;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very Active" &&
+        _userDietGoal == "Weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  2.1 +
+              500;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very High Active" &&
+        _userDietGoal == "Weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  2.4 -
+              500;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very High Active" &&
+        _userDietGoal == "Slow weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  2.4 -
+              250;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very High Active" &&
+        _userDietGoal == "Maintain my current weight") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 2.4;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very High Active" &&
+        _userDietGoal == "Slow weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  2.4 +
+              250;
+    } else if (_userGender == "Male" &&
+        _userActivityLevel == "Very High Active" &&
+        _userDietGoal == "Weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  2.4 +
+              500;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very Low Active" &&
+        _userDietGoal == "Weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.3 -
+              500;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very Low Active" &&
+        _userDietGoal == "Slow weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.3 -
+              250;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very Low Active" &&
+        _userDietGoal == "Maintain my current weight") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 1.3;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very Low Active" &&
+        _userDietGoal == "Slow weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.3 +
+              250;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very Low Active" &&
+        _userDietGoal == "Weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.3 +
+              500;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Low Active" &&
+        _userDietGoal == "Weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.5 -
+              500;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Low Active" &&
+        _userDietGoal == "Slow weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.5 -
+              250;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Low Active" &&
+        _userDietGoal == "Maintain my current weight") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 1.5;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Low Active" &&
+        _userDietGoal == "Slow weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.5 +
+              250;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Low Active" &&
+        _userDietGoal == "Weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.5 +
+              500;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Active" &&
+        _userDietGoal == "Weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.6 -
+              500;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Active" &&
+        _userDietGoal == "Slow weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.6 -
+              250;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Active" &&
+        _userDietGoal == "Maintain my current weight") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 1.6;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Active" &&
+        _userDietGoal == "Slow weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.6 +
+              250;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Active" &&
+        _userDietGoal == "Weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.6 +
+              500;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very Active" &&
+        _userDietGoal == "Weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.9 -
+              500;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very Active" &&
+        _userDietGoal == "Slow weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.9 -
+              250;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very Active" &&
+        _userDietGoal == "Maintain my current weight") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 1.9;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very Active" &&
+        _userDietGoal == "Slow weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.9 +
+              250;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very Active" &&
+        _userDietGoal == "Weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) *
+                  1.9 +
+              500;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very High Active" &&
+        _userDietGoal == "Weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 2.2;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very High Active" &&
+        _userDietGoal == "Slow weight loss") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 2.2;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very High Active" &&
+        _userDietGoal == "Maintain my current weight") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 2.2;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very High Active" &&
+        _userDietGoal == "Slow weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 2.2;
+    } else if (_userGender == "Female" &&
+        _userActivityLevel == "Very High Active" &&
+        _userDietGoal == "Weight gain") {
+      _recommendedDailyIntake =
+          (66 + (5 * userHeight) + (13.8 * userWeight) - (6.8 * userAge)) * 2.2;
+    }
+
+    notifyListeners();
+  }
 }

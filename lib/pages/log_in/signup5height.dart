@@ -97,6 +97,8 @@ class _SignUp5HeightState extends State<SignUp5Height> {
                       MaterialPageRoute(
                           builder: (context) => const SignUp6Weight()),
                     );
+                    print(Provider.of<UserProperties>(context, listen: false)
+                        .userHeight);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter your height.",

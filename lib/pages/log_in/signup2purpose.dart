@@ -50,11 +50,11 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
             ),
             MyButton(
               onPressedFunction: () {
-                context.read<UserProperties>().getUserDietGoal("Kilo vermek");
+                context.read<UserProperties>().getUserDietGoal("Weight loss");
               },
-              text: "Kilo vermek",
+              text: "Weight loss",
               buttonColor:
-                  context.watch<UserProperties>().userDietGoal == "Kilo vermek"
+                  context.watch<UserProperties>().userDietGoal == "Weight loss"
                       ? Color.fromARGB(255, 162, 194, 249)
                       : Colors.white,
             ),
@@ -65,11 +65,11 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
               onPressedFunction: () {
                 context
                     .read<UserProperties>()
-                    .getUserDietGoal("Kilomu korumak");
+                    .getUserDietGoal("Slow weight loss");
               },
-              text: "Kilomu korumak",
+              text: "Slow weight loss",
               buttonColor: context.watch<UserProperties>().userDietGoal ==
-                      "Kilomu korumak"
+                      "Slow weight loss"
                   ? Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
@@ -78,11 +78,41 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
             ),
             MyButton(
               onPressedFunction: () {
-                context.read<UserProperties>().getUserDietGoal("Kilo almak");
+                context
+                    .read<UserProperties>()
+                    .getUserDietGoal("Maintain my current weight");
               },
-              text: "Kilo almak",
+              text: "Maintain my current weight",
+              buttonColor: context.watch<UserProperties>().userDietGoal ==
+                      "Maintain my current weight"
+                  ? Color.fromARGB(255, 162, 194, 249)
+                  : Colors.white,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            MyButton(
+              onPressedFunction: () {
+                context
+                    .read<UserProperties>()
+                    .getUserDietGoal("Slow weight gain");
+              },
+              text: "Slow weight gain",
+              buttonColor: context.watch<UserProperties>().userDietGoal ==
+                      "Slow weight gain"
+                  ? Color.fromARGB(255, 162, 194, 249)
+                  : Colors.white,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            MyButton(
+              onPressedFunction: () {
+                context.read<UserProperties>().getUserDietGoal("Weight gain");
+              },
+              text: "Weight gain",
               buttonColor:
-                  context.watch<UserProperties>().userDietGoal == "Kilo almak"
+                  context.watch<UserProperties>().userDietGoal == "Weight gain"
                       ? Color.fromARGB(255, 162, 194, 249)
                       : Colors.white,
             ),
@@ -98,6 +128,8 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
                     context,
                     MaterialPageRoute(builder: (context) => const SignUp3Age()),
                   );
+                  print(Provider.of<UserProperties>(context, listen: false)
+                      .userDietGoal);
                 } else {
                   Fluttertoast.showToast(
                       msg: "You should choose one.",

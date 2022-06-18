@@ -1,5 +1,7 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
+import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ReportPage extends StatelessWidget {
   const ReportPage({Key? key}) : super(key: key);
@@ -19,14 +21,18 @@ class ReportPage extends StatelessWidget {
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           "Hedef",
                           style: TextStyle(color: Colors.black),
                         ),
                         Text(
-                          "2700",
-                          style: TextStyle(color: Colors.black, fontSize: 22),
+                          context
+                              .watch<UserProperties>()
+                              .recommendedDailyIntake
+                              .toString(),
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 22),
                         )
                       ],
                     ),

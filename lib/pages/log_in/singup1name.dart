@@ -83,7 +83,8 @@ class _SignUp1NameState extends State<SignUp1Name> {
                     MaterialPageRoute(builder: (context) => SignUp2Purpose()),
                   );
 
-                  print(nameController.text);
+                  print(Provider.of<UserProperties>(context, listen: false)
+                      .userName);
                 } else {
                   Fluttertoast.showToast(
                       msg: "Your name must be at least 3 letters.",
