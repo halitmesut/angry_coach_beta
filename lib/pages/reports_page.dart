@@ -40,20 +40,18 @@ class ReportPage extends StatelessWidget {
                   Expanded(
                       flex: 2, child: Image.asset('assets/progressbar.png')),
                   Expanded(
-                      child: Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
-                        Text(
-                          "Kalan",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Text(
-                          "720",
-                          style: TextStyle(color: Colors.black, fontSize: 22),
-                        )
-                      ],
-                    ),
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: const [
+                      Text(
+                        "Kalan",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      Text(
+                        "720",
+                        style: TextStyle(color: Colors.black, fontSize: 22),
+                      )
+                    ],
                   )),
                 ],
               ),
@@ -137,12 +135,12 @@ class ReportPage extends StatelessWidget {
                     bottomRightCornerRadius: 0),
               ),
             ),
-            SizedBox(height: 1),
+            const SizedBox(height: 1),
             Expanded(
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  containersChild(context, Text("qwe"));
+                  containersChild(context, const Text("qwe"));
                 },
                 child: NormalListItem(
                     textInput: "Alınan Kaloriler",
@@ -154,12 +152,12 @@ class ReportPage extends StatelessWidget {
                     bottomRightCornerRadius: 0),
               ),
             ),
-            SizedBox(height: 1),
+            const SizedBox(height: 1),
             Expanded(
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  containersChild(context, Text("qwe"));
+                  containersChild(context, const Text("qwe"));
                 },
                 child: NormalListItem(
                     textInput: "Makro Besinler",
