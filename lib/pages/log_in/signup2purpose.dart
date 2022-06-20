@@ -5,6 +5,7 @@ import 'package:angry_coach_beta/pages/log_in/signup3age.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 class SignUp2Purpose extends StatefulWidget {
@@ -15,6 +16,8 @@ class SignUp2Purpose extends StatefulWidget {
 }
 
 class _SignUp2PurposeState extends State<SignUp2Purpose> {
+  var box = Hive.box("userProperties");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,26 +54,30 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
             ),
             MyButton(
               onPressedFunction: () {
-                context.read<UserProperties>().getUserDietGoal("Weight loss");
+                setState(() {
+                  box.put("userPurpose", "Weight loss");
+                });
+                //context.read<UserProperties>().getUserDietGoal("Weight loss");
               },
               text: "Weight loss",
-              buttonColor:
-                  context.watch<UserProperties>().userDietGoal == "Weight loss"
-                      ? const Color.fromARGB(255, 162, 194, 249)
-                      : Colors.white,
+              buttonColor: box.get("userPurpose") == "Weight loss"
+                  ? const Color.fromARGB(255, 162, 194, 249)
+                  : Colors.white,
             ),
             const SizedBox(
               height: 15,
             ),
             MyButton(
               onPressedFunction: () {
-                context
-                    .read<UserProperties>()
-                    .getUserDietGoal("Slow weight loss");
+                setState(() {
+                  box.put("userPurpose", "Slow weight loss");
+                });
+                // context
+                //     .read<UserProperties>()
+                //     .getUserDietGoal("Slow weight loss");
               },
               text: "Slow weight loss",
-              buttonColor: context.watch<UserProperties>().userDietGoal ==
-                      "Slow weight loss"
+              buttonColor: box.get("userPurpose") == "Slow weight loss"
                   ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
@@ -79,58 +86,64 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
             ),
             MyButton(
               onPressedFunction: () {
-                context
-                    .read<UserProperties>()
-                    .getUserDietGoal("Maintain my current weight");
+                setState(() {
+                  box.put("userPurpose", "Maintain my current weight");
+                });
+                // context
+                //     .read<UserProperties>()
+                //     .getUserDietGoal("Maintain my current weight");
               },
               text: "Maintain my current weight",
-              buttonColor: context.watch<UserProperties>().userDietGoal ==
-                      "Maintain my current weight"
-                  ? const Color.fromARGB(255, 162, 194, 249)
-                  : Colors.white,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            MyButton(
-              onPressedFunction: () {
-                context
-                    .read<UserProperties>()
-                    .getUserDietGoal("Slow weight gain");
-              },
-              text: "Slow weight gain",
-              buttonColor: context.watch<UserProperties>().userDietGoal ==
-                      "Slow weight gain"
-                  ? const Color.fromARGB(255, 162, 194, 249)
-                  : Colors.white,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            MyButton(
-              onPressedFunction: () {
-                context.read<UserProperties>().getUserDietGoal("Weight gain");
-              },
-              text: "Weight gain",
               buttonColor:
-                  context.watch<UserProperties>().userDietGoal == "Weight gain"
+                  box.get("userPurpose") == "Maintain my current weight"
                       ? const Color.fromARGB(255, 162, 194, 249)
                       : Colors.white,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            MyButton(
+              onPressedFunction: () {
+                setState(() {
+                  box.put("userPurpose", "Slow weight gain");
+                });
+                // context
+                //     .read<UserProperties>()
+                //     .getUserDietGoal("Slow weight gain");
+              },
+              text: "Slow weight gain",
+              buttonColor: box.get("userPurpose") == "Slow weight gain"
+                  ? const Color.fromARGB(255, 162, 194, 249)
+                  : Colors.white,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            MyButton(
+              onPressedFunction: () {
+                setState(() {
+                  box.put("userPurpose", "Weight gain");
+                });
+                // context.read<UserProperties>().getUserDietGoal("Weight gain");
+              },
+              text: "Weight gain",
+              buttonColor: box.get("userPurpose") == "Weight gain"
+                  ? const Color.fromARGB(255, 162, 194, 249)
+                  : Colors.white,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.1,
             ),
             MyButton(
               onPressedFunction: () {
-                if (Provider.of<UserProperties>(context, listen: false)
-                        .userDietGoal !=
-                    "") {
+                if (box.get("userPurpose") != null) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SignUp3Age()),
                   );
-                  print(Provider.of<UserProperties>(context, listen: false)
-                      .userDietGoal);
+                  // print(Provider.of<UserProperties>(context, listen: false)
+                  //     .userDietGoal);
+                  debugPrint(box.toMap().toString());
                 } else {
                   Fluttertoast.showToast(
                       msg: "You should choose one.",

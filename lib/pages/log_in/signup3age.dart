@@ -6,6 +6,7 @@ import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 class SignUp3Age extends StatefulWidget {
@@ -19,6 +20,7 @@ class _SignUp3AgeState extends State<SignUp3Age> {
   @override
   Widget build(BuildContext context) {
     final ages = [for (var i = 13; i <= 65; i++) i];
+    var box = Hive.box("userProperties");
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -72,9 +74,13 @@ class _SignUp3AgeState extends State<SignUp3Age> {
                                     ))
                                 .toList(),
                             onSelectedItemChanged: (index) {
-                              context
-                                  .read<UserProperties>()
-                                  .getUserAge(ages[index]);
+                              setState(() {
+                                box.put("userAge", ages[index]);
+                              });
+
+                              // context
+                              //     .read<UserProperties>()
+                              //     .getUserAge(ages[index]);
                             },
                           )),
                       shape: const RoundedRectangleBorder(
@@ -82,23 +88,22 @@ class _SignUp3AgeState extends State<SignUp3Age> {
                             BorderRadius.vertical(top: Radius.circular(30)),
                       ));
                 },
-                text: context.watch<UserProperties>().userAge.toString(),
+                text: box.get("userAge").toString(),
                 buttonColor: Colors.white),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.29,
             ),
             MyButton(
                 onPressedFunction: () {
-                  if (Provider.of<UserProperties>(context, listen: false)
-                          .userAge !=
-                      0) {
+                  if (box.get("userAge") != null) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const SignUp4Gender()),
                     );
-                    print(Provider.of<UserProperties>(context, listen: false)
-                        .userAge);
+                    debugPrint(box.toMap().toString());
+                    // print(Provider.of<UserProperties>(context, listen: false)
+                    //     .userAge);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter your age.",

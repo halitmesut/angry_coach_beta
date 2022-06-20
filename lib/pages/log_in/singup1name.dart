@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 class SignUp1Name extends StatefulWidget {
@@ -18,6 +19,7 @@ class SignUp1Name extends StatefulWidget {
 
 class _SignUp1NameState extends State<SignUp1Name> {
   final nameController = TextEditingController();
+  var box = Hive.box("userProperties");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,19 +74,28 @@ class _SignUp1NameState extends State<SignUp1Name> {
               height: MediaQuery.of(context).size.height * 0.3,
             ),
             MyButton(
-              onPressedFunction: () {
+              onPressedFunction: () async {
                 if (nameController.text.length > 2) {
-                  context
-                      .read<UserProperties>()
-                      .getUserName(nameController.text);
+                  //box.clear();
+
+                  await box.put("userName", nameController.text);
+
+                  debugPrint(box.toMap().toString());
+                  // for (var element in box.values) {
+                  //   debugPrint(element.toString());
+                  // }
+
+                  // context
+                  //     .read<UserProperties>()
+                  //     .getUserName(nameController.text);
 
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => SignUp2Purpose()),
                   );
 
-                  print(Provider.of<UserProperties>(context, listen: false)
-                      .userName);
+                  // print(Provider.of<UserProperties>(context, listen: false)
+                  //     .userName);
                 } else {
                   Fluttertoast.showToast(
                       msg: "Your name must be at least 3 letters.",
