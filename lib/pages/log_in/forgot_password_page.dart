@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,27 +29,28 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         foregroundColor: Colors.black,
-        title: Text(
+        title: const Text(
           "Forgot Password",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
+        // ignore: deprecated_member_use
         brightness: Brightness.light,
         backgroundColor: Colors.transparent,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Expanded(
+            const Expanded(
               flex: 2,
               child: SizedBox(
                 height: 70,
@@ -65,7 +64,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
             MyTextField(
               textController: emailController,
-              icon: Icon(
+              icon: const Icon(
                 Icons.person,
                 color: Colors.black,
               ),
@@ -97,7 +96,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Future resetPassword() async {
     showDialog(
         context: context,
-        builder: (contex) => Center(child: CircularProgressIndicator()));
+        builder: (contex) => const Center(child: CircularProgressIndicator()));
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(
         email: emailController.text.trim(),
@@ -112,8 +111,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           textColor: Colors.black,
           timeInSecForIosWeb: 2);
 
+      // ignore: use_build_context_synchronously
       Navigator.of(context).popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
+      // ignore: avoid_print
       print(e.message);
       Fluttertoast.showToast(
           msg: e.message!,

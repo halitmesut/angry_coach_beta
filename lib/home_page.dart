@@ -6,13 +6,13 @@ import 'package:angry_coach_beta/pages/reports_page.dart';
 import 'package:angry_coach_beta/pages/setting_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final user = FirebaseAuth.instance.currentUser!;
     return const MainScreen();
   }
@@ -38,7 +38,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "AngryCoach",
           style:
               TextStyle(color: Color.fromARGB(255, 0, 94, 255), fontSize: 30),
@@ -48,9 +48,9 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color.fromARGB(255, 248, 248, 248),
-        selectedItemColor: Color.fromARGB(255, 37, 63, 66),
-        unselectedItemColor: Color.fromARGB(255, 164, 174, 176),
+        backgroundColor: const Color.fromARGB(255, 248, 248, 248),
+        selectedItemColor: const Color.fromARGB(255, 37, 63, 66),
+        unselectedItemColor: const Color.fromARGB(255, 164, 174, 176),
         iconSize: 25,
         selectedFontSize: 13,
         unselectedFontSize: 12,

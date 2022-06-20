@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, avoid_print
+
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/pages/log_in/signup4gender.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
@@ -33,13 +35,13 @@ class _SignUp3AgeState extends State<SignUp3Age> {
         backgroundColor: Colors.transparent,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,7 +67,7 @@ class _SignUp3AgeState extends State<SignUp3Age> {
                                 .map((item) => Center(
                                       child: Text(
                                         item.toString(),
-                                        style: TextStyle(fontSize: 32),
+                                        style: const TextStyle(fontSize: 32),
                                       ),
                                     ))
                                 .toList(),

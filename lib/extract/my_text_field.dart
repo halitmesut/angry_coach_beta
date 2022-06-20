@@ -31,43 +31,43 @@ class MyTextField extends StatelessWidget {
         keyboardType: textInputType,
         obscureText: obscureText,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+            contentPadding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.black,
               ),
             ),
             prefixIcon: icon,
             labelText: textLabel,
-            labelStyle: TextStyle(color: Colors.black),
+            labelStyle: const TextStyle(color: Colors.black),
             enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   width: 1,
                   color: Colors.black,
                 ),
                 borderRadius: BorderRadius.circular(30)),
             disabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   width: 1,
                   color: Colors.black,
                 ),
                 borderRadius: BorderRadius.circular(30)),
             focusedErrorBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   width: 2,
                   color: Colors.black,
                 ),
                 borderRadius: BorderRadius.circular(30)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   width: 2,
                   color: Colors.black,
                 ),
                 borderRadius: BorderRadius.circular(30)),
             errorBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   width: 1,
                   color: Colors.black,
                 ),

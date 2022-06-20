@@ -1,13 +1,15 @@
+// ignore_for_file: deprecated_member_use, avoid_print
+
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpPage extends StatefulWidget {
+  // ignore: use_key_in_widget_constructors
   const SignUpPage();
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -27,7 +29,9 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     bool isLogin = true;
 
     return Scaffold(
@@ -36,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         foregroundColor: Colors.black,
-        title: Text(
+        title: const Text(
           "Sign Up ",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
@@ -45,13 +49,13 @@ class _SignUpPageState extends State<SignUpPage> {
         backgroundColor: Colors.transparent,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background3.png"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: Form(
@@ -60,19 +64,19 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
+              const Text(
                 "Create an Accound. It's Free.",
                 style: TextStyle(
                   fontSize: 15,
                   color: Color.fromARGB(255, 32, 32, 32),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               MyTextField(
                 textController: emailController,
-                icon: Icon(
+                icon: const Icon(
                   Icons.alternate_email,
                   color: Colors.black,
                 ),
@@ -84,12 +88,12 @@ class _SignUpPageState extends State<SignUpPage> {
                         ? "Enter a valid Email"
                         : null,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               MyTextField(
                 textController: passwordController,
-                icon: Icon(
+                icon: const Icon(
                   Icons.lock,
                   color: Colors.black,
                 ),

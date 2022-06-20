@@ -10,13 +10,18 @@ import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:angry_coach_beta/providers/measuremet_units_provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  await Hive.openBox("userProperties");
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => UserProperties()),
@@ -39,8 +44,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: title,
       theme: ThemeData(
-        primaryColor: Color(0xff0a0e21),
-        scaffoldBackgroundColor: Color.fromARGB(255, 248, 248, 248),
+        primaryColor: const Color(0xff0a0e21),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 248, 248, 248),
         appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.dark,
           backgroundColor: Colors.transparent,
@@ -88,7 +93,7 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.hasData) {
             return const HomePage();
           } else {
-            return AuthPage();
+            return const AuthPage();
           }
         },
       ),

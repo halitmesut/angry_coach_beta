@@ -88,7 +88,7 @@ class NormalListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 230, 230, 230),
+        color: const Color.fromARGB(255, 230, 230, 230),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(topLeftCornerRadius),
             topRight: Radius.circular(topRightCornerRadius),
@@ -108,11 +108,14 @@ class NormalListItem extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class IconAndText extends StatelessWidget {
   IconAndText(
-      {required this.imagesAssetPath,
+      {Key? key,
+      required this.imagesAssetPath,
       required this.text,
-      required this.containersChild});
+      required this.containersChild})
+      : super(key: key);
   late String imagesAssetPath;
   late String text;
   late Widget containersChild;
@@ -140,7 +143,7 @@ class IconAndText extends StatelessWidget {
             Image.asset(imagesAssetPath),
             Text(
               text,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
           ],
         ),
@@ -149,6 +152,7 @@ class IconAndText extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class SettingsButton extends StatelessWidget {
   late String title;
   late Widget destinationScreenWidgetName;

@@ -1,5 +1,6 @@
+// ignore_for_file: deprecated_member_use, avoid_print
+
 import 'package:angry_coach_beta/extract/my_button.dart';
-import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:angry_coach_beta/pages/log_in/signup3age.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +28,13 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
         backgroundColor: Colors.transparent,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
@@ -55,10 +56,10 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
               text: "Weight loss",
               buttonColor:
                   context.watch<UserProperties>().userDietGoal == "Weight loss"
-                      ? Color.fromARGB(255, 162, 194, 249)
+                      ? const Color.fromARGB(255, 162, 194, 249)
                       : Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             MyButton(
@@ -70,10 +71,10 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
               text: "Slow weight loss",
               buttonColor: context.watch<UserProperties>().userDietGoal ==
                       "Slow weight loss"
-                  ? Color.fromARGB(255, 162, 194, 249)
+                  ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             MyButton(
@@ -85,10 +86,10 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
               text: "Maintain my current weight",
               buttonColor: context.watch<UserProperties>().userDietGoal ==
                       "Maintain my current weight"
-                  ? Color.fromARGB(255, 162, 194, 249)
+                  ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             MyButton(
@@ -100,10 +101,10 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
               text: "Slow weight gain",
               buttonColor: context.watch<UserProperties>().userDietGoal ==
                       "Slow weight gain"
-                  ? Color.fromARGB(255, 162, 194, 249)
+                  ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             MyButton(
@@ -113,7 +114,7 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
               text: "Weight gain",
               buttonColor:
                   context.watch<UserProperties>().userDietGoal == "Weight gain"
-                      ? Color.fromARGB(255, 162, 194, 249)
+                      ? const Color.fromARGB(255, 162, 194, 249)
                       : Colors.white,
             ),
             SizedBox(

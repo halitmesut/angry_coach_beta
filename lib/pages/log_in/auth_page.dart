@@ -1,9 +1,10 @@
 import 'package:angry_coach_beta/pages/log_in/login.dart';
-import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:angry_coach_beta/pages/log_in/singup1name.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
+  const AuthPage({Key? key}) : super(key: key);
+
   @override
   State<AuthPage> createState() => _AuthPageState();
 }
