@@ -146,7 +146,7 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
                   debugPrint(box.toMap().toString());
                 } else {
                   Fluttertoast.showToast(
-                      msg: "You should choose one.",
+                      msg: "You have to choose your purpose.",
                       fontSize: 18,
                       gravity: ToastGravity.TOP,
                       backgroundColor: Colors.white,

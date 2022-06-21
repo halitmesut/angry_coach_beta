@@ -5,14 +5,21 @@ import 'package:angry_coach_beta/pages/log_in/signup5height.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-class SignUp4Gender extends StatelessWidget {
+class SignUp4Gender extends StatefulWidget {
   const SignUp4Gender({Key? key}) : super(key: key);
 
   @override
+  State<SignUp4Gender> createState() => _SignUp4GenderState();
+}
+
+class _SignUp4GenderState extends State<SignUp4Gender> {
+  @override
   Widget build(BuildContext context) {
     int gender = 4;
+    var box = Hive.box("userProperties");
     return Scaffold(
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
@@ -51,10 +58,14 @@ class SignUp4Gender extends StatelessWidget {
             ),
             MyButton(
               onPressedFunction: () {
-                context.read<UserProperties>().getUserGender("Male");
+                setState(() {
+                  box.put("userGender", "Male");
+                });
+
+                //context.read<UserProperties>().getUserGender("Male");
               },
               text: "Male",
-              buttonColor: context.watch<UserProperties>().userGender == "Male"
+              buttonColor: box.get("userGender") == "Male"
                   ? Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
@@ -63,29 +74,30 @@ class SignUp4Gender extends StatelessWidget {
             ),
             MyButton(
               onPressedFunction: () {
-                context.read<UserProperties>().getUserGender("Female");
+                setState(() {
+                  box.put("userGender", "Female");
+                });
+                // context.read<UserProperties>().getUserGender("Female");
               },
               text: "Female",
-              buttonColor:
-                  context.watch<UserProperties>().userGender == "Female"
-                      ? Color.fromARGB(255, 162, 194, 249)
-                      : Colors.white,
+              buttonColor: box.get("userGender") == "Female"
+                  ? Color.fromARGB(255, 162, 194, 249)
+                  : Colors.white,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.2,
             ),
             MyButton(
                 onPressedFunction: () {
-                  if (Provider.of<UserProperties>(context, listen: false)
-                          .userGender !=
-                      "") {
+                  if (box.get("userGender") != null) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const SignUp5Height()),
                     );
-                    print(Provider.of<UserProperties>(context, listen: false)
-                        .userGender);
+                    debugPrint(box.toMap().toString());
+                    // print(Provider.of<UserProperties>(context, listen: false)
+                    //     .userGender);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You have to choose your gender.",

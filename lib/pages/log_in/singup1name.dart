@@ -76,7 +76,7 @@ class _SignUp1NameState extends State<SignUp1Name> {
             MyButton(
               onPressedFunction: () async {
                 if (nameController.text.length > 2) {
-                  //box.clear();
+                  await box.clear();
 
                   await box.put("userName", nameController.text);
 

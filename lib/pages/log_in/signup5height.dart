@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 class SignUp5Height extends StatefulWidget {
@@ -19,6 +20,7 @@ class _SignUp5HeightState extends State<SignUp5Height> {
   @override
   Widget build(BuildContext context) {
     final height = [for (var i = 120; i <= 220; i++) i];
+    var box = Hive.box("userProperties");
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -72,9 +74,12 @@ class _SignUp5HeightState extends State<SignUp5Height> {
                                     ))
                                 .toList(),
                             onSelectedItemChanged: (index) {
-                              context
-                                  .read<UserProperties>()
-                                  .getUserHeight(height[index]);
+                              setState(() {
+                                box.put("userHeight", height[index]);
+                              });
+                              // context
+                              //     .read<UserProperties>()
+                              //     .getUserHeight(height[index]);
                             },
                           )),
                       shape: const RoundedRectangleBorder(
@@ -82,23 +87,22 @@ class _SignUp5HeightState extends State<SignUp5Height> {
                             BorderRadius.vertical(top: Radius.circular(30)),
                       ));
                 },
-                text: context.watch<UserProperties>().userHeight.toString(),
+                text: box.get("userHeight").toString(),
                 buttonColor: Colors.white),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.29,
             ),
             MyButton(
                 onPressedFunction: () {
-                  if (Provider.of<UserProperties>(context, listen: false)
-                          .userHeight !=
-                      0) {
+                  if (box.get("userHeight") != null) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const SignUp6Weight()),
                     );
-                    print(Provider.of<UserProperties>(context, listen: false)
-                        .userHeight);
+                    debugPrint(box.toMap().toString());
+                    // print(Provider.of<UserProperties>(context, listen: false)
+                    //     .userHeight);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter your height.",

@@ -1,14 +1,20 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/pages/log_in/signup.dart';
-import 'package:angry_coach_beta/pages/log_in/signup9speed_of_change_weight.dart';
+import 'package:angry_coach_beta/pages/log_in/signup9promise_agree.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-class SignUp8Activity extends StatelessWidget {
+class SignUp8Activity extends StatefulWidget {
   const SignUp8Activity({Key? key}) : super(key: key);
 
+  @override
+  State<SignUp8Activity> createState() => _SignUp8ActivityState();
+}
+
+class _SignUp8ActivityState extends State<SignUp8Activity> {
   @override
   Widget build(BuildContext context) {
     final activityLevel = [
@@ -18,6 +24,7 @@ class SignUp8Activity extends StatelessWidget {
       "Very Active",
       "Very High Active"
     ];
+    var box = Hive.box("userProperties");
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -57,14 +64,16 @@ class SignUp8Activity extends StatelessWidget {
             ),
             MyButton(
               onPressedFunction: () {
-                context
-                    .read<UserProperties>()
-                    .getUserActivityLevel("Very Low Active");
+                setState(() {
+                  box.put("userActivityLevel", "Very Low Active");
+                });
+                // context
+                //     .read<UserProperties>()
+                //     .getUserActivityLevel("Very Low Active");
               },
-              text: "Pek hareketli değil",
-              buttonColor: context.watch<UserProperties>().userActivityLevel ==
-                      "Very Low Active"
-                  ? Color.fromARGB(255, 162, 194, 249)
+              text: "Very Low Active",
+              buttonColor: box.get("userActivityLevel") == "Very Low Active"
+                  ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
             SizedBox(
@@ -72,14 +81,16 @@ class SignUp8Activity extends StatelessWidget {
             ),
             MyButton(
               onPressedFunction: () {
-                context
-                    .read<UserProperties>()
-                    .getUserActivityLevel("Low Active");
+                setState(() {
+                  box.put("userActivityLevel", "Low Active");
+                });
+                // context
+                //     .read<UserProperties>()
+                //     .getUserActivityLevel("Low Active");
               },
-              text: "Az hareketli",
-              buttonColor: context.watch<UserProperties>().userActivityLevel ==
-                      "Low Active"
-                  ? Color.fromARGB(255, 162, 194, 249)
+              text: "Low Active",
+              buttonColor: box.get("userActivityLevel") == "Low Active"
+                  ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
             SizedBox(
@@ -87,27 +98,14 @@ class SignUp8Activity extends StatelessWidget {
             ),
             MyButton(
               onPressedFunction: () {
-                context.read<UserProperties>().getUserActivityLevel("Active");
+                setState(() {
+                  box.put("userActivityLevel", "Active");
+                });
+                // context.read<UserProperties>().getUserActivityLevel("Active");
               },
-              text: "Hareketli",
-              buttonColor:
-                  context.watch<UserProperties>().userActivityLevel == "Active"
-                      ? Color.fromARGB(255, 162, 194, 249)
-                      : Colors.white,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            MyButton(
-              onPressedFunction: () {
-                context
-                    .read<UserProperties>()
-                    .getUserActivityLevel("Very Active");
-              },
-              text: "Çok hareketli",
-              buttonColor: context.watch<UserProperties>().userActivityLevel ==
-                      "Very Active"
-                  ? Color.fromARGB(255, 162, 194, 249)
+              text: "Active",
+              buttonColor: box.get("userActivityLevel") == "Active"
+                  ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
             SizedBox(
@@ -115,14 +113,33 @@ class SignUp8Activity extends StatelessWidget {
             ),
             MyButton(
               onPressedFunction: () {
-                context
-                    .read<UserProperties>()
-                    .getUserActivityLevel("Very High Active");
+                setState(() {
+                  box.put("userActivityLevel", "Very Active");
+                });
+                // context
+                //     .read<UserProperties>()
+                //     .getUserActivityLevel("Very Active");
               },
-              text: "Çok Çok hareketli",
-              buttonColor: context.watch<UserProperties>().userActivityLevel ==
-                      "Very High Active"
-                  ? Color.fromARGB(255, 162, 194, 249)
+              text: "Very Active",
+              buttonColor: box.get("userActivityLevel") == "Very Active"
+                  ? const Color.fromARGB(255, 162, 194, 249)
+                  : Colors.white,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            MyButton(
+              onPressedFunction: () {
+                setState(() {
+                  box.put("userActivityLevel", "Very High Active");
+                });
+                // context
+                //     .read<UserProperties>()
+                //     .getUserActivityLevel("Very High Active");
+              },
+              text: "Very High Active",
+              buttonColor: box.get("userActivityLevel") == "Very High Active"
+                  ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
             SizedBox(
@@ -130,17 +147,13 @@ class SignUp8Activity extends StatelessWidget {
             ),
             MyButton(
                 onPressedFunction: () {
-                  if (Provider.of<UserProperties>(context, listen: false)
-                          .userActivityLevel !=
-                      "") {
+                  if (box.get("userActivityLevel") != null) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              const SignUp9SpeedOfChangeWeight()),
+                          builder: (context) => const SignUp9PromiseAgree()),
                     );
-                    print(Provider.of<UserProperties>(context, listen: false)
-                        .userActivityLevel);
+                    debugPrint(box.toMap().toString());
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must select your activity level.",

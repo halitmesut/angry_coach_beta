@@ -106,7 +106,7 @@ class _SignUp3AgeState extends State<SignUp3Age> {
                     //     .userAge);
                   } else {
                     Fluttertoast.showToast(
-                        msg: "You must enter your age.",
+                        msg: "You must select your age.",
                         fontSize: 18,
                         gravity: ToastGravity.TOP,
                         backgroundColor: Colors.white,

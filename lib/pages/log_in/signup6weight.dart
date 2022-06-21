@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 class SignUp6Weight extends StatefulWidget {
@@ -19,6 +20,7 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
   @override
   Widget build(BuildContext context) {
     final weight = [for (var i = 40; i <= 180; i++) i];
+    var box = Hive.box("userProperties");
 
     final userWeightInput = TextEditingController();
     String userWeight = "ghg";
@@ -77,9 +79,12 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
                                     ))
                                 .toList(),
                             onSelectedItemChanged: (index) {
-                              context
-                                  .read<UserProperties>()
-                                  .getUserWeight(weight[index]);
+                              setState(() {
+                                box.put("userWeight", weight[index]);
+                              });
+                              // context
+                              //     .read<UserProperties>()
+                              //     .getUserWeight(weight[index]);
                             },
                           )),
                       shape: const RoundedRectangleBorder(
@@ -87,23 +92,22 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
                             BorderRadius.vertical(top: Radius.circular(30)),
                       ));
                 },
-                text: context.watch<UserProperties>().userWeight.toString(),
+                text: box.get("userWeight").toString(),
                 buttonColor: Colors.white),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.29,
             ),
             MyButton(
                 onPressedFunction: () {
-                  if (Provider.of<UserProperties>(context, listen: false)
-                          .userWeight !=
-                      0) {
+                  if (box.get("userWeight") != null) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const SignUp7TargetWeight()),
                     );
-                    print(Provider.of<UserProperties>(context, listen: false)
-                        .userWeight);
+                    debugPrint(box.toMap().toString());
+                    // print(Provider.of<UserProperties>(context, listen: false)
+                    //     .userWeight);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter your weight.",
