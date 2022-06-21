@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class SignUpPage extends StatefulWidget {
   // ignore: use_key_in_widget_constructors
@@ -20,6 +21,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final passwordController = TextEditingController();
   final passwordController2 = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  var box = Hive.box("userProperties");
 
   @override
   void dispose() {
@@ -135,6 +137,9 @@ class _SignUpPageState extends State<SignUpPage> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
+      await box.put("userEmail", emailController.text);
+      await box.put("userPassword", passwordController.text);
+      debugPrint(box.toMap().toString());
     } on FirebaseAuthException catch (e) {
       print(e);
       Fluttertoast.showToast(
