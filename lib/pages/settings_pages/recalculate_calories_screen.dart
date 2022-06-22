@@ -1,6 +1,8 @@
+import 'package:angry_coach_beta/extract/recommended_daily_intake_calculator.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 class RecalculateMyDailyCaloriesScreen extends StatefulWidget {
@@ -31,6 +33,8 @@ class _RecalculateMyDailyCaloriesScreenState
     "Very Active",
     "Very High Active"
   ];
+  var box = Hive.box("userProperties");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +58,11 @@ class _RecalculateMyDailyCaloriesScreenState
             children: [
               SizedBox(height: 20),
               Text(
-                context
-                    .watch<UserProperties>()
-                    .recommendedDailyIntake
-                    .toString(),
+                box.get("userReccommendedDailyIntake").toString(),
+                // context
+                //     .watch<UserProperties>()
+                //     .recommendedDailyIntake
+                //     .toString(),
                 style: TextStyle(fontSize: 30),
               ),
               const Text("Your Recommended Daily Intake"),
@@ -71,8 +76,8 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Age",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle:
-                    Text(context.watch<UserProperties>().userAge.toString()),
+                subtitle: Text(box.get("userAge").toString()),
+                //Text(context.watch<UserProperties>().userAge.toString()),
                 isThreeLine: false,
                 visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
@@ -94,9 +99,12 @@ class _RecalculateMyDailyCaloriesScreenState
                                     ))
                                 .toList(),
                             onSelectedItemChanged: (index) {
-                              context
-                                  .read<UserProperties>()
-                                  .getUserAge(ages[index]);
+                              setState(() {
+                                box.put("userAge", ages[index]);
+                              });
+                              // context
+                              //     .read<UserProperties>()
+                              //     .getUserAge(ages[index]);
                             },
                           )),
                       shape: const RoundedRectangleBorder(
@@ -114,8 +122,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Height",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle:
-                    Text("${context.watch<UserProperties>().userHeight}cm"),
+                subtitle: Text("${box.get("userHeight").toString()}cm"),
                 isThreeLine: false,
                 visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
@@ -129,9 +136,12 @@ class _RecalculateMyDailyCaloriesScreenState
                             child: CupertinoPicker(
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
-                                context
-                                    .read<UserProperties>()
-                                    .getUserHeight(height[index]);
+                                setState(() {
+                                  box.put("userHeight", height[index]);
+                                });
+                                // context
+                                //     .read<UserProperties>()
+                                //     .getUserHeight(height[index]);
                               },
                               children: height
                                   .map((item) => Center(
@@ -158,8 +168,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Weight",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle:
-                    Text("${context.watch<UserProperties>().userWeight}cm"),
+                subtitle: Text("${box.get("userWeight").toString()}cm"),
                 isThreeLine: false,
                 visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
@@ -173,9 +182,13 @@ class _RecalculateMyDailyCaloriesScreenState
                             child: CupertinoPicker(
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
-                                context
-                                    .read<UserProperties>()
-                                    .getUserWeight(weight[index]);
+                                setState(() {
+                                  box.put("userWeight", weight[index]);
+                                });
+
+                                // context
+                                //     .read<UserProperties>()
+                                //     .getUserWeight(weight[index]);
                               },
                               children: weight
                                   .map((item) => Center(
@@ -202,7 +215,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Gender",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<UserProperties>().userGender),
+                subtitle: Text(box.get("userGender").toString()),
                 isThreeLine: false,
                 visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
@@ -216,9 +229,12 @@ class _RecalculateMyDailyCaloriesScreenState
                             child: CupertinoPicker(
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
-                                context
-                                    .read<UserProperties>()
-                                    .getUserGender(gender[index]);
+                                setState(() {
+                                  box.put("userGender", gender[index]);
+                                });
+                                // context
+                                //     .read<UserProperties>()
+                                //     .getUserGender(gender[index]);
                               },
                               children: gender
                                   .map((item) => Center(
@@ -245,7 +261,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Diet Goal",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<UserProperties>().userDietGoal),
+                subtitle: Text(box.get("userPurpose").toString()),
                 isThreeLine: false,
                 visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
@@ -259,9 +275,12 @@ class _RecalculateMyDailyCaloriesScreenState
                             child: CupertinoPicker(
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
-                                context
-                                    .read<UserProperties>()
-                                    .getUserDietGoal(dietGoal[index]);
+                                setState(() {
+                                  box.put("userPurpose", dietGoal[index]);
+                                });
+                                // context
+                                //     .read<UserProperties>()
+                                //     .getUserDietGoal(dietGoal[index]);
                               },
                               children: dietGoal
                                   .map(
@@ -290,8 +309,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Activity Level",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle:
-                    Text(context.watch<UserProperties>().userActivityLevel),
+                subtitle: Text(box.get("userActivityLevel").toString()),
                 isThreeLine: false,
                 visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                 trailing: Icon(
@@ -305,9 +323,13 @@ class _RecalculateMyDailyCaloriesScreenState
                           child: CupertinoPicker(
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
-                                context
-                                    .read<UserProperties>()
-                                    .getUserActivityLevel(activityLevel[index]);
+                                setState(() {
+                                  box.put("userActivityLevel",
+                                      activityLevel[index]);
+                                });
+                                // context
+                                //     .read<UserProperties>()
+                                //     .getUserActivityLevel(activityLevel[index]);
                               },
                               children: activityLevel
                                   .map(
@@ -336,7 +358,7 @@ class _RecalculateMyDailyCaloriesScreenState
                 padding: EdgeInsets.only(top: 2, left: 2),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  border: Border(
+                  border: const Border(
                     bottom: BorderSide(color: Colors.black),
                     top: BorderSide(color: Colors.black),
                     left: BorderSide(color: Colors.black),
@@ -348,7 +370,23 @@ class _RecalculateMyDailyCaloriesScreenState
                   elevation: 0,
                   color: Colors.deepOrange,
                   onPressed: () {
-                    context.read<UserProperties>().getReccommendedDailyIntake();
+                    //context.read<UserProperties>().getReccommendedDailyIntake();
+
+                    setState(() {
+                      RecommendedDailyIntake recommendedDailyIntake =
+                          RecommendedDailyIntake(
+                              userGender: box.get("userGender"),
+                              userActivityLevel: box.get("userActivityLevel"),
+                              userDietGoal: box.get("userPurpose"),
+                              userAge: box.get("userAge"),
+                              userHeight: box.get("userHeight"),
+                              userWeight: box.get("userWeight"));
+                      box.put(
+                          "userReccommendedDailyIntake",
+                          recommendedDailyIntake
+                              .recommendedDailyIntakeFunction());
+                    });
+                    debugPrint(box.get("userReccommendedDailyIntake"));
                   },
                   height: 60,
                   child: Text(
