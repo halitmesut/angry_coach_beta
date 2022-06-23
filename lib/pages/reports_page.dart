@@ -1,11 +1,15 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
-import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-class ReportPage extends StatelessWidget {
+class ReportPage extends StatefulWidget {
   const ReportPage({Key? key}) : super(key: key);
 
+  @override
+  State<ReportPage> createState() => _ReportPageState();
+}
+
+class _ReportPageState extends State<ReportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +30,22 @@ class ReportPage extends StatelessWidget {
                           "Hedef",
                           style: TextStyle(color: Colors.black),
                         ),
-                        Text(
-                          context
-                              .watch<UserProperties>()
-                              .recommendedDailyIntake
-                              .toString(),
-                          style: const TextStyle(
-                              color: Colors.black, fontSize: 22),
-                        )
+                        ValueListenableBuilder(
+                          valueListenable:
+                              Hive.box("userProperties").listenable(),
+                          builder: (context, Box box, _) {
+                            if (box.values.isEmpty) {
+                              return const Text('empty');
+                            } else {
+                              return Text(
+                                  box
+                                      .get("userReccommendedDailyIntake")
+                                      .toString(),
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 22));
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),

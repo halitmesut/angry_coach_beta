@@ -1,4 +1,5 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
+import 'package:angry_coach_beta/extract/recommended_daily_intake_calculator.dart';
 import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -88,25 +89,20 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
                   if (box.get("userPromise") == "I Promise") {
                     debugPrint(box.toMap().toString());
 
-                    // context.read<UserProperties>().getReccommendedDailyIntake();
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userName);
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userDietGoal);
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userAge);
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userGender);
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userHeight);
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userWeight);
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userActivityLevel);
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userPromise);
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .recommendedDailyIntake);
+                    RecommendedDailyIntake recommendedDailyIntake =
+                        RecommendedDailyIntake(
+                            userGender: box.get("userGender"),
+                            userActivityLevel: box.get("userActivityLevel"),
+                            userDietGoal: box.get("userPurpose"),
+                            userAge: box.get("userAge"),
+                            userHeight: box.get("userHeight"),
+                            userWeight: box.get("userWeight"));
+                    box.put(
+                        "userReccommendedDailyIntake",
+                        recommendedDailyIntake
+                            .recommendedDailyIntakeFunction());
+
+                    debugPrint(box.get("userReccommendedDailyIntake"));
                     Navigator.push(
                       context,
                       MaterialPageRoute(
