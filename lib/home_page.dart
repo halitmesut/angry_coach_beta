@@ -46,12 +46,10 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: IndexedStack(index: currentIndex, children: screens),
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color.fromARGB(255, 248, 248, 248),
         selectedItemColor: const Color.fromARGB(255, 37, 63, 66),
         unselectedItemColor: const Color.fromARGB(255, 164, 174, 176),
-        iconSize: 25,
+        elevation: 0,
         selectedFontSize: 13,
         unselectedFontSize: 12,
         showSelectedLabels: true,

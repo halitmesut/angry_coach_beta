@@ -1,10 +1,10 @@
+import 'package:angry_coach_beta/extract/custom_theme.dart';
 import 'package:angry_coach_beta/home_page.dart';
 import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -43,17 +43,8 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: title,
-      theme: ThemeData(
-        primaryColor: const Color(0xff0a0e21),
-        scaffoldBackgroundColor: const Color.fromARGB(255, 248, 248, 248),
-        appBarTheme: const AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        primarySwatch: Colors.purple,
-      ),
-      themeMode: ThemeMode.light,
+      theme: myLightTheme(),
+      darkTheme: myDarkTheme(),
       supportedLocales: const [
         Locale('en'),
         Locale('ar'),
