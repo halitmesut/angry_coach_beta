@@ -18,12 +18,17 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         title: const Text("Notification screen"),
       ),
       body: Center(
-        child: Switch(
-            value: darkMode,
-            onChanged: (val) {
-              Hive.box("darkMode").put("darkMode", !darkMode);
-            }),
-      ),
+          child: ElevatedButton(
+        child: Icon(Icons.dark_mode),
+        onPressed: () {
+          if (Hive.box("darkMode").get("darkMode") == true) {
+            darkMode = Hive.box("darkMode").put("darkMode", false);
+          } else {
+            darkMode = Hive.box("darkMode").put("darkMode", true);
+          }
+          // darkMode = Hive.box("darkMode").put("darkMode", !darkMode);
+        },
+      )),
     );
   }
 }
