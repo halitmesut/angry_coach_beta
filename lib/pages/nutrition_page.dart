@@ -1,4 +1,5 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
+import 'package:angry_coach_beta/pages/nutrition_pages/nutrition_search_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -107,7 +108,10 @@ class NutritionPage extends StatelessWidget {
                 flex: 10,
                 child: GestureDetector(
                   onTap: (() {
-                    bottomSheetContainer(context, Text("aldığın besini gir"));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NutritionSearchScreen()));
                   }),
                   child: NormalListItem(
                       textInput: "Aldığın Besini Gir",

@@ -8,7 +8,8 @@ class MyTextField extends StatelessWidget {
       required this.textInputType,
       required this.obscureText,
       required this.textLabel,
-      this.validate})
+      this.validate,
+      this.suffixIcon})
       : super(key: key);
 
   final TextEditingController textController;
@@ -17,6 +18,7 @@ class MyTextField extends StatelessWidget {
   final bool obscureText;
   final String textLabel;
   final String? Function(String?)? validate;
+  final Icon? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,7 @@ class MyTextField extends StatelessWidget {
               ),
             ),
             prefixIcon: icon,
+            suffixIcon: suffixIcon,
             labelText: textLabel,
             labelStyle: const TextStyle(color: Colors.black),
             enabledBorder: OutlineInputBorder(

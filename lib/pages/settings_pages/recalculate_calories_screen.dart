@@ -1,9 +1,7 @@
 import 'package:angry_coach_beta/extract/recommended_daily_intake_calculator.dart';
-import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
 class RecalculateMyDailyCaloriesScreen extends StatefulWidget {
   const RecalculateMyDailyCaloriesScreen({Key? key}) : super(key: key);
