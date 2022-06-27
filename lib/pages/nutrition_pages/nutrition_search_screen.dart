@@ -1,7 +1,7 @@
 import 'package:angry_coach_beta/extract/my_text_field.dart';
-import 'package:angry_coach_beta/pages/nutrition_pages/food_list.dart';
+import 'package:angry_coach_beta/pages/nutrition_pages/models/post.dart';
+import 'package:angry_coach_beta/pages/nutrition_pages/services/remote_service.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class NutritionSearchScreen extends StatefulWidget {
   const NutritionSearchScreen({Key? key}) : super(key: key);
@@ -12,6 +12,20 @@ class NutritionSearchScreen extends StatefulWidget {
 
 class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
   final TextEditingController nutritionController = TextEditingController();
+
+  List<Post>? posts;
+  var isLoaded = false;
+
+  getData() async {
+    posts = await RemoteService().getPost();
+    if (posts != null) {
+      setState(() {
+        isLoaded = true;
+      });
+    } else {
+      debugPrint("get data içinde hata var");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +63,47 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                     size: 30,
                   ),
                   onTap: () {
-                    debugPrint("hello");
+                    getData();
+
+                    setState(() {});
+
+                    debugPrint("lkjl");
                   },
                 )
               ],
             ),
             Expanded(
-              child: ListView.builder(itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text("Food Name"),
-                  subtitle: Text("Food Category"),
-                );
-              }),
+              child: ListView.builder(
+                  itemCount: posts?.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              posts![index].title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              posts![index].body ?? "",
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            )
+                          ]),
+                    );
+
+                    // ListTile(
+                    //   title: Text(posts![index].title),
+                    //   subtitle: Text(posts![index].body.toString()),
+                    //   isThreeLine: true,
+                    // );
+                  }),
             )
           ],
         ),
