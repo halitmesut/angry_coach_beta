@@ -1,13 +1,10 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/pages/log_in/signup2purpose.dart';
-import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
 class SignUp1Name extends StatefulWidget {
   final VoidCallback onClickedSignIn;
@@ -81,13 +78,6 @@ class _SignUp1NameState extends State<SignUp1Name> {
                   await box.put("userName", nameController.text);
 
                   debugPrint(box.toMap().toString());
-                  // for (var element in box.values) {
-                  //   debugPrint(element.toString());
-                  // }
-
-                  // context
-                  //     .read<UserProperties>()
-                  //     .getUserName(nameController.text);
 
                   Navigator.push(
                     context,

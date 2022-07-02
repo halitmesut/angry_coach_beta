@@ -57,10 +57,6 @@ class _RecalculateMyDailyCaloriesScreenState
               SizedBox(height: 20),
               Text(
                 box.get("userReccommendedDailyIntake").toString(),
-                // context
-                //     .watch<UserProperties>()
-                //     .recommendedDailyIntake
-                //     .toString(),
                 style: TextStyle(fontSize: 30),
               ),
               const Text("Your Recommended Daily Intake"),
@@ -368,8 +364,6 @@ class _RecalculateMyDailyCaloriesScreenState
                   elevation: 0,
                   color: Colors.deepOrange,
                   onPressed: () {
-                    //context.read<UserProperties>().getReccommendedDailyIntake();
-
                     setState(() {
                       RecommendedDailyIntake recommendedDailyIntake =
                           RecommendedDailyIntake(

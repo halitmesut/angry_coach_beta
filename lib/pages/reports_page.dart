@@ -1,6 +1,7 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class ReportPage extends StatefulWidget {
   const ReportPage({Key? key}) : super(key: key);
@@ -38,9 +39,7 @@ class _ReportPageState extends State<ReportPage> {
                               return const Text('empty');
                             } else {
                               return Text(
-                                  box
-                                      .get("userReccommendedDailyIntake")
-                                      .toString(),
+                                  box.get("userReccommendedDailyIntake"),
                                   style: const TextStyle(
                                       color: Colors.black, fontSize: 22));
                             }
@@ -50,19 +49,66 @@ class _ReportPageState extends State<ReportPage> {
                     ),
                   ),
                   Expanded(
-                      flex: 2, child: Image.asset('assets/progressbar.png')),
+                    flex: 2,
+                    child: ValueListenableBuilder(
+                      valueListenable: Hive.box("userProperties").listenable(),
+                      builder: (context, Box box, _) {
+                        if (box.values.isEmpty) {
+                          return CircularPercentIndicator(
+                            radius: 90,
+                            lineWidth: 22,
+                            progressColor: Colors.deepOrangeAccent,
+                            backgroundColor:
+                                const Color.fromARGB(69, 255, 158, 128),
+                            circularStrokeCap: CircularStrokeCap.butt,
+                            percent: 0.01,
+                          );
+                          ;
+                        } else {
+                          return CircularPercentIndicator(
+                            radius: 90,
+                            lineWidth: 22,
+                            progressColor: Colors.deepOrangeAccent,
+                            backgroundColor:
+                                const Color.fromARGB(69, 255, 158, 128),
+                            circularStrokeCap: CircularStrokeCap.round,
+                            percent: (box.get("dailyInput") /
+                                int.parse(
+                                    box.get("userReccommendedDailyIntake"))),
+                            center: Text(
+                              "${((box.get("dailyInput") / int.parse(box.get("userReccommendedDailyIntake"))) * 100).toStringAsFixed(0)}%",
+                              style: TextStyle(fontSize: 40),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                   Expanded(
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
+                    children: [
                       Text(
                         "Kalan",
                         style: TextStyle(color: Colors.black),
                       ),
-                      Text(
-                        "720",
-                        style: TextStyle(color: Colors.black, fontSize: 22),
-                      )
+                      ValueListenableBuilder(
+                        valueListenable:
+                            Hive.box("userProperties").listenable(),
+                        builder: (context, Box box, _) {
+                          if (box.values.isEmpty) {
+                            return const Text('empty');
+                          } else {
+                            return Text(
+                                (int.parse(box.get(
+                                            "userReccommendedDailyIntake")) -
+                                        box.get("dailyInput"))
+                                    .toString(),
+                                style: const TextStyle(
+                                    color: Colors.black, fontSize: 22));
+                          }
+                        },
+                      ),
                     ],
                   )),
                 ],
@@ -85,7 +131,7 @@ class _ReportPageState extends State<ReportPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.baseline,
                   textBaseline: TextBaseline.ideographic,
-                  children: const [
+                  children: [
                     Text(
                       "Alınan",
                       style: TextStyle(fontSize: 16),
@@ -94,10 +140,17 @@ class _ReportPageState extends State<ReportPage> {
                     SizedBox(
                       width: 5,
                     ),
-                    Text(
-                      "1980",
-                      style: TextStyle(fontSize: 55),
-                      textAlign: TextAlign.center,
+                    ValueListenableBuilder(
+                      valueListenable: Hive.box("userProperties").listenable(),
+                      builder: (context, Box box, _) {
+                        if (box.values.isEmpty) {
+                          return Text('empty');
+                        } else {
+                          return Text(box.get("dailyInput").toString(),
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 22));
+                        }
+                      },
                     ),
                     SizedBox(
                       width: 5,
