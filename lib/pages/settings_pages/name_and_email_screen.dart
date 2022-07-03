@@ -2,7 +2,6 @@ import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class NameAndEmailScreen extends StatefulWidget {

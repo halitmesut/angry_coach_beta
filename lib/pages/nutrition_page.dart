@@ -1,6 +1,7 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/extract/widgets.dart';
+import 'package:angry_coach_beta/pages/nutrition_pages/Create_food_page.dart';
 import 'package:angry_coach_beta/pages/nutrition_pages/nutrition_search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,6 +17,7 @@ class NutritionPage extends StatefulWidget {
 class _NutritionPageState extends State<NutritionPage> {
   final calorieInputController = TextEditingController();
   var box = Hive.box("userProperties");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,11 +125,30 @@ class _NutritionPageState extends State<NutritionPage> {
                             builder: (context) => NutritionSearchScreen()));
                   }),
                   child: NormalListItem(
-                      textInput: "Aldığın Besini Gir",
+                      textInput: "Search Food",
                       iconData: Icons.flatware,
                       iconColors: Colors.black,
                       topLeftCornerRadius: 30,
                       topRightCornerRadius: 30,
+                      bottomLeftCornerRadius: 0,
+                      bottomRightCornerRadius: 0),
+                )),
+            const SizedBox(height: 1),
+            Expanded(
+                flex: 10,
+                child: GestureDetector(
+                  onTap: (() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CreateFoodScreen()));
+                  }),
+                  child: NormalListItem(
+                      textInput: "Create Food",
+                      iconData: Icons.add,
+                      iconColors: Colors.black,
+                      topLeftCornerRadius: 0,
+                      topRightCornerRadius: 0,
                       bottomLeftCornerRadius: 0,
                       bottomRightCornerRadius: 0),
                 )),
@@ -148,7 +169,7 @@ class _NutritionPageState extends State<NutritionPage> {
                         builder: (context) => buildSheet());
                   }),
                   child: NormalListItem(
-                      textInput: "Aldığın Kaloriyi Gir",
+                      textInput: "Enter Calories",
                       iconData: Icons.draw,
                       iconColors: Colors.black,
                       topLeftCornerRadius: 0,
@@ -233,16 +254,14 @@ class _NutritionPageState extends State<NutritionPage> {
                       MyButton(
                           onPressedFunction: () async {
                             if (calorieInputController.text.length < 5) {
+                              // await box.put("dailyInput", 0);
                               await box.put(
                                 "dailyInput",
                                 int.parse(calorieInputController.text) +
                                     box.get("dailyInput"),
                               );
-
-                              // int.parse(box.get("dailyInput")) +
-                              //     int.parse(calorieInputController.text)
-
                               Navigator.of(context).pop();
+                              calorieInputController.clear();
                             } else {
                               Fluttertoast.showToast(
                                   msg: "Your name must be at least 3 letters.",

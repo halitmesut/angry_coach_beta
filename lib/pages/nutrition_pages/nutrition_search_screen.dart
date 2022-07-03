@@ -1,6 +1,4 @@
 import 'package:angry_coach_beta/extract/my_text_field.dart';
-import 'package:angry_coach_beta/pages/nutrition_pages/models/post.dart';
-import 'package:angry_coach_beta/pages/nutrition_pages/services/remote_service.dart';
 import 'package:flutter/material.dart';
 
 class NutritionSearchScreen extends StatefulWidget {
@@ -13,19 +11,9 @@ class NutritionSearchScreen extends StatefulWidget {
 class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
   final TextEditingController nutritionController = TextEditingController();
 
-  List<Post>? posts;
   var isLoaded = false;
 
-  getData() async {
-    posts = await RemoteService().getPost();
-    if (posts != null) {
-      setState(() {
-        isLoaded = true;
-      });
-    } else {
-      debugPrint("get data içinde hata var");
-    }
-  }
+  getData() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -74,21 +62,21 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: posts?.length,
+                  itemCount: 5,
                   itemBuilder: (context, index) {
                     return Container(
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              posts![index].title,
+                              "Hello",
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   fontSize: 24, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              posts![index].body ?? "",
+                              "welcome",
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -97,12 +85,6 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                             )
                           ]),
                     );
-
-                    // ListTile(
-                    //   title: Text(posts![index].title),
-                    //   subtitle: Text(posts![index].body.toString()),
-                    //   isThreeLine: true,
-                    // );
                   }),
             )
           ],
