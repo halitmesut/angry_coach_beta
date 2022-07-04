@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +10,11 @@ class CreateFoodScreen extends StatefulWidget {
 
 class _CreateFoodScreenState extends State<CreateFoodScreen> {
   final TextEditingController foodNameController = TextEditingController();
+  final TextEditingController foodAmountontroller = TextEditingController();
+  final TextEditingController energyAmountController = TextEditingController();
+  final TextEditingController proteinAmountController = TextEditingController();
+  final TextEditingController carbAmounController = TextEditingController();
+  final TextEditingController fatAmountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,10 +32,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
               children: [
                 Text(
                   "Food Name",
-                  style: TextStyle(fontSize: 18),
-                ),
-                SizedBox(
-                  width: 10,
+                  style: TextStyle(fontSize: 16),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.6,
@@ -48,33 +48,117 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                 )
               ],
             ),
-            Expanded(
-              child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Hello",
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "welcome",
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            )
-                          ]),
-                    );
-                  }),
-            )
+            SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Food Amount",
+                  style: TextStyle(fontSize: 18),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: MyTextField(
+                      textController: foodNameController,
+                      icon: Icon(
+                        Icons.text_fields,
+                        color: Colors.black,
+                      ),
+                      textInputType: TextInputType.number,
+                      obscureText: false,
+                      textLabel: "gr"),
+                )
+              ],
+            ),
+            SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Energy Amount",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: MyTextField(
+                      textController: foodNameController,
+                      icon: Icon(
+                        Icons.text_fields,
+                        color: Colors.black,
+                      ),
+                      textInputType: TextInputType.number,
+                      obscureText: false,
+                      textLabel: "kcal"),
+                )
+              ],
+            ),
+            SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Protein Amount",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: MyTextField(
+                      textController: foodNameController,
+                      icon: Icon(
+                        Icons.text_fields,
+                        color: Colors.black,
+                      ),
+                      textInputType: TextInputType.number,
+                      obscureText: false,
+                      textLabel: "gr"),
+                )
+              ],
+            ),
+            SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Carb. Amount",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: MyTextField(
+                      textController: foodNameController,
+                      icon: Icon(
+                        Icons.text_fields,
+                        color: Colors.black,
+                      ),
+                      textInputType: TextInputType.number,
+                      obscureText: false,
+                      textLabel: "gr"),
+                )
+              ],
+            ),
+            SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Fat Amount",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: MyTextField(
+                      textController: foodNameController,
+                      icon: Icon(
+                        Icons.text_fields,
+                        color: Colors.black,
+                      ),
+                      textInputType: TextInputType.number,
+                      obscureText: false,
+                      textLabel: "gr"),
+                ),
+              ],
+            ),
+            SizedBox(height: 6),
           ],
         ),
       ),

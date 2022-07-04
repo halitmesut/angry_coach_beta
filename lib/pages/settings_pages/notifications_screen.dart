@@ -26,7 +26,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           } else {
             darkMode = Hive.box("darkMode").put("darkMode", true);
           }
-          // darkMode = Hive.box("darkMode").put("darkMode", !darkMode);
         },
       )),
     );

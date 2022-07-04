@@ -63,7 +63,6 @@ class _ReportPageState extends State<ReportPage> {
                             circularStrokeCap: CircularStrokeCap.butt,
                             percent: 0.01,
                           );
-                          ;
                         } else {
                           return CircularPercentIndicator(
                             radius: 90,
@@ -119,7 +118,7 @@ class _ReportPageState extends State<ReportPage> {
               flex: 10,
               child: Container(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 230, 230, 230),
@@ -148,7 +147,7 @@ class _ReportPageState extends State<ReportPage> {
                         } else {
                           return Text(box.get("dailyInput").toString(),
                               style: const TextStyle(
-                                  color: Colors.black, fontSize: 22));
+                                  color: Colors.black, fontSize: 28));
                         }
                       },
                     ),
@@ -164,6 +163,7 @@ class _ReportPageState extends State<ReportPage> {
                 ),
               ),
             ),
+            const SizedBox(height: 1),
             Expanded(
               flex: 10,
               child: Container(
