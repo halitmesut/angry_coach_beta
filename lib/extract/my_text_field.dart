@@ -44,7 +44,7 @@ class MyTextField extends StatelessWidget {
             prefixIcon: icon,
             suffixIcon: suffixIcon,
             labelText: textLabel,
-            labelStyle: const TextStyle(color: Colors.black),
+            labelStyle: const TextStyle(color: Colors.grey),
             enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
                   width: 1,

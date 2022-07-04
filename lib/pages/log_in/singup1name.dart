@@ -8,6 +8,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class SignUp1Name extends StatefulWidget {
   final VoidCallback onClickedSignIn;
+  // ignore: use_key_in_widget_constructors
   const SignUp1Name({required this.onClickedSignIn});
 
   @override
@@ -25,31 +26,30 @@ class _SignUp1NameState extends State<SignUp1Name> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         foregroundColor: Colors.black,
-        title: Text(
+        title: const Text(
           "Let's meet",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
+        // ignore: deprecated_member_use
         brightness: Brightness.light,
         backgroundColor: Colors.transparent,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Expanded(
+            const Expanded(
               flex: 2,
-              child: SizedBox(
-                height: 70,
-              ),
+              child: SizedBox(),
             ),
             const Text(
                 "Bana AngryCoach derler. Senin adın neBana AngryCoach derler",
@@ -60,7 +60,7 @@ class _SignUp1NameState extends State<SignUp1Name> {
             ),
             MyTextField(
                 textController: nameController,
-                icon: Icon(
+                icon: const Icon(
                   Icons.person,
                   color: Colors.black,
                 ),
@@ -79,13 +79,12 @@ class _SignUp1NameState extends State<SignUp1Name> {
 
                   debugPrint(box.toMap().toString());
 
+                  // ignore: use_build_context_synchronously
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SignUp2Purpose()),
+                    MaterialPageRoute(
+                        builder: (context) => const SignUp2Purpose()),
                   );
-
-                  // print(Provider.of<UserProperties>(context, listen: false)
-                  //     .userName);
                 } else {
                   Fluttertoast.showToast(
                       msg: "Your name must be at least 3 letters.",
@@ -105,13 +104,13 @@ class _SignUp1NameState extends State<SignUp1Name> {
             RichText(
               text: TextSpan(
                 text: "Have an account?",
-                style: TextStyle(color: Colors.black, fontSize: 15),
+                style: const TextStyle(color: Colors.black, fontSize: 15),
                 children: [
                   TextSpan(
                       recognizer: TapGestureRecognizer()
                         ..onTap = widget.onClickedSignIn,
                       text: "Sign In",
-                      style: TextStyle(
+                      style: const TextStyle(
                           decoration: TextDecoration.underline,
                           color: Colors.black,
                           fontWeight: FontWeight.bold))

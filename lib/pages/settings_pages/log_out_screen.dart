@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LogOutScreen extends StatefulWidget {
   const LogOutScreen({Key? key}) : super(key: key);
@@ -17,15 +18,15 @@ class _LogOutScreenState extends State<LogOutScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         foregroundColor: Colors.black,
-        title: Text(
+        title: const Text(
           "Log Out ",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
-        brightness: Brightness.light,
         backgroundColor: Colors.white,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: Column(
@@ -43,19 +44,19 @@ class _LogOutScreenState extends State<LogOutScreen> {
                         color: Colors.grey[700],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     )
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: Column(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Password",
                             style: TextStyle(
                               fontSize: 15,
@@ -63,12 +64,12 @@ class _LogOutScreenState extends State<LogOutScreen> {
                               color: Colors.black87,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           TextField(
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -82,7 +83,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 25,
                           )
                         ],
@@ -90,7 +91,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Confirm Password",
                             style: TextStyle(
                               fontSize: 15,
@@ -98,13 +99,13 @@ class _LogOutScreenState extends State<LogOutScreen> {
                               color: Colors.black87,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           TextField(
                             obscureText: true,
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -118,24 +119,24 @@ class _LogOutScreenState extends State<LogOutScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 25,
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       )
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: Container(
-                    padding: EdgeInsets.only(top: 2, left: 2),
+                    padding: const EdgeInsets.only(top: 2, left: 2),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      border: Border(
+                      border: const Border(
                         bottom: BorderSide(color: Colors.black),
                         top: BorderSide(color: Colors.black),
                         left: BorderSide(color: Colors.black),
@@ -159,16 +160,16 @@ class _LogOutScreenState extends State<LogOutScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: Container(
-                    padding: EdgeInsets.only(top: 2, left: 2),
+                    padding: const EdgeInsets.only(top: 2, left: 2),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      border: Border(
+                      border: const Border(
                         bottom: BorderSide(color: Colors.black),
                         top: BorderSide(color: Colors.black),
                         left: BorderSide(color: Colors.black),

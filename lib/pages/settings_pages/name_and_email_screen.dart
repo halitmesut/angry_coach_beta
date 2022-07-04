@@ -2,6 +2,7 @@ import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class NameAndEmailScreen extends StatefulWidget {
@@ -21,17 +22,17 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         foregroundColor: Colors.black,
-        title: Text(
+        title: const Text(
           "Name and Email",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
-        brightness: Brightness.light,
         backgroundColor: Colors.white,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -43,18 +44,19 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
                   color: Colors.grey[700],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
-              Text("${context.watch<UserProperties>().userName}",
+              Text(context.watch<UserProperties>().userName,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: 22)),
               const SizedBox(
                 height: 20,
               ),
               MyTextField(
                 textController: nameController,
-                icon: Icon(
+                icon: const Icon(
                   Icons.person,
                   color: Colors.black,
                 ),
@@ -65,7 +67,7 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
                     ? "Enter min 3 characters"
                     : null,
               ),
-              Expanded(
+              const Expanded(
                 child: SizedBox(
                   height: 25,
                 ),

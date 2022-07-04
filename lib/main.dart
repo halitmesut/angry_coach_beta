@@ -15,6 +15,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox("userProperties");
   await Hive.openBox("darkMode");
+  await Hive.openBox("createdFood");
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

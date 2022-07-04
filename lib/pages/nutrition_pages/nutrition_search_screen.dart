@@ -19,22 +19,22 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("search"),
+        title: const Text("search"),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.all(18),
+        padding: const EdgeInsets.all(18),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: MyTextField(
                       textController: nutritionController,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.restaurant_rounded,
                         color: Colors.black,
                       ),
@@ -42,11 +42,11 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                       obscureText: false,
                       textLabel: "Name"),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 GestureDetector(
-                  child: Icon(
+                  child: const Icon(
                     Icons.search,
                     size: 30,
                   ),
@@ -64,27 +64,25 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
               child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) {
-                    return Container(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Hello",
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "welcome",
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            )
-                          ]),
-                    );
+                    return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            "Hello",
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "welcome",
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          )
+                        ]);
                   }),
             )
           ],
