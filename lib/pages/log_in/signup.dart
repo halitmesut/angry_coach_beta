@@ -153,14 +153,3 @@ class _SignUpPageState extends State<SignUpPage> {
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
-
-
-// Container(
-//                 height: MediaQuery.of(context).size.height / 3,
-//                 decoration: BoxDecoration(
-//                   image: DecorationImage(
-//                     image: AssetImage("assets/angrycoachh.jpg"),
-//                     fit: BoxFit.fitHeight,
-//                   ),
-//                 ),
-//               )

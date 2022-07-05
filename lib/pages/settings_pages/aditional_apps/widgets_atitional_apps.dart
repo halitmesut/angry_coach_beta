@@ -5,7 +5,8 @@ class IconContent extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  IconContent({required this.icon, required this.label});
+  const IconContent({Key? key, required this.icon, required this.label})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class IconContent extends StatelessWidget {
           size: 80.0,
           color: Colors.white,
         ),
-        SizedBox(
+        const SizedBox(
           height: 15.0,
         ),
         Text(label, style: kLabelTextStyle),
@@ -28,7 +29,11 @@ class IconContent extends StatelessWidget {
 
 class RoundIconButton extends StatelessWidget {
   RoundIconButton(
-      {required this.icone, required this.onPress, required this.onLongPres});
+      {Key? key,
+      required this.icone,
+      required this.onPress,
+      required this.onLongPres})
+      : super(key: key);
 
   final IconData icone;
   Function()? onPress;
@@ -38,10 +43,6 @@ class RoundIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton(
       onLongPress: onLongPres,
-      child: Icon(
-        icone,
-        color: const Color.fromARGB(255, 173, 173, 173),
-      ),
       onPressed: onPress,
       elevation: 6.0,
       constraints: const BoxConstraints.tightFor(
@@ -50,6 +51,10 @@ class RoundIconButton extends StatelessWidget {
       ),
       shape: const CircleBorder(),
       fillColor: const Color.fromARGB(255, 11, 17, 39),
+      child: Icon(
+        icone,
+        color: const Color.fromARGB(255, 173, 173, 173),
+      ),
     );
   }
 }

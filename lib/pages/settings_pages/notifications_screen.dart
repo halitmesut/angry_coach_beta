@@ -19,7 +19,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       ),
       body: Center(
           child: ElevatedButton(
-        child: Icon(Icons.dark_mode),
+        child: const Icon(Icons.dark_mode),
         onPressed: () {
           if (Hive.box("darkMode").get("darkMode") == true) {
             darkMode = Hive.box("darkMode").put("darkMode", false);

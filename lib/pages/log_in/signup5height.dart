@@ -1,13 +1,10 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
-import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:angry_coach_beta/pages/log_in/signup6weight.dart';
-import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
 class SignUp5Height extends StatefulWidget {
   const SignUp5Height({Key? key}) : super(key: key);
@@ -33,17 +30,17 @@ class _SignUp5HeightState extends State<SignUp5Height> {
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,7 +66,7 @@ class _SignUp5HeightState extends State<SignUp5Height> {
                                 .map((item) => Center(
                                       child: Text(
                                         item.toString(),
-                                        style: TextStyle(fontSize: 32),
+                                        style: const TextStyle(fontSize: 32),
                                       ),
                                     ))
                                 .toList(),
@@ -77,9 +74,6 @@ class _SignUp5HeightState extends State<SignUp5Height> {
                               setState(() {
                                 box.put("userHeight", height[index]);
                               });
-                              // context
-                              //     .read<UserProperties>()
-                              //     .getUserHeight(height[index]);
                             },
                           )),
                       shape: const RoundedRectangleBorder(
@@ -101,8 +95,6 @@ class _SignUp5HeightState extends State<SignUp5Height> {
                           builder: (context) => const SignUp6Weight()),
                     );
                     debugPrint(box.toMap().toString());
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userHeight);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter your height.",

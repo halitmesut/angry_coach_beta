@@ -1,6 +1,7 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class CreateFoodScreen extends StatefulWidget {
@@ -11,7 +12,8 @@ class CreateFoodScreen extends StatefulWidget {
 }
 
 class _CreateFoodScreenState extends State<CreateFoodScreen> {
-  var box = Hive.box("createdFood");
+  var foodBox = Hive.box("createdFood");
+  var userPropertiesBox = Hive.box("userProperties");
   final TextEditingController foodNameController = TextEditingController();
   final TextEditingController foodAmountontroller = TextEditingController();
   final TextEditingController energyAmountController = TextEditingController();
@@ -165,17 +167,85 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
             MyButton(
                 onPressedFunction: () async {
                   if (foodNameController.text.length > 1 &&
-                      foodNameController.text.length > 1 &&
-                      foodNameController.text.length > 1 &&
-                      foodNameController.text.length > 1 &&
-                      foodNameController.text.length > 1 &&
-                      foodNameController.text.length > 1) {}
+                      foodAmountontroller.text.isNotEmpty &&
+                      energyAmountController.text.isNotEmpty &&
+                      proteinAmountController.text.isNotEmpty &&
+                      carbAmountController.text.isNotEmpty &&
+                      fatAmountController.text.isNotEmpty) {
+                    foodBox.put(foodNameController.text.toLowerCase(), <String>[
+                      foodAmountontroller.text,
+                      energyAmountController.text,
+                      proteinAmountController.text,
+                      carbAmountController.text,
+                      fatAmountController.text
+                    ]);
+                    await userPropertiesBox.put(
+                      "dailyInput",
+                      int.parse(energyAmountController.text) +
+                          userPropertiesBox.get("dailyInput"),
+                    );
+                    // Navigator.of(context).pop();
+                    // foodNameController.clear();
+                    // foodNameController.clear();
+                    // energyAmountController.clear();
+                    // proteinAmountController.clear();
+                    // carbAmountController.clear();
+                    // fatAmountController.clear();
+
+                    debugPrint(foodBox.toMap().toString());
+                    debugPrint(foodBox.get('elma')[0]);
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: "You must enter all fields.",
+                        fontSize: 18,
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.white,
+                        textColor: Colors.black,
+                        timeInSecForIosWeb: 2);
+                  }
                 },
                 text: 'Create Food',
                 buttonColor: Colors.deepOrangeAccent),
             const SizedBox(height: 20),
             MyButton(
-                onPressedFunction: () {},
+                onPressedFunction: () async {
+                  if (foodNameController.text.length > 1 &&
+                      foodAmountontroller.text.isNotEmpty &&
+                      energyAmountController.text.isNotEmpty &&
+                      proteinAmountController.text.isNotEmpty &&
+                      carbAmountController.text.isNotEmpty &&
+                      fatAmountController.text.isNotEmpty) {
+                    foodBox.put(foodNameController.text.toLowerCase(), <String>[
+                      foodAmountontroller.text,
+                      energyAmountController.text,
+                      proteinAmountController.text,
+                      carbAmountController.text,
+                      fatAmountController.text
+                    ]);
+                    await userPropertiesBox.put(
+                      "dailyInput",
+                      int.parse(energyAmountController.text) +
+                          userPropertiesBox.get("dailyInput"),
+                    );
+                    Navigator.of(context).pop();
+                    foodNameController.clear();
+                    foodNameController.clear();
+                    energyAmountController.clear();
+                    proteinAmountController.clear();
+                    carbAmountController.clear();
+                    fatAmountController.clear();
+
+                    debugPrint(foodBox.toMap().toString());
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: "You must enter all fields.",
+                        fontSize: 18,
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.white,
+                        textColor: Colors.black,
+                        timeInSecForIosWeb: 2);
+                  }
+                },
                 text: 'Create & Add My Calories',
                 buttonColor: Colors.deepOrangeAccent),
           ],

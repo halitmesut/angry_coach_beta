@@ -37,19 +37,19 @@ class _NutritionPageState extends State<NutritionPage> {
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/tea.png",
                           text: "Tea",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/milk.png",
                           text: "Milk",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/cofee.png",
                           text: "Cofee",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/water.png",
                           text: "Water",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                     ],
                   ),
                   Row(
@@ -57,19 +57,19 @@ class _NutritionPageState extends State<NutritionPage> {
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/bread.png",
                           text: "Bread",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/olive.png",
                           text: "Olive",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/cheese.png",
                           text: "Cheese",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/egg.png",
                           text: "Egg",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                     ],
                   ),
                   Row(
@@ -77,19 +77,19 @@ class _NutritionPageState extends State<NutritionPage> {
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/cake.png",
                           text: "Cake",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/meatball.png",
                           text: "Meatball",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/fish.png",
                           text: "Fish",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/chicken.png",
                           text: "Chicken",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                     ],
                   ),
                   Row(
@@ -97,19 +97,19 @@ class _NutritionPageState extends State<NutritionPage> {
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/spagetti.png",
                           text: "Spagetti",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/rice.png",
                           text: "Rice",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/banana.png",
                           text: "Banana",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                       IconAndText(
                           imagesAssetPath: "assets/nutritions/salad.png",
                           text: "Salad",
-                          containersChild: Text("you are in container")),
+                          containersChild: const Text("you are in container")),
                     ],
                   ),
                 ],
@@ -122,7 +122,8 @@ class _NutritionPageState extends State<NutritionPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => NutritionSearchScreen()));
+                            builder: (context) =>
+                                const NutritionSearchScreen()));
                   }),
                   child: NormalListItem(
                       textInput: "Search Food",
@@ -141,7 +142,7 @@ class _NutritionPageState extends State<NutritionPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CreateFoodScreen()));
+                            builder: (context) => const CreateFoodScreen()));
                   }),
                   child: NormalListItem(
                       textInput: "Create Food",
@@ -162,7 +163,7 @@ class _NutritionPageState extends State<NutritionPage> {
                         isDismissible: true,
                         isScrollControlled: true,
                         backgroundColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(30))),
                         context: context,
@@ -201,14 +202,14 @@ class _NutritionPageState extends State<NutritionPage> {
             builder: (_, controller) => Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 230, 230, 230),
                     borderRadius: BorderRadius.all(Radius.circular(30)),
                   ),
                   child: ListView(
                     controller: controller,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                         width: 80,
                         child: CloseButton(
@@ -219,38 +220,38 @@ class _NutritionPageState extends State<NutritionPage> {
                         child: Container(
                           width: 80,
                           height: 8,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.grey,
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                           ),
-                          child: CloseButton(
+                          child: const CloseButton(
                             color: Colors.transparent,
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                         width: 80,
                         child: CloseButton(
                           color: Colors.transparent,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "please enter the amount of calories you take",
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 20),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       MyTextField(
                         textController: calorieInputController,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.search_off_outlined,
                         ),
                         textInputType: TextInputType.number,
                         obscureText: false,
                         textLabel: "Kcal",
                       ),
-                      SizedBox(height: 150),
+                      const SizedBox(height: 150),
                       MyButton(
                           onPressedFunction: () async {
                             if (calorieInputController.text.length < 5) {
@@ -260,11 +261,13 @@ class _NutritionPageState extends State<NutritionPage> {
                                 int.parse(calorieInputController.text) +
                                     box.get("dailyInput"),
                               );
+                              // ignore: use_build_context_synchronously
                               Navigator.of(context).pop();
                               calorieInputController.clear();
                             } else {
                               Fluttertoast.showToast(
-                                  msg: "Your name must be at least 3 letters.",
+                                  msg:
+                                      "Your input calories lenght must not be shorter than 5 character. ",
                                   fontSize: 18,
                                   gravity: ToastGravity.TOP,
                                   backgroundColor: Colors.white,

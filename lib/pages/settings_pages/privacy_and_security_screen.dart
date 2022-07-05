@@ -13,7 +13,7 @@ class _PrivacyAndSecurityScreenState extends State<PrivacyAndSecurityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("privact and security screen"),
+        title: const Text("privact and security screen"),
       ),
     );
   }

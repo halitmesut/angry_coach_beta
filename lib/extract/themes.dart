@@ -15,19 +15,19 @@ myLightTheme() {
       ),
       scaffoldBackgroundColor: const Color.fromARGB(255, 248, 248, 248),
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: Color.fromARGB(255, 248, 248, 248),
+        backgroundColor: const Color.fromARGB(255, 248, 248, 248),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         elevation: 0,
         height: 100,
-        indicatorColor: Color.fromARGB(255, 248, 248, 248),
+        indicatorColor: const Color.fromARGB(255, 248, 248, 248),
         iconTheme: MaterialStateProperty.all(
-          IconThemeData(
+          const IconThemeData(
             size: 32,
           ),
         ),
       ),
-      textTheme:
-          TextTheme(bodyText1: TextStyle(fontSize: 30, color: Colors.black)));
+      textTheme: const TextTheme(
+          bodyText1: TextStyle(fontSize: 30, color: Colors.black)));
 }
 
 myDarkTheme() {
@@ -44,15 +44,15 @@ myDarkTheme() {
       ),
       scaffoldBackgroundColor: const Color.fromARGB(255, 248, 248, 248),
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: Color.fromARGB(255, 248, 248, 248),
+        backgroundColor: const Color.fromARGB(255, 248, 248, 248),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         elevation: 0,
         height: 100,
-        indicatorColor: Color.fromARGB(255, 248, 248, 248),
-        iconTheme: MaterialStateProperty.all(IconThemeData(
+        indicatorColor: const Color.fromARGB(255, 248, 248, 248),
+        iconTheme: MaterialStateProperty.all(const IconThemeData(
           size: 32,
         )),
       ),
-      textTheme:
-          TextTheme(bodyText1: TextStyle(fontSize: 30, color: Colors.black)));
+      textTheme: const TextTheme(
+          bodyText1: TextStyle(fontSize: 30, color: Colors.black)));
 }

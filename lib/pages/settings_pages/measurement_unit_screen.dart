@@ -33,23 +33,23 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 2,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   "Height unit",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle:
-                    Text("${context.watch<MeasuremetUnits>().heightUnit}"),
+                subtitle: Text(context.watch<MeasuremetUnits>().heightUnit),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -69,7 +69,7 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                                     (item) => Center(
                                       child: Text(
                                         item,
-                                        style: TextStyle(fontSize: 20),
+                                        style: const TextStyle(fontSize: 20),
                                       ),
                                     ),
                                   )
@@ -87,14 +87,15 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                 thickness: 2,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   "Weight unit",
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
                 subtitle: Text(context.watch<MeasuremetUnits>().weightUnit),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -114,7 +115,7 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                                     (item) => Center(
                                       child: Text(
                                         item,
-                                        style: TextStyle(fontSize: 20),
+                                        style: const TextStyle(fontSize: 20),
                                       ),
                                     ),
                                   )
@@ -132,14 +133,15 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                 thickness: 2,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   "Volume unit",
                   style: TextStyle(fontSize: 20),
                 ),
                 subtitle: Text(context.watch<MeasuremetUnits>().volumeUnit),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -159,7 +161,7 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                                     (item) => Center(
                                       child: Text(
                                         item,
-                                        style: TextStyle(fontSize: 20),
+                                        style: const TextStyle(fontSize: 20),
                                       ),
                                     ),
                                   )
@@ -177,14 +179,15 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                 thickness: 2,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   "Energy unit",
                   style: TextStyle(fontSize: 20),
                 ),
                 subtitle: Text(context.watch<MeasuremetUnits>().energyUnit),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -204,7 +207,7 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                                     (item) => Center(
                                       child: Text(
                                         item,
-                                        style: TextStyle(fontSize: 20),
+                                        style: const TextStyle(fontSize: 20),
                                       ),
                                     ),
                                   )
@@ -221,14 +224,14 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                 height: 2,
                 thickness: 2,
               ),
-              Expanded(
+              const Expanded(
                 child: SizedBox(),
               ),
               Container(
-                padding: EdgeInsets.only(top: 2, left: 2),
+                padding: const EdgeInsets.only(top: 2, left: 2),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  border: Border(
+                  border: const Border(
                     bottom: BorderSide(color: Colors.black),
                     top: BorderSide(color: Colors.black),
                     left: BorderSide(color: Colors.black),

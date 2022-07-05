@@ -2,12 +2,10 @@
 
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/pages/log_in/signup4gender.dart';
-import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
 class SignUp3Age extends StatefulWidget {
   const SignUp3Age({Key? key}) : super(key: key);
@@ -77,10 +75,6 @@ class _SignUp3AgeState extends State<SignUp3Age> {
                               setState(() {
                                 box.put("userAge", ages[index]);
                               });
-
-                              // context
-                              //     .read<UserProperties>()
-                              //     .getUserAge(ages[index]);
                             },
                           )),
                       shape: const RoundedRectangleBorder(
@@ -102,8 +96,6 @@ class _SignUp3AgeState extends State<SignUp3Age> {
                           builder: (context) => const SignUp4Gender()),
                     );
                     debugPrint(box.toMap().toString());
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userAge);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must select your age.",

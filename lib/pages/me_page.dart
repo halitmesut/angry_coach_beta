@@ -19,11 +19,11 @@ class MePage extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        bottomSheetContainer(context, Text("holaaaaaa"));
+                        bottomSheetContainer(context, const Text("holaaaaaa"));
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.shopping_bag,
                             color: Colors.black,
@@ -41,11 +41,11 @@ class MePage extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        bottomSheetContainer(context, Text("holaaaaaa"));
+                        bottomSheetContainer(context, const Text("holaaaaaa"));
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.face_retouching_natural,
                             color: Colors.black,
@@ -67,7 +67,7 @@ class MePage extends StatelessWidget {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  bottomSheetContainer(context, Text("holaaaaaa"));
+                  bottomSheetContainer(context, const Text("holaaaaaa"));
                 },
                 child: Container(
                   padding:
@@ -94,7 +94,7 @@ class MePage extends StatelessWidget {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  bottomSheetContainer(context, Text("holaaaaaa"));
+                  bottomSheetContainer(context, const Text("holaaaaaa"));
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 0),
@@ -120,7 +120,7 @@ class MePage extends StatelessWidget {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  bottomSheetContainer(context, Text("holaaaaaa"));
+                  bottomSheetContainer(context, const Text("holaaaaaa"));
                 },
                 child: NormalListItem(
                   textInput: "Haftalık Hediyem",
@@ -138,7 +138,7 @@ class MePage extends StatelessWidget {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  bottomSheetContainer(context, Text("holaaaaaa"));
+                  bottomSheetContainer(context, const Text("holaaaaaa"));
                 },
                 child: NormalListItem(
                   textInput: "Koçun Aylık Hediyesi",
@@ -156,7 +156,7 @@ class MePage extends StatelessWidget {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  bottomSheetContainer(context, Text("holaaaaaa"));
+                  bottomSheetContainer(context, const Text("holaaaaaa"));
                 },
                 child: NormalListItem(
                   textInput: "Kilo Değişim Programı",
@@ -174,7 +174,7 @@ class MePage extends StatelessWidget {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  bottomSheetContainer(context, Text("holaaaaaa"));
+                  bottomSheetContainer(context, const Text("holaaaaaa"));
                 },
                 child: NormalListItem(
                   textInput: "Diyet Programım",
@@ -192,12 +192,12 @@ class MePage extends StatelessWidget {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  bottomSheetContainer(context, Text("holaaaaaa"));
+                  bottomSheetContainer(context, const Text("holaaaaaa"));
                 },
                 child: NormalListItem(
                   textInput: "Koçumun Bana Tavrı",
                   iconData: Icons.thumbs_up_down,
-                  iconColors: Color.fromARGB(255, 0, 0, 0),
+                  iconColors: const Color.fromARGB(255, 0, 0, 0),
                   topLeftCornerRadius: 0,
                   topRightCornerRadius: 0,
                   bottomLeftCornerRadius: 30,

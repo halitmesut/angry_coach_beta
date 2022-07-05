@@ -2,6 +2,7 @@ import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/recommended_daily_intake_calculator.dart';
 import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -27,17 +28,17 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -62,10 +63,10 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
               },
               text: "I promise",
               buttonColor: box.get("userPromise") == "I Promise"
-                  ? Color.fromARGB(255, 162, 194, 249)
+                  ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             MyButton(
@@ -78,7 +79,7 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
               },
               text: "I don't",
               buttonColor: box.get("userPromise") == "I Do Not"
-                  ? Color.fromARGB(255, 255, 41, 41)
+                  ? const Color.fromARGB(255, 255, 41, 41)
                   : Colors.white,
             ),
             SizedBox(

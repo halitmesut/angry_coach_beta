@@ -1,11 +1,9 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
-import 'package:angry_coach_beta/pages/log_in/signup.dart';
 import 'package:angry_coach_beta/pages/log_in/signup9promise_agree.dart';
-import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
 class SignUp8Activity extends StatefulWidget {
   const SignUp8Activity({Key? key}) : super(key: key);
@@ -17,13 +15,6 @@ class SignUp8Activity extends StatefulWidget {
 class _SignUp8ActivityState extends State<SignUp8Activity> {
   @override
   Widget build(BuildContext context) {
-    final activityLevel = [
-      "Very Low Active",
-      "Low Active",
-      "Active",
-      "Very Active",
-      "Very High Active"
-    ];
     var box = Hive.box("userProperties");
 
     return Scaffold(
@@ -37,17 +28,17 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,16 +58,13 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                 setState(() {
                   box.put("userActivityLevel", "Very Low Active");
                 });
-                // context
-                //     .read<UserProperties>()
-                //     .getUserActivityLevel("Very Low Active");
               },
               text: "Very Low Active",
               buttonColor: box.get("userActivityLevel") == "Very Low Active"
                   ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             MyButton(
@@ -84,16 +72,13 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                 setState(() {
                   box.put("userActivityLevel", "Low Active");
                 });
-                // context
-                //     .read<UserProperties>()
-                //     .getUserActivityLevel("Low Active");
               },
               text: "Low Active",
               buttonColor: box.get("userActivityLevel") == "Low Active"
                   ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             MyButton(
@@ -101,14 +86,13 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                 setState(() {
                   box.put("userActivityLevel", "Active");
                 });
-                // context.read<UserProperties>().getUserActivityLevel("Active");
               },
               text: "Active",
               buttonColor: box.get("userActivityLevel") == "Active"
                   ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             MyButton(
@@ -116,16 +100,13 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                 setState(() {
                   box.put("userActivityLevel", "Very Active");
                 });
-                // context
-                //     .read<UserProperties>()
-                //     .getUserActivityLevel("Very Active");
               },
               text: "Very Active",
               buttonColor: box.get("userActivityLevel") == "Very Active"
                   ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             MyButton(
@@ -133,9 +114,6 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                 setState(() {
                   box.put("userActivityLevel", "Very High Active");
                 });
-                // context
-                //     .read<UserProperties>()
-                //     .getUserActivityLevel("Very High Active");
               },
               text: "Very High Active",
               buttonColor: box.get("userActivityLevel") == "Very High Active"

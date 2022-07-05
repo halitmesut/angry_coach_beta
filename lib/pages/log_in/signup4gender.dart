@@ -2,11 +2,10 @@
 
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/pages/log_in/signup5height.dart';
-import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
 class SignUp4Gender extends StatefulWidget {
   const SignUp4Gender({Key? key}) : super(key: key);
@@ -31,17 +30,17 @@ class _SignUp4GenderState extends State<SignUp4Gender> {
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,15 +60,13 @@ class _SignUp4GenderState extends State<SignUp4Gender> {
                 setState(() {
                   box.put("userGender", "Male");
                 });
-
-                //context.read<UserProperties>().getUserGender("Male");
               },
               text: "Male",
               buttonColor: box.get("userGender") == "Male"
-                  ? Color.fromARGB(255, 162, 194, 249)
+                  ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             MyButton(
@@ -77,11 +74,10 @@ class _SignUp4GenderState extends State<SignUp4Gender> {
                 setState(() {
                   box.put("userGender", "Female");
                 });
-                // context.read<UserProperties>().getUserGender("Female");
               },
               text: "Female",
               buttonColor: box.get("userGender") == "Female"
-                  ? Color.fromARGB(255, 162, 194, 249)
+                  ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
             SizedBox(
@@ -96,8 +92,6 @@ class _SignUp4GenderState extends State<SignUp4Gender> {
                           builder: (context) => const SignUp5Height()),
                     );
                     debugPrint(box.toMap().toString());
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userGender);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You have to choose your gender.",

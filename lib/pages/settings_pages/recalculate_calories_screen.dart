@@ -50,31 +50,32 @@ class _RecalculateMyDailyCaloriesScreenState
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 box.get("userReccommendedDailyIntake").toString(),
-                style: TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 30),
               ),
               const Text("Your Recommended Daily Intake"),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               const Divider(
                 height: 2,
                 thickness: 2,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   "Age",
                   style: TextStyle(fontSize: 20),
                 ),
                 subtitle: Text(box.get("userAge").toString()),
                 //Text(context.watch<UserProperties>().userAge.toString()),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -88,7 +89,7 @@ class _RecalculateMyDailyCaloriesScreenState
                                 .map((item) => Center(
                                       child: Text(
                                         item.toString(),
-                                        style: TextStyle(fontSize: 32),
+                                        style: const TextStyle(fontSize: 32),
                                       ),
                                     ))
                                 .toList(),
@@ -112,14 +113,15 @@ class _RecalculateMyDailyCaloriesScreenState
                 thickness: 2,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   "Height",
                   style: TextStyle(fontSize: 20),
                 ),
                 subtitle: Text("${box.get("userHeight").toString()}cm"),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -141,7 +143,7 @@ class _RecalculateMyDailyCaloriesScreenState
                                   .map((item) => Center(
                                         child: Text(
                                           item.toString(),
-                                          style: TextStyle(fontSize: 20),
+                                          style: const TextStyle(fontSize: 20),
                                         ),
                                       ))
                                   .toList(),
@@ -158,14 +160,15 @@ class _RecalculateMyDailyCaloriesScreenState
                 thickness: 2,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   "Weight",
                   style: TextStyle(fontSize: 20),
                 ),
                 subtitle: Text("${box.get("userWeight").toString()}cm"),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -188,7 +191,7 @@ class _RecalculateMyDailyCaloriesScreenState
                                   .map((item) => Center(
                                         child: Text(
                                           item.toString(),
-                                          style: TextStyle(fontSize: 20),
+                                          style: const TextStyle(fontSize: 20),
                                         ),
                                       ))
                                   .toList(),
@@ -205,14 +208,15 @@ class _RecalculateMyDailyCaloriesScreenState
                 thickness: 2,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   "Gender",
                   style: TextStyle(fontSize: 20),
                 ),
                 subtitle: Text(box.get("userGender").toString()),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -234,7 +238,7 @@ class _RecalculateMyDailyCaloriesScreenState
                                   .map((item) => Center(
                                         child: Text(
                                           item,
-                                          style: TextStyle(fontSize: 20),
+                                          style: const TextStyle(fontSize: 20),
                                         ),
                                       ))
                                   .toList(),
@@ -251,14 +255,15 @@ class _RecalculateMyDailyCaloriesScreenState
                 thickness: 2,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   "Diet Goal",
                   style: TextStyle(fontSize: 20),
                 ),
                 subtitle: Text(box.get("userPurpose").toString()),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -281,7 +286,7 @@ class _RecalculateMyDailyCaloriesScreenState
                                     (item) => Center(
                                       child: Text(
                                         item,
-                                        style: TextStyle(fontSize: 20),
+                                        style: const TextStyle(fontSize: 20),
                                       ),
                                     ),
                                   )
@@ -299,14 +304,15 @@ class _RecalculateMyDailyCaloriesScreenState
                 thickness: 2,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   "Activity Level",
                   style: TextStyle(fontSize: 20),
                 ),
                 subtitle: Text(box.get("userActivityLevel").toString()),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -330,7 +336,7 @@ class _RecalculateMyDailyCaloriesScreenState
                                     (item) => Center(
                                       child: Text(
                                         item,
-                                        style: TextStyle(fontSize: 20),
+                                        style: const TextStyle(fontSize: 20),
                                       ),
                                     ),
                                   )
@@ -345,11 +351,11 @@ class _RecalculateMyDailyCaloriesScreenState
                 height: 2,
                 thickness: 2,
               ),
-              Expanded(
-                child: SizedBox(),
+              const Expanded(
+                child: const SizedBox(),
               ),
               Container(
-                padding: EdgeInsets.only(top: 2, left: 2),
+                padding: const EdgeInsets.only(top: 2, left: 2),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   border: const Border(
@@ -381,9 +387,11 @@ class _RecalculateMyDailyCaloriesScreenState
                     debugPrint(box.get("userReccommendedDailyIntake"));
                   },
                   height: 60,
+                  // ignore: prefer_const_constructors, sort_child_properties_last
                   child: Text(
                     "Recalculate",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 22),
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),

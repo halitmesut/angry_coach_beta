@@ -2,6 +2,7 @@ import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class LanguageAndCountryScreen extends StatefulWidget {
@@ -33,16 +34,16 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         elevation: 3,
-        brightness: Brightness.light,
         backgroundColor: Colors.white,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 2,
               ),
               ListTile(
@@ -50,10 +51,10 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                   "Language",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle:
-                    Text("${context.watch<UserProperties>().userLanguage}"),
+                subtitle: Text(context.watch<UserProperties>().userLanguage),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
@@ -74,7 +75,7 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                                     (item) => Center(
                                       child: Text(
                                         item,
-                                        style: TextStyle(fontSize: 20),
+                                        style: const TextStyle(fontSize: 20),
                                       ),
                                     ),
                                   )
@@ -96,11 +97,11 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                   "Country",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle:
-                    Text("${context.watch<UserProperties>().userCountry}"),
+                subtitle: Text(context.watch<UserProperties>().userCountry),
                 isThreeLine: false,
-                visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                trailing: Icon(
+                visualDensity:
+                    const VisualDensity(horizontal: -4, vertical: -4),
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
                 ),
@@ -145,16 +146,16 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                 height: 2,
                 thickness: 2,
               ),
-              Expanded(
+              const Expanded(
                 child: SizedBox(
                   height: 25,
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 2, left: 2),
+                padding: const EdgeInsets.only(top: 2, left: 2),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  border: Border(
+                  border: const Border(
                     bottom: BorderSide(color: Colors.black),
                     top: BorderSide(color: Colors.black),
                     left: BorderSide(color: Colors.black),

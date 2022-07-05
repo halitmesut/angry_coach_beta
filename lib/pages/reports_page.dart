@@ -76,7 +76,7 @@ class _ReportPageState extends State<ReportPage> {
                                     box.get("userReccommendedDailyIntake"))),
                             center: Text(
                               "${((box.get("dailyInput") / int.parse(box.get("userReccommendedDailyIntake"))) * 100).toStringAsFixed(0)}%",
-                              style: TextStyle(fontSize: 40),
+                              style: const TextStyle(fontSize: 40),
                             ),
                           );
                         }
@@ -87,7 +87,7 @@ class _ReportPageState extends State<ReportPage> {
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
+                      const Text(
                         "Kalan",
                         style: TextStyle(color: Colors.black),
                       ),
@@ -131,19 +131,19 @@ class _ReportPageState extends State<ReportPage> {
                   crossAxisAlignment: CrossAxisAlignment.baseline,
                   textBaseline: TextBaseline.ideographic,
                   children: [
-                    Text(
+                    const Text(
                       "Alınan",
                       style: TextStyle(fontSize: 16),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     ValueListenableBuilder(
                       valueListenable: Hive.box("userProperties").listenable(),
                       builder: (context, Box box, _) {
                         if (box.values.isEmpty) {
-                          return Text('empty');
+                          return const Text('empty');
                         } else {
                           return Text(box.get("dailyInput").toString(),
                               style: const TextStyle(
@@ -151,10 +151,10 @@ class _ReportPageState extends State<ReportPage> {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text(
+                    const Text(
                       "kcal",
                       style: TextStyle(fontSize: 16),
                       textAlign: TextAlign.center,
@@ -188,7 +188,7 @@ class _ReportPageState extends State<ReportPage> {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  containersChild(context, Text("qwe"));
+                  containersChild(context, const Text("qwe"));
                 },
                 child: NormalListItem(
                     textInput: "Yenen Gıdalar",
@@ -234,12 +234,12 @@ class _ReportPageState extends State<ReportPage> {
                     bottomRightCornerRadius: 0),
               ),
             ),
-            SizedBox(height: 1),
+            const SizedBox(height: 1),
             Expanded(
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  containersChild(context, Text("qwe"));
+                  containersChild(context, const Text("qwe"));
                 },
                 child: NormalListItem(
                     textInput: "Besin Değerleri",
@@ -256,7 +256,7 @@ class _ReportPageState extends State<ReportPage> {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  containersChild(context, Text("qwe"));
+                  containersChild(context, const Text("qwe"));
                 },
                 child: NormalListItem(
                     textInput: "Gelişim Haritam",

@@ -1,12 +1,10 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/pages/log_in/signup8activity.dart';
-import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
 class SignUp7TargetWeight extends StatefulWidget {
   const SignUp7TargetWeight({Key? key}) : super(key: key);
@@ -21,9 +19,6 @@ class _SignUp7TargetWeightState extends State<SignUp7TargetWeight> {
     final targetWeight = [for (var i = 40; i <= 180; i++) i];
     var box = Hive.box("userProperties");
 
-    final userTargetWeightInput = TextEditingController();
-    String userTargetWeight = "ghg";
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
@@ -35,17 +30,17 @@ class _SignUp7TargetWeightState extends State<SignUp7TargetWeight> {
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,7 +66,7 @@ class _SignUp7TargetWeightState extends State<SignUp7TargetWeight> {
                                 .map((item) => Center(
                                       child: Text(
                                         item.toString(),
-                                        style: TextStyle(fontSize: 32),
+                                        style: const TextStyle(fontSize: 32),
                                       ),
                                     ))
                                 .toList(),
@@ -80,9 +75,6 @@ class _SignUp7TargetWeightState extends State<SignUp7TargetWeight> {
                                 box.put(
                                     "userTargetWeight", targetWeight[index]);
                               });
-                              // context
-                              //     .read<UserProperties>()
-                              //     .getUserTargetWeight(targetWeight[index]);
                             },
                           )),
                       shape: const RoundedRectangleBorder(
@@ -104,9 +96,6 @@ class _SignUp7TargetWeightState extends State<SignUp7TargetWeight> {
                           builder: (context) => const SignUp8Activity()),
                     );
                     debugPrint(box.toMap().toString());
-
-                    // print(Provider.of<UserProperties>(context, listen: false)
-                    //     .userTargetWeight);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter your target weight.",
