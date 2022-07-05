@@ -64,7 +64,7 @@ class MePage extends StatelessWidget {
             ),
             Expanded(flex: 2, child: Container()),
             Expanded(
-              flex: 10,
+              flex: 20,
               child: GestureDetector(
                 onTap: () {
                   bottomSheetContainer(context, const Text("holaaaaaa"));
@@ -90,8 +90,9 @@ class MePage extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 1),
             Expanded(
-              flex: 10,
+              flex: 20,
               child: GestureDetector(
                 onTap: () {
                   bottomSheetContainer(context, const Text("holaaaaaa"));
@@ -123,7 +124,7 @@ class MePage extends StatelessWidget {
                   bottomSheetContainer(context, const Text("holaaaaaa"));
                 },
                 child: NormalListItem(
-                  textInput: "Haftalık Hediyem",
+                  textInput: "My Awards",
                   iconData: Icons.cruelty_free,
                   iconColors: Colors.black,
                   topLeftCornerRadius: 30,
@@ -141,25 +142,7 @@ class MePage extends StatelessWidget {
                   bottomSheetContainer(context, const Text("holaaaaaa"));
                 },
                 child: NormalListItem(
-                  textInput: "Koçun Aylık Hediyesi",
-                  iconData: Icons.cruelty_free,
-                  iconColors: Colors.black,
-                  topLeftCornerRadius: 0,
-                  topRightCornerRadius: 0,
-                  bottomLeftCornerRadius: 0,
-                  bottomRightCornerRadius: 0,
-                ),
-              ),
-            ),
-            const SizedBox(height: 1),
-            Expanded(
-              flex: 10,
-              child: GestureDetector(
-                onTap: () {
-                  bottomSheetContainer(context, const Text("holaaaaaa"));
-                },
-                child: NormalListItem(
-                  textInput: "Kilo Değişim Programı",
+                  textInput: "Stars I've Earned",
                   iconData: Icons.route,
                   iconColors: Colors.black,
                   topLeftCornerRadius: 0,
@@ -177,27 +160,9 @@ class MePage extends StatelessWidget {
                   bottomSheetContainer(context, const Text("holaaaaaa"));
                 },
                 child: NormalListItem(
-                  textInput: "Diyet Programım",
+                  textInput: "My Diet Roadmap",
                   iconData: Icons.restaurant_menu,
                   iconColors: Colors.black,
-                  topLeftCornerRadius: 0,
-                  topRightCornerRadius: 0,
-                  bottomLeftCornerRadius: 0,
-                  bottomRightCornerRadius: 0,
-                ),
-              ),
-            ),
-            const SizedBox(height: 1),
-            Expanded(
-              flex: 10,
-              child: GestureDetector(
-                onTap: () {
-                  bottomSheetContainer(context, const Text("holaaaaaa"));
-                },
-                child: NormalListItem(
-                  textInput: "Koçumun Bana Tavrı",
-                  iconData: Icons.thumbs_up_down,
-                  iconColors: const Color.fromARGB(255, 0, 0, 0),
                   topLeftCornerRadius: 0,
                   topRightCornerRadius: 0,
                   bottomLeftCornerRadius: 30,

@@ -13,18 +13,19 @@ class CoachPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              flex: 20,
+              flex: 30,
               child: Row(
                 children: [
                   Expanded(child: Container()),
-                  Expanded(child: Image.asset('assets/angrycoachh.jpg')),
+                  Expanded(
+                      flex: 2, child: Image.asset('assets/angrycoachh.jpg')),
                   Expanded(child: Container()),
                 ],
               ),
             ),
             const Spacer(flex: 2),
             Expanded(
-              flex: 30,
+              flex: 40,
               child: GestureDetector(
                 onTap: () {
                   bottomSheetText(context,
@@ -36,7 +37,7 @@ class CoachPage extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 230, 230, 230),
-                    borderRadius: BorderRadius.all(Radius.circular(40)),
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
                   ),
                   child: const Center(
                     child: Text(
@@ -57,7 +58,7 @@ class CoachPage extends StatelessWidget {
                       "Senden gün içinde yediğin leblebi tanesini bile bana söylemeni istiyorum. Birşeyler yer ve bana söylemezen kızarım. Söylersen ise düzgün bir programla yolumuza devam eder, bizi görenleri hayretlere düşürürüz.");
                 },
                 child: NormalListItem(
-                  textInput: "Günlük Besin Girişi",
+                  textInput: "Nutrient Input",
                   iconData: Icons.check_circle,
                   iconColors: Colors.green,
                   topLeftCornerRadius: 30,
@@ -76,7 +77,7 @@ class CoachPage extends StatelessWidget {
                       "Sana o kadar güzel bir kalori hesabı yaptım ki, harfiyyen uyman gerekiyor. Ne çok fazla, ne çok az. Tam sana göre. Fakat senin için yüzde 10'luk bir sapmayı gözardı edebilirim. Bu miktarın dışındaki sapmalarda çok öfkelenirim.");
                 },
                 child: NormalListItem(
-                  textInput: "Kalori Miktarı",
+                  textInput: "Calorie Goal",
                   iconData: Icons.check_circle,
                   iconColors: Colors.green,
                   topLeftCornerRadius: 0,
@@ -92,44 +93,10 @@ class CoachPage extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     bottomSheetText(context,
-                        "Bol bol meyve ve sebzeyi de ihmal etmemelisin. Vitamin vücudumuzun ayrılmaz bir parçası. Vitaminleri eksik aldığını anladığımda kızarım haaaaa. Ne demişler, ne kadar vitamin o kadar köfte. ");
-                  },
-                  child: NormalListItem(
-                      textInput: "Vitamin Alımı",
-                      iconData: Icons.cancel,
-                      iconColors: Colors.red,
-                      topLeftCornerRadius: 0,
-                      topRightCornerRadius: 0,
-                      bottomLeftCornerRadius: 0,
-                      bottomRightCornerRadius: 0),
-                )),
-            const SizedBox(height: 1),
-            Expanded(
-                flex: 10,
-                child: GestureDetector(
-                  onTap: () {
-                    bottomSheetText(context,
-                        "Sana belirlemiş olduğum Kalori hesabında dengeli olman gerekiyor. Yani tamamını karbonhidratlardan alırsan bu dengeyi sağlayamazsın. Hemen hemen yarısını karbonhidratlardan, % 25 ini yağlardan ve geri kalanını da proteinlerden alman gerekiyor. Buna uyarsan dengeli beslenmiş olursun.");
-                  },
-                  child: NormalListItem(
-                      textInput: "Makro Dengesi",
-                      iconData: Icons.cancel,
-                      iconColors: Colors.red,
-                      topLeftCornerRadius: 0,
-                      topRightCornerRadius: 0,
-                      bottomLeftCornerRadius: 0,
-                      bottomRightCornerRadius: 0),
-                )),
-            const SizedBox(height: 1),
-            Expanded(
-                flex: 10,
-                child: GestureDetector(
-                  onTap: () {
-                    bottomSheetText(context,
                         "Boy ve kilo değerlerine bakarak senin vücudunun bir günde ne kaddar suya ihtiyaç duyduğunu hesapladım. Senin 2.5 litre su tüketmen gerekiyor. Ama sen bu miktarı tüketmeyerek beni kızdırıyorsun çekirge. ");
                   },
                   child: NormalListItem(
-                      textInput: "Su Tüketimi",
+                      textInput: "Water Consumption",
                       iconData: Icons.cancel,
                       iconColors: Colors.red,
                       topLeftCornerRadius: 0,

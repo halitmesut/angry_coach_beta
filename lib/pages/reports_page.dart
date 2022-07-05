@@ -115,7 +115,7 @@ class _ReportPageState extends State<ReportPage> {
             ),
             Expanded(flex: 2, child: Container()),
             Expanded(
-              flex: 10,
+              flex: 20,
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
@@ -128,7 +128,7 @@ class _ReportPageState extends State<ReportPage> {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   textBaseline: TextBaseline.ideographic,
                   children: [
                     const Text(
@@ -165,7 +165,7 @@ class _ReportPageState extends State<ReportPage> {
             ),
             const SizedBox(height: 1),
             Expanded(
-              flex: 10,
+              flex: 20,
               child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 0),
                   margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -191,7 +191,7 @@ class _ReportPageState extends State<ReportPage> {
                   containersChild(context, const Text("qwe"));
                 },
                 child: NormalListItem(
-                    textInput: "Yenen Gıdalar",
+                    textInput: "Weight Change History",
                     iconData: Icons.soup_kitchen_outlined,
                     iconColors: Colors.black,
                     topLeftCornerRadius: 30,
@@ -208,7 +208,7 @@ class _ReportPageState extends State<ReportPage> {
                   containersChild(context, const Text("qwe"));
                 },
                 child: NormalListItem(
-                    textInput: "Alınan Kaloriler",
+                    textInput: "calorie intake history",
                     iconData: Icons.call_merge,
                     iconColors: Colors.black,
                     topLeftCornerRadius: 0,
@@ -225,42 +225,8 @@ class _ReportPageState extends State<ReportPage> {
                   containersChild(context, const Text("qwe"));
                 },
                 child: NormalListItem(
-                    textInput: "Makro Besinler",
-                    iconData: Icons.call_made,
-                    iconColors: Colors.black,
-                    topLeftCornerRadius: 0,
-                    topRightCornerRadius: 0,
-                    bottomLeftCornerRadius: 0,
-                    bottomRightCornerRadius: 0),
-              ),
-            ),
-            const SizedBox(height: 1),
-            Expanded(
-              flex: 10,
-              child: GestureDetector(
-                onTap: () {
-                  containersChild(context, const Text("qwe"));
-                },
-                child: NormalListItem(
-                    textInput: "Besin Değerleri",
+                    textInput: "BMI History",
                     iconData: Icons.call_split,
-                    iconColors: Colors.black,
-                    topLeftCornerRadius: 0,
-                    topRightCornerRadius: 0,
-                    bottomLeftCornerRadius: 0,
-                    bottomRightCornerRadius: 0),
-              ),
-            ),
-            const SizedBox(height: 1),
-            Expanded(
-              flex: 10,
-              child: GestureDetector(
-                onTap: () {
-                  containersChild(context, const Text("qwe"));
-                },
-                child: NormalListItem(
-                    textInput: "Gelişim Haritam",
-                    iconData: Icons.self_improvement,
                     iconColors: Colors.black,
                     topLeftCornerRadius: 0,
                     topRightCornerRadius: 0,

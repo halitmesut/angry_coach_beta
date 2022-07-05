@@ -184,16 +184,13 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                       int.parse(energyAmountController.text) +
                           userPropertiesBox.get("dailyInput"),
                     );
-                    // Navigator.of(context).pop();
-                    // foodNameController.clear();
-                    // foodNameController.clear();
-                    // energyAmountController.clear();
-                    // proteinAmountController.clear();
-                    // carbAmountController.clear();
-                    // fatAmountController.clear();
-
-                    debugPrint(foodBox.toMap().toString());
-                    debugPrint(foodBox.get('elma')[0]);
+                    Navigator.of(context).pop();
+                    foodNameController.clear();
+                    foodNameController.clear();
+                    energyAmountController.clear();
+                    proteinAmountController.clear();
+                    carbAmountController.clear();
+                    fatAmountController.clear();
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter all fields.",
@@ -224,7 +221,8 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                     ]);
                     await userPropertiesBox.put(
                       "dailyInput",
-                      int.parse(energyAmountController.text) +
+                      int.parse(foodBox
+                              .get(foodNameController.text.toLowerCase())[1]) +
                           userPropertiesBox.get("dailyInput"),
                     );
                     Navigator.of(context).pop();
