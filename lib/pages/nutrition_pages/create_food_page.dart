@@ -172,18 +172,14 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                       proteinAmountController.text.isNotEmpty &&
                       carbAmountController.text.isNotEmpty &&
                       fatAmountController.text.isNotEmpty) {
-                    foodBox.put(foodNameController.text.toLowerCase(), <String>[
-                      foodAmountontroller.text,
-                      energyAmountController.text,
-                      proteinAmountController.text,
-                      carbAmountController.text,
-                      fatAmountController.text
+                    foodBox.add(<String>[
+                      foodNameController.text.toLowerCase(),
+                      foodAmountontroller.text.toLowerCase(),
+                      energyAmountController.text.toLowerCase(),
+                      proteinAmountController.text.toLowerCase(),
+                      carbAmountController.text.toLowerCase(),
+                      fatAmountController.text.toLowerCase()
                     ]);
-                    await userPropertiesBox.put(
-                      "dailyInput",
-                      int.parse(energyAmountController.text) +
-                          userPropertiesBox.get("dailyInput"),
-                    );
                     Navigator.of(context).pop();
                     foodNameController.clear();
                     foodNameController.clear();
@@ -212,28 +208,29 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                       proteinAmountController.text.isNotEmpty &&
                       carbAmountController.text.isNotEmpty &&
                       fatAmountController.text.isNotEmpty) {
-                    foodBox.put(foodNameController.text.toLowerCase(), <String>[
-                      foodAmountontroller.text,
-                      energyAmountController.text,
-                      proteinAmountController.text,
-                      carbAmountController.text,
-                      fatAmountController.text
+                    foodBox.add(<String>[
+                      foodNameController.text.toLowerCase(),
+                      foodAmountontroller.text.toLowerCase(),
+                      energyAmountController.text.toLowerCase(),
+                      proteinAmountController.text.toLowerCase(),
+                      carbAmountController.text.toLowerCase(),
+                      fatAmountController.text.toLowerCase()
                     ]);
                     await userPropertiesBox.put(
                       "dailyInput",
-                      int.parse(foodBox
-                              .get(foodNameController.text.toLowerCase())[1]) +
+                      int.parse(energyAmountController.text) +
                           userPropertiesBox.get("dailyInput"),
                     );
                     Navigator.of(context).pop();
                     foodNameController.clear();
-                    foodNameController.clear();
+                    foodAmountontroller.clear();
                     energyAmountController.clear();
                     proteinAmountController.clear();
                     carbAmountController.clear();
                     fatAmountController.clear();
 
                     debugPrint(foodBox.toMap().toString());
+                    //foodBox.clear();
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter all fields.",

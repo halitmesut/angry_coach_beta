@@ -1,5 +1,6 @@
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class NutritionSearchScreen extends StatefulWidget {
   const NutritionSearchScreen({Key? key}) : super(key: key);
@@ -9,11 +10,10 @@ class NutritionSearchScreen extends StatefulWidget {
 }
 
 class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
+  var foodBox = Hive.box("createdFood");
+  var userPropertiesBox = Hive.box("userProperties");
   final TextEditingController nutritionController = TextEditingController();
-
   var isLoaded = false;
-
-  getData() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -51,24 +51,22 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                     size: 30,
                   ),
                   onTap: () {
-                    getData();
-
                     setState(() {});
 
-                    debugPrint("lkjl");
+                    debugPrint(foodBox.length.toString());
                   },
                 )
               ],
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: foodBox.length,
                   itemBuilder: (context, index) {
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
-                            "Hello",
+                            foodBox.getAt(index)[2].toString(),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
