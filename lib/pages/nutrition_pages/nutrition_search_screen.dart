@@ -66,16 +66,40 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            foodBox.getAt(index)[2].toString(),
+                            foodBox.getAt(index)[0].toString(),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           ),
-                          Text(
-                            "welcome",
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
+                          Row(
+                            children: [
+                              Text(
+                                "${foodBox.getAt(index)[1].toString()}gr food |",
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                "${foodBox.getAt(index)[2].toString()}kcal |",
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                "${foodBox.getAt(index)[3].toString()}gr Prot. |",
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                "${foodBox.getAt(index)[4].toString()}gr Carb. |",
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                "${foodBox.getAt(index)[5].toString()}gr Fat. |",
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
                           SizedBox(
                             height: 10,

@@ -71,11 +71,11 @@ class _ReportPageState extends State<ReportPage> {
                             backgroundColor:
                                 const Color.fromARGB(69, 255, 158, 128),
                             circularStrokeCap: CircularStrokeCap.round,
-                            percent: (box.get("dailyInput") /
+                            percent: (box.get("dailyCal") /
                                 int.parse(
                                     box.get("userReccommendedDailyIntake"))),
                             center: Text(
-                              "${((box.get("dailyInput") / int.parse(box.get("userReccommendedDailyIntake"))) * 100).toStringAsFixed(0)}%",
+                              "${((box.get("dailyCal") / int.parse(box.get("userReccommendedDailyIntake"))) * 100).toStringAsFixed(0)}%",
                               style: const TextStyle(fontSize: 40),
                             ),
                           );
@@ -101,7 +101,7 @@ class _ReportPageState extends State<ReportPage> {
                             return Text(
                                 (int.parse(box.get(
                                             "userReccommendedDailyIntake")) -
-                                        box.get("dailyInput"))
+                                        box.get("dailyCal"))
                                     .toString(),
                                 style: const TextStyle(
                                     color: Colors.black, fontSize: 22));
@@ -145,7 +145,7 @@ class _ReportPageState extends State<ReportPage> {
                         if (box.values.isEmpty) {
                           return const Text('empty');
                         } else {
-                          return Text(box.get("dailyInput").toString(),
+                          return Text(box.get("dailyCal").toString(),
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 28));
                         }
@@ -167,21 +167,88 @@ class _ReportPageState extends State<ReportPage> {
             Expanded(
               flex: 20,
               child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 0),
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 230, 230, 230),
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30)),
+                padding: const EdgeInsets.symmetric(vertical: 0),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 230, 230, 230),
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30)),
+                ),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Prot'),
+                          ValueListenableBuilder(
+                            valueListenable:
+                                Hive.box("userProperties").listenable(),
+                            builder: (context, Box box, _) {
+                              if (box.values.isEmpty) {
+                                return const Text('empty');
+                              } else {
+                                return Text(
+                                  box.get("dailyPro").toString(),
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                  textAlign: TextAlign.center,
+                                );
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Carbs'),
+                          ValueListenableBuilder(
+                            valueListenable:
+                                Hive.box("userProperties").listenable(),
+                            builder: (context, Box box, _) {
+                              if (box.values.isEmpty) {
+                                return const Text('empty');
+                              } else {
+                                return Text(
+                                  box.get("dailyCar").toString(),
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                  textAlign: TextAlign.center,
+                                );
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Fat'),
+                          ValueListenableBuilder(
+                            valueListenable:
+                                Hive.box("userProperties").listenable(),
+                            builder: (context, Box box, _) {
+                              if (box.values.isEmpty) {
+                                return const Text('empty');
+                              } else {
+                                return Text(
+                                  box.get("dailyFat").toString(),
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                  textAlign: TextAlign.center,
+                                );
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  child: WideListBottomItem(
-                      leftTitle: "Yağ",
-                      middleTitle: "Karbonhidrat",
-                      rightTitle: "Protein",
-                      leftInput: 120,
-                      middleInput: 310,
-                      rightInput: 98)),
+                ),
+              ),
             ),
             Expanded(flex: 2, child: Container()),
             Expanded(

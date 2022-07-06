@@ -217,10 +217,30 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                       fatAmountController.text.toLowerCase()
                     ]);
                     await userPropertiesBox.put(
-                      "dailyInput",
-                      int.parse(energyAmountController.text) +
-                          userPropertiesBox.get("dailyInput"),
-                    );
+                        "dailyCal",
+                        userPropertiesBox.get("dailyCal") != null
+                            ? int.parse(energyAmountController.text) +
+                                userPropertiesBox.get("dailyCal")
+                            : int.parse(energyAmountController.text));
+                    await userPropertiesBox.put(
+                        "dailyPro",
+                        userPropertiesBox.get("dailyPro") != null
+                            ? int.parse(proteinAmountController.text) +
+                                userPropertiesBox.get("dailyPro")
+                            : int.parse(proteinAmountController.text));
+                    await userPropertiesBox.put(
+                        "dailyCar",
+                        userPropertiesBox.get("dailyCar") != null
+                            ? int.parse(carbAmountController.text) +
+                                userPropertiesBox.get("dailyCar")
+                            : int.parse(carbAmountController.text));
+                    await userPropertiesBox.put(
+                        "dailyFat",
+                        userPropertiesBox.get("dailyFat") != null
+                            ? int.parse(fatAmountController.text) +
+                                userPropertiesBox.get("dailyFat")
+                            : int.parse(fatAmountController.text));
+
                     Navigator.of(context).pop();
                     foodNameController.clear();
                     foodAmountontroller.clear();
@@ -231,6 +251,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
 
                     debugPrint(foodBox.toMap().toString());
                     //foodBox.clear();
+                    //userPropertiesBox.put('dailyInput', 0);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter all fields.",
@@ -241,7 +262,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                         timeInSecForIosWeb: 2);
                   }
                 },
-                text: 'Create & Add My Calories',
+                text: 'Create & Add Daily Calories',
                 buttonColor: Colors.deepOrangeAccent),
           ],
         ),
