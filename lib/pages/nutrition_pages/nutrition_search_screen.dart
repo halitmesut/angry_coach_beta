@@ -14,6 +14,11 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
   var userPropertiesBox = Hive.box("userProperties");
   final TextEditingController nutritionController = TextEditingController();
   var isLoaded = false;
+  final List _items = [];
+
+  // void findAndSet(String key){
+  //   foodBox.values.toList().firstWhere((element) => )
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -27,36 +32,20 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
         padding: const EdgeInsets.all(18),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: MyTextField(
-                      textController: nutritionController,
-                      icon: const Icon(
-                        Icons.restaurant_rounded,
-                        color: Colors.black,
-                      ),
-                      textInputType: TextInputType.name,
-                      obscureText: false,
-                      textLabel: "Name"),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                GestureDetector(
-                  child: const Icon(
-                    Icons.search,
-                    size: 30,
+            Container(
+              margin: const EdgeInsets.all(16),
+              child: TextField(
+                controller: nutritionController,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search),
+                  hintText: 'Food Name',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(color: Colors.black),
                   ),
-                  onTap: () {
-                    setState(() {});
-
-                    debugPrint(foodBox.length.toString());
-                  },
-                )
-              ],
+                ),
+                // onChanged: searchFood,
+              ),
             ),
             Expanded(
               child: ListView.builder(
@@ -112,4 +101,9 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
       ),
     );
   }
+
+//   void searchFood(String query) {
+//     final suggestions = foodBox.values.toList()[0].
+// }
+
 }
