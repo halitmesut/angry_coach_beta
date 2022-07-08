@@ -53,7 +53,7 @@ class _ReportPageState extends State<ReportPage> {
                     child: ValueListenableBuilder(
                       valueListenable: Hive.box("userProperties").listenable(),
                       builder: (context, Box box, _) {
-                        if (box.values.isEmpty) {
+                        if (box.get('dailyCal') == null) {
                           return CircularPercentIndicator(
                             radius: 90,
                             lineWidth: 22,
@@ -62,6 +62,10 @@ class _ReportPageState extends State<ReportPage> {
                                 const Color.fromARGB(69, 255, 158, 128),
                             circularStrokeCap: CircularStrokeCap.butt,
                             percent: 0.01,
+                            center: Text(
+                              '%0',
+                              style: const TextStyle(fontSize: 40),
+                            ),
                           );
                         } else {
                           return CircularPercentIndicator(
@@ -95,8 +99,10 @@ class _ReportPageState extends State<ReportPage> {
                         valueListenable:
                             Hive.box("userProperties").listenable(),
                         builder: (context, Box box, _) {
-                          if (box.values.isEmpty) {
-                            return const Text('empty');
+                          if (box.get('dailyCal') == null) {
+                            return const Text('0',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 22));
                           } else {
                             return Text(
                                 (int.parse(box.get(
@@ -142,8 +148,10 @@ class _ReportPageState extends State<ReportPage> {
                     ValueListenableBuilder(
                       valueListenable: Hive.box("userProperties").listenable(),
                       builder: (context, Box box, _) {
-                        if (box.values.isEmpty) {
-                          return const Text('empty');
+                        if (box.get('dailyCal') == null) {
+                          return const Text('0',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 22));
                         } else {
                           return Text(box.get("dailyCal").toString(),
                               style: const TextStyle(
@@ -182,13 +190,18 @@ class _ReportPageState extends State<ReportPage> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Prot'),
+                          const Text('Prot'),
                           ValueListenableBuilder(
                             valueListenable:
                                 Hive.box("userProperties").listenable(),
                             builder: (context, Box box, _) {
-                              if (box.values.isEmpty) {
-                                return const Text('empty');
+                              if (box.get("dailyPro") == null) {
+                                return const Text(
+                                  '0',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                  textAlign: TextAlign.center,
+                                );
                               } else {
                                 return Text(
                                   box.get("dailyPro").toString(),
@@ -204,13 +217,16 @@ class _ReportPageState extends State<ReportPage> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Carbs'),
+                          const Text('Carbs'),
                           ValueListenableBuilder(
                             valueListenable:
                                 Hive.box("userProperties").listenable(),
                             builder: (context, Box box, _) {
-                              if (box.values.isEmpty) {
-                                return const Text('empty');
+                              if (box.get("dailyCar") == null) {
+                                return const Text('0',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 20),
+                                    textAlign: TextAlign.center);
                               } else {
                                 return Text(
                                   box.get("dailyCar").toString(),
@@ -226,13 +242,18 @@ class _ReportPageState extends State<ReportPage> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Fat'),
+                          const Text('Fat'),
                           ValueListenableBuilder(
                             valueListenable:
                                 Hive.box("userProperties").listenable(),
                             builder: (context, Box box, _) {
-                              if (box.values.isEmpty) {
-                                return const Text('empty');
+                              if (box.get("dailyFat") == null) {
+                                return const Text(
+                                  '0',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                  textAlign: TextAlign.center,
+                                );
                               } else {
                                 return Text(
                                   box.get("dailyFat").toString(),

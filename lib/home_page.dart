@@ -1,5 +1,4 @@
 import 'package:angry_coach_beta/pages/coach_page.dart';
-
 import 'package:angry_coach_beta/pages/me_page.dart';
 import 'package:angry_coach_beta/pages/nutrition_page.dart';
 import 'package:angry_coach_beta/pages/reports_page.dart';

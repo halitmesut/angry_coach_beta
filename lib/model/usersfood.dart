@@ -1,9 +1,9 @@
 import 'package:hive/hive.dart';
 
-part 'createdfood.g.dart';
+part 'usersfood.g.dart';
 
-@HiveType(typeId: 0)
-class CreatedFood extends HiveObject {
+@HiveType(typeId: 1)
+class UsersFood extends HiveObject {
   @HiveField(0, defaultValue: 0)
   final int id;
   @HiveField(1)
@@ -16,12 +16,15 @@ class CreatedFood extends HiveObject {
   final int carbohydrate;
   @HiveField(5)
   final int protein;
+    @HiveField(6)
+  final int fat;
 
-  CreatedFood(
+  UsersFood(
       {required this.id,
       required this.name,
       required this.amount,
       required this.calorie,
       required this.carbohydrate,
-      required this.protein});
+      required this.protein,
+      required this.fat});
 }

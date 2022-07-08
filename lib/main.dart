@@ -1,5 +1,6 @@
 import 'package:angry_coach_beta/extract/themes.dart';
 import 'package:angry_coach_beta/home_page.dart';
+import 'package:angry_coach_beta/model/usersfood.dart';
 import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ Future<void> main() async {
   await Hive.openBox("userProperties");
   await Hive.openBox("darkMode");
   await Hive.openBox("createdFood");
+  Hive.registerAdapter<UsersFood>(UsersFoodAdapter());
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

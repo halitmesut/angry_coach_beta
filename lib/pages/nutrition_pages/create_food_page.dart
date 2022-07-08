@@ -1,5 +1,6 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
+import 'package:angry_coach_beta/model/usersfood.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -15,8 +16,8 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
   var foodBox = Hive.box("createdFood");
   var userPropertiesBox = Hive.box("userProperties");
   final TextEditingController foodNameController = TextEditingController();
-  final TextEditingController foodAmountontroller = TextEditingController();
-  final TextEditingController energyAmountController = TextEditingController();
+  final TextEditingController foodAmountController = TextEditingController();
+  final TextEditingController calorieAmountController = TextEditingController();
   final TextEditingController proteinAmountController = TextEditingController();
   final TextEditingController carbAmountController = TextEditingController();
   final TextEditingController fatAmountController = TextEditingController();
@@ -29,7 +30,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
         elevation: 0,
       ),
       body: Container(
-        padding: const EdgeInsets.all(18),
+        padding: const EdgeInsets.symmetric(horizontal: 18),
         child: ListView(
           children: [
             Row(
@@ -64,7 +65,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.6,
                   child: MyTextField(
-                      textController: foodAmountontroller,
+                      textController: foodAmountController,
                       icon: const Icon(
                         Icons.scale,
                         color: Colors.black,
@@ -86,7 +87,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.6,
                   child: MyTextField(
-                      textController: energyAmountController,
+                      textController: calorieAmountController,
                       icon: const Icon(
                         Icons.bolt,
                         color: Colors.black,
@@ -166,24 +167,24 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
             const SizedBox(height: 30),
             MyButton(
                 onPressedFunction: () async {
-                  if (foodNameController.text.length > 1 &&
-                      foodAmountontroller.text.isNotEmpty &&
-                      energyAmountController.text.isNotEmpty &&
+                  if (foodNameController.text.isNotEmpty &&
+                      foodAmountController.text.isNotEmpty &&
+                      calorieAmountController.text.isNotEmpty &&
                       proteinAmountController.text.isNotEmpty &&
                       carbAmountController.text.isNotEmpty &&
                       fatAmountController.text.isNotEmpty) {
-                    foodBox.add(<String>[
-                      foodNameController.text.toLowerCase(),
-                      foodAmountontroller.text.toLowerCase(),
-                      energyAmountController.text.toLowerCase(),
-                      proteinAmountController.text.toLowerCase(),
-                      carbAmountController.text.toLowerCase(),
-                      fatAmountController.text.toLowerCase()
-                    ]);
+                    foodBox.add(UsersFood(
+                        id: foodBox.length,
+                        name: foodNameController.text.toLowerCase(),
+                        amount: int.parse(foodAmountController.text),
+                        calorie: int.parse(calorieAmountController.text),
+                        carbohydrate: int.parse(carbAmountController.text),
+                        protein: int.parse(proteinAmountController.text),
+                        fat: int.parse(fatAmountController.text)));
                     Navigator.of(context).pop();
                     foodNameController.clear();
                     foodNameController.clear();
-                    energyAmountController.clear();
+                    calorieAmountController.clear();
                     proteinAmountController.clear();
                     carbAmountController.clear();
                     fatAmountController.clear();
@@ -202,26 +203,27 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
             const SizedBox(height: 20),
             MyButton(
                 onPressedFunction: () async {
-                  if (foodNameController.text.length > 1 &&
-                      foodAmountontroller.text.isNotEmpty &&
-                      energyAmountController.text.isNotEmpty &&
+                  if (foodNameController.text.isNotEmpty &&
+                      foodAmountController.text.isNotEmpty &&
+                      calorieAmountController.text.isNotEmpty &&
                       proteinAmountController.text.isNotEmpty &&
                       carbAmountController.text.isNotEmpty &&
                       fatAmountController.text.isNotEmpty) {
-                    foodBox.add(<String>[
-                      foodNameController.text.toLowerCase(),
-                      foodAmountontroller.text.toLowerCase(),
-                      energyAmountController.text.toLowerCase(),
-                      proteinAmountController.text.toLowerCase(),
-                      carbAmountController.text.toLowerCase(),
-                      fatAmountController.text.toLowerCase()
-                    ]);
+                    foodBox.add(UsersFood(
+                        id: foodBox.length,
+                        name: foodNameController.text.toLowerCase(),
+                        amount: int.parse(foodAmountController.text),
+                        calorie: int.parse(calorieAmountController.text),
+                        carbohydrate: int.parse(carbAmountController.text),
+                        protein: int.parse(proteinAmountController.text),
+                        fat: int.parse(fatAmountController.text)));
+
                     await userPropertiesBox.put(
                         "dailyCal",
                         userPropertiesBox.get("dailyCal") != null
-                            ? int.parse(energyAmountController.text) +
+                            ? int.parse(calorieAmountController.text) +
                                 userPropertiesBox.get("dailyCal")
-                            : int.parse(energyAmountController.text));
+                            : int.parse(calorieAmountController.text));
                     await userPropertiesBox.put(
                         "dailyPro",
                         userPropertiesBox.get("dailyPro") != null
@@ -243,8 +245,8 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
 
                     Navigator.of(context).pop();
                     foodNameController.clear();
-                    foodAmountontroller.clear();
-                    energyAmountController.clear();
+                    foodAmountController.clear();
+                    calorieAmountController.clear();
                     proteinAmountController.clear();
                     carbAmountController.clear();
                     fatAmountController.clear();
