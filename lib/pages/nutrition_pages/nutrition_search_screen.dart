@@ -16,10 +16,6 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
   var isLoaded = false;
   final List _items = [];
 
-  // void findAndSet(String key){
-  //   foodBox.values.toList().firstWhere((element) => )
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +40,7 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                     borderSide: const BorderSide(color: Colors.black),
                   ),
                 ),
-                // onChanged: searchFood,
+                onChanged: searchFood,
               ),
             ),
             Expanded(
@@ -55,7 +51,7 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            foodBox.getAt(index)[0].toString(),
+                            foodBox.getAt(index).toString(),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -64,27 +60,27 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                           Row(
                             children: [
                               Text(
-                                "${foodBox.getAt(index)[1].toString()}gr food |",
+                                "${foodBox.getAt(index).toString()}gr food |",
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                "${foodBox.getAt(index)[2].toString()}kcal |",
+                                "${foodBox.getAt(index).toString()}kcal |",
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                "${foodBox.getAt(index)[3].toString()}gr Prot. |",
+                                "${foodBox.getAt(index).toString()}gr Prot. |",
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                "${foodBox.getAt(index)[4].toString()}gr Carb. |",
+                                "${foodBox.getAt(index).toString()}gr Carb. |",
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                "${foodBox.getAt(index)[5].toString()}gr Fat. |",
+                                "${foodBox.getAt(index).toString()}gr Fat. |",
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -106,4 +102,5 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
 //     final suggestions = foodBox.values.toList()[0].
 // }
 
+  void searchFood(String value) {}
 }

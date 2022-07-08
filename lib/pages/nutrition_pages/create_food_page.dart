@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/model/usersfood.dart';
@@ -173,7 +175,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                       proteinAmountController.text.isNotEmpty &&
                       carbAmountController.text.isNotEmpty &&
                       fatAmountController.text.isNotEmpty) {
-                    foodBox.add(UsersFood(
+                    await foodBox.add(UsersFood(
                         id: foodBox.length,
                         name: foodNameController.text.toLowerCase(),
                         amount: int.parse(foodAmountController.text),
@@ -209,7 +211,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                       proteinAmountController.text.isNotEmpty &&
                       carbAmountController.text.isNotEmpty &&
                       fatAmountController.text.isNotEmpty) {
-                    foodBox.add(UsersFood(
+                    await foodBox.add(UsersFood(
                         id: foodBox.length,
                         name: foodNameController.text.toLowerCase(),
                         amount: int.parse(foodAmountController.text),
