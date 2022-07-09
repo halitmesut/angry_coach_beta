@@ -16,8 +16,19 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
 
   final TextEditingController nutritionController = TextEditingController();
   var isLoaded = false;
-  final List _items = [];
-  @override
+  List _items = [];
+
+  void findAndSet(String value) {
+    setState(() {
+      var filteredFoods = foodBox.values
+          .where((UsersFood) =>
+              UsersFood.name?.contains(value.toLowerCase()) ?? false)
+          .toList();
+      print(filteredFoods.length);
+      _items = filteredFoods;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +65,11 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
+                              '${_items.map((e) => '${e.name} - ${e.calorie}').join('-----')} '),
+                          Text('---------------------'),
+                          Text(_items[index].name),
+                          Text('---------------------'),
+                          Text(
                             usersFood.name.toString(),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -67,6 +83,11 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                           ),
                           Row(
                             children: [
+                              Text(
+                                "${usersFood.id} id | ",
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                               Text(
                                 "${usersFood.calorie}kcal | ",
                                 maxLines: 3,
@@ -99,13 +120,5 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
         ),
       ),
     );
-  }
-
-  void findAndSet(String value) {
-    var filteredFoods = foodBox.values
-        .where((UsersFood) =>
-            UsersFood.name?.contains(value.toLowerCase()) ?? false)
-        .toList();
-    print(filteredFoods.length);
   }
 }
