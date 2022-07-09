@@ -1,4 +1,6 @@
+import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/model/usersfood.dart';
+import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/widgets_atitional_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -71,7 +73,7 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                               _items[index].name,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 24, fontWeight: FontWeight.bold),
                             ),
                             Text(
@@ -108,17 +110,108 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             )
                           ]),
                       onTap: () {
+                        int sliderAmount = 100;
                         showModalBottomSheet(
                             context: context,
                             builder: (context) => Center(
                                   child: Container(
                                     padding: const EdgeInsets.all(40),
-                                    child: Text(_items[index].fat.toString()),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          "Amount of ${_items[index].name.toString().toUpperCase()}",
+                                          style: const TextStyle(
+                                            fontSize: 20.0,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        StatefulBuilder(
+                                          builder: (context, state) {
+                                            return Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .baseline,
+                                                  textBaseline:
+                                                      TextBaseline.alphabetic,
+                                                  children: [
+                                                    const SizedBox(
+                                                      width: 30.0,
+                                                    ),
+                                                    Text(
+                                                      sliderAmount.toString(),
+                                                      style: const TextStyle(
+                                                        fontSize: 30.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                    const Text(
+                                                      "gr",
+                                                      style: TextStyle(
+                                                        fontSize: 20.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 20,
+                                                ),
+                                                Slider(
+                                                  value:
+                                                      sliderAmount.toDouble(),
+                                                  min: 10.0,
+                                                  max: 500.0,
+                                                  activeColor:
+                                                      Colors.deepOrange,
+                                                  inactiveColor: Color.fromARGB(
+                                                      255, 255, 193, 174),
+                                                  onChanged: (double newValue) {
+                                                    state(() {
+                                                      sliderAmount =
+                                                          newValue.round();
+                                                    });
+
+                                                    setState(() {
+                                                      sliderAmount =
+                                                          newValue.round();
+                                                      debugPrint(sliderAmount
+                                                          .toString());
+                                                    });
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                  height: 40,
+                                                ),
+                                                MyButton(
+                                                  onPressedFunction: () {},
+                                                  text: "Add your daily Intske",
+                                                  buttonColor:
+                                                      Colors.deepOrange,
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                             shape: const RoundedRectangleBorder(
@@ -135,3 +228,5 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
     );
   }
 }
+
+//
