@@ -1,4 +1,3 @@
-import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/model/usersfood.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -61,59 +60,73 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                   itemCount: _items.length,
                   itemBuilder: (context, index) {
                     UsersFood usersFood = foodBox.getAt(index);
-                    return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                              '${_items.map((e) => '${e.name} - ${e.calorie}').join('-----')} '),
-                          Text('---------------------'),
-                          Text(_items[index].name),
-                          Text('---------------------'),
-                          Text(
-                            usersFood.name.toString(),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "${usersFood.amount}gr food | ",
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "${usersFood.id} id | ",
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                "${usersFood.calorie}kcal | ",
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                "${usersFood.protein}gr Prot. | ",
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                "${usersFood.carbohydrate}gr Carb. | ",
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                "${usersFood.fat}gr Fat. | ",
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          )
-                        ]);
+                    return GestureDetector(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Text(
+                            //     '${_items.map((e) => '${e.name} - ${e.calorie}').join('-----')} '),
+
+                            Text(
+                              _items[index].name,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "${_items[index].amount}gr food | ",
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "${_items[index].id} id | ",
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  "${_items[index].calorie}kcal | ",
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  "${_items[index].protein}gr Prot. | ",
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  "${_items[index].carbohydrate}gr Carb. | ",
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  "${_items[index].fat}gr Fat. | ",
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            )
+                          ]),
+                      onTap: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) => Center(
+                                  child: Container(
+                                    padding: const EdgeInsets.all(40),
+                                    child: Text(_items[index].fat.toString()),
+                                  ),
+                                ),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(30)),
+                            ));
+                      },
+                    );
                   }),
             )
           ],

@@ -157,7 +157,7 @@ class _NutritionPageState extends State<NutritionPage> {
             Expanded(
                 flex: 10,
                 child: GestureDetector(
-                  onTap: (() {
+                  onTap: () {
                     showModalBottomSheet(
                         enableDrag: true,
                         isDismissible: true,
@@ -168,7 +168,7 @@ class _NutritionPageState extends State<NutritionPage> {
                                 top: Radius.circular(30))),
                         context: context,
                         builder: (context) => buildSheet());
-                  }),
+                  },
                   child: NormalListItem(
                       textInput: "Enter Calories",
                       iconData: Icons.draw,
