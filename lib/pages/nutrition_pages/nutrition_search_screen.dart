@@ -58,7 +58,7 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: foodBox.length,
+                  itemCount: _items.length,
                   itemBuilder: (context, index) {
                     UsersFood usersFood = foodBox.getAt(index);
                     return Column(
