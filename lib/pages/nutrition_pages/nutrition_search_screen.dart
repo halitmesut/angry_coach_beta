@@ -1,4 +1,5 @@
 import 'package:angry_coach_beta/extract/my_text_field.dart';
+import 'package:angry_coach_beta/model/usersfood.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -12,10 +13,11 @@ class NutritionSearchScreen extends StatefulWidget {
 class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
   var foodBox = Hive.box("createdFood");
   var userPropertiesBox = Hive.box("userProperties");
+
   final TextEditingController nutritionController = TextEditingController();
   var isLoaded = false;
   final List _items = [];
-
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,18 +42,18 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                     borderSide: const BorderSide(color: Colors.black),
                   ),
                 ),
-                onChanged: searchFood,
               ),
             ),
             Expanded(
               child: ListView.builder(
                   itemCount: foodBox.length,
                   itemBuilder: (context, index) {
+                    UsersFood usersFood = foodBox.getAt(11);
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            foodBox.getAt(index).toString(),
+                            usersFood.name.toString(),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -97,10 +99,4 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
       ),
     );
   }
-
-//   void searchFood(String query) {
-//     final suggestions = foodBox.values.toList()[0].
-// }
-
-  void searchFood(String value) {}
 }

@@ -14,10 +14,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
+  Hive.registerAdapter<UsersFood>(UsersFoodAdapter());
   await Hive.openBox("userProperties");
   await Hive.openBox("darkMode");
   await Hive.openBox("createdFood");
-  Hive.registerAdapter<UsersFood>(UsersFoodAdapter());
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
