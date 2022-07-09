@@ -42,13 +42,14 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                     borderSide: const BorderSide(color: Colors.black),
                   ),
                 ),
+                onChanged: findAndSet,
               ),
             ),
             Expanded(
               child: ListView.builder(
                   itemCount: foodBox.length,
                   itemBuilder: (context, index) {
-                    UsersFood usersFood = foodBox.getAt(11);
+                    UsersFood usersFood = foodBox.getAt(index);
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -59,30 +60,30 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                             style: TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           ),
+                          Text(
+                            "${usersFood.amount}gr food | ",
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                           Row(
                             children: [
                               Text(
-                                "${foodBox.getAt(index).toString()}gr food |",
+                                "${usersFood.calorie}kcal | ",
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                "${foodBox.getAt(index).toString()}kcal |",
+                                "${usersFood.protein}gr Prot. | ",
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                "${foodBox.getAt(index).toString()}gr Prot. |",
+                                "${usersFood.carbohydrate}gr Carb. | ",
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                "${foodBox.getAt(index).toString()}gr Carb. |",
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                "${foodBox.getAt(index).toString()}gr Fat. |",
+                                "${usersFood.fat}gr Fat. | ",
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -98,5 +99,13 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
         ),
       ),
     );
+  }
+
+  void findAndSet(String value) {
+    var filteredFoods = foodBox.values
+        .where((UsersFood) =>
+            UsersFood.name?.contains(value.toLowerCase()) ?? false)
+        .toList();
+    print(filteredFoods.length);
   }
 }

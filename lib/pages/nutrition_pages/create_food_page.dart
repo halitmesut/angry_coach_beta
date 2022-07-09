@@ -191,8 +191,8 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                     carbAmountController.clear();
                     fatAmountController.clear();
                   } else {
-                    userPropertiesBox.put('dailyInput', 0);
-                    debugPrint(userPropertiesBox.get('dailyInput').toString());
+                    userPropertiesBox.put('dailyCal', 0);
+                    debugPrint(userPropertiesBox.get('dailyCal').toString());
                     Fluttertoast.showToast(
                         msg: "You must enter all fields.",
                         fontSize: 18,
@@ -255,11 +255,9 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                     carbAmountController.clear();
                     fatAmountController.clear();
 
-                    foodBox.clear();
+                    // foodBox.clear();
 
                     debugPrint(foodBox.toMap().toString());
-
-                    userPropertiesBox.put('dailyInput', 0);
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter all fields.",
