@@ -257,9 +257,9 @@ class _NutritionPageState extends State<NutritionPage> {
                             if (calorieInputController.text.length < 5) {
                               // await box.put("dailyInput", 0);
                               await box.put(
-                                "dailyInput",
+                                "dailyCal",
                                 int.parse(calorieInputController.text) +
-                                    box.get("dailyInput"),
+                                    box.get("dailyCal"),
                               );
                               // ignore: use_build_context_synchronously
                               Navigator.of(context).pop();

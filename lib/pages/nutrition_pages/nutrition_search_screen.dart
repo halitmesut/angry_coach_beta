@@ -1,6 +1,5 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/model/usersfood.dart';
-import 'package:angry_coach_beta/pages/settings_pages/aditional_apps/widgets_atitional_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -171,7 +170,7 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                                                     )
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 20,
                                                 ),
                                                 Slider(
@@ -181,14 +180,14 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                                                   max: 500.0,
                                                   activeColor:
                                                       Colors.deepOrange,
-                                                  inactiveColor: Color.fromARGB(
-                                                      255, 255, 193, 174),
+                                                  inactiveColor:
+                                                      const Color.fromARGB(
+                                                          255, 255, 193, 174),
                                                   onChanged: (double newValue) {
                                                     state(() {
                                                       sliderAmount =
                                                           newValue.round();
                                                     });
-
                                                     setState(() {
                                                       sliderAmount =
                                                           newValue.round();
@@ -197,11 +196,62 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                                                     });
                                                   },
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 40,
                                                 ),
                                                 MyButton(
-                                                  onPressedFunction: () {},
+                                                  onPressedFunction: () async {
+                                                    await userPropertiesBox.put(
+                                                        "dailyCal",
+                                                        userPropertiesBox.get(
+                                                                    "dailyCal") !=
+                                                                null
+                                                            ? _items[index]
+                                                                    .calorie +
+                                                                userPropertiesBox
+                                                                    .get(
+                                                                        "dailyCal")
+                                                            : _items[index]
+                                                                .calorie);
+                                                    await userPropertiesBox.put(
+                                                        "dailyPro",
+                                                        userPropertiesBox.get(
+                                                                    "dailyPro") !=
+                                                                null
+                                                            ? _items[index]
+                                                                    .protein +
+                                                                userPropertiesBox
+                                                                    .get(
+                                                                        "dailyPro")
+                                                            : _items[index]
+                                                                .protein);
+                                                    await userPropertiesBox.put(
+                                                        "dailyCar",
+                                                        userPropertiesBox.get(
+                                                                    "dailyCar") !=
+                                                                null
+                                                            ? _items[index]
+                                                                    .carbohydrate +
+                                                                userPropertiesBox
+                                                                    .get(
+                                                                        "dailyCar")
+                                                            : _items[index]
+                                                                .carbohydrate);
+                                                    await userPropertiesBox.put(
+                                                        "dailyFat",
+                                                        userPropertiesBox.get(
+                                                                    "dailyFat") !=
+                                                                null
+                                                            ? _items[index]
+                                                                    .fat +
+                                                                userPropertiesBox
+                                                                    .get(
+                                                                        "dailyFat")
+                                                            : _items[index]
+                                                                .fat);
+
+                                                    Navigator.of(context).pop();
+                                                  },
                                                   text: "Add your daily Intske",
                                                   buttonColor:
                                                       Colors.deepOrange,
@@ -228,5 +278,3 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
     );
   }
 }
-
-//
