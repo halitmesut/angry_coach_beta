@@ -1,9 +1,8 @@
-import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class LanguageAndCountryScreen extends StatefulWidget {
   const LanguageAndCountryScreen({Key? key}) : super(key: key);
@@ -16,6 +15,7 @@ class LanguageAndCountryScreen extends StatefulWidget {
 class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
   @override
   Widget build(BuildContext context) {
+    var box = Hive.box("userProperties");
     final languageList = [
       "English",
       "Franch",
@@ -51,7 +51,25 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                   "Language",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<UserProperties>().userLanguage),
+                subtitle: ValueListenableBuilder(
+                  valueListenable: Hive.box("userProperties").listenable(),
+                  builder: (context, Box box, _) {
+                    if (box.get('userLanguage') == null) {
+                      return const Text(
+                        'select your Language',
+                      );
+                    } else {
+                      return Text(
+                        box.get("userLanguage"),
+                      );
+                    }
+                  },
+                ),
+
+                //Text(box.get("userLanguage") ?? 'select your language'
+
+                // context.watch<UserProperties>().userLanguage
+                //   ),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -65,10 +83,12 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                       builder: (context) => Center(
                             child: CupertinoPicker(
                               itemExtent: 64,
-                              onSelectedItemChanged: (index) {
-                                context
-                                    .read<UserProperties>()
-                                    .getUserLanguage(languageList[index]);
+                              onSelectedItemChanged: (index) async {
+                                await box.put(
+                                    "userLanguage", languageList[index]);
+                                // context
+                                //     .read<UserProperties>()
+                                //     .getUserLanguage(languageList[index]);
                               },
                               children: languageList
                                   .map(
@@ -97,7 +117,24 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                   "Country",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<UserProperties>().userCountry),
+                subtitle: ValueListenableBuilder(
+                  valueListenable: Hive.box("userProperties").listenable(),
+                  builder: (context, Box box, _) {
+                    if (box.get('userCountry') == null) {
+                      return const Text(
+                        'select your Country',
+                      );
+                    } else {
+                      return Text(
+                        box.get("userCountry"),
+                      );
+                    }
+                  },
+                ),
+
+                // Text(box.get("userCountry") ?? 'select your Country'
+                //     // context.watch<UserProperties>().userCountry
+                //     ),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -113,12 +150,14 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                     favorite: <String>['tr'],
                     //Optional. Shows phone code before the country name.
                     showPhoneCode: false,
-                    onSelect: (Country country) {
-                      print('Select country: ${country.displayName}');
+                    onSelect: (Country country) async {
+                      // print('Select country: ${country.displayName}');
 
-                      context
-                          .read<UserProperties>()
-                          .getUserCountry(country.displayNameNoCountryCode);
+                      await box.put("userCountry", country.displayName);
+
+                      // context
+                      //     .read<UserProperties>()
+                      //     .getUserCountry(country.displayNameNoCountryCode);
                     },
                     // Optional. Sets the theme for the country list picker.
                     countryListTheme: CountryListThemeData(

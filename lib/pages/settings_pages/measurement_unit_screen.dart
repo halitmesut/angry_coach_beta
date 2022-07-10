@@ -1,7 +1,6 @@
-import 'package:angry_coach_beta/providers/measuremet_units_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class MeasurementUnitScreen extends StatefulWidget {
   const MeasurementUnitScreen({Key? key}) : super(key: key);
@@ -11,6 +10,7 @@ class MeasurementUnitScreen extends StatefulWidget {
 }
 
 class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
+  var box = Hive.box("userProperties");
   final heightUnits = ["Cm", "Inch"];
   final weightUnits = ["Kg", "Lb"];
   final volumeUnits = ["ml", "oz"];
@@ -45,7 +45,22 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                   "Height unit",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<MeasuremetUnits>().heightUnit),
+                subtitle: ValueListenableBuilder(
+                  valueListenable: Hive.box("userProperties").listenable(),
+                  builder: (context, Box box, _) {
+                    if (box.get('userHeightUnit') == null) {
+                      return const Text(
+                        'Select Your Height Unit',
+                      );
+                    } else {
+                      return Text(
+                        box.get("userHeightUnit"),
+                      );
+                    }
+                  },
+                ),
+
+                // Text(context.watch<MeasuremetUnits>().heightUnit),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -59,11 +74,16 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                       builder: (context) => Center(
                             child: CupertinoPicker(
                               itemExtent: 64,
-                              onSelectedItemChanged: (index) {
-                                context
-                                    .read<MeasuremetUnits>()
-                                    .getUserHeightUnit(heightUnits[index]);
+                              onSelectedItemChanged: (index) async {
+                                await box.put(
+                                    "userHeightUnit", heightUnits[index]);
                               },
+
+                              // {
+                              //   context
+                              //       .read<MeasuremetUnits>()
+                              //       .getUserHeightUnit(heightUnits[index]);
+                              // },
                               children: heightUnits
                                   .map(
                                     (item) => Center(
@@ -91,7 +111,22 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                   "Weight unit",
                   style: const TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<MeasuremetUnits>().weightUnit),
+                subtitle: ValueListenableBuilder(
+                  valueListenable: Hive.box("userProperties").listenable(),
+                  builder: (context, Box box, _) {
+                    if (box.get('userWeightUnit') == null) {
+                      return const Text(
+                        'Select Your Weight Unit',
+                      );
+                    } else {
+                      return Text(
+                        box.get("userWeightUnit"),
+                      );
+                    }
+                  },
+                ),
+
+                //  Text(context.watch<MeasuremetUnits>().weightUnit),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -105,11 +140,16 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                       builder: (context) => Center(
                             child: CupertinoPicker(
                               itemExtent: 64,
-                              onSelectedItemChanged: (index) {
-                                context
-                                    .read<MeasuremetUnits>()
-                                    .getUserWeightUnit(weightUnits[index]);
+                              onSelectedItemChanged: (index) async {
+                                await box.put(
+                                    "userWeightUnit", heightUnits[index]);
                               },
+
+                              // {
+                              //   context
+                              //       .read<MeasuremetUnits>()
+                              //       .getUserWeightUnit(weightUnits[index]);
+                              // },
                               children: weightUnits
                                   .map(
                                     (item) => Center(
@@ -137,7 +177,22 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                   "Volume unit",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<MeasuremetUnits>().volumeUnit),
+                subtitle: ValueListenableBuilder(
+                  valueListenable: Hive.box("userProperties").listenable(),
+                  builder: (context, Box box, _) {
+                    if (box.get('userVolumeUnit') == null) {
+                      return const Text(
+                        'Select Your Volume Unit',
+                      );
+                    } else {
+                      return Text(
+                        box.get("userVolumeUnit"),
+                      );
+                    }
+                  },
+                ),
+
+                //Text(context.watch<MeasuremetUnits>().volumeUnit),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -151,11 +206,16 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                       builder: (context) => Center(
                             child: CupertinoPicker(
                               itemExtent: 64,
-                              onSelectedItemChanged: (index) {
-                                context
-                                    .read<MeasuremetUnits>()
-                                    .getUserVolumeUnit(volumeUnits[index]);
+                              onSelectedItemChanged: (index) async {
+                                await box.put(
+                                    "userVolumeUnit", volumeUnits[index]);
                               },
+
+                              // {
+                              //   context
+                              //       .read<MeasuremetUnits>()
+                              //       .getUserVolumeUnit(volumeUnits[index]);
+                              // },
                               children: volumeUnits
                                   .map(
                                     (item) => Center(
@@ -183,7 +243,22 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                   "Energy unit",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(context.watch<MeasuremetUnits>().energyUnit),
+                subtitle: ValueListenableBuilder(
+                  valueListenable: Hive.box("userProperties").listenable(),
+                  builder: (context, Box box, _) {
+                    if (box.get('userEnergyUnit') == null) {
+                      return const Text(
+                        'Select Your Energy Unit',
+                      );
+                    } else {
+                      return Text(
+                        box.get("userEnergyUnit"),
+                      );
+                    }
+                  },
+                ),
+
+                //Text(context.watch<MeasuremetUnits>().energyUnit),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -197,11 +272,16 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                       builder: (context) => Center(
                             child: CupertinoPicker(
                               itemExtent: 64,
-                              onSelectedItemChanged: (index) {
-                                context
-                                    .read<MeasuremetUnits>()
-                                    .getUserEnergyUnit(energyUnits[index]);
+                              onSelectedItemChanged: (index) async {
+                                await box.put(
+                                    "userEnergyUnit", energyUnits[index]);
                               },
+
+                              //  {
+                              //   context
+                              //       .read<MeasuremetUnits>()
+                              //       .getUserEnergyUnit(energyUnits[index]);
+                              // },
                               children: energyUnits
                                   .map(
                                     (item) => Center(

@@ -1,9 +1,8 @@
 import 'package:angry_coach_beta/extract/my_text_field.dart';
-import 'package:angry_coach_beta/providers/user_properties_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class NameAndEmailScreen extends StatefulWidget {
   const NameAndEmailScreen({Key? key}) : super(key: key);
@@ -15,6 +14,7 @@ class NameAndEmailScreen extends StatefulWidget {
 class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
   final nameController = TextEditingController();
   final user = FirebaseAuth.instance.currentUser!;
+  var box = Hive.box("userProperties");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +47,7 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
               const SizedBox(
                 height: 25,
               ),
-              Text(context.watch<UserProperties>().userName,
+              Text(box.get('userName'),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontWeight: FontWeight.w600, fontSize: 22)),
@@ -87,11 +87,9 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
                   minWidth: double.infinity,
                   elevation: 0,
                   color: Colors.deepOrange,
-                  onPressed: () {
+                  onPressed: () async {
                     if (nameController.text.length > 2) {
-                      context
-                          .read<UserProperties>()
-                          .getUserName(nameController.text);
+                      await box.put("userName", nameController.text);
 
                       Navigator.pop(context);
 
