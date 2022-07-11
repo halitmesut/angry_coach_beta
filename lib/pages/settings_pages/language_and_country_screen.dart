@@ -209,12 +209,12 @@ class _LanguageAndCountryScreenState extends State<LanguageAndCountryScreen> {
                     Navigator.pop(context);
                   },
                   height: 60,
-                  child: Text(
-                    "Set",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
-                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: const Text(
+                    "Set",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
                   ),
                 ),
               ),

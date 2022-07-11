@@ -27,6 +27,7 @@ class IconContent extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class RoundIconButton extends StatelessWidget {
   RoundIconButton(
       {Key? key,
@@ -97,10 +98,10 @@ class ReusableCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: cardChild,
       margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
           color: colour, borderRadius: BorderRadius.circular(15.0)),
+      child: cardChild,
     );
   }
 }

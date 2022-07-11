@@ -21,10 +21,10 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
   void findAndSet(String value) {
     setState(() {
       var filteredFoods = foodBox.values
+          // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
           .where((UsersFood) =>
               UsersFood.name?.contains(value.toLowerCase()) ?? false)
           .toList();
-      print(filteredFoods.length);
       _items = filteredFoods;
     });
   }
@@ -60,14 +60,12 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
               child: ListView.builder(
                   itemCount: _items.length,
                   itemBuilder: (context, index) {
+                    // ignore: unused_local_variable
                     UsersFood usersFood = foodBox.getAt(index);
                     return GestureDetector(
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Text(
-                            //     '${_items.map((e) => '${e.name} - ${e.calorie}').join('-----')} '),
-
                             Text(
                               _items[index].name,
                               maxLines: 2,
@@ -250,6 +248,7 @@ class _NutritionSearchScreenState extends State<NutritionSearchScreen> {
                                                             : _items[index]
                                                                 .fat);
 
+                                                    // ignore: use_build_context_synchronously
                                                     Navigator.of(context).pop();
                                                   },
                                                   text: "Add your daily Intske",

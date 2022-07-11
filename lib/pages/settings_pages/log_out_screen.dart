@@ -149,13 +149,13 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       color: Colors.deepOrange,
                       onPressed: () {},
                       height: 60,
-                      child: Text(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: const Text(
                         "Reset Password",
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 22),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
                       ),
                     ),
                   ),
@@ -186,13 +186,13 @@ class _LogOutScreenState extends State<LogOutScreen> {
                         Navigator.pop(context);
                       },
                       height: 60,
-                      child: Text(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: const Text(
                         "Log Out",
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 22),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
                       ),
                     ),
                   ),

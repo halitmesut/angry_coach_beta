@@ -1,4 +1,5 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
+import 'package:angry_coach_beta/pages/nutrition_pages/json_food.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -62,9 +63,9 @@ class _ReportPageState extends State<ReportPage> {
                                 const Color.fromARGB(69, 255, 158, 128),
                             circularStrokeCap: CircularStrokeCap.butt,
                             percent: 0.01,
-                            center: Text(
+                            center: const Text(
                               '%0',
-                              style: const TextStyle(fontSize: 40),
+                              style: TextStyle(fontSize: 40),
                             ),
                           );
                         } else {
@@ -293,7 +294,10 @@ class _ReportPageState extends State<ReportPage> {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  containersChild(context, const Text("qwe"));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const JsonFood()));
                 },
                 child: NormalListItem(
                     textInput: "calorie intake history",

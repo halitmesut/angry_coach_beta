@@ -181,6 +181,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                         carbohydrate: int.parse(carbAmountController.text),
                         protein: int.parse(proteinAmountController.text),
                         fat: int.parse(fatAmountController.text)));
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context).pop();
                     foodNameController.clear();
                     foodNameController.clear();
@@ -245,6 +246,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                                 userPropertiesBox.get("dailyFat")
                             : int.parse(fatAmountController.text));
 
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context).pop();
                     foodNameController.clear();
                     foodAmountController.clear();

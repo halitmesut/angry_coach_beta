@@ -41,7 +41,7 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                       });
                     },
                     child: ReusableCards(
-                      cardChild: IconContent(
+                      cardChild: const IconContent(
                           icon: FontAwesomeIcons.mars, label: "MALE"),
                       colour: selectedGenderbasal == Gender.male
                           ? kActiveCardColor
@@ -57,7 +57,7 @@ class _BasalMetabolicRateScreenState extends State<BasalMetabolicRateScreen> {
                       });
                     },
                     child: ReusableCards(
-                      cardChild: IconContent(
+                      cardChild: const IconContent(
                           icon: FontAwesomeIcons.venus, label: "FEMALE"),
                       colour: selectedGenderbasal == Gender.female
                           ? kActiveCardColor

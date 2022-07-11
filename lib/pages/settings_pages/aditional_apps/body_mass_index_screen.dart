@@ -44,7 +44,7 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                       });
                     },
                     child: ReusableCards(
-                      cardChild: IconContent(
+                      cardChild: const IconContent(
                           icon: FontAwesomeIcons.mars, label: "MALE"),
                       colour: selectedGenderBody == Gender.male
                           ? kActiveCardColor
@@ -60,7 +60,7 @@ class _BodyMassIndexScreenState extends State<BodyMassIndexScreen> {
                       });
                     },
                     child: ReusableCards(
-                      cardChild: IconContent(
+                      cardChild: const IconContent(
                           icon: FontAwesomeIcons.venus, label: "FEMALE"),
                       colour: selectedGenderBody == Gender.female
                           ? kActiveCardColor

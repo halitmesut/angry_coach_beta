@@ -36,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 248, 248, 248),
+      color: const Color.fromARGB(255, 248, 248, 248),
       child: SafeArea(
         child: Scaffold(
           body: IndexedStack(index: currentIndex, children: screens),

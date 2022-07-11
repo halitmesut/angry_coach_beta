@@ -49,6 +49,7 @@ flutter:
   assets:
     - assets/
     - assets/nutritions/
+    - assets/fooddata_survey.json
 
 
 

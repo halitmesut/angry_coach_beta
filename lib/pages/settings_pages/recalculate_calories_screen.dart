@@ -1,6 +1,7 @@
 import 'package:angry_coach_beta/extract/recommended_daily_intake_calculator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class RecalculateMyDailyCaloriesScreen extends StatefulWidget {
@@ -45,8 +46,8 @@ class _RecalculateMyDailyCaloriesScreenState
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         elevation: 3,
-        brightness: Brightness.light,
         backgroundColor: Colors.white,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
         child: Container(
@@ -352,7 +353,7 @@ class _RecalculateMyDailyCaloriesScreenState
                 thickness: 2,
               ),
               const Expanded(
-                child: const SizedBox(),
+                child: SizedBox(),
               ),
               Container(
                 padding: const EdgeInsets.only(top: 2, left: 2),

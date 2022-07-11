@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class MeasurementUnitScreen extends StatefulWidget {
@@ -28,8 +29,8 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         elevation: 3,
-        brightness: Brightness.light,
         backgroundColor: Colors.white,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
         child: Container(
@@ -59,8 +60,6 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                     }
                   },
                 ),
-
-                // Text(context.watch<MeasuremetUnits>().heightUnit),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -78,12 +77,6 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                                 await box.put(
                                     "userHeightUnit", heightUnits[index]);
                               },
-
-                              // {
-                              //   context
-                              //       .read<MeasuremetUnits>()
-                              //       .getUserHeightUnit(heightUnits[index]);
-                              // },
                               children: heightUnits
                                   .map(
                                     (item) => Center(
@@ -109,7 +102,7 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
               ListTile(
                 title: const Text(
                   "Weight unit",
-                  style: const TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20),
                 ),
                 subtitle: ValueListenableBuilder(
                   valueListenable: Hive.box("userProperties").listenable(),
@@ -125,8 +118,6 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                     }
                   },
                 ),
-
-                //  Text(context.watch<MeasuremetUnits>().weightUnit),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -144,12 +135,6 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                                 await box.put(
                                     "userWeightUnit", heightUnits[index]);
                               },
-
-                              // {
-                              //   context
-                              //       .read<MeasuremetUnits>()
-                              //       .getUserWeightUnit(weightUnits[index]);
-                              // },
                               children: weightUnits
                                   .map(
                                     (item) => Center(
@@ -191,8 +176,6 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                     }
                   },
                 ),
-
-                //Text(context.watch<MeasuremetUnits>().volumeUnit),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -210,12 +193,6 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                                 await box.put(
                                     "userVolumeUnit", volumeUnits[index]);
                               },
-
-                              // {
-                              //   context
-                              //       .read<MeasuremetUnits>()
-                              //       .getUserVolumeUnit(volumeUnits[index]);
-                              // },
                               children: volumeUnits
                                   .map(
                                     (item) => Center(
@@ -257,8 +234,6 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                     }
                   },
                 ),
-
-                //Text(context.watch<MeasuremetUnits>().energyUnit),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -276,12 +251,6 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                                 await box.put(
                                     "userEnergyUnit", energyUnits[index]);
                               },
-
-                              //  {
-                              //   context
-                              //       .read<MeasuremetUnits>()
-                              //       .getUserEnergyUnit(energyUnits[index]);
-                              // },
                               children: energyUnits
                                   .map(
                                     (item) => Center(
@@ -326,12 +295,12 @@ class _MeasurementUnitScreenState extends State<MeasurementUnitScreen> {
                     Navigator.pop(context);
                   },
                   height: 60,
-                  child: Text(
-                    "Set",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
-                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: const Text(
+                    "Set",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
                   ),
                 ),
               ),

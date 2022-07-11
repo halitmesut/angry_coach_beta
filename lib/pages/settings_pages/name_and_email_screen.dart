@@ -91,18 +91,17 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
                     if (nameController.text.length > 2) {
                       await box.put("userName", nameController.text);
 
+                      // ignore: use_build_context_synchronously
                       Navigator.pop(context);
-
-                      print(nameController.text);
                     }
                   },
                   height: 60,
-                  child: Text(
-                    "Change User Name",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
-                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: const Text(
+                    "Change User Name",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
                   ),
                 ),
               ),

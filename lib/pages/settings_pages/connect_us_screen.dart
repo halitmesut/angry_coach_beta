@@ -12,7 +12,7 @@ class _ConnectUsScreenState extends State<ConnectUsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Connent us screen"),
+        title: const Text("Connent us screen"),
       ),
     );
   }
