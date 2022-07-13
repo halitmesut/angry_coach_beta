@@ -2,7 +2,8 @@ import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/extract/widgets.dart';
 import 'package:angry_coach_beta/pages/nutrition_pages/Create_food_page.dart';
-import 'package:angry_coach_beta/pages/nutrition_pages/nutrition_search_screen.dart';
+import 'package:angry_coach_beta/pages/food_pages/food_search_screen.dart';
+import 'package:angry_coach_beta/pages/food_pages/created_food_search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -123,14 +124,33 @@ class _NutritionPageState extends State<NutritionPage> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                const NutritionSearchScreen()));
+                                const CreatedFoodSearchScreen()));
                   }),
                   child: NormalListItem(
-                      textInput: "Search Food",
-                      iconData: Icons.flatware,
+                      textInput: "Created Food Search",
+                      iconData: Icons.search,
                       iconColors: Colors.black,
                       topLeftCornerRadius: 30,
                       topRightCornerRadius: 30,
+                      bottomLeftCornerRadius: 0,
+                      bottomRightCornerRadius: 0),
+                )),
+            const SizedBox(height: 1),
+            Expanded(
+                flex: 10,
+                child: GestureDetector(
+                  onTap: (() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FoodSearchScreen()));
+                  }),
+                  child: NormalListItem(
+                      textInput: "Search Food",
+                      iconData: Icons.search_off_outlined,
+                      iconColors: Colors.black,
+                      topLeftCornerRadius: 0,
+                      topRightCornerRadius: 0,
                       bottomLeftCornerRadius: 0,
                       bottomRightCornerRadius: 0),
                 )),

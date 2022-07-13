@@ -1,5 +1,4 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
-import 'package:angry_coach_beta/pages/nutrition_pages/json_food.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -109,7 +108,7 @@ class _ReportPageState extends State<ReportPage> {
                                 (int.parse(box.get(
                                             "userReccommendedDailyIntake")) -
                                         box.get("dailyCal"))
-                                    .toString(),
+                                    .toStringAsFixed(0),
                                 style: const TextStyle(
                                     color: Colors.black, fontSize: 22));
                           }
@@ -154,7 +153,7 @@ class _ReportPageState extends State<ReportPage> {
                               style:
                                   TextStyle(color: Colors.black, fontSize: 22));
                         } else {
-                          return Text(box.get("dailyCal").toString(),
+                          return Text(box.get("dailyCal").toStringAsFixed(0),
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 28));
                         }
@@ -205,7 +204,7 @@ class _ReportPageState extends State<ReportPage> {
                                 );
                               } else {
                                 return Text(
-                                  box.get("dailyPro").toString(),
+                                  box.get("dailyPro").toStringAsFixed(1),
                                   style: const TextStyle(
                                       color: Colors.black, fontSize: 20),
                                   textAlign: TextAlign.center,
@@ -230,7 +229,7 @@ class _ReportPageState extends State<ReportPage> {
                                     textAlign: TextAlign.center);
                               } else {
                                 return Text(
-                                  box.get("dailyCar").toString(),
+                                  box.get("dailyCar").toStringAsFixed(1),
                                   style: const TextStyle(
                                       color: Colors.black, fontSize: 20),
                                   textAlign: TextAlign.center,
@@ -257,7 +256,7 @@ class _ReportPageState extends State<ReportPage> {
                                 );
                               } else {
                                 return Text(
-                                  box.get("dailyFat").toString(),
+                                  box.get("dailyFat").toStringAsFixed(1),
                                   style: const TextStyle(
                                       color: Colors.black, fontSize: 20),
                                   textAlign: TextAlign.center,
@@ -294,10 +293,7 @@ class _ReportPageState extends State<ReportPage> {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const JsonFood()));
+                  containersChild(context, const Text("qwe"));
                 },
                 child: NormalListItem(
                     textInput: "calorie intake history",
