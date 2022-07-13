@@ -115,7 +115,7 @@ class _FoodSearchScreenState extends State<FoodSearchScreen> {
                             )
                           ]),
                       onTap: () {
-                        int sliderAmount = food.gramWeight;
+                        int sliderAmount = food.gramWeight.toInt();
                         showModalBottomSheet(
                             context: context,
                             builder: (context) => Center(
