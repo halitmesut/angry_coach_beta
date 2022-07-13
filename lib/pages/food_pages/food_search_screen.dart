@@ -115,7 +115,7 @@ class _FoodSearchScreenState extends State<FoodSearchScreen> {
                             )
                           ]),
                       onTap: () {
-                        int sliderAmount = 100;
+                        int sliderAmount = food.gramWeight;
                         showModalBottomSheet(
                             context: context,
                             builder: (context) => Center(
@@ -207,49 +207,61 @@ class _FoodSearchScreenState extends State<FoodSearchScreen> {
                                                         userPropertiesBox.get(
                                                                     "dailyCal") !=
                                                                 null
-                                                            ? foods[index]
-                                                                    .kcalEnergy +
+                                                            ? food.kcalEnergy /
+                                                                    food
+                                                                        .gramWeight *
+                                                                    sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyCal")
-                                                            : foods[index]
-                                                                .kcalEnergy);
+                                                            : food.kcalEnergy /
+                                                                food.gramWeight *
+                                                                sliderAmount);
                                                     await userPropertiesBox.put(
                                                         "dailyPro",
                                                         userPropertiesBox.get(
                                                                     "dailyPro") !=
                                                                 null
-                                                            ? foods[index]
-                                                                    .gramProtein +
+                                                            ? food.gramProtein /
+                                                                    food
+                                                                        .gramWeight *
+                                                                    sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyPro")
-                                                            : foods[index]
-                                                                .gramProtein);
+                                                            : food.gramProtein /
+                                                                food.gramWeight *
+                                                                sliderAmount);
                                                     await userPropertiesBox.put(
                                                         "dailyCar",
                                                         userPropertiesBox.get(
                                                                     "dailyCar") !=
                                                                 null
-                                                            ? foods[index]
-                                                                    .gramCarbohydrate +
+                                                            ? food.gramCarbohydrate /
+                                                                    food
+                                                                        .gramWeight *
+                                                                    sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyCar")
-                                                            : foods[index]
-                                                                .gramCarbohydrate);
+                                                            : food.gramCarbohydrate /
+                                                                food.gramWeight *
+                                                                sliderAmount);
                                                     await userPropertiesBox.put(
                                                         "dailyFat",
                                                         userPropertiesBox.get(
                                                                     "dailyFat") !=
                                                                 null
-                                                            ? foods[index]
-                                                                    .gramFat +
+                                                            ? food.gramFat /
+                                                                    food
+                                                                        .gramWeight *
+                                                                    sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyFat")
-                                                            : foods[index]
-                                                                .gramFat);
+                                                            : food.gramFat /
+                                                                food.gramWeight *
+                                                                sliderAmount);
 
                                                     Navigator.of(context).pop();
                                                   },

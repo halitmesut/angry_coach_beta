@@ -84,34 +84,34 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                                   fontSize: 24, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              "${_items[index].amount}gr food | ",
+                              "${usersFood.amount}gr food | ",
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Row(
                               children: [
                                 Text(
-                                  "${_items[index].id} id | ",
+                                  "${usersFood.id} id | ",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  "${_items[index].calorie}kcal | ",
+                                  "${usersFood.calorie}kcal | ",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  "${_items[index].protein}gr Prot. | ",
+                                  "${usersFood.protein}gr Prot. | ",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  "${_items[index].carbohydrate}gr Carb. | ",
+                                  "${usersFood.carbohydrate}gr Carb. | ",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  "${_items[index].fat}gr Fat. | ",
+                                  "${usersFood.fat}gr Fat. | ",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -122,7 +122,7 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                             )
                           ]),
                       onTap: () {
-                        int sliderAmount = _items[index].amount;
+                        int sliderAmount = usersFood.amount;
                         showModalBottomSheet(
                             context: context,
                             builder: (context) => Center(
@@ -133,7 +133,7 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
-                                          "Amount of ${_items[index].name.toString().toUpperCase()}",
+                                          "Amount of ${usersFood.name.toString().toUpperCase()}",
                                           style: const TextStyle(
                                             fontSize: 20.0,
                                             color: Colors.black,
@@ -214,49 +214,68 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                                                         userPropertiesBox.get(
                                                                     "dailyCal") !=
                                                                 null
-                                                            ? _items[index]
-                                                                    .calorie +
+                                                            ? usersFood.calorie /
+                                                                    usersFood
+                                                                        .amount *
+                                                                    sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyCal")
-                                                            : _items[index]
-                                                                .calorie);
+                                                            : usersFood
+                                                                    .calorie /
+                                                                usersFood
+                                                                    .amount *
+                                                                sliderAmount);
                                                     await userPropertiesBox.put(
                                                         "dailyPro",
                                                         userPropertiesBox.get(
                                                                     "dailyPro") !=
                                                                 null
-                                                            ? _items[index]
-                                                                    .protein +
+                                                            ? usersFood.protein /
+                                                                    usersFood
+                                                                        .amount *
+                                                                    sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyPro")
-                                                            : _items[index]
-                                                                .protein);
+                                                            : usersFood
+                                                                    .protein /
+                                                                usersFood
+                                                                    .amount *
+                                                                sliderAmount);
                                                     await userPropertiesBox.put(
                                                         "dailyCar",
                                                         userPropertiesBox.get(
                                                                     "dailyCar") !=
                                                                 null
-                                                            ? _items[index]
-                                                                    .carbohydrate +
+                                                            ? usersFood.carbohydrate /
+                                                                    usersFood
+                                                                        .amount *
+                                                                    sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyCar")
-                                                            : _items[index]
-                                                                .carbohydrate);
+                                                            : usersFood
+                                                                    .carbohydrate /
+                                                                usersFood
+                                                                    .amount *
+                                                                sliderAmount);
                                                     await userPropertiesBox.put(
                                                         "dailyFat",
                                                         userPropertiesBox.get(
                                                                     "dailyFat") !=
                                                                 null
-                                                            ? _items[index]
-                                                                    .fat +
+                                                            ? usersFood.fat /
+                                                                    usersFood
+                                                                        .amount *
+                                                                    sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyFat")
-                                                            : _items[index]
-                                                                .fat);
+                                                            : usersFood.fat /
+                                                                usersFood
+                                                                    .amount *
+                                                                sliderAmount);
 
                                                     Navigator.of(context).pop();
                                                   },
