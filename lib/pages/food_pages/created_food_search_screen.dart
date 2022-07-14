@@ -19,18 +19,21 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
   var isLoaded = false;
 
   // kullanicin yarattigi food listesi db nin icine kayitli
-  List _items = [];
+  List _createdFoods = [];
 
 //search food method in user food local db
-  void findAndSet(String value) {
+  void findAndSet(nutritionController) {
     setState(() {
       var filteredFoods = foodBox.values
           // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
           .where((UsersFood) =>
-              UsersFood.name?.toLowerCase().contains(value.toLowerCase()))
+              UsersFood.name
+                  .toLowerCase()
+                  .contains(nutritionController.toLowerCase()) ??
+              false)
           .toList();
 
-      _items = filteredFoods;
+      _createdFoods = filteredFoods;
     });
   }
 
@@ -38,7 +41,7 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("search"),
+        title: const Text("Created Food Search"),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -52,7 +55,7 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                 controller: nutritionController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search),
-                  hintText: 'Food Name',
+                  hintText: 'Search Food',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide: const BorderSide(color: Colors.black),
@@ -63,55 +66,50 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
             ),
             Expanded(
               child: ListView.builder(
-                  // iki listenin toplami kadar saysin  _items.lenght
-                  itemCount: _items.length,
+                  itemCount: _createdFoods.length,
                   itemBuilder: (context, index) {
-                    // ignore: unused_local_variable
-                    UsersFood usersFood = foodBox.getAt(index);
+                    final food = _createdFoods[index];
 
                     return GestureDetector(
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // ListTile(
-                            //   title: Text(food.name),
-                            // ),
                             Text(
-                              usersFood.name,
+                              food.name,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                   fontSize: 24, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              "${usersFood.amount}gr food | ",
+                              "${food.amount}gr food | ",
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Row(
                               children: [
                                 Text(
-                                  "${usersFood.id} id | ",
+                                  "${food.id} id | ",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  "${usersFood.calorie}kcal | ",
+                                  "${food.calorie}kcal | ",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  "${usersFood.protein}gr Prot. | ",
+                                  "${food.protein}gr Prot. | ",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  "${usersFood.carbohydrate}gr Carb. | ",
+                                  "${food.carbohydrate}gr Carb. | ",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  "${usersFood.fat}gr Fat. | ",
+                                  "${food.fat}gr Fat. | ",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -122,7 +120,7 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                             )
                           ]),
                       onTap: () {
-                        int sliderAmount = usersFood.amount;
+                        int sliderAmount = food.amount;
                         showModalBottomSheet(
                             context: context,
                             builder: (context) => Center(
@@ -133,7 +131,7 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
-                                          "Amount of ${usersFood.name.toString().toUpperCase()}",
+                                          "Amount of ${food.name.toString().toUpperCase()}",
                                           style: const TextStyle(
                                             fontSize: 20.0,
                                             color: Colors.black,
@@ -214,71 +212,66 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                                                         userPropertiesBox.get(
                                                                     "dailyCal") !=
                                                                 null
-                                                            ? usersFood.calorie /
-                                                                    usersFood
+                                                            ? food.calorie /
+                                                                    food
                                                                         .amount *
                                                                     sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyCal")
-                                                            : usersFood
-                                                                    .calorie /
-                                                                usersFood
-                                                                    .amount *
+                                                            : food.calorie /
+                                                                food.amount *
                                                                 sliderAmount);
                                                     await userPropertiesBox.put(
                                                         "dailyPro",
                                                         userPropertiesBox.get(
                                                                     "dailyPro") !=
                                                                 null
-                                                            ? usersFood.protein /
-                                                                    usersFood
+                                                            ? food.protein /
+                                                                    food
                                                                         .amount *
                                                                     sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyPro")
-                                                            : usersFood
-                                                                    .protein /
-                                                                usersFood
-                                                                    .amount *
+                                                            : food.protein /
+                                                                food.amount *
                                                                 sliderAmount);
                                                     await userPropertiesBox.put(
                                                         "dailyCar",
                                                         userPropertiesBox.get(
                                                                     "dailyCar") !=
                                                                 null
-                                                            ? usersFood.carbohydrate /
-                                                                    usersFood
+                                                            ? food.carbohydrate /
+                                                                    food
                                                                         .amount *
                                                                     sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyCar")
-                                                            : usersFood
-                                                                    .carbohydrate /
-                                                                usersFood
-                                                                    .amount *
+                                                            : food.carbohydrate /
+                                                                food.amount *
                                                                 sliderAmount);
                                                     await userPropertiesBox.put(
                                                         "dailyFat",
                                                         userPropertiesBox.get(
                                                                     "dailyFat") !=
                                                                 null
-                                                            ? usersFood.fat /
-                                                                    usersFood
+                                                            ? food.fat /
+                                                                    food
                                                                         .amount *
                                                                     sliderAmount +
                                                                 userPropertiesBox
                                                                     .get(
                                                                         "dailyFat")
-                                                            : usersFood.fat /
-                                                                usersFood
-                                                                    .amount *
+                                                            : food.fat /
+                                                                food.amount *
                                                                 sliderAmount);
 
                                                     Navigator.of(context).pop();
                                                   },
+                                                  textTop: '',
+                                                  textBottom: '',
                                                   text: "Add your daily Intske",
                                                   buttonColor:
                                                       Colors.deepOrange,

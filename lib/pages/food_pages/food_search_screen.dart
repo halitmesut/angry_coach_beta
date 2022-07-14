@@ -20,12 +20,12 @@ class _FoodSearchScreenState extends State<FoodSearchScreen> {
   //search food method in application food data
   void searchFood(String query) {
     setState(() {
-      var suggestions = allFoods
+      var filteredFoods = allFoods
           .where(
-              (Food) => Food.name.toLowerCase().contains(query.toLowerCase()))
+              (Food) => Food.name.toLowerCase().startsWith(query.toLowerCase()))
           .toList();
 
-      foods = suggestions;
+      foods = filteredFoods;
     });
   }
 
@@ -265,6 +265,8 @@ class _FoodSearchScreenState extends State<FoodSearchScreen> {
 
                                                     Navigator.of(context).pop();
                                                   },
+                                                  textTop: '',
+                                                  textBottom: '',
                                                   text: "Add your daily Intske",
                                                   buttonColor:
                                                       Colors.deepOrange,
