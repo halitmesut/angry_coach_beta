@@ -4,12 +4,16 @@ class MyButton extends StatelessWidget {
   const MyButton(
       {Key? key,
       required this.onPressedFunction,
+      required this.textTop,
       required this.text,
+      required this.textBottom,
       required this.buttonColor})
       : super(key: key);
 
   final void Function()? onPressedFunction;
+  final String textTop;
   final String text;
+  final String textBottom;
   final Color buttonColor;
 
   @override
@@ -32,9 +36,15 @@ class MyButton extends StatelessWidget {
         onPressed: onPressedFunction,
         height: 60,
         // ignore: sort_child_properties_last
-        child: Text(
-          text,
-          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
+        child: Column(
+          children: [
+            Text(textTop),
+            Text(
+              text,
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
+            ),
+            Text(textBottom),
+          ],
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),

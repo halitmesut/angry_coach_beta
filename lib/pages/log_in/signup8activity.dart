@@ -47,7 +47,7 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
               height: 25,
             ),
             const Text(
-                "ben çok hareketliyim. hergün 5 saat antrenman yapıyorum.senin akttivite düzeyin ney?",
+                "I need to know your daily activity level. It will help me to calculate your daily calorie needs more accurately.",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
             const SizedBox(
@@ -59,7 +59,9 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                   box.put("userActivityLevel", "Very Low Active");
                 });
               },
-              text: "Very Low Active",
+              textTop: '',
+              textBottom: 'I mostly sit.(e.g desk worker)',
+              text: "Not Very Active",
               buttonColor: box.get("userActivityLevel") == "Very Low Active"
                   ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
@@ -73,7 +75,9 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                   box.put("userActivityLevel", "Low Active");
                 });
               },
-              text: "Low Active",
+              textTop: '',
+              textBottom: 'Sometimes I walk.(e.g teacher)',
+              text: "Moderately Active",
               buttonColor: box.get("userActivityLevel") == "Low Active"
                   ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
@@ -87,6 +91,8 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                   box.put("userActivityLevel", "Active");
                 });
               },
+              textTop: '',
+              textBottom: 'I usually walk.(e.g waiter)',
               text: "Active",
               buttonColor: box.get("userActivityLevel") == "Active"
                   ? const Color.fromARGB(255, 162, 194, 249)
@@ -101,6 +107,8 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                   box.put("userActivityLevel", "Very Active");
                 });
               },
+              textTop: '',
+              textBottom: 'Physical activity.(e.g carpenter)',
               text: "Very Active",
               buttonColor: box.get("userActivityLevel") == "Very Active"
                   ? const Color.fromARGB(255, 162, 194, 249)
@@ -115,6 +123,8 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                   box.put("userActivityLevel", "Very High Active");
                 });
               },
+              textTop: '',
+              textBottom: 'Heavy physical activity.(e.g athlete)',
               text: "Very High Active",
               buttonColor: box.get("userActivityLevel") == "Very High Active"
                   ? const Color.fromARGB(255, 162, 194, 249)
@@ -142,6 +152,8 @@ class _SignUp8ActivityState extends State<SignUp8Activity> {
                         timeInSecForIosWeb: 2);
                   }
                 },
+                textTop: '',
+                textBottom: '',
                 text: "Keep meeting",
                 buttonColor: Colors.deepOrange),
             SizedBox(
