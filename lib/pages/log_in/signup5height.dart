@@ -49,7 +49,7 @@ class _SignUp5HeightState extends State<SignUp5Height> {
               height: 25,
             ),
             const Text(
-                "kapılardan geçemediğim doğrudur. hem enlemesine hem boylamasına  hahahah)",
+                "What's your height(cm)? This information is necessary to calculate your perfect body shape.",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
             const SizedBox(
@@ -81,7 +81,11 @@ class _SignUp5HeightState extends State<SignUp5Height> {
                             BorderRadius.vertical(top: Radius.circular(30)),
                       ));
                 },
-                text: box.get("userHeight").toString(),
+                textTop: '',
+                textBottom: '',
+                text: box.get("userHeight").toString() == "null"
+                    ? 'Your Height'
+                    : box.get("userHeight").toString(),
                 buttonColor: Colors.white),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.29,
@@ -105,6 +109,8 @@ class _SignUp5HeightState extends State<SignUp5Height> {
                         timeInSecForIosWeb: 2);
                   }
                 },
+                textTop: '',
+                textBottom: '',
                 text: "Keep meeting",
                 buttonColor: Colors.deepOrange),
             SizedBox(

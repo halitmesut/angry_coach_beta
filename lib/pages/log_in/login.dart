@@ -88,6 +88,8 @@ class _SigninPageState extends State<SigninPage> {
               ),
               MyButton(
                 onPressedFunction: singIn,
+                textTop: '',
+                textBottom: '',
                 text: "Sign In",
                 buttonColor: Colors.deepOrange,
               ),

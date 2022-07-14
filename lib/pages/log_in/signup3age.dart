@@ -50,7 +50,7 @@ class _SignUp3AgeState extends State<SignUp3Age> {
               height: 25,
             ),
             const Text(
-                "Ben 43 yaşındayım. Ama görenler daha 30 bile gösterediğimi söylüyo.",
+                "How old are you. Don't worry it will stay between us :)  You will be at least 5 years younger after this excellent program.",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
             const SizedBox(
@@ -82,7 +82,11 @@ class _SignUp3AgeState extends State<SignUp3Age> {
                             BorderRadius.vertical(top: Radius.circular(30)),
                       ));
                 },
-                text: box.get("userAge").toString(),
+                textTop: '',
+                textBottom: '',
+                text: box.get("userAge").toString() == "null"
+                    ? 'Your Age'
+                    : box.get("userAge").toString(),
                 buttonColor: Colors.white),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.29,
@@ -106,6 +110,8 @@ class _SignUp3AgeState extends State<SignUp3Age> {
                         timeInSecForIosWeb: 2);
                   }
                 },
+                textTop: '',
+                textBottom: '',
                 text: "Keep meeting",
                 buttonColor: Colors.deepOrange),
             SizedBox(

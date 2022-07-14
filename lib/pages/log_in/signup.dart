@@ -111,6 +111,8 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               MyButton(
                 onPressedFunction: signUp,
+                textTop: '',
+                textBottom: '',
                 text: "Sign Up",
                 buttonColor: Colors.deepOrange,
               ),

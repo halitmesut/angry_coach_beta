@@ -49,7 +49,7 @@ class _SignUp7TargetWeightState extends State<SignUp7TargetWeight> {
               height: 25,
             ),
             const Text(
-                "ben hedeflediğim kiloya çok yakınım. 125 benim hedefim.",
+                "What is your target weight? I promise to get you to your target weight.",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
             const SizedBox(
@@ -82,7 +82,11 @@ class _SignUp7TargetWeightState extends State<SignUp7TargetWeight> {
                             BorderRadius.vertical(top: Radius.circular(30)),
                       ));
                 },
-                text: box.get("userTargetWeight").toString(),
+                textTop: '',
+                textBottom: '',
+                text: box.get("userTargetWeight").toString() == "null"
+                    ? 'Your Target Weight'
+                    : box.get("userTargetWeight").toString(),
                 buttonColor: Colors.white),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.29,
@@ -106,6 +110,8 @@ class _SignUp7TargetWeightState extends State<SignUp7TargetWeight> {
                         timeInSecForIosWeb: 2);
                   }
                 },
+                textTop: '',
+                textBottom: '',
                 text: "Keep meeting",
                 buttonColor: Colors.deepOrange),
             SizedBox(

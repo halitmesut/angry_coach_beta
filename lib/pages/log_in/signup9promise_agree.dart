@@ -61,6 +61,8 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
 
                 // context.read<UserProperties>().getUserPromise("I promise");
               },
+              textTop: '',
+              textBottom: '',
               text: "I promise",
               buttonColor: box.get("userPromise") == "I Promise"
                   ? const Color.fromARGB(255, 162, 194, 249)
@@ -77,6 +79,8 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
 
                 //context.read<UserProperties>().getUserPromise("I don't");
               },
+              textTop: '',
+              textBottom: '',
               text: "I don't",
               buttonColor: box.get("userPromise") == "I Do Not"
                   ? const Color.fromARGB(255, 255, 41, 41)
@@ -103,6 +107,8 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
                         recommendedDailyIntake
                             .recommendedDailyIntakeFunction());
 
+                    box.put("dailyWater", 0.0);
+
                     debugPrint(box.get("userReccommendedDailyIntake"));
                     Navigator.push(
                       context,
@@ -128,6 +134,8 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
                         timeInSecForIosWeb: 4);
                   }
                 },
+                textTop: '',
+                textBottom: '',
                 text: "Finish",
                 buttonColor: Colors.deepOrange),
             SizedBox(

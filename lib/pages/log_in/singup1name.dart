@@ -51,8 +51,7 @@ class _SignUp1NameState extends State<SignUp1Name> {
               flex: 2,
               child: SizedBox(),
             ),
-            const Text(
-                "Bana AngryCoach derler. Senin adın neBana AngryCoach derler",
+            const Text("Hi buddy. I'm AngryCoach. What is your name?",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
             const SizedBox(
@@ -95,6 +94,8 @@ class _SignUp1NameState extends State<SignUp1Name> {
                       timeInSecForIosWeb: 2);
                 }
               },
+              textTop: '',
+              textBottom: '',
               text: "Keep meeting",
               buttonColor: Colors.deepOrange,
             ),

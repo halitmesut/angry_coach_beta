@@ -48,7 +48,8 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
             const SizedBox(
               height: 25,
             ),
-            const Text("benim kilom 122. ama almam gereken 2 kilo daha ver. )",
+            const Text(
+                "How much do you weight(cm)? This information will remain a secret between us.)",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
             const SizedBox(
@@ -83,7 +84,11 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
                             BorderRadius.vertical(top: Radius.circular(30)),
                       ));
                 },
-                text: box.get("userWeight").toString(),
+                textTop: '',
+                textBottom: '',
+                text: box.get("userWeight").toString() == "null"
+                    ? 'Your Weight'
+                    : box.get("userWeight").toString(),
                 buttonColor: Colors.white),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.29,
@@ -107,6 +112,8 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
                         timeInSecForIosWeb: 2);
                   }
                 },
+                textTop: '',
+                textBottom: '',
                 text: "Keep meeting",
                 buttonColor: Colors.deepOrange),
             SizedBox(

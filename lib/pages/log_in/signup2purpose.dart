@@ -44,7 +44,7 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
               height: 25,
             ),
             const Text(
-                "Benim amacım Çekirgelerime istedikler hedefe ulaşana kadar destek olmak. Peki senin hedefin ne?",
+                "Come on, tell me your target. I will make a great program for you.",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
             const SizedBox(
@@ -56,6 +56,8 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
                   box.put("userPurpose", "Weight loss");
                 });
               },
+              textTop: '',
+              textBottom: '',
               text: "Weight loss",
               buttonColor: box.get("userPurpose") == "Weight loss"
                   ? const Color.fromARGB(255, 162, 194, 249)
@@ -70,6 +72,8 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
                   box.put("userPurpose", "Slow weight loss");
                 });
               },
+              textTop: '',
+              textBottom: '',
               text: "Slow weight loss",
               buttonColor: box.get("userPurpose") == "Slow weight loss"
                   ? const Color.fromARGB(255, 162, 194, 249)
@@ -84,6 +88,8 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
                   box.put("userPurpose", "Maintain my current weight");
                 });
               },
+              textTop: '',
+              textBottom: '',
               text: "Maintain my current weight",
               buttonColor:
                   box.get("userPurpose") == "Maintain my current weight"
@@ -99,6 +105,8 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
                   box.put("userPurpose", "Slow weight gain");
                 });
               },
+              textTop: '',
+              textBottom: '',
               text: "Slow weight gain",
               buttonColor: box.get("userPurpose") == "Slow weight gain"
                   ? const Color.fromARGB(255, 162, 194, 249)
@@ -113,6 +121,8 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
                   box.put("userPurpose", "Weight gain");
                 });
               },
+              textTop: '',
+              textBottom: '',
               text: "Weight gain",
               buttonColor: box.get("userPurpose") == "Weight gain"
                   ? const Color.fromARGB(255, 162, 194, 249)
@@ -139,6 +149,8 @@ class _SignUp2PurposeState extends State<SignUp2Purpose> {
                       timeInSecForIosWeb: 2);
                 }
               },
+              textTop: '',
+              textBottom: '',
               text: "Keep meeting",
               buttonColor: Colors.deepOrange,
             ),

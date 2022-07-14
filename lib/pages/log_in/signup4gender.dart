@@ -49,7 +49,7 @@ class _SignUp4GenderState extends State<SignUp4Gender> {
               height: 25,
             ),
             const Text(
-                "Ben pazuları çok geniş, omuzları tünele sığmayan bir errrkeğimmm. sen?",
+                "What is your gender? This is necessary to calculate your basal metabolic rate.",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
             const SizedBox(
@@ -61,6 +61,8 @@ class _SignUp4GenderState extends State<SignUp4Gender> {
                   box.put("userGender", "Male");
                 });
               },
+              textTop: '',
+              textBottom: '',
               text: "Male",
               buttonColor: box.get("userGender") == "Male"
                   ? const Color.fromARGB(255, 162, 194, 249)
@@ -75,6 +77,8 @@ class _SignUp4GenderState extends State<SignUp4Gender> {
                   box.put("userGender", "Female");
                 });
               },
+              textTop: '',
+              textBottom: '',
               text: "Female",
               buttonColor: box.get("userGender") == "Female"
                   ? const Color.fromARGB(255, 162, 194, 249)
@@ -102,6 +106,8 @@ class _SignUp4GenderState extends State<SignUp4Gender> {
                         timeInSecForIosWeb: 2);
                   }
                 },
+                textTop: '',
+                textBottom: '',
                 text: "Keep meeting",
                 buttonColor: Colors.deepOrange),
             SizedBox(
