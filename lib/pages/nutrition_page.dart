@@ -1,7 +1,7 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/extract/widgets.dart';
-import 'package:angry_coach_beta/pages/nutrition_pages/Create_food_page.dart';
+import 'package:angry_coach_beta/pages/food_pages/Create_food_page.dart';
 import 'package:angry_coach_beta/pages/food_pages/food_search_screen.dart';
 import 'package:angry_coach_beta/pages/food_pages/created_food_search_screen.dart';
 import 'package:flutter/material.dart';
@@ -47,10 +47,142 @@ class _NutritionPageState extends State<NutritionPage> {
                           imagesAssetPath: "assets/nutritions/cofee.png",
                           text: "Cofee",
                           containersChild: const Text("you are in container")),
-                      IconAndText(
-                          imagesAssetPath: "assets/nutritions/water.png",
-                          text: "Water",
-                          containersChild: const Text("you are in container")),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            int sliderAmount = 1;
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (context) => Center(
+                                      child: Container(
+                                        padding: const EdgeInsets.all(40),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            StatefulBuilder(
+                                              builder: (context, state) {
+                                                return Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      "$sliderAmount glass of water",
+                                                      style: const TextStyle(
+                                                        fontSize: 25.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .baseline,
+                                                      textBaseline: TextBaseline
+                                                          .alphabetic,
+                                                      children: [
+                                                        Text(
+                                                          '${(sliderAmount * 200).toString()} ml',
+                                                          style:
+                                                              const TextStyle(
+                                                            fontSize: 20.0,
+                                                            color: Colors.black,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Slider(
+                                                      value: sliderAmount
+                                                          .toDouble(),
+                                                      min: 0.0,
+                                                      max: 5.0,
+                                                      activeColor:
+                                                          Colors.deepOrange,
+                                                      inactiveColor:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              193,
+                                                              174),
+                                                      onChanged:
+                                                          (double newValue) {
+                                                        state(() {
+                                                          sliderAmount =
+                                                              newValue.round();
+                                                        });
+                                                        setState(() {
+                                                          sliderAmount =
+                                                              newValue.round();
+                                                          debugPrint(
+                                                              sliderAmount
+                                                                  .toString());
+                                                        });
+                                                      },
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 40,
+                                                    ),
+                                                    MyButton(
+                                                      onPressedFunction:
+                                                          () async {
+                                                        await Hive.box("userProperties").put(
+                                                            "dailyWater",
+                                                            Hive.box("userProperties")
+                                                                        .get(
+                                                                            "dailyWater") !=
+                                                                    null
+                                                                ? sliderAmount *
+                                                                        0.2 +
+                                                                    Hive.box(
+                                                                            "userProperties")
+                                                                        .get(
+                                                                            "dailyWater")
+                                                                : sliderAmount *
+                                                                    0.2);
+
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      textTop: '',
+                                                      textBottom: '',
+                                                      text:
+                                                          "Add daily Consumption",
+                                                      buttonColor:
+                                                          Colors.deepOrange,
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(30)),
+                                ));
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset("assets/nutritions/water.png"),
+                              Text(
+                                "Water",
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   Row(
@@ -295,6 +427,8 @@ class _NutritionPageState extends State<NutritionPage> {
                                   timeInSecForIosWeb: 2);
                             }
                           },
+                          textTop: '',
+                          textBottom: '',
                           text: "add to daily calorie",
                           buttonColor: Colors.deepOrangeAccent)
                     ],
