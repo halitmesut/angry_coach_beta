@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class LogOutScreen extends StatefulWidget {
   const LogOutScreen({Key? key}) : super(key: key);
@@ -13,6 +14,9 @@ class _LogOutScreenState extends State<LogOutScreen> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
+    var foodBox = Hive.box("createdFood");
+    var userPropertiesBox = Hive.box("userProperties");
+    var darkBox = Hive.openBox("darkMode");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -180,10 +184,13 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       minWidth: double.infinity,
                       elevation: 0,
                       color: Colors.deepOrange,
-                      onPressed: () {
+                      onPressed: () async {
                         FirebaseAuth.instance.signOut();
 
                         Navigator.pop(context);
+                        await foodBox.clear();
+                        await userPropertiesBox.clear();
+                        await Hive.close();
                       },
                       height: 60,
                       shape: RoundedRectangleBorder(

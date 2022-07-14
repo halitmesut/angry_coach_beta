@@ -1,5 +1,7 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
+import 'package:angry_coach_beta/pages/coach_pages/speech_data.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class CoachPage extends StatelessWidget {
   const CoachPage({Key? key}) : super(key: key);
@@ -39,11 +41,55 @@ class CoachPage extends StatelessWidget {
                     color: Color.fromARGB(255, 230, 230, 230),
                     borderRadius: BorderRadius.all(Radius.circular(30)),
                   ),
-                  child: const Center(
-                    child: Text(
-                      "Senden sporcu değil çekirge bile olmaz. Daha boğazını tutamıyorsun. Bide utanmadan kakmış benden düzgün bi vücut istiyorsun.",
-                      style: TextStyle(fontSize: 20),
-                      textAlign: TextAlign.center,
+                  child: Center(
+                    child: ValueListenableBuilder(
+                      valueListenable: Hive.box("userProperties").listenable(),
+                      builder: (context, Box box, _) {
+                        if (box.get("dailyCal") == 0 &&
+                            box.get("dailyWater") == 0) {
+                          return Text(veryBadSpeech[0],
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 22));
+                        } else if (box.get("dailyCal") <
+                                box.get("userReccommendedDailyIntake") * 0.9 &&
+                            box.get("dailyWater") <
+                                box.get("userWeight") * 0.035 * 0.9) {
+                          return Text(badSpeech[0],
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 22));
+                        } else if (box.get("dailyCal") >
+                                box.get("userReccommendedDailyIntake") * 1.1 &&
+                            box.get("dailyWater") >
+                                box.get("userWeight") * 0.035 * 0.9) {
+                          return Text(normalSpeech[0],
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 22));
+                        } else if (box.get("userReccommendedDailyIntake") *
+                                    0.5 <
+                                box.get("dailyCal") &&
+                            box.get("dailyCal") <
+                                box.get("userReccommendedDailyIntake") * 0.9 &&
+                            box.get("dailyWater") >
+                                box.get("userWeight") * 0.035 * 0.9) {
+                          return Text(goodSpeech[0],
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 22));
+                        } else if (box.get("userReccommendedDailyIntake") *
+                                    0.9 <
+                                box.get("dailyCal") &&
+                            box.get("dailyCal") <
+                                box.get("userReccommendedDailyIntake") * 1.1 &&
+                            box.get("dailyWater") >
+                                box.get("userWeight") * 0.035 * 0.9) {
+                          return Text(veryGoodSpeech[0],
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 22));
+                        } else {
+                          return Text('if else yapisinda hata var !!! hata var',
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 22));
+                        }
+                      },
                     ),
                   ),
                 ),
@@ -57,14 +103,31 @@ class CoachPage extends StatelessWidget {
                   bottomSheetText(context,
                       "Senden gün içinde yediğin leblebi tanesini bile bana söylemeni istiyorum. Birşeyler yer ve bana söylemezen kızarım. Söylersen ise düzgün bir programla yolumuza devam eder, bizi görenleri hayretlere düşürürüz.");
                 },
-                child: NormalListItem(
-                  textInput: "Nutrient Input",
-                  iconData: Icons.check_circle,
-                  iconColors: Colors.green,
-                  topLeftCornerRadius: 30,
-                  topRightCornerRadius: 30,
-                  bottomLeftCornerRadius: 0,
-                  bottomRightCornerRadius: 0,
+                child: ValueListenableBuilder(
+                  valueListenable: Hive.box("userProperties").listenable(),
+                  builder: (context, Box box, _) {
+                    if (box.get("dailyCal") > 0) {
+                      return NormalListItem(
+                        textInput: "Nutrient Input",
+                        iconData: Icons.check,
+                        iconColors: Colors.green,
+                        topLeftCornerRadius: 30,
+                        topRightCornerRadius: 30,
+                        bottomLeftCornerRadius: 0,
+                        bottomRightCornerRadius: 0,
+                      );
+                    } else {
+                      return NormalListItem(
+                        textInput: "Nutrient Input",
+                        iconData: Icons.close,
+                        iconColors: Colors.red,
+                        topLeftCornerRadius: 30,
+                        topRightCornerRadius: 30,
+                        bottomLeftCornerRadius: 0,
+                        bottomRightCornerRadius: 0,
+                      );
+                    }
+                  },
                 ),
               ),
             ),
@@ -76,14 +139,36 @@ class CoachPage extends StatelessWidget {
                   bottomSheetText(context,
                       "Sana o kadar güzel bir kalori hesabı yaptım ki, harfiyyen uyman gerekiyor. Ne çok fazla, ne çok az. Tam sana göre. Fakat senin için yüzde 10'luk bir sapmayı gözardı edebilirim. Bu miktarın dışındaki sapmalarda çok öfkelenirim.");
                 },
-                child: NormalListItem(
-                  textInput: "Calorie Goal",
-                  iconData: Icons.check_circle,
-                  iconColors: Colors.green,
-                  topLeftCornerRadius: 0,
-                  topRightCornerRadius: 0,
-                  bottomLeftCornerRadius: 0,
-                  bottomRightCornerRadius: 0,
+                child: ValueListenableBuilder(
+                  valueListenable: Hive.box("userProperties").listenable(),
+                  builder: (context, Box box, _) {
+                    if (box.get("dailyCal") /
+                                box.get("userReccommendedDailyIntake") >
+                            0.9 &&
+                        box.get("dailyCal") /
+                                box.get("userReccommendedDailyIntake") <
+                            1.1) {
+                      return NormalListItem(
+                        textInput: "Calorie Goal",
+                        iconData: Icons.check,
+                        iconColors: Colors.green,
+                        topLeftCornerRadius: 0,
+                        topRightCornerRadius: 0,
+                        bottomLeftCornerRadius: 0,
+                        bottomRightCornerRadius: 0,
+                      );
+                    } else {
+                      return NormalListItem(
+                        textInput: "Calorie Goal",
+                        iconData: Icons.close,
+                        iconColors: Colors.red,
+                        topLeftCornerRadius: 0,
+                        topRightCornerRadius: 0,
+                        bottomLeftCornerRadius: 0,
+                        bottomRightCornerRadius: 0,
+                      );
+                    }
+                  },
                 ),
               ),
             ),
@@ -93,16 +178,35 @@ class CoachPage extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     bottomSheetText(context,
-                        "Boy ve kilo değerlerine bakarak senin vücudunun bir günde ne kaddar suya ihtiyaç duyduğunu hesapladım. Senin 2.5 litre su tüketmen gerekiyor. Ama sen bu miktarı tüketmeyerek beni kızdırıyorsun çekirge. ");
+                        "A healthy adult should drink approximately 35 ml of water per kilogram of weight per day. According to this calculation, you need to drink ${(Hive.box("userProperties").get("userWeight") * 0.035).toStringAsFixed(1)} liters of water per day. You consumed ${Hive.box("userProperties").get("dailyWater").toStringAsFixed(1)} liter of water today.");
                   },
-                  child: NormalListItem(
-                      textInput: "Water Consumption",
-                      iconData: Icons.cancel,
-                      iconColors: Colors.red,
-                      topLeftCornerRadius: 0,
-                      topRightCornerRadius: 0,
-                      bottomLeftCornerRadius: 30,
-                      bottomRightCornerRadius: 30),
+                  child: ValueListenableBuilder(
+                    valueListenable: Hive.box("userProperties").listenable(),
+                    builder: (context, Box box, _) {
+                      if (box.get("dailyWater") >
+                          box.get("userWeight") * 0.035 * 0.9) {
+                        return NormalListItem(
+                          textInput: "Water Consumption",
+                          iconData: Icons.check,
+                          iconColors: Colors.green,
+                          topLeftCornerRadius: 0,
+                          topRightCornerRadius: 0,
+                          bottomLeftCornerRadius: 30,
+                          bottomRightCornerRadius: 30,
+                        );
+                      } else {
+                        return NormalListItem(
+                          textInput: "Water Consumption",
+                          iconData: Icons.close,
+                          iconColors: Colors.red,
+                          topLeftCornerRadius: 0,
+                          topRightCornerRadius: 0,
+                          bottomLeftCornerRadius: 30,
+                          bottomRightCornerRadius: 30,
+                        );
+                      }
+                    },
+                  ),
                 )),
             Expanded(flex: 2, child: Container()),
           ],

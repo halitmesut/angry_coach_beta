@@ -39,7 +39,9 @@ class _ReportPageState extends State<ReportPage> {
                               return const Text('empty');
                             } else {
                               return Text(
-                                  box.get("userReccommendedDailyIntake"),
+                                  box
+                                      .get("userReccommendedDailyIntake")
+                                      .toStringAsFixed(0),
                                   style: const TextStyle(
                                       color: Colors.black, fontSize: 22));
                             }
@@ -76,10 +78,9 @@ class _ReportPageState extends State<ReportPage> {
                                 const Color.fromARGB(69, 255, 158, 128),
                             circularStrokeCap: CircularStrokeCap.round,
                             percent: (box.get("dailyCal") /
-                                int.parse(
-                                    box.get("userReccommendedDailyIntake"))),
+                                box.get("userReccommendedDailyIntake")),
                             center: Text(
-                              "${((box.get("dailyCal") / int.parse(box.get("userReccommendedDailyIntake"))) * 100).toStringAsFixed(0)}%",
+                              "${((box.get("dailyCal") / box.get("userReccommendedDailyIntake")) * 100).toStringAsFixed(0)}%",
                               style: const TextStyle(fontSize: 40),
                             ),
                           );
@@ -105,8 +106,7 @@ class _ReportPageState extends State<ReportPage> {
                                     color: Colors.black, fontSize: 22));
                           } else {
                             return Text(
-                                (int.parse(box.get(
-                                            "userReccommendedDailyIntake")) -
+                                (box.get("userReccommendedDailyIntake") -
                                         box.get("dailyCal"))
                                     .toStringAsFixed(0),
                                 style: const TextStyle(

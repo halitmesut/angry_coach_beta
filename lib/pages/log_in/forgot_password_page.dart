@@ -81,6 +81,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
             MyButton(
               onPressedFunction: resetPassword,
+              textTop: '',
+              textBottom: '',
               text: "Reset Password",
               buttonColor: Colors.deepOrange,
             ),

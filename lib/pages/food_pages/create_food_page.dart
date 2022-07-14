@@ -201,6 +201,8 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                         timeInSecForIosWeb: 2);
                   }
                 },
+                textTop: '',
+                textBottom: '',
                 text: 'Create Food',
                 buttonColor: Colors.deepOrangeAccent),
             const SizedBox(height: 20),
@@ -268,6 +270,8 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                         timeInSecForIosWeb: 2);
                   }
                 },
+                textTop: '',
+                textBottom: '',
                 text: 'Create & Add Daily Calories',
                 buttonColor: Colors.deepOrangeAccent),
           ],
