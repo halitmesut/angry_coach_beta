@@ -85,9 +85,10 @@ class CoachPage extends StatelessWidget {
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 22));
                         } else {
-                          return Text('if else yapisinda hata var !!! hata var',
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 22));
+                          return const Text(
+                              'if else yapisinda hata var !!! hata var',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 22));
                         }
                       },
                     ),

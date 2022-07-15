@@ -1,6 +1,7 @@
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/model/usersfood.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class CreatedFoodSearchScreen extends StatefulWidget {
@@ -12,19 +13,23 @@ class CreatedFoodSearchScreen extends StatefulWidget {
 }
 
 class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
-  var foodBox = Hive.box("createdFood");
+  var createdFoodBox = Hive.box("createdFood");
   var userPropertiesBox = Hive.box("userProperties");
+  var likedFoodBox = Hive.box("likedFood");
 
   final TextEditingController nutritionController = TextEditingController();
   var isLoaded = false;
 
+  int selectedIconNumber = 0;
+
   // kullanicin yarattigi food listesi db nin icine kayitli
   List _createdFoods = [];
+  List likedFoodList = [];
 
 //search food method in user food local db
   void findAndSet(nutritionController) {
     setState(() {
-      var filteredFoods = foodBox.values
+      var filteredFoods = createdFoodBox.values
           // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
           .where((UsersFood) =>
               UsersFood.name
@@ -268,11 +273,12 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                                                                 food.amount *
                                                                 sliderAmount);
 
+                                                    // ignore: use_build_context_synchronously
                                                     Navigator.of(context).pop();
                                                   },
                                                   textTop: '',
                                                   textBottom: '',
-                                                  text: "Add your daily Intske",
+                                                  text: "Add your daily Intake",
                                                   buttonColor:
                                                       Colors.deepOrange,
                                                 ),
@@ -280,6 +286,19 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                                             );
                                           },
                                         ),
+                                        MyButton(
+                                            onPressedFunction: () {
+                                              Navigator.of(context).pop();
+                                              addFoodToIcon(
+                                                  context: context,
+                                                  foodIndex:
+                                                      _createdFoods[index]);
+                                            },
+                                            textTop: '',
+                                            text: 'add to shortcut icon ',
+                                            textBottom: '',
+                                            buttonColor:
+                                                Colors.deepPurpleAccent)
                                       ],
                                     ),
                                   ),
@@ -293,6 +312,323 @@ class _CreatedFoodSearchScreenState extends State<CreatedFoodSearchScreen> {
                   }),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  void addFoodToIcon({required BuildContext context, required var foodIndex}) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) => Center(
+              child: StatefulBuilder(builder: (context, state) {
+                return Container(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/tea.png",
+                                text: "Tea",
+                                iconNumber: 1,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 1;
+                                    likedFoodList =
+                                        likedFoodBox.get(1) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/milk.png",
+                                text: "Milk",
+                                iconNumber: 2,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 2;
+                                    likedFoodList =
+                                        likedFoodBox.get(2) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/cofee.png",
+                                text: "Cofee",
+                                iconNumber: 3,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 3;
+                                    likedFoodList = likedFoodBox.get(3) ?? [];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/water.png",
+                                text: "Water",
+                                iconNumber: 4,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 4;
+                                    likedFoodList =
+                                        likedFoodBox.get(4) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/bread.png",
+                                text: "Bread",
+                                iconNumber: 5,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 5;
+                                    likedFoodList =
+                                        likedFoodBox.get(5) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/olive.png",
+                                text: "Olive",
+                                iconNumber: 6,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 6;
+                                    likedFoodList =
+                                        likedFoodBox.get(6) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/cheese.png",
+                                text: "Cheese",
+                                iconNumber: 7,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 7;
+                                    likedFoodList =
+                                        likedFoodBox.get(7) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/egg.png",
+                                text: "Egg",
+                                iconNumber: 8,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 8;
+                                    likedFoodList =
+                                        likedFoodBox.get(8) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/cake.png",
+                                text: "Cake",
+                                iconNumber: 9,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 9;
+                                    likedFoodList =
+                                        likedFoodBox.get(9) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath:
+                                    "assets/nutritions/meatball.png",
+                                text: "Meatball",
+                                iconNumber: 10,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 10;
+                                    likedFoodList =
+                                        likedFoodBox.get(10) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/fish.png",
+                                text: "Fish",
+                                iconNumber: 11,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 11;
+                                    likedFoodList =
+                                        likedFoodBox.get(11) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath:
+                                    "assets/nutritions/chicken.png",
+                                text: "Chicken",
+                                iconNumber: 12,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 12;
+                                    likedFoodList =
+                                        likedFoodBox.get(12) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            iconPress(
+                                imagesAssetPath:
+                                    "assets/nutritions/spagetti.png",
+                                text: "Spagetti",
+                                iconNumber: 13,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 13;
+                                    likedFoodList =
+                                        likedFoodBox.get(13) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/rice.png",
+                                text: "Rice",
+                                iconNumber: 14,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 14;
+                                    likedFoodList =
+                                        likedFoodBox.get(14) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/banana.png",
+                                text: "Banana",
+                                iconNumber: 15,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 15;
+                                    likedFoodList =
+                                        likedFoodBox.get(15) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                            iconPress(
+                                imagesAssetPath: "assets/nutritions/salad.png",
+                                text: "Salad",
+                                iconNumber: 16,
+                                selectedButtonNumber: selectedIconNumber,
+                                function: () {
+                                  state(() {
+                                    selectedIconNumber = 16;
+                                    likedFoodList =
+                                        likedFoodBox.get(16) ?? <UsersFood>[];
+                                    debugPrint('$likedFoodList');
+                                  });
+                                }),
+                          ],
+                        ),
+                        MyButton(
+                            onPressedFunction: () {
+                              if (selectedIconNumber != 0) {
+                                likedFoodList.add(UsersFood(
+                                    id: foodIndex.id,
+                                    name: foodIndex.name,
+                                    amount: foodIndex.amount,
+                                    calorie: foodIndex.calorie,
+                                    carbohydrate: foodIndex.carbohydrate,
+                                    protein: foodIndex.protein,
+                                    fat: foodIndex.fat));
+                                // debugPrint(foodIndex.id.toString());
+                                // debugPrint(foodIndex.name.toString());
+                                // debugPrint(foodIndex.amount.toString());
+                                // debugPrint(foodIndex.calorie.toString());
+                                // debugPrint(foodIndex.carbohydrate.toString());
+                                // debugPrint(foodIndex.fat.toString());
+                                debugPrint('$likedFoodList');
+                                likedFoodBox.put(
+                                    selectedIconNumber, likedFoodList);
+                                //debugPrint('${likedFoodBox.get()}');
+                                Navigator.of(context).pop();
+                                selectedIconNumber = 0;
+                              } else {
+                                selectedIconNumber = 0;
+                                Fluttertoast.showToast(
+                                    msg: "You have to choose a category.",
+                                    fontSize: 18,
+                                    gravity: ToastGravity.CENTER,
+                                    backgroundColor: const Color.fromARGB(
+                                        255, 255, 200, 200),
+                                    textColor: Colors.black,
+                                    timeInSecForIosWeb: 2);
+                              }
+                            },
+                            textTop: '',
+                            text: 'add to shortcut iconn',
+                            textBottom: '',
+                            buttonColor: Colors.deepPurpleAccent)
+                      ],
+                    ));
+              }),
+            ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+        ));
+  }
+
+  Widget iconPress({
+    required String imagesAssetPath,
+    required String text,
+    required int iconNumber,
+    required int selectedButtonNumber,
+    required Function()? function,
+  }) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: function,
+        child: Container(
+          decoration: BoxDecoration(
+            color: iconNumber == selectedButtonNumber
+                ? const Color.fromARGB(255, 192, 170, 255)
+                : Colors.transparent,
+            borderRadius: const BorderRadius.all(Radius.circular(30)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(imagesAssetPath),
+              Text(
+                text,
+                style: const TextStyle(color: Colors.black),
+              ),
+            ],
+          ),
         ),
       ),
     );
