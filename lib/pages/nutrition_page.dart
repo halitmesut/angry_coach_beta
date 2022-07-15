@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
 import 'package:angry_coach_beta/extract/widgets.dart';
@@ -18,6 +20,7 @@ class NutritionPage extends StatefulWidget {
 class _NutritionPageState extends State<NutritionPage> {
   final calorieInputController = TextEditingController();
   var box = Hive.box("userProperties");
+  var likedFodBox = Hive.box("likedFood");
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +39,71 @@ class _NutritionPageState extends State<NutritionPage> {
                   Row(
                     children: [
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/tea.png",
-                          text: "Tea",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/tea.png",
+                        text: "Tea",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(1) == null
+                                ? 0
+                                : likedFodBox.get(1).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(1)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/milk.png",
-                          text: "Milk",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/milk.png",
+                        text: "Milk",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(2) == null
+                                ? 0
+                                : likedFodBox.get(2).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(2)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/cofee.png",
-                          text: "Cofee",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/cofee.png",
+                        text: "Cofee",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(3) == null
+                                ? 0
+                                : likedFodBox.get(3).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(3)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
@@ -175,9 +232,9 @@ class _NutritionPageState extends State<NutritionPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset("assets/nutritions/water.png"),
-                              Text(
+                              const Text(
                                 "Water",
-                                style: const TextStyle(color: Colors.black),
+                                style: TextStyle(color: Colors.black),
                               ),
                             ],
                           ),
@@ -188,61 +245,277 @@ class _NutritionPageState extends State<NutritionPage> {
                   Row(
                     children: [
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/bread.png",
-                          text: "Bread",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/bread.png",
+                        text: "Bread",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(5) == null
+                                ? 0
+                                : likedFodBox.get(5).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(5)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/olive.png",
-                          text: "Olive",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/olive.png",
+                        text: "Olive",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(6) == null
+                                ? 0
+                                : likedFodBox.get(6).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(6)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/cheese.png",
-                          text: "Cheese",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/cheese.png",
+                        text: "Cheese",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(7) == null
+                                ? 0
+                                : likedFodBox.get(7).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(7)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/egg.png",
-                          text: "Egg",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/egg.png",
+                        text: "Egg",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(8) == null
+                                ? 0
+                                : likedFodBox.get(8).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(8)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   Row(
                     children: [
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/cake.png",
-                          text: "Cake",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/cake.png",
+                        text: "Cake",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(9) == null
+                                ? 0
+                                : likedFodBox.get(9).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(9)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/meatball.png",
-                          text: "Meatball",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/meatball.png",
+                        text: "Meatball",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(10) == null
+                                ? 0
+                                : likedFodBox.get(10).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(10)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/fish.png",
-                          text: "Fish",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/fish.png",
+                        text: "Fish",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(11) == null
+                                ? 0
+                                : likedFodBox.get(11).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(11)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/chicken.png",
-                          text: "Chicken",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/chicken.png",
+                        text: "Chicken",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(12) == null
+                                ? 0
+                                : likedFodBox.get(12).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(12)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   Row(
                     children: [
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/spagetti.png",
-                          text: "Spagetti",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/spagetti.png",
+                        text: "Spagetti",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(13) == null
+                                ? 0
+                                : likedFodBox.get(13).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(13)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/rice.png",
-                          text: "Rice",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/rice.png",
+                        text: "Rice",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(14) == null
+                                ? 0
+                                : likedFodBox.get(14).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(14)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/banana.png",
-                          text: "Banana",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/banana.png",
+                        text: "Banana",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(15) == null
+                                ? 0
+                                : likedFodBox.get(15).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(15)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                       IconAndText(
-                          imagesAssetPath: "assets/nutritions/salad.png",
-                          text: "Salad",
-                          containersChild: const Text("you are in container")),
+                        imagesAssetPath: "assets/nutritions/salad.png",
+                        text: "Salad",
+                        containersChild: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: ListView.builder(
+                            itemCount: likedFodBox.get(16) == null
+                                ? 0
+                                : likedFodBox.get(16).length,
+                            itemBuilder: (context, index) {
+                              final food = likedFodBox.get(16)[index];
+                              return Text(
+                                food.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -260,7 +533,7 @@ class _NutritionPageState extends State<NutritionPage> {
                   }),
                   child: NormalListItem(
                       textInput: "Created Food Search",
-                      iconData: Icons.search,
+                      iconData: Icons.search_off_outlined,
                       iconColors: Colors.black,
                       topLeftCornerRadius: 30,
                       topRightCornerRadius: 30,
@@ -279,7 +552,7 @@ class _NutritionPageState extends State<NutritionPage> {
                   }),
                   child: NormalListItem(
                       textInput: "Search Food",
-                      iconData: Icons.search_off_outlined,
+                      iconData: Icons.search,
                       iconColors: Colors.black,
                       topLeftCornerRadius: 0,
                       topRightCornerRadius: 0,
@@ -413,7 +686,7 @@ class _NutritionPageState extends State<NutritionPage> {
                                 int.parse(calorieInputController.text) +
                                     box.get("dailyCal"),
                               );
-                              // ignore: use_build_context_synchronously
+
                               Navigator.of(context).pop();
                               calorieInputController.clear();
                             } else {
