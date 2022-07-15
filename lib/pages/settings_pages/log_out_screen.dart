@@ -16,7 +16,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
     final user = FirebaseAuth.instance.currentUser!;
     var foodBox = Hive.box("createdFood");
     var userPropertiesBox = Hive.box("userProperties");
-    var darkBox = Hive.openBox("darkMode");
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -151,13 +151,35 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       minWidth: double.infinity,
                       elevation: 0,
                       color: Colors.deepOrange,
-                      onPressed: () {},
+                      onPressed: () async {
+                        Hive.box("userProperties").put("dailyWater", 0.0);
+                        Hive.box("userProperties").put("dailyCal", 0.0);
+                        Hive.box("userProperties").put("dailyCar", 0.0);
+                        Hive.box("userProperties").put("dailyFat", 0.0);
+                        Hive.box("userProperties").put("dailyPro", 0.0);
+                        await Hive.box("likedFood").clear();
+                        debugPrint(Hive.box("userProperties")
+                            .get("dailyWater")
+                            .toString());
+                        debugPrint(Hive.box("userProperties")
+                            .get("dailyCal")
+                            .toString());
+                        debugPrint(Hive.box("userProperties")
+                            .get("dailyCar")
+                            .toString());
+                        debugPrint(Hive.box("userProperties")
+                            .get("dailyFat")
+                            .toString());
+                        debugPrint(Hive.box("userProperties")
+                            .get("dailyPro")
+                            .toString());
+                      },
                       height: 60,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: const Text(
-                        "Reset Password",
+                        "Reset Daily Intake",
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 22),
                       ),
@@ -190,7 +212,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
                         Navigator.pop(context);
                         await foodBox.clear();
                         await userPropertiesBox.clear();
-                        await Hive.close();
+                        await Hive.box("likedFood").clear();
                       },
                       height: 60,
                       shape: RoundedRectangleBorder(
