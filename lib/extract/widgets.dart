@@ -127,12 +127,7 @@ class IconAndText extends StatelessWidget {
         onTap: () {
           showModalBottomSheet(
               context: context,
-              builder: (context) => Center(
-                    child: Container(
-                      padding: const EdgeInsets.all(40),
-                      child: containersChild,
-                    ),
-                  ),
+              builder: (context) => Center(child: containersChild),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
               ));
