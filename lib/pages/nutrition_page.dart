@@ -20,8 +20,7 @@ class NutritionPage extends StatefulWidget {
 class _NutritionPageState extends State<NutritionPage> {
   final calorieInputController = TextEditingController();
   var box = Hive.box("userProperties");
-  var likedFodBox = Hive.box("likedFood");
-
+  var userPropertiesBox = Hive.box("userProperties");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,494 +31,461 @@ class _NutritionPageState extends State<NutritionPage> {
           children: [
             Expanded(
               flex: 74,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    children: [
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/tea.png",
-                        text: "Tea",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(1) == null
-                                ? 0
-                                : likedFodBox.get(1).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(1)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/milk.png",
-                        text: "Milk",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(2) == null
-                                ? 0
-                                : likedFodBox.get(2).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(2)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/cofee.png",
-                        text: "Cofee",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(3) == null
-                                ? 0
-                                : likedFodBox.get(3).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(3)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            int sliderAmount = 1;
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (context) => Center(
-                                      child: Container(
-                                        padding: const EdgeInsets.all(40),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            StatefulBuilder(
-                                              builder: (context, state) {
-                                                return Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "$sliderAmount glass of water",
-                                                      style: const TextStyle(
-                                                        fontSize: 25.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.black,
-                                                      ),
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .baseline,
-                                                      textBaseline: TextBaseline
-                                                          .alphabetic,
-                                                      children: [
-                                                        Text(
-                                                          '${(sliderAmount * 200).toString()} ml',
-                                                          style:
-                                                              const TextStyle(
-                                                            fontSize: 20.0,
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 20,
-                                                    ),
-                                                    Slider(
-                                                      value: sliderAmount
-                                                          .toDouble(),
-                                                      min: 0.0,
-                                                      max: 5.0,
-                                                      activeColor:
-                                                          Colors.deepOrange,
-                                                      inactiveColor:
-                                                          const Color.fromARGB(
-                                                              255,
-                                                              255,
-                                                              193,
-                                                              174),
-                                                      onChanged:
-                                                          (double newValue) {
-                                                        state(() {
-                                                          sliderAmount =
-                                                              newValue.round();
-                                                        });
-                                                        setState(() {
-                                                          sliderAmount =
-                                                              newValue.round();
-                                                          debugPrint(
-                                                              sliderAmount
-                                                                  .toString());
-                                                        });
-                                                      },
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 40,
-                                                    ),
-                                                    MyButton(
-                                                      onPressedFunction:
-                                                          () async {
-                                                        await Hive.box("userProperties").put(
-                                                            "dailyWater",
-                                                            Hive.box("userProperties")
-                                                                        .get(
-                                                                            "dailyWater") !=
-                                                                    null
-                                                                ? sliderAmount *
-                                                                        0.2 +
-                                                                    Hive.box(
-                                                                            "userProperties")
-                                                                        .get(
-                                                                            "dailyWater")
-                                                                : sliderAmount *
-                                                                    0.2);
-
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      },
-                                                      textTop: '',
-                                                      textBottom: '',
-                                                      text:
-                                                          "Add daily Consumption",
-                                                      buttonColor:
-                                                          Colors.deepOrange,
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(30)),
-                                ));
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/nutritions/water.png"),
-                              const Text(
-                                "Water",
-                                style: TextStyle(color: Colors.black),
+              child: ValueListenableBuilder(
+                  valueListenable: Hive.box("likedFood").listenable(),
+                  builder: (context, Box box, _) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/tea.png",
+                              text: "Tea",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(1) == null
+                                      ? 0
+                                      : box.get(1).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(1)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
                               ),
-                            ],
-                          ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/milk.png",
+                              text: "Milk",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(2) == null
+                                      ? 0
+                                      : box.get(2).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(2)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/cofee.png",
+                              text: "Cofee",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(3) == null
+                                      ? 0
+                                      : box.get(3).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(3)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  int sliderAmount = 1;
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) => Center(
+                                            child: Container(
+                                              padding: const EdgeInsets.all(40),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  StatefulBuilder(
+                                                    builder: (context, state) {
+                                                      return Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            "$sliderAmount glass of water",
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 25.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .baseline,
+                                                            textBaseline:
+                                                                TextBaseline
+                                                                    .alphabetic,
+                                                            children: [
+                                                              Text(
+                                                                '${(sliderAmount * 200).toString()} ml',
+                                                                style:
+                                                                    const TextStyle(
+                                                                  fontSize:
+                                                                      20.0,
+                                                                  color: Colors
+                                                                      .black,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 20,
+                                                          ),
+                                                          Slider(
+                                                            value: sliderAmount
+                                                                .toDouble(),
+                                                            min: 0.0,
+                                                            max: 5.0,
+                                                            activeColor: Colors
+                                                                .deepOrange,
+                                                            inactiveColor:
+                                                                const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    255,
+                                                                    193,
+                                                                    174),
+                                                            onChanged: (double
+                                                                newValue) {
+                                                              state(() {
+                                                                sliderAmount =
+                                                                    newValue
+                                                                        .round();
+                                                              });
+                                                              setState(() {
+                                                                sliderAmount =
+                                                                    newValue
+                                                                        .round();
+                                                                debugPrint(
+                                                                    sliderAmount
+                                                                        .toString());
+                                                              });
+                                                            },
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 40,
+                                                          ),
+                                                          MyButton(
+                                                            onPressedFunction:
+                                                                () async {
+                                                              await Hive.box("userProperties").put(
+                                                                  "dailyWater",
+                                                                  Hive.box("userProperties").get(
+                                                                              "dailyWater") !=
+                                                                          null
+                                                                      ? sliderAmount *
+                                                                              0.2 +
+                                                                          Hive.box("userProperties").get(
+                                                                              "dailyWater")
+                                                                      : sliderAmount *
+                                                                          0.2);
+
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            textTop: '',
+                                                            textBottom: '',
+                                                            text:
+                                                                "Add daily Consumption",
+                                                            buttonColor: Colors
+                                                                .deepOrange,
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(30)),
+                                      ));
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset("assets/nutritions/water.png"),
+                                    const Text(
+                                      "Water",
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/bread.png",
-                        text: "Bread",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(5) == null
-                                ? 0
-                                : likedFodBox.get(5).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(5)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
+                        Row(
+                          children: [
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/bread.png",
+                              text: "Bread",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(5) == null
+                                      ? 0
+                                      : box.get(5).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(5)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/olive.png",
+                              text: "Olive",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(6) == null
+                                      ? 0
+                                      : box.get(6).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(6)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/cheese.png",
+                              text: "Cheese",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(7) == null
+                                      ? 0
+                                      : box.get(7).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(7)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/egg.png",
+                              text: "Egg",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(8) == null
+                                      ? 0
+                                      : box.get(8).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(8)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/olive.png",
-                        text: "Olive",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(6) == null
-                                ? 0
-                                : likedFodBox.get(6).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(6)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
+                        Row(
+                          children: [
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/cake.png",
+                              text: "Cake",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(9) == null
+                                      ? 0
+                                      : box.get(9).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(9)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/meatball.png",
+                              text: "Meatball",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(10) == null
+                                      ? 0
+                                      : box.get(10).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(10)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/fish.png",
+                              text: "Fish",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(11) == null
+                                      ? 0
+                                      : box.get(11).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(11)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/chicken.png",
+                              text: "Chicken",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(12) == null
+                                      ? 0
+                                      : box.get(12).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(12)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/cheese.png",
-                        text: "Cheese",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(7) == null
-                                ? 0
-                                : likedFodBox.get(7).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(7)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
+                        Row(
+                          children: [
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/spagetti.png",
+                              text: "Spagetti",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(13) == null
+                                      ? 0
+                                      : box.get(13).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(13)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/rice.png",
+                              text: "Rice",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(14) == null
+                                      ? 0
+                                      : box.get(14).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(14)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/banana.png",
+                              text: "Banana",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(15) == null
+                                      ? 0
+                                      : box.get(15).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(15)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            IconAndText(
+                              imagesAssetPath: "assets/nutritions/salad.png",
+                              text: "Salad",
+                              containersChild: Container(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  itemCount: box.get(16) == null
+                                      ? 0
+                                      : box.get(16).length,
+                                  itemBuilder: (context, index) {
+                                    final food = box.get(16)[index];
+                                    return ShowSelectedItemsBottomSheet(
+                                      food: food,
+                                      userPropertiesBox: userPropertiesBox,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/egg.png",
-                        text: "Egg",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(8) == null
-                                ? 0
-                                : likedFodBox.get(8).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(8)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/cake.png",
-                        text: "Cake",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(9) == null
-                                ? 0
-                                : likedFodBox.get(9).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(9)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/meatball.png",
-                        text: "Meatball",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(10) == null
-                                ? 0
-                                : likedFodBox.get(10).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(10)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/fish.png",
-                        text: "Fish",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(11) == null
-                                ? 0
-                                : likedFodBox.get(11).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(11)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/chicken.png",
-                        text: "Chicken",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(12) == null
-                                ? 0
-                                : likedFodBox.get(12).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(12)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/spagetti.png",
-                        text: "Spagetti",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(13) == null
-                                ? 0
-                                : likedFodBox.get(13).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(13)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/rice.png",
-                        text: "Rice",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(14) == null
-                                ? 0
-                                : likedFodBox.get(14).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(14)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/banana.png",
-                        text: "Banana",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(15) == null
-                                ? 0
-                                : likedFodBox.get(15).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(15)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      IconAndText(
-                        imagesAssetPath: "assets/nutritions/salad.png",
-                        text: "Salad",
-                        containersChild: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: ListView.builder(
-                            itemCount: likedFodBox.get(16) == null
-                                ? 0
-                                : likedFodBox.get(16).length,
-                            itemBuilder: (context, index) {
-                              final food = likedFodBox.get(16)[index];
-                              return Text(
-                                food.name,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                      ],
+                    );
+                  }),
             ),
             Expanded(
                 flex: 10,
@@ -708,4 +674,165 @@ class _NutritionPageState extends State<NutritionPage> {
                   ),
                 )),
       );
+}
+
+class ShowSelectedItemsBottomSheet extends StatelessWidget {
+  const ShowSelectedItemsBottomSheet(
+      {Key? key, required this.food, required this.userPropertiesBox})
+      : super(key: key);
+
+  final food;
+  final userPropertiesBox;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pop();
+        int sliderAmount = food.amount;
+        showModalBottomSheet(
+            context: context,
+            builder: (context) => Center(
+                  child: Container(
+                    padding: const EdgeInsets.all(40),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Amount of ${food.name.toString().toUpperCase()}",
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                        StatefulBuilder(
+                          builder: (context, state) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.baseline,
+                                  textBaseline: TextBaseline.alphabetic,
+                                  children: [
+                                    const SizedBox(
+                                      width: 30.0,
+                                    ),
+                                    Text(
+                                      sliderAmount.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 30.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    const Text(
+                                      "gr",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Slider(
+                                  value: sliderAmount.toDouble(),
+                                  min: 10.0,
+                                  max: 500.0,
+                                  activeColor: Colors.deepOrange,
+                                  inactiveColor:
+                                      const Color.fromARGB(255, 255, 193, 174),
+                                  onChanged: (double newValue) {
+                                    state(() {
+                                      sliderAmount = newValue.round();
+                                    });
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 40,
+                                ),
+                                MyButton(
+                                  onPressedFunction: () async {
+                                    await userPropertiesBox.put(
+                                        "dailyCal",
+                                        userPropertiesBox.get("dailyCal") !=
+                                                null
+                                            ? food.calorie /
+                                                    food.amount *
+                                                    sliderAmount +
+                                                userPropertiesBox
+                                                    .get("dailyCal")
+                                            : food.calorie /
+                                                food.amount *
+                                                sliderAmount);
+                                    await userPropertiesBox.put(
+                                        "dailyPro",
+                                        userPropertiesBox.get("dailyPro") !=
+                                                null
+                                            ? food.protein /
+                                                    food.amount *
+                                                    sliderAmount +
+                                                userPropertiesBox
+                                                    .get("dailyPro")
+                                            : food.protein /
+                                                food.amount *
+                                                sliderAmount);
+                                    await userPropertiesBox.put(
+                                        "dailyCar",
+                                        userPropertiesBox.get("dailyCar") !=
+                                                null
+                                            ? food.carbohydrate /
+                                                    food.amount *
+                                                    sliderAmount +
+                                                userPropertiesBox
+                                                    .get("dailyCar")
+                                            : food.carbohydrate /
+                                                food.amount *
+                                                sliderAmount);
+                                    await userPropertiesBox.put(
+                                        "dailyFat",
+                                        userPropertiesBox.get("dailyFat") !=
+                                                null
+                                            ? food.fat /
+                                                    food.amount *
+                                                    sliderAmount +
+                                                userPropertiesBox
+                                                    .get("dailyFat")
+                                            : food.fat /
+                                                food.amount *
+                                                sliderAmount);
+
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.of(context).pop();
+                                  },
+                                  textTop: '',
+                                  textBottom: '',
+                                  text: "Add your daily Intake",
+                                  buttonColor: Colors.deepOrange,
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+            ));
+      },
+      child: Text(
+        food.name,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
 }
