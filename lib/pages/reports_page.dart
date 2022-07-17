@@ -1,6 +1,7 @@
 import 'package:angry_coach_beta/extract/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class ReportPage extends StatefulWidget {
@@ -11,6 +12,9 @@ class ReportPage extends StatefulWidget {
 }
 
 class _ReportPageState extends State<ReportPage> {
+  var dayTime = DateFormat('yyMMddHH').format(DateTime.now());
+  var userDailyValuesBox = Hive.box("userDailyValues");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,17 +37,19 @@ class _ReportPageState extends State<ReportPage> {
                         ),
                         ValueListenableBuilder(
                           valueListenable:
-                              Hive.box("userProperties").listenable(),
+                              Hive.box("userDailyValues").listenable(),
                           builder: (context, Box box, _) {
-                            if (box.values.isEmpty) {
-                              return const Text('empty');
+                            if (box.get('userRecommendedDailyIntake') == null) {
+                              return const Text('null',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 22));
                             } else {
                               return Text(
                                   box
-                                      .get("userReccommendedDailyIntake")
+                                      .get("userRecommendedDailyIntake")
                                       .toStringAsFixed(0),
                                   style: const TextStyle(
-                                      color: Colors.black, fontSize: 22));
+                                      color: Colors.black, fontSize: 28));
                             }
                           },
                         ),
@@ -98,16 +104,28 @@ class _ReportPageState extends State<ReportPage> {
                       ),
                       ValueListenableBuilder(
                         valueListenable:
-                            Hive.box("userProperties").listenable(),
+                            Hive.box("userDailyValues").listenable(),
                         builder: (context, Box box, _) {
-                          if (box.get('dailyCal') == null) {
-                            return const Text('0',
+                          if (box.get('calorie') == null) {
+                            return const Text('null 31',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 22));
+                          } else if (box.get('calorie')[dayTime] == null) {
+                            return Text(
+                                box
+                                    .get('userRecommendedDailyIntake')
+                                    .toStringAsFixed(0),
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 22));
+                          } else if (box.get('userRecommendedDailyIntake') ==
+                              null) {
+                            return const Text('null 33',
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 22));
                           } else {
                             return Text(
                                 (box.get("userReccommendedDailyIntake") -
-                                        box.get("dailyCal"))
+                                        box.get('calorie')[dayTime])
                                     .toStringAsFixed(0),
                                 style: const TextStyle(
                                     color: Colors.black, fontSize: 22));
@@ -146,14 +164,19 @@ class _ReportPageState extends State<ReportPage> {
                       width: 5,
                     ),
                     ValueListenableBuilder(
-                      valueListenable: Hive.box("userProperties").listenable(),
+                      valueListenable: Hive.box("userDailyValues").listenable(),
                       builder: (context, Box box, _) {
-                        if (box.get('dailyCal') == null) {
+                        if (box.get('calorie') == null) {
+                          return const Text('0',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 22));
+                        } else if (box.get('calorie')[dayTime] == null) {
                           return const Text('0',
                               style:
                                   TextStyle(color: Colors.black, fontSize: 22));
                         } else {
-                          return Text(box.get("dailyCal").toStringAsFixed(0),
+                          return Text(
+                              box.get("calorie")[dayTime].toStringAsFixed(0),
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 28));
                         }
@@ -193,9 +216,16 @@ class _ReportPageState extends State<ReportPage> {
                           const Text('Prot'),
                           ValueListenableBuilder(
                             valueListenable:
-                                Hive.box("userProperties").listenable(),
+                                Hive.box("userDailyValues").listenable(),
                             builder: (context, Box box, _) {
-                              if (box.get("dailyPro") == null) {
+                              if (box.get("protein") == null) {
+                                return const Text(
+                                  '0',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                  textAlign: TextAlign.center,
+                                );
+                              } else if (box.get("protein")[dayTime] == null) {
                                 return const Text(
                                   '0',
                                   style: TextStyle(
@@ -204,7 +234,9 @@ class _ReportPageState extends State<ReportPage> {
                                 );
                               } else {
                                 return Text(
-                                  box.get("dailyPro").toStringAsFixed(1),
+                                  box
+                                      .get("protein")[dayTime]
+                                      .toStringAsFixed(1),
                                   style: const TextStyle(
                                       color: Colors.black, fontSize: 20),
                                   textAlign: TextAlign.center,
@@ -220,16 +252,24 @@ class _ReportPageState extends State<ReportPage> {
                           const Text('Carbs'),
                           ValueListenableBuilder(
                             valueListenable:
-                                Hive.box("userProperties").listenable(),
+                                Hive.box("userDailyValues").listenable(),
                             builder: (context, Box box, _) {
-                              if (box.get("dailyCar") == null) {
+                              if (box.get("carbohydrate") == null) {
+                                return const Text('0',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 20),
+                                    textAlign: TextAlign.center);
+                              } else if (box.get("carbohydrate")[dayTime] ==
+                                  null) {
                                 return const Text('0',
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 20),
                                     textAlign: TextAlign.center);
                               } else {
                                 return Text(
-                                  box.get("dailyCar").toStringAsFixed(1),
+                                  box
+                                      .get("carbohydrate")[dayTime]
+                                      .toStringAsFixed(1),
                                   style: const TextStyle(
                                       color: Colors.black, fontSize: 20),
                                   textAlign: TextAlign.center,
@@ -245,18 +285,26 @@ class _ReportPageState extends State<ReportPage> {
                           const Text('Fat'),
                           ValueListenableBuilder(
                             valueListenable:
-                                Hive.box("userProperties").listenable(),
+                                Hive.box("userDailyValues").listenable(),
                             builder: (context, Box box, _) {
-                              if (box.get("dailyFat") == null) {
+                              if (box.get("fat") == null) {
                                 return const Text(
                                   '0',
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                   textAlign: TextAlign.center,
                                 );
-                              } else {
+                              } else if (box.get("fat")[dayTime] == null) {
+                                return const Text(
+                                  '0',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                  textAlign: TextAlign.center,
+                                );
+                              }
+                              {
                                 return Text(
-                                  box.get("dailyFat").toStringAsFixed(1),
+                                  box.get("fat")[dayTime].toStringAsFixed(1),
                                   style: const TextStyle(
                                       color: Colors.black, fontSize: 20),
                                   textAlign: TextAlign.center,
