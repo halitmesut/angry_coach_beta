@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 
 class SignUp9PromiseAgree extends StatefulWidget {
   const SignUp9PromiseAgree({Key? key}) : super(key: key);
@@ -14,9 +15,14 @@ class SignUp9PromiseAgree extends StatefulWidget {
 }
 
 class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
+  var userPropertiesBox = Hive.box("userProperties");
+  var userDailyValuesBox = Hive.box("userDailyValues");
+  var dayTime = DateFormat('yyMMddHH').format(DateTime.now());
+
   @override
   Widget build(BuildContext context) {
-    var box = Hive.box("userProperties");
+    Map allWaters = userDailyValuesBox.get("water") ?? {};
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
@@ -56,7 +62,7 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
             MyButton(
               onPressedFunction: () {
                 setState(() {
-                  box.put("userPromise", "I Promise");
+                  userPropertiesBox.put("userPromise", "I Promise");
                 });
 
                 // context.read<UserProperties>().getUserPromise("I promise");
@@ -64,7 +70,7 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
               textTop: '',
               textBottom: '',
               text: "I promise",
-              buttonColor: box.get("userPromise") == "I Promise"
+              buttonColor: userPropertiesBox.get("userPromise") == "I Promise"
                   ? const Color.fromARGB(255, 162, 194, 249)
                   : Colors.white,
             ),
@@ -74,7 +80,7 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
             MyButton(
               onPressedFunction: () {
                 setState(() {
-                  box.put("userPromise", "I Do Not");
+                  userPropertiesBox.put("userPromise", "I Do Not");
                 });
 
                 //context.read<UserProperties>().getUserPromise("I don't");
@@ -82,7 +88,7 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
               textTop: '',
               textBottom: '',
               text: "I don't",
-              buttonColor: box.get("userPromise") == "I Do Not"
+              buttonColor: userPropertiesBox.get("userPromise") == "I Do Not"
                   ? const Color.fromARGB(255, 255, 41, 41)
                   : Colors.white,
             ),
@@ -91,31 +97,36 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
             ),
             MyButton(
                 onPressedFunction: () {
-                  if (box.get("userPromise") == "I Promise") {
-                    debugPrint(box.toMap().toString());
+                  if (userPropertiesBox.get("userPromise") == "I Promise") {
+                    debugPrint(userPropertiesBox.toMap().toString());
 
                     RecommendedDailyIntake recommendedDailyIntake =
                         RecommendedDailyIntake(
-                            userGender: box.get("userGender"),
-                            userActivityLevel: box.get("userActivityLevel"),
-                            userDietGoal: box.get("userPurpose"),
-                            userAge: box.get("userAge"),
-                            userHeight: box.get("userHeight"),
-                            userWeight: box.get("userWeight"));
-                    box.put(
-                        "userReccommendedDailyIntake",
+                            userGender: userPropertiesBox.get("userGender"),
+                            userActivityLevel:
+                                userPropertiesBox.get("userActivityLevel"),
+                            userDietGoal: userPropertiesBox.get("userPurpose"),
+                            userAge: userPropertiesBox.get("userAge"),
+                            userHeight: userPropertiesBox.get("userHeight"),
+                            userWeight: userPropertiesBox.get("userWeight"));
+
+                    userDailyValuesBox.put(
+                        "userRecommendedDailyIntake",
                         recommendedDailyIntake
                             .recommendedDailyIntakeFunction());
 
-                    box.put("dailyWater", 0.0);
+                    userDailyValuesBox.put('water', {dayTime: 0.0});
 
-                    debugPrint(box.get("userReccommendedDailyIntake"));
+                    debugPrint(userDailyValuesBox
+                        .get("userRecommendedDailyIntake")
+                        .toStringAsFixed(0));
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const SignUpPage()),
                     );
-                  } else if (box.get("userPromise") == "I Do Not") {
+                  } else if (userPropertiesBox.get("userPromise") ==
+                      "I Do Not") {
                     Fluttertoast.showToast(
                         msg:
                             "I'm not going on this journey with people who don't make promis. Find yourself another coach. Get out and Delete My App!!!",
