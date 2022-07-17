@@ -2,9 +2,21 @@ import 'package:angry_coach_beta/extract/widgets.dart';
 import 'package:angry_coach_beta/pages/coach_pages/speech_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 
-class CoachPage extends StatelessWidget {
+class CoachPage extends StatefulWidget {
   const CoachPage({Key? key}) : super(key: key);
+
+  @override
+  State<CoachPage> createState() => _CoachPageState();
+}
+
+class _CoachPageState extends State<CoachPage> {
+  var userPropertiesBox = Hive.box("userProperties");
+
+  var userDailyValuesBox = Hive.box("userDailyValues");
+
+  var dayTime = DateFormat('yyMMddHH').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +55,9 @@ class CoachPage extends StatelessWidget {
                   ),
                   child: Center(
                     child: ValueListenableBuilder(
-                      valueListenable: Hive.box("userProperties").listenable(),
+                      valueListenable: Hive.box("userDailyValues").listenable(),
                       builder: (context, Box box, _) {
-                        if (box.get("dailyCal") == 0 &&
+                        if (box.get("calorie") == 0 &&
                             box.get("dailyWater") == 0) {
                           return Text(veryBadSpeech[0],
                               style: const TextStyle(
@@ -179,7 +191,7 @@ class CoachPage extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     bottomSheetText(context,
-                        "A healthy adult should drink approximately 35 ml of water per kilogram of weight per day. According to this calculation, you need to drink ${(Hive.box("userProperties").get("userWeight") * 0.035).toStringAsFixed(1)} liters of water per day. You consumed ${Hive.box("userProperties").get("dailyWater").toStringAsFixed(1)} liter of water today.");
+                        "A healthy adult should drink approximately 35 ml of water per kilogram of weight per day. According to this calculation, you need to drink ${(Hive.box("userProperties").get("userWeight") * 0.035).toStringAsFixed(1)} liters of water per day. You consumed ${userDailyValuesBox.get("water")[dayTime] != null ? userDailyValuesBox.get("water")[dayTime].toStringAsFixed(1) : 0} liter of water today.");
                   },
                   child: ValueListenableBuilder(
                     valueListenable: Hive.box("userProperties").listenable(),
