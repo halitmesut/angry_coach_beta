@@ -19,6 +19,7 @@ Future<void> main() async {
   await Hive.openBox("darkMode");
   await Hive.openBox("createdFood");
   await Hive.openBox("likedFood");
+  await Hive.openBox("userDailyValues");
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
