@@ -158,6 +158,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
                         Hive.box("userProperties").put("dailyFat", 0.0);
                         Hive.box("userProperties").put("dailyPro", 0.0);
                         await Hive.box("likedFood").clear();
+                        // await Hive.box("userDailyValues").clear();
                         debugPrint(Hive.box("userProperties")
                             .get("dailyWater")
                             .toString());

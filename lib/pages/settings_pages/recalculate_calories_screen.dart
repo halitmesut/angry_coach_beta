@@ -32,7 +32,8 @@ class _RecalculateMyDailyCaloriesScreenState
     "Very Active",
     "Very High Active"
   ];
-  var box = Hive.box("userProperties");
+  var userPropertiesBox = Hive.box("userProperties");
+  var userDailyValuesBox = Hive.box("userDailyValues");
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,9 @@ class _RecalculateMyDailyCaloriesScreenState
             children: [
               const SizedBox(height: 20),
               Text(
-                box.get("userReccommendedDailyIntake").toStringAsFixed(0),
+                userPropertiesBox
+                    .get("userReccommendedDailyIntake")
+                    .toStringAsFixed(0),
                 style: const TextStyle(fontSize: 30),
               ),
               const Text("Your Recommended Daily Intake"),
@@ -71,7 +74,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Age",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(box.get("userAge").toString()),
+                subtitle: Text(userPropertiesBox.get("userAge").toString()),
                 //Text(context.watch<UserProperties>().userAge.toString()),
                 isThreeLine: false,
                 visualDensity:
@@ -96,7 +99,7 @@ class _RecalculateMyDailyCaloriesScreenState
                                 .toList(),
                             onSelectedItemChanged: (index) {
                               setState(() {
-                                box.put("userAge", ages[index]);
+                                userPropertiesBox.put("userAge", ages[index]);
                               });
                               // context
                               //     .read<UserProperties>()
@@ -118,7 +121,8 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Height",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text("${box.get("userHeight").toString()}cm"),
+                subtitle:
+                    Text("${userPropertiesBox.get("userHeight").toString()}cm"),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -134,7 +138,8 @@ class _RecalculateMyDailyCaloriesScreenState
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
                                 setState(() {
-                                  box.put("userHeight", height[index]);
+                                  userPropertiesBox.put(
+                                      "userHeight", height[index]);
                                 });
                                 // context
                                 //     .read<UserProperties>()
@@ -165,7 +170,8 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Weight",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text("${box.get("userWeight").toString()}cm"),
+                subtitle:
+                    Text("${userPropertiesBox.get("userWeight").toString()}cm"),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -181,7 +187,8 @@ class _RecalculateMyDailyCaloriesScreenState
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
                                 setState(() {
-                                  box.put("userWeight", weight[index]);
+                                  userPropertiesBox.put(
+                                      "userWeight", weight[index]);
                                 });
 
                                 // context
@@ -213,7 +220,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Gender",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(box.get("userGender").toString()),
+                subtitle: Text(userPropertiesBox.get("userGender").toString()),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -229,7 +236,8 @@ class _RecalculateMyDailyCaloriesScreenState
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
                                 setState(() {
-                                  box.put("userGender", gender[index]);
+                                  userPropertiesBox.put(
+                                      "userGender", gender[index]);
                                 });
                                 // context
                                 //     .read<UserProperties>()
@@ -260,7 +268,7 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Diet Goal",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(box.get("userPurpose").toString()),
+                subtitle: Text(userPropertiesBox.get("userPurpose").toString()),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -276,7 +284,8 @@ class _RecalculateMyDailyCaloriesScreenState
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
                                 setState(() {
-                                  box.put("userPurpose", dietGoal[index]);
+                                  userPropertiesBox.put(
+                                      "userPurpose", dietGoal[index]);
                                 });
                                 // context
                                 //     .read<UserProperties>()
@@ -309,7 +318,8 @@ class _RecalculateMyDailyCaloriesScreenState
                   "Activity Level",
                   style: TextStyle(fontSize: 20),
                 ),
-                subtitle: Text(box.get("userActivityLevel").toString()),
+                subtitle:
+                    Text(userPropertiesBox.get("userActivityLevel").toString()),
                 isThreeLine: false,
                 visualDensity:
                     const VisualDensity(horizontal: -4, vertical: -4),
@@ -325,7 +335,7 @@ class _RecalculateMyDailyCaloriesScreenState
                               itemExtent: 64,
                               onSelectedItemChanged: (index) {
                                 setState(() {
-                                  box.put("userActivityLevel",
+                                  userPropertiesBox.put("userActivityLevel",
                                       activityLevel[index]);
                                 });
                                 // context
@@ -374,18 +384,21 @@ class _RecalculateMyDailyCaloriesScreenState
                     setState(() {
                       RecommendedDailyIntake recommendedDailyIntake =
                           RecommendedDailyIntake(
-                              userGender: box.get("userGender"),
-                              userActivityLevel: box.get("userActivityLevel"),
-                              userDietGoal: box.get("userPurpose"),
-                              userAge: box.get("userAge"),
-                              userHeight: box.get("userHeight"),
-                              userWeight: box.get("userWeight"));
-                      box.put(
-                          "userReccommendedDailyIntake",
+                              userGender: userPropertiesBox.get("userGender"),
+                              userActivityLevel:
+                                  userPropertiesBox.get("userActivityLevel"),
+                              userDietGoal:
+                                  userPropertiesBox.get("userPurpose"),
+                              userAge: userPropertiesBox.get("userAge"),
+                              userHeight: userPropertiesBox.get("userHeight"),
+                              userWeight: userPropertiesBox.get("userWeight"));
+                      userDailyValuesBox.put(
+                          "userRecommendedDailyIntake",
                           recommendedDailyIntake
                               .recommendedDailyIntakeFunction());
                     });
-                    debugPrint(box.get("userReccommendedDailyIntake"));
+                    debugPrint(
+                        userDailyValuesBox.get("userRecommendedDailyIntake"));
                   },
                   height: 60,
                   // ignore: prefer_const_constructors, sort_child_properties_last
