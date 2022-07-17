@@ -9,6 +9,7 @@ import 'package:angry_coach_beta/pages/food_pages/created_food_search_screen.dar
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 
 class NutritionPage extends StatefulWidget {
   const NutritionPage({Key? key}) : super(key: key);
@@ -19,10 +20,14 @@ class NutritionPage extends StatefulWidget {
 
 class _NutritionPageState extends State<NutritionPage> {
   final calorieInputController = TextEditingController();
-  var box = Hive.box("userProperties");
+
   var userPropertiesBox = Hive.box("userProperties");
+
+  var userDailyValuesBox = Hive.box("userDailyValues");
+  var dayTime = DateFormat('yyMMddHH').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
+    Map allWaters = userDailyValuesBox.get("water") ?? {};
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -193,17 +198,18 @@ class _NutritionPageState extends State<NutritionPage> {
                                                           MyButton(
                                                             onPressedFunction:
                                                                 () async {
-                                                              await Hive.box("userProperties").put(
-                                                                  "dailyWater",
-                                                                  Hive.box("userProperties").get(
-                                                                              "dailyWater") !=
-                                                                          null
-                                                                      ? sliderAmount *
-                                                                              0.2 +
-                                                                          Hive.box("userProperties").get(
-                                                                              "dailyWater")
-                                                                      : sliderAmount *
-                                                                          0.2);
+                                                              await userDailyValuesBox.put(
+                                                                  'water',
+                                                                  allWaters.containsKey(
+                                                                          dayTime)
+                                                                      ? {
+                                                                          dayTime:
+                                                                              allWaters[dayTime] + sliderAmount * 0.2
+                                                                        }
+                                                                      : {
+                                                                          dayTime:
+                                                                              sliderAmount * 0.2
+                                                                        });
 
                                                               Navigator.of(
                                                                       context)
@@ -647,10 +653,10 @@ class _NutritionPageState extends State<NutritionPage> {
                           onPressedFunction: () async {
                             if (calorieInputController.text.length < 5) {
                               // await box.put("dailyInput", 0);
-                              await box.put(
+                              await userPropertiesBox.put(
                                 "dailyCal",
                                 int.parse(calorieInputController.text) +
-                                    box.get("dailyCal"),
+                                    userPropertiesBox.get("dailyCal"),
                               );
 
                               Navigator.of(context).pop();
