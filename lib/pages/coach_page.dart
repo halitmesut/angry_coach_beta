@@ -57,50 +57,47 @@ class _CoachPageState extends State<CoachPage> {
                     child: ValueListenableBuilder(
                       valueListenable: Hive.box("userDailyValues").listenable(),
                       builder: (context, Box box, _) {
-                        if (box.get("calorie") == 0 &&
-                            box.get("dailyWater") == 0) {
-                          return Text(veryBadSpeech[0],
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 22));
-                        } else if (box.get("dailyCal") <
-                                box.get("userReccommendedDailyIntake") * 0.9 &&
-                            box.get("dailyWater") <
-                                box.get("userWeight") * 0.035 * 0.9) {
-                          return Text(badSpeech[0],
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 22));
-                        } else if (box.get("dailyCal") >
-                                box.get("userReccommendedDailyIntake") * 1.1 &&
-                            box.get("dailyWater") >
-                                box.get("userWeight") * 0.035 * 0.9) {
-                          return Text(normalSpeech[0],
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 22));
-                        } else if (box.get("userReccommendedDailyIntake") *
-                                    0.5 <
-                                box.get("dailyCal") &&
-                            box.get("dailyCal") <
-                                box.get("userReccommendedDailyIntake") * 0.9 &&
-                            box.get("dailyWater") >
-                                box.get("userWeight") * 0.035 * 0.9) {
-                          return Text(goodSpeech[0],
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 22));
-                        } else if (box.get("userReccommendedDailyIntake") *
-                                    0.9 <
-                                box.get("dailyCal") &&
-                            box.get("dailyCal") <
-                                box.get("userReccommendedDailyIntake") * 1.1 &&
-                            box.get("dailyWater") >
-                                box.get("userWeight") * 0.035 * 0.9) {
-                          return Text(veryGoodSpeech[0],
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 22));
+                        if (box.get('water') == null) {
+                          if (box.get('calorie') == null) {
+                            return const Text('water null calorie null');
+                          } else if (box.get('calorie') != null) {
+                            return const Text('water null calorie not null');
+                          } else {
+                            return const Text('1-1 else shown');
+                          }
+                        } else if (box.get('water') != null) {
+                          if (box.get('calori') == null) {
+                            return const Text('water not null calorie nulllll');
+                          } else if (box.get('calorie') != null) {
+                            // return Text('fsjf');
+
+                            if (box.get('water')[dayTime] == null) {
+                              if (box.get('calorie')[dayTime] == null) {
+                                return const Text(
+                                    'water dayTime null calorie dayTime null');
+                              } else if (box.get('calorie')[dayTime] != null) {
+                                return const Text(
+                                    'water dayTime null calorie dayTime not null');
+                              } else {
+                                return const Text('1-1 else shown');
+                              }
+                            } else if (box.get('water')[dayTime] != null) {
+                              if (box.get('calori')[dayTime] == null) {
+                                return const Text(
+                                    'water dayTime not null calorie dayTime null');
+                              } else if (box.get('calorie')[dayTime] != null) {
+                                return Text('fsjf');
+                              } else {
+                                return const Text('water dayTime null else ');
+                              }
+                            } else {
+                              return const Text('secondie first else shown');
+                            }
+                          } else {
+                            return const Text('water null else ');
+                          }
                         } else {
-                          return const Text(
-                              'if else yapisinda hata var !!! hata var',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 22));
+                          return const Text('first else shown');
                         }
                       },
                     ),
@@ -114,12 +111,23 @@ class _CoachPageState extends State<CoachPage> {
               child: GestureDetector(
                 onTap: () {
                   bottomSheetText(context,
-                      "Senden gün içinde yediğin leblebi tanesini bile bana söylemeni istiyorum. Birşeyler yer ve bana söylemezen kızarım. Söylersen ise düzgün bir programla yolumuza devam eder, bizi görenleri hayretlere düşürürüz.");
+                      "I want you to tell me even the chickpeas you ate during the day. If you eat something and don't tell me, I get angry. If you tell me, we will continue on our way with a proper program, and we will amaze those who see us.");
                 },
                 child: ValueListenableBuilder(
-                  valueListenable: Hive.box("userProperties").listenable(),
+                  valueListenable: Hive.box("userDailyValues").listenable(),
                   builder: (context, Box box, _) {
-                    if (box.get("dailyCal") > 0) {
+                    if (box.get("calorie") == null ||
+                        box.get("calorie")[dayTime] == null) {
+                      return NormalListItem(
+                        textInput: "Nutrient Input 1",
+                        iconData: Icons.close,
+                        iconColors: Colors.red,
+                        topLeftCornerRadius: 30,
+                        topRightCornerRadius: 30,
+                        bottomLeftCornerRadius: 0,
+                        bottomRightCornerRadius: 0,
+                      );
+                    } else if (box.get("calorie")[dayTime] > 0) {
                       return NormalListItem(
                         textInput: "Nutrient Input",
                         iconData: Icons.check,
@@ -149,17 +157,29 @@ class _CoachPageState extends State<CoachPage> {
               flex: 10,
               child: GestureDetector(
                 onTap: () {
-                  bottomSheetText(context,
-                      "Sana o kadar güzel bir kalori hesabı yaptım ki, harfiyyen uyman gerekiyor. Ne çok fazla, ne çok az. Tam sana göre. Fakat senin için yüzde 10'luk bir sapmayı gözardı edebilirim. Bu miktarın dışındaki sapmalarda çok öfkelenirim.");
+                  bottomSheetText(
+                      context,
+                      "I gave you such a good calorie calculation that you have to follow it exactly. Neither too much nor too little. Suits you perfectly. According to this calculation, you need to takr ${(Hive.box("userDailyValues").get("userRecommendedDailyIntake")).toStringAsFixed(0)} kcal per day. You consumed ${userDailyValuesBox.get("calorie") == null ? 0 : userDailyValuesBox.get("calorie")[dayTime] == null ? 0 : userDailyValuesBox.get("calorie")[dayTime].toStringAsFixed(0)} kcal. But I can ignore a 10 percent deviation for you. ");
                 },
                 child: ValueListenableBuilder(
-                  valueListenable: Hive.box("userProperties").listenable(),
+                  valueListenable: Hive.box("userDailyValues").listenable(),
                   builder: (context, Box box, _) {
-                    if (box.get("dailyCal") /
-                                box.get("userReccommendedDailyIntake") >
+                    if (box.get("calorie") == null ||
+                        box.get("calorie")[dayTime] == null) {
+                      return NormalListItem(
+                        textInput: "Calorie Goal 1",
+                        iconData: Icons.close,
+                        iconColors: Colors.red,
+                        topLeftCornerRadius: 0,
+                        topRightCornerRadius: 0,
+                        bottomLeftCornerRadius: 0,
+                        bottomRightCornerRadius: 0,
+                      );
+                    } else if (box.get("calorie")[dayTime] /
+                                box.get("userRecommendedDailyIntake") >
                             0.9 &&
-                        box.get("dailyCal") /
-                                box.get("userReccommendedDailyIntake") <
+                        box.get("calorie") /
+                                box.get("userRecommendedDailyIntake") <
                             1.1) {
                       return NormalListItem(
                         textInput: "Calorie Goal",
@@ -194,12 +214,24 @@ class _CoachPageState extends State<CoachPage> {
                         "A healthy adult should drink approximately 35 ml of water per kilogram of weight per day. According to this calculation, you need to drink ${(Hive.box("userProperties").get("userWeight") * 0.035).toStringAsFixed(1)} liters of water per day. You consumed ${userDailyValuesBox.get("water")[dayTime] != null ? userDailyValuesBox.get("water")[dayTime].toStringAsFixed(1) : 0} liter of water today.");
                   },
                   child: ValueListenableBuilder(
-                    valueListenable: Hive.box("userProperties").listenable(),
+                    // userDailyValuesBox.get("water")[dayTime] != null ? userDailyValuesBox.get("water")[dayTime].toStringAsFixed(1) : 0
+                    valueListenable: Hive.box("userDailyValues").listenable(),
                     builder: (context, Box box, _) {
-                      if (box.get("dailyWater") >
-                          box.get("userWeight") * 0.035 * 0.9) {
+                      if (box.get("water") == null ||
+                          box.get("water")[dayTime] == null) {
                         return NormalListItem(
-                          textInput: "Water Consumption",
+                          textInput: "Water Consumption1",
+                          iconData: Icons.close,
+                          iconColors: Colors.red,
+                          topLeftCornerRadius: 0,
+                          topRightCornerRadius: 0,
+                          bottomLeftCornerRadius: 30,
+                          bottomRightCornerRadius: 30,
+                        );
+                      } else if (box.get("water")[dayTime] >
+                          userPropertiesBox.get("userWeight") * 0.035 * 0.9) {
+                        return NormalListItem(
+                          textInput: "Water Consumption3",
                           iconData: Icons.check,
                           iconColors: Colors.green,
                           topLeftCornerRadius: 0,
@@ -209,7 +241,7 @@ class _CoachPageState extends State<CoachPage> {
                         );
                       } else {
                         return NormalListItem(
-                          textInput: "Water Consumption",
+                          textInput: "Water Consumption4",
                           iconData: Icons.close,
                           iconColors: Colors.red,
                           topLeftCornerRadius: 0,
