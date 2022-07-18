@@ -58,8 +58,8 @@ class _RecalculateMyDailyCaloriesScreenState
             children: [
               const SizedBox(height: 20),
               Text(
-                userPropertiesBox
-                    .get("userReccommendedDailyIntake")
+                userDailyValuesBox
+                    .get("userRecommendedDailyIntake")
                     .toStringAsFixed(0),
                 style: const TextStyle(fontSize: 30),
               ),
