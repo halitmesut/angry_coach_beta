@@ -61,7 +61,7 @@ class _FoodSearchScreenState extends State<FoodSearchScreen> {
                 controller: nutritionController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search),
-                  hintText: 'Food Name',
+                  hintText: 'Food Name$allCalories',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide: const BorderSide(color: Colors.black),
@@ -217,82 +217,97 @@ class _FoodSearchScreenState extends State<FoodSearchScreen> {
                                                 MyButton(
                                                   onPressedFunction: () async {
                                                     debugPrint(dayTime);
-                                                    await userDailyValuesBox.put(
-                                                        "calorie",
-                                                        allCalories.containsKey(
-                                                                dayTime)
-                                                            ? {
-                                                                dayTime: allCalories[
-                                                                        dayTime] +
-                                                                    food.kcalEnergy /
-                                                                        food.gramWeight *
-                                                                        sliderAmount
-                                                              }
-                                                            : {
-                                                                dayTime: food
-                                                                        .kcalEnergy /
-                                                                    food.gramWeight *
-                                                                    sliderAmount
-                                                              });
 
-                                                    await userDailyValuesBox
-                                                        .put(
-                                                            "protein",
-                                                            allProteins
-                                                                    .containsKey(
-                                                                        dayTime)
-                                                                ? {
-                                                                    dayTime: allProteins[
-                                                                            dayTime] +
-                                                                        food.gramProtein /
-                                                                            food.gramWeight *
-                                                                            sliderAmount
-                                                                  }
-                                                                : {
-                                                                    dayTime: food
-                                                                            .gramProtein /
-                                                                        food.gramWeight *
-                                                                        sliderAmount
-                                                                  });
+                                                    if (allCalories
+                                                        .containsKey(dayTime)) {
+                                                      allCalories.update(
+                                                          dayTime,
+                                                          (value) =>
+                                                              value +
+                                                              food.kcalEnergy /
+                                                                  food.gramWeight *
+                                                                  sliderAmount);
 
-                                                    await userDailyValuesBox
-                                                        .put(
-                                                            "carbohydrate",
-                                                            allCarbohydrates
-                                                                    .containsKey(
-                                                                        dayTime)
-                                                                ? {
-                                                                    dayTime: allCarbohydrates[
-                                                                            dayTime] +
-                                                                        food.gramCarbohydrate /
-                                                                            food.gramWeight *
-                                                                            sliderAmount
-                                                                  }
-                                                                : {
-                                                                    dayTime: food
-                                                                            .gramCarbohydrate /
-                                                                        food.gramWeight *
-                                                                        sliderAmount
-                                                                  });
+                                                      userDailyValuesBox.put(
+                                                          "calorie",
+                                                          allCalories);
+                                                    } else {
+                                                      allCalories[dayTime] =
+                                                          food.kcalEnergy /
+                                                              food.gramWeight *
+                                                              sliderAmount;
+                                                      userDailyValuesBox.put(
+                                                          "calorie",
+                                                          allCalories);
+                                                    }
 
-                                                    await userDailyValuesBox
-                                                        .put(
-                                                            "fat",
-                                                            allFats.containsKey(
-                                                                    dayTime)
-                                                                ? {
-                                                                    dayTime: allFats[
-                                                                            dayTime] +
-                                                                        food.gramFat /
-                                                                            food.gramWeight *
-                                                                            sliderAmount
-                                                                  }
-                                                                : {
-                                                                    dayTime: food
-                                                                            .gramFat /
-                                                                        food.gramWeight *
-                                                                        sliderAmount
-                                                                  });
+                                                    if (allProteins
+                                                        .containsKey(dayTime)) {
+                                                      allProteins.update(
+                                                          dayTime,
+                                                          (value) =>
+                                                              value +
+                                                              food.gramProtein /
+                                                                  food.gramWeight *
+                                                                  sliderAmount);
+
+                                                      userDailyValuesBox.put(
+                                                          "protein",
+                                                          allProteins);
+                                                    } else {
+                                                      allProteins[dayTime] =
+                                                          food.gramProtein /
+                                                              food.gramWeight *
+                                                              sliderAmount;
+                                                      userDailyValuesBox.put(
+                                                          "protein",
+                                                          allProteins);
+                                                    }
+
+                                                    if (allCarbohydrates
+                                                        .containsKey(dayTime)) {
+                                                      allCarbohydrates.update(
+                                                          dayTime,
+                                                          (value) =>
+                                                              value +
+                                                              food.gramCarbohydrate /
+                                                                  food.gramWeight *
+                                                                  sliderAmount);
+
+                                                      userDailyValuesBox.put(
+                                                          "carbohydrate",
+                                                          allCarbohydrates);
+                                                    } else {
+                                                      allCarbohydrates[
+                                                              dayTime] =
+                                                          food.gramCarbohydrate /
+                                                              food.gramWeight *
+                                                              sliderAmount;
+                                                      userDailyValuesBox.put(
+                                                          "carbohydrate",
+                                                          allCarbohydrates);
+                                                    }
+
+                                                    if (allFats
+                                                        .containsKey(dayTime)) {
+                                                      allFats.update(
+                                                          dayTime,
+                                                          (value) =>
+                                                              value +
+                                                              food.gramFat /
+                                                                  food.gramWeight *
+                                                                  sliderAmount);
+
+                                                      userDailyValuesBox.put(
+                                                          "fat", allFats);
+                                                    } else {
+                                                      allFats[dayTime] =
+                                                          food.gramFat /
+                                                              food.gramWeight *
+                                                              sliderAmount;
+                                                      userDailyValuesBox.put(
+                                                          "fat", allFats);
+                                                    }
 
                                                     Navigator.of(context).pop();
                                                   },
