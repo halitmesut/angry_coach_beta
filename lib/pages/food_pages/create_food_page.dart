@@ -4,6 +4,7 @@ import 'package:angry_coach_beta/model/usersfood.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 
 class CreateFoodScreen extends StatefulWidget {
   const CreateFoodScreen({Key? key}) : super(key: key);
@@ -13,8 +14,13 @@ class CreateFoodScreen extends StatefulWidget {
 }
 
 class _CreateFoodScreenState extends State<CreateFoodScreen> {
-  var foodBox = Hive.box("createdFood");
   var userPropertiesBox = Hive.box("userProperties");
+
+  var createdFoodBox = Hive.box("createdFood");
+  var likedFoodBox = Hive.box("likedFood");
+  var userDailyValuesBox = Hive.box("userDailyValues");
+  var dayTime = DateFormat('yyMMddHH').format(DateTime.now());
+
   final TextEditingController foodNameController = TextEditingController();
   final TextEditingController foodAmountController = TextEditingController();
   final TextEditingController calorieAmountController = TextEditingController();
@@ -23,6 +29,10 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
   final TextEditingController fatAmountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    Map allCalories = userDailyValuesBox.get("calorie") ?? {};
+    Map allProteins = userDailyValuesBox.get("protein") ?? {};
+    Map allCarbohydrates = userDailyValuesBox.get("carbohydrate") ?? {};
+    Map allFats = userDailyValuesBox.get("fat") ?? {};
     return Scaffold(
       appBar: AppBar(
         title: const Text("Create Food"),
@@ -173,8 +183,8 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                       proteinAmountController.text.isNotEmpty &&
                       carbAmountController.text.isNotEmpty &&
                       fatAmountController.text.isNotEmpty) {
-                    await foodBox.add(UsersFood(
-                        id: foodBox.length,
+                    await createdFoodBox.add(UsersFood(
+                        id: createdFoodBox.length,
                         name: foodNameController.text.toLowerCase(),
                         amount: int.parse(foodAmountController.text),
                         calorie: int.parse(calorieAmountController.text),
@@ -190,8 +200,6 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                     carbAmountController.clear();
                     fatAmountController.clear();
                   } else {
-                    userPropertiesBox.put('dailyCal', 0);
-                    debugPrint(userPropertiesBox.get('dailyCal').toString());
                     Fluttertoast.showToast(
                         msg: "You must enter all fields.",
                         fontSize: 18,
@@ -214,8 +222,8 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                       proteinAmountController.text.isNotEmpty &&
                       carbAmountController.text.isNotEmpty &&
                       fatAmountController.text.isNotEmpty) {
-                    await foodBox.add(UsersFood(
-                        id: foodBox.length,
+                    await createdFoodBox.add(UsersFood(
+                        id: createdFoodBox.length,
                         name: foodNameController.text.toLowerCase(),
                         amount: int.parse(foodAmountController.text),
                         calorie: int.parse(calorieAmountController.text),
@@ -223,24 +231,72 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
                         protein: int.parse(proteinAmountController.text),
                         fat: int.parse(fatAmountController.text)));
 
-                    await userPropertiesBox.put(
-                        "dailyCal",
-                        userPropertiesBox.get("dailyCal") != null
-                            ? int.parse(calorieAmountController.text) +
-                                userPropertiesBox.get("dailyCal")
-                            : int.parse(calorieAmountController.text));
-                    await userPropertiesBox.put(
-                        "dailyPro",
-                        userPropertiesBox.get("dailyPro") != null
-                            ? int.parse(proteinAmountController.text) +
-                                userPropertiesBox.get("dailyPro")
-                            : int.parse(proteinAmountController.text));
-                    await userPropertiesBox.put(
-                        "dailyCar",
-                        userPropertiesBox.get("dailyCar") != null
-                            ? int.parse(carbAmountController.text) +
-                                userPropertiesBox.get("dailyCar")
-                            : int.parse(carbAmountController.text));
+                    if (allCalories.containsKey(dayTime)) {
+                      allCalories.update(
+                          dayTime,
+                          (value) =>
+                              value + int.parse(calorieAmountController.text));
+                      userDailyValuesBox.put("calorie", allCalories);
+                    } else {
+                      allCalories[dayTime] =
+                          int.parse(calorieAmountController.text);
+                      userDailyValuesBox.put("calorie", allCalories);
+                    }
+
+                    // await userPropertiesBox.put(
+                    //     "dailyCal",
+                    //     userPropertiesBox.get("dailyCal") != null
+                    //         ? int.parse(calorieAmountController.text) +
+                    //             userPropertiesBox.get("dailyCal")
+                    //         : int.parse(calorieAmountController.text));
+
+                    if (allProteins.containsKey(dayTime)) {
+                      allProteins.update(
+                          dayTime,
+                          (value) =>
+                              value + int.parse(proteinAmountController.text));
+                      userDailyValuesBox.put("protein", allProteins);
+                    } else {
+                      allProteins[dayTime] =
+                          int.parse(proteinAmountController.text);
+                      userDailyValuesBox.put("protein", allProteins);
+                    }
+
+                    // await userPropertiesBox.put(
+                    //     "dailyPro",
+                    //     userPropertiesBox.get("dailyPro") != null
+                    //         ? int.parse(proteinAmountController.text) +
+                    //             userPropertiesBox.get("dailyPro")
+                    //         : int.parse(proteinAmountController.text));
+                    if (allCarbohydrates.containsKey(dayTime)) {
+                      allCarbohydrates.update(
+                          dayTime,
+                          (value) =>
+                              value + int.parse(carbAmountController.text));
+                      userDailyValuesBox.put("carbohydrate", allCarbohydrates);
+                    } else {
+                      allCarbohydrates[dayTime] =
+                          int.parse(carbAmountController.text);
+                      userDailyValuesBox.put("carbohydrate", allCarbohydrates);
+                    }
+
+                    // await userPropertiesBox.put(
+                    //     "dailyCar",
+                    //     userPropertiesBox.get("dailyCar") != null
+                    //         ? int.parse(carbAmountController.text) +
+                    //             userPropertiesBox.get("dailyCar")
+                    //         : int.parse(carbAmountController.text));
+                    if (allFats.containsKey(dayTime)) {
+                      allFats.update(
+                          dayTime,
+                          (value) =>
+                              value + int.parse(fatAmountController.text));
+                      userDailyValuesBox.put("fat", allFats);
+                    } else {
+                      allFats[dayTime] = int.parse(fatAmountController.text);
+                      userDailyValuesBox.put("fat", allFats);
+                    }
+
                     await userPropertiesBox.put(
                         "dailyFat",
                         userPropertiesBox.get("dailyFat") != null
@@ -259,7 +315,7 @@ class _CreateFoodScreenState extends State<CreateFoodScreen> {
 
                     // foodBox.clear();
 
-                    debugPrint(foodBox.toMap().toString());
+                    //debugPrint(createdFoodBox.toMap().toString());
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter all fields.",
