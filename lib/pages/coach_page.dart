@@ -66,7 +66,7 @@ class _CoachPageState extends State<CoachPage> {
                             return const Text('1-1 else shown');
                           }
                         } else if (box.get('water') != null) {
-                          if (box.get('calori') == null) {
+                          if (box.get('calorie') == null) {
                             return const Text('water not null calorie nulllll');
                           } else if (box.get('calorie') != null) {
                             // return Text('fsjf');
@@ -178,7 +178,7 @@ class _CoachPageState extends State<CoachPage> {
                     } else if (box.get("calorie")[dayTime] /
                                 box.get("userRecommendedDailyIntake") >
                             0.9 &&
-                        box.get("calorie") /
+                        box.get("calorie")[dayTime] /
                                 box.get("userRecommendedDailyIntake") <
                             1.1) {
                       return NormalListItem(
