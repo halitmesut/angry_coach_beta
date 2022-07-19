@@ -17,6 +17,10 @@ class _ReportPageState extends State<ReportPage> {
 
   @override
   Widget build(BuildContext context) {
+    Map allCalories = userDailyValuesBox.get("calorie") ?? {};
+    Map allProteins = userDailyValuesBox.get("protein") ?? {};
+    Map allCarbohydrates = userDailyValuesBox.get("carbohydrate") ?? {};
+    Map allFats = userDailyValuesBox.get("fat") ?? {};
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -40,9 +44,13 @@ class _ReportPageState extends State<ReportPage> {
                               Hive.box("userDailyValues").listenable(),
                           builder: (context, Box box, _) {
                             if (box.get('userRecommendedDailyIntake') == null) {
-                              return const Text('null',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 22));
+                              box.put('userRecommendedDailyIntake', 6666);
+                              return Text(
+                                  box
+                                      .get("userRecommendedDailyIntake")
+                                      .toStringAsFixed(0),
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 28));
                             } else {
                               return Text(
                                   box
@@ -59,9 +67,10 @@ class _ReportPageState extends State<ReportPage> {
                   Expanded(
                     flex: 2,
                     child: ValueListenableBuilder(
-                      valueListenable: Hive.box("userProperties").listenable(),
+                      valueListenable: Hive.box("userDailyValues").listenable(),
                       builder: (context, Box box, _) {
-                        if (box.get('dailyCal') == null) {
+                        if (box.get("calorie") == null ||
+                            box.get('calorie')[dayTime] == null) {
                           return CircularPercentIndicator(
                             radius: 90,
                             lineWidth: 22,
@@ -75,7 +84,9 @@ class _ReportPageState extends State<ReportPage> {
                               style: TextStyle(fontSize: 40),
                             ),
                           );
-                        } else {
+                        } else if ((box.get("calorie")[dayTime] /
+                                box.get("userRecommendedDailyIntake")) <
+                            1) {
                           return CircularPercentIndicator(
                             radius: 90,
                             lineWidth: 22,
@@ -83,13 +94,43 @@ class _ReportPageState extends State<ReportPage> {
                             backgroundColor:
                                 const Color.fromARGB(69, 255, 158, 128),
                             circularStrokeCap: CircularStrokeCap.round,
-                            percent: (box.get("dailyCal") /
-                                box.get("userReccommendedDailyIntake")),
+                            percent: (box.get("calorie")[dayTime] /
+                                box.get("userRecommendedDailyIntake")),
                             center: Text(
-                              "${((box.get("dailyCal") / box.get("userReccommendedDailyIntake")) * 100).toStringAsFixed(0)}%",
+                              "${((box.get("calorie")[dayTime] / box.get("userRecommendedDailyIntake")) * 100).toStringAsFixed(0)}%",
                               style: const TextStyle(fontSize: 40),
                             ),
                           );
+                        } else if ((box.get("calorie")[dayTime] /
+                                box.get("userRecommendedDailyIntake")) >
+                            1) {
+                          double result = box.get("calorie")[dayTime] /
+                              box.get("userRecommendedDailyIntake");
+
+                          int tour = result.toInt();
+                          double afterDot = result - tour;
+
+                          return CircularPercentIndicator(
+                            radius: 90,
+                            lineWidth: 22,
+                            progressColor: Colors.deepOrangeAccent,
+                            backgroundColor: Color.fromARGB(255, 254, 176, 176),
+                            circularStrokeCap: CircularStrokeCap.round,
+                            percent: afterDot,
+                            center: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('overlow $tour time'),
+                                Text(
+                                  "${(afterDot * 100).toStringAsFixed(0)}%",
+                                  style: const TextStyle(fontSize: 40),
+                                ),
+                                const Text(''),
+                              ],
+                            ),
+                          );
+                        } else {
+                          return const Text('fsfs');
                         }
                       },
                     ),
@@ -106,29 +147,24 @@ class _ReportPageState extends State<ReportPage> {
                         valueListenable:
                             Hive.box("userDailyValues").listenable(),
                         builder: (context, Box box, _) {
-                          if (box.get('calorie') == null) {
-                            return const Text('null 31',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 22));
-                          } else if (box.get('calorie')[dayTime] == null) {
-                            return Text(
-                                box
-                                    .get('userRecommendedDailyIntake')
-                                    .toStringAsFixed(0),
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 22));
-                          } else if (box.get('userRecommendedDailyIntake') ==
-                              null) {
-                            return const Text('null 33',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 22));
-                          } else {
-                            return Text(
-                                (box.get("userReccommendedDailyIntake") -
-                                        box.get('calorie')[dayTime])
-                                    .toStringAsFixed(0),
+                          if (allCalories.containsKey(dayTime)) {
+                            String calculation =
+                                (box.get("userRecommendedDailyIntake") -
+                                        allCalories[dayTime])
+                                    .toStringAsFixed(0);
+                            return Text(calculation,
                                 style: const TextStyle(
-                                    color: Colors.black, fontSize: 22));
+                                    color: Colors.black, fontSize: 28));
+                          } else {
+                            allCalories[dayTime] = 0.0;
+                            userDailyValuesBox.put("calorie", allCalories);
+                            String calculation =
+                                (box.get("userRecommendedDailyIntake") -
+                                        allCalories[dayTime])
+                                    .toStringAsFixed(0);
+                            return Text(calculation,
+                                style: const TextStyle(
+                                    color: Colors.black, fontSize: 28));
                           }
                         },
                       ),
@@ -167,18 +203,26 @@ class _ReportPageState extends State<ReportPage> {
                       valueListenable: Hive.box("userDailyValues").listenable(),
                       builder: (context, Box box, _) {
                         if (box.get('calorie') == null) {
-                          return const Text('0',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 22));
+                          allCalories[dayTime] = 0.0;
+                          box.put('calorie', allCalories);
+                          return Text(allCalories[dayTime].toStringAsFixed(0),
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 22));
                         } else if (box.get('calorie')[dayTime] == null) {
-                          return const Text('0',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 22));
-                        } else {
+                          allCalories[dayTime] = 0.0;
+                          box.put('calorie', allCalories);
+                          return Text(allCalories[dayTime].toStringAsFixed(0),
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 22));
+                        } else if (box.get('calorie')[dayTime] != null) {
                           return Text(
                               box.get("calorie")[dayTime].toStringAsFixed(0),
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 28));
+                        } else {
+                          return const Text('error ',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 28));
                         }
                       },
                     ),
@@ -218,29 +262,31 @@ class _ReportPageState extends State<ReportPage> {
                             valueListenable:
                                 Hive.box("userDailyValues").listenable(),
                             builder: (context, Box box, _) {
-                              if (box.get("protein") == null) {
-                                return const Text(
-                                  '0',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                  textAlign: TextAlign.center,
-                                );
-                              } else if (box.get("protein")[dayTime] == null) {
-                                return const Text(
-                                  '0',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                  textAlign: TextAlign.center,
-                                );
-                              } else {
+                              if (box.get('protein') == null) {
+                                allProteins[dayTime] = 0.0;
+                                box.put('protein', allProteins);
                                 return Text(
-                                  box
-                                      .get("protein")[dayTime]
-                                      .toStringAsFixed(1),
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                  textAlign: TextAlign.center,
-                                );
+                                    allProteins[dayTime].toStringAsFixed(1),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 22));
+                              } else if (box.get('protein')[dayTime] == null) {
+                                allProteins[dayTime] = 0.0;
+                                box.put('protein', allProteins);
+                                return Text(
+                                    allProteins[dayTime].toStringAsFixed(1),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 22));
+                              } else if (box.get('protein')[dayTime] != null) {
+                                return Text(
+                                    box
+                                        .get("protein")[dayTime]
+                                        .toStringAsFixed(1),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 28));
+                              } else {
+                                return const Text('error ',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 28));
                               }
                             },
                           ),
@@ -254,26 +300,35 @@ class _ReportPageState extends State<ReportPage> {
                             valueListenable:
                                 Hive.box("userDailyValues").listenable(),
                             builder: (context, Box box, _) {
-                              if (box.get("carbohydrate") == null) {
-                                return const Text('0',
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 20),
-                                    textAlign: TextAlign.center);
-                              } else if (box.get("carbohydrate")[dayTime] ==
-                                  null) {
-                                return const Text('0',
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 20),
-                                    textAlign: TextAlign.center);
-                              } else {
+                              if (box.get('carbohydrate') == null) {
+                                allCarbohydrates[dayTime] = 0.0;
+                                box.put('carbohydrate', allCarbohydrates);
                                 return Text(
-                                  box
-                                      .get("carbohydrate")[dayTime]
-                                      .toStringAsFixed(1),
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                  textAlign: TextAlign.center,
-                                );
+                                    allCarbohydrates[dayTime]
+                                        .toStringAsFixed(1),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 22));
+                              } else if (box.get('carbohydrate')[dayTime] ==
+                                  null) {
+                                allCarbohydrates[dayTime] = 0.0;
+                                box.put('carbohydrate', allCarbohydrates);
+                                return Text(
+                                    allCarbohydrates[dayTime]
+                                        .toStringAsFixed(1),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 22));
+                              } else if (box.get('carbohydrate')[dayTime] !=
+                                  null) {
+                                return Text(
+                                    box
+                                        .get("carbohydrate")[dayTime]
+                                        .toStringAsFixed(1),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 28));
+                              } else {
+                                return const Text('error ',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 28));
                               }
                             },
                           ),
@@ -287,28 +342,27 @@ class _ReportPageState extends State<ReportPage> {
                             valueListenable:
                                 Hive.box("userDailyValues").listenable(),
                             builder: (context, Box box, _) {
-                              if (box.get("fat") == null) {
-                                return const Text(
-                                  '0',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                  textAlign: TextAlign.center,
-                                );
-                              } else if (box.get("fat")[dayTime] == null) {
-                                return const Text(
-                                  '0',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                  textAlign: TextAlign.center,
-                                );
-                              }
-                              {
+                              if (box.get('fat') == null) {
+                                allFats[dayTime] = 0.0;
+                                box.put('fat', allFats);
+                                return Text(allFats[dayTime].toStringAsFixed(1),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 22));
+                              } else if (box.get('fat')[dayTime] == null) {
+                                allFats[dayTime] = 0.0;
+                                box.put('fat', allFats);
+                                return Text(allFats[dayTime].toStringAsFixed(1),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 22));
+                              } else if (box.get('fat')[dayTime] != null) {
                                 return Text(
-                                  box.get("fat")[dayTime].toStringAsFixed(1),
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                  textAlign: TextAlign.center,
-                                );
+                                    box.get("fat")[dayTime].toStringAsFixed(1),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 28));
+                              } else {
+                                return const Text('error ',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 28));
                               }
                             },
                           ),
