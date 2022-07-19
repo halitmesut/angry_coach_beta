@@ -22,11 +22,15 @@ class _NutritionPageState extends State<NutritionPage> {
   final calorieInputController = TextEditingController();
 
   var userPropertiesBox = Hive.box("userProperties");
-
   var userDailyValuesBox = Hive.box("userDailyValues");
   var dayTime = DateFormat('yyMMddHH').format(DateTime.now());
+
   @override
   Widget build(BuildContext context) {
+    Map allCalories = userDailyValuesBox.get("calorie") ?? {};
+    Map allProteins = userDailyValuesBox.get("protein") ?? {};
+    Map allCarbohydrates = userDailyValuesBox.get("carbohydrate") ?? {};
+    Map allFats = userDailyValuesBox.get("fat") ?? {};
     Map allWaters = userDailyValuesBox.get("water") ?? {};
     return Scaffold(
       body: Padding(
@@ -57,9 +61,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(1)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -76,9 +85,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(2)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -95,9 +109,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(3)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -198,18 +217,29 @@ class _NutritionPageState extends State<NutritionPage> {
                                                           MyButton(
                                                             onPressedFunction:
                                                                 () async {
-                                                              await userDailyValuesBox.put(
-                                                                  'water',
-                                                                  allWaters.containsKey(
-                                                                          dayTime)
-                                                                      ? {
-                                                                          dayTime:
-                                                                              allWaters[dayTime] + sliderAmount * 0.2
-                                                                        }
-                                                                      : {
-                                                                          dayTime:
-                                                                              sliderAmount * 0.2
-                                                                        });
+                                                              if (allWaters
+                                                                  .containsKey(
+                                                                      dayTime)) {
+                                                                allWaters.update(
+                                                                    dayTime,
+                                                                    (value) =>
+                                                                        value +
+                                                                        sliderAmount *
+                                                                            0.2);
+                                                                userDailyValuesBox
+                                                                    .put(
+                                                                        "water",
+                                                                        allWaters);
+                                                              } else {
+                                                                allWaters[
+                                                                        dayTime] =
+                                                                    sliderAmount *
+                                                                        0.2;
+                                                                userDailyValuesBox
+                                                                    .put(
+                                                                        "water",
+                                                                        allWaters);
+                                                              }
 
                                                               Navigator.of(
                                                                       context)
@@ -263,9 +293,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(5)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -282,9 +317,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(6)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -301,9 +341,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(7)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -320,9 +365,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(8)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -343,9 +393,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(9)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -362,9 +417,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(10)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -381,9 +441,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(11)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -400,9 +465,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(12)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -423,9 +493,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(13)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -442,9 +517,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(14)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -461,9 +541,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(15)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -480,9 +565,14 @@ class _NutritionPageState extends State<NutritionPage> {
                                   itemBuilder: (context, index) {
                                     final food = box.get(16)[index];
                                     return ShowSelectedItemsBottomSheet(
-                                      food: food,
-                                      userPropertiesBox: userPropertiesBox,
-                                    );
+                                        food: food,
+                                        userPropertiesBox: userPropertiesBox,
+                                        allCalories: allCalories,
+                                        allCarbohydrates: allCarbohydrates,
+                                        allFats: allFats,
+                                        allProteins: allProteins,
+                                        dayTime: dayTime,
+                                        userDailyValuesBox: userDailyValuesBox);
                                   },
                                 ),
                               ),
@@ -684,11 +774,25 @@ class _NutritionPageState extends State<NutritionPage> {
 
 class ShowSelectedItemsBottomSheet extends StatelessWidget {
   const ShowSelectedItemsBottomSheet(
-      {Key? key, required this.food, required this.userPropertiesBox})
+      {Key? key,
+      required this.food,
+      required this.userPropertiesBox,
+      required this.allCalories,
+      required this.allCarbohydrates,
+      required this.allFats,
+      required this.allProteins,
+      required this.dayTime,
+      required this.userDailyValuesBox})
       : super(key: key);
 
   final food;
   final userPropertiesBox;
+  final allCalories;
+  final allProteins;
+  final allCarbohydrates;
+  final allFats;
+  final dayTime;
+  final userDailyValuesBox;
 
   @override
   Widget build(BuildContext context) {
@@ -764,54 +868,75 @@ class ShowSelectedItemsBottomSheet extends StatelessWidget {
                                 ),
                                 MyButton(
                                   onPressedFunction: () async {
-                                    await userPropertiesBox.put(
-                                        "dailyCal",
-                                        userPropertiesBox.get("dailyCal") !=
-                                                null
-                                            ? food.calorie /
-                                                    food.amount *
-                                                    sliderAmount +
-                                                userPropertiesBox
-                                                    .get("dailyCal")
-                                            : food.calorie /
-                                                food.amount *
-                                                sliderAmount);
-                                    await userPropertiesBox.put(
-                                        "dailyPro",
-                                        userPropertiesBox.get("dailyPro") !=
-                                                null
-                                            ? food.protein /
-                                                    food.amount *
-                                                    sliderAmount +
-                                                userPropertiesBox
-                                                    .get("dailyPro")
-                                            : food.protein /
-                                                food.amount *
-                                                sliderAmount);
-                                    await userPropertiesBox.put(
-                                        "dailyCar",
-                                        userPropertiesBox.get("dailyCar") !=
-                                                null
-                                            ? food.carbohydrate /
-                                                    food.amount *
-                                                    sliderAmount +
-                                                userPropertiesBox
-                                                    .get("dailyCar")
-                                            : food.carbohydrate /
-                                                food.amount *
-                                                sliderAmount);
-                                    await userPropertiesBox.put(
-                                        "dailyFat",
-                                        userPropertiesBox.get("dailyFat") !=
-                                                null
-                                            ? food.fat /
-                                                    food.amount *
-                                                    sliderAmount +
-                                                userPropertiesBox
-                                                    .get("dailyFat")
-                                            : food.fat /
-                                                food.amount *
-                                                sliderAmount);
+                                    if (allCalories.containsKey(dayTime)) {
+                                      allCalories.update(
+                                          dayTime,
+                                          (value) =>
+                                              value +
+                                              food.calorie /
+                                                  food.amount *
+                                                  sliderAmount);
+                                      userDailyValuesBox.put(
+                                          "calorie", allCalories);
+                                    } else {
+                                      allCalories[dayTime] = food.calorie /
+                                          food.amount *
+                                          sliderAmount;
+                                      userDailyValuesBox.put(
+                                          "calorie", allCalories);
+                                    }
+
+                                    if (allProteins.containsKey(dayTime)) {
+                                      allProteins.update(
+                                          dayTime,
+                                          (value) =>
+                                              value +
+                                              food.protein /
+                                                  food.amount *
+                                                  sliderAmount);
+                                      userDailyValuesBox.put(
+                                          "protein", allProteins);
+                                    } else {
+                                      allProteins[dayTime] = food.protein /
+                                          food.amount *
+                                          sliderAmount;
+                                      userDailyValuesBox.put(
+                                          "protein", allProteins);
+                                    }
+
+                                    if (allCarbohydrates.containsKey(dayTime)) {
+                                      allCarbohydrates.update(
+                                          dayTime,
+                                          (value) =>
+                                              value +
+                                              food.carbohydrate /
+                                                  food.amount *
+                                                  sliderAmount);
+                                      userDailyValuesBox.put(
+                                          "carbohydrate", allCarbohydrates);
+                                    } else {
+                                      allCarbohydrates[dayTime] =
+                                          food.carbohydrate /
+                                              food.amount *
+                                              sliderAmount;
+                                      userDailyValuesBox.put(
+                                          "carbohydrate", allCarbohydrates);
+                                    }
+
+                                    if (allFats.containsKey(dayTime)) {
+                                      allFats.update(
+                                          dayTime,
+                                          (value) =>
+                                              value +
+                                              food.fat /
+                                                  food.amount *
+                                                  sliderAmount);
+                                      userDailyValuesBox.put("fat", allFats);
+                                    } else {
+                                      allFats[dayTime] =
+                                          food.fat / food.amount * sliderAmount;
+                                      userDailyValuesBox.put("fat", allFats);
+                                    }
 
                                     // ignore: use_build_context_synchronously
                                     Navigator.of(context).pop();
