@@ -47,7 +47,7 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
               const SizedBox(
                 height: 25,
               ),
-              Text(box.get('userName'),
+              Text(box.get('userName') ?? 'your name will shown here',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontWeight: FontWeight.w600, fontSize: 22)),
