@@ -397,8 +397,6 @@ class _RecalculateMyDailyCaloriesScreenState
                           recommendedDailyIntake
                               .recommendedDailyIntakeFunction());
                     });
-                    debugPrint(
-                        userDailyValuesBox.get("userRecommendedDailyIntake"));
                   },
                   height: 60,
                   // ignore: prefer_const_constructors, sort_child_properties_last
