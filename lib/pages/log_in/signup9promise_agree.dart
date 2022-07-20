@@ -21,8 +21,6 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
 
   @override
   Widget build(BuildContext context) {
-    Map allWaters = userDailyValuesBox.get("water") ?? {};
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
