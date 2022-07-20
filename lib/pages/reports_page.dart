@@ -114,7 +114,8 @@ class _ReportPageState extends State<ReportPage> {
                             radius: 90,
                             lineWidth: 22,
                             progressColor: Colors.deepOrangeAccent,
-                            backgroundColor: Color.fromARGB(255, 254, 176, 176),
+                            backgroundColor:
+                                const Color.fromARGB(255, 254, 176, 176),
                             circularStrokeCap: CircularStrokeCap.round,
                             percent: afterDot,
                             center: Column(

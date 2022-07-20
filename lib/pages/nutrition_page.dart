@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, prefer_typing_uninitialized_variables
 
 import 'package:angry_coach_beta/extract/my_button.dart';
 import 'package:angry_coach_beta/extract/my_text_field.dart';
@@ -938,7 +938,6 @@ class ShowSelectedItemsBottomSheet extends StatelessWidget {
                                       userDailyValuesBox.put("fat", allFats);
                                     }
 
-                                    // ignore: use_build_context_synchronously
                                     Navigator.of(context).pop();
                                   },
                                   textTop: '',

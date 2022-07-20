@@ -86,7 +86,7 @@ class _CoachPageState extends State<CoachPage> {
                                 return const Text(
                                     'water dayTime not null calorie dayTime null');
                               } else if (box.get('calorie')[dayTime] != null) {
-                                return Text('fsjf');
+                                return const Text('fsjf');
                               } else {
                                 return const Text('water dayTime null else ');
                               }
