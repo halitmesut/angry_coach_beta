@@ -13,9 +13,7 @@ class CoachPage extends StatefulWidget {
 
 class _CoachPageState extends State<CoachPage> {
   var userPropertiesBox = Hive.box("userProperties");
-
   var userDailyValuesBox = Hive.box("userDailyValues");
-
   var dayTime = DateFormat('yyMMddHH').format(DateTime.now());
 
   @override
@@ -57,47 +55,132 @@ class _CoachPageState extends State<CoachPage> {
                     child: ValueListenableBuilder(
                       valueListenable: Hive.box("userDailyValues").listenable(),
                       builder: (context, Box box, _) {
-                        if (box.get('water') == null) {
-                          if (box.get('calorie') == null) {
-                            return const Text('water null calorie null');
-                          } else if (box.get('calorie') != null) {
-                            return const Text('water null calorie not null');
-                          } else {
-                            return const Text('1-1 else shown');
-                          }
-                        } else if (box.get('water') != null) {
-                          if (box.get('calorie') == null) {
-                            return const Text('water not null calorie nulllll');
-                          } else if (box.get('calorie') != null) {
-                            // return Text('fsjf');
-
-                            if (box.get('water')[dayTime] == null) {
-                              if (box.get('calorie')[dayTime] == null) {
+                        if (box.get('water').containsKey(dayTime)) {
+                          if (box.get('calorie').containsKey(dayTime)) {
+                            if (box.get("water")[dayTime] >
+                                userPropertiesBox.get("userWeight") *
+                                    0.035 *
+                                    0.9) {
+                              if (box.get("calorie")[dayTime] /
+                                          box.get(
+                                              "userRecommendedDailyIntake") >
+                                      0.9 &&
+                                  box.get("calorie")[dayTime] /
+                                          box.get(
+                                              "userRecommendedDailyIntake") <
+                                      1.1) {
                                 return const Text(
-                                    'water dayTime null calorie dayTime null');
-                              } else if (box.get('calorie')[dayTime] != null) {
+                                    'water   okey calorie   okey');
+                              } else if (box.get("calorie")[dayTime] /
+                                          box.get(
+                                              "userRecommendedDailyIntake") >
+                                      0.5 &&
+                                  box.get("calorie")[dayTime] /
+                                          box.get(
+                                              "userRecommendedDailyIntake") <
+                                      1.5) {
                                 return const Text(
-                                    'water dayTime null calorie dayTime not null');
+                                    'water okey calorie half okey');
                               } else {
-                                return const Text('1-1 else shown');
-                              }
-                            } else if (box.get('water')[dayTime] != null) {
-                              if (box.get('calori')[dayTime] == null) {
                                 return const Text(
-                                    'water dayTime not null calorie dayTime null');
-                              } else if (box.get('calorie')[dayTime] != null) {
-                                return const Text('fsjf');
-                              } else {
-                                return const Text('water dayTime null else ');
+                                    'water okey calorie not okeyy');
                               }
+                            } else if (box.get("water")[dayTime] >
+                                userPropertiesBox.get("userWeight") *
+                                    0.035 *
+                                    0.5) {
+                              if (box.get("calorie")[dayTime] /
+                                          box.get(
+                                              "userRecommendedDailyIntake") >
+                                      0.9 &&
+                                  box.get("calorie")[dayTime] /
+                                          box.get(
+                                              "userRecommendedDailyIntake") <
+                                      1.1) {
+                                return const Text(
+                                    'water half okey calorie okey');
+                              } else if (box.get("calorie")[dayTime] /
+                                          box.get(
+                                              "userRecommendedDailyIntake") >
+                                      0.5 &&
+                                  box.get("calorie")[dayTime] /
+                                          box.get(
+                                              "userRecommendedDailyIntake") <
+                                      1.5) {
+                                return const Text(
+                                    'water half okey calorie half okey');
+                              } else {
+                                return const Text(
+                                    'water half okey calorie not okey');
+                              }
+                            } else if (box.get("calorie")[dayTime] /
+                                        box.get("userRecommendedDailyIntake") >
+                                    0.9 &&
+                                box.get("calorie")[dayTime] /
+                                        box.get("userRecommendedDailyIntake") <
+                                    1.1) {
+                              return const Text(
+                                  'water  not okey calorie   okey');
+                            } else if (box.get("calorie")[dayTime] /
+                                        box.get("userRecommendedDailyIntake") >
+                                    0.5 &&
+                                box.get("calorie")[dayTime] /
+                                        box.get("userRecommendedDailyIntake") <
+                                    1.5) {
+                              return const Text(
+                                  'water not okey calorie half okey');
                             } else {
-                              return const Text('secondie first else shown');
+                              return const Text(
+                                  'water not okey calorie not okey');
+                            }
+                          } else if (box.get('calorie').containsKey(dayTime) ==
+                              false) {
+                            if (box.get("water")[dayTime] >
+                                userPropertiesBox.get("userWeight") *
+                                    0.035 *
+                                    0.9) {
+                              return const Text('water okey calorie empty');
+                            } else if (box.get("water")[dayTime] >
+                                userPropertiesBox.get("userWeight") *
+                                    0.035 *
+                                    0.6) {
+                              return const Text(
+                                  'water half okey calorie empty');
+                            } else {
+                              return const Text('4th else');
                             }
                           } else {
-                            return const Text('water null else ');
+                            return const Text('5th else');
+                          }
+                        } else if (box.get('water').containsKey(dayTime) ==
+                            false) {
+                          if (box.get('calorie').containsKey(dayTime)) {
+                            if (box.get("calorie")[dayTime] /
+                                        box.get("userRecommendedDailyIntake") >
+                                    0.9 &&
+                                box.get("calorie")[dayTime] /
+                                        box.get("userRecommendedDailyIntake") <
+                                    1.1) {
+                              return const Text('water empty calorie okey');
+                            } else if (box.get("calorie")[dayTime] /
+                                        box.get("userRecommendedDailyIntake") >
+                                    0.5 &&
+                                box.get("calorie")[dayTime] /
+                                        box.get("userRecommendedDailyIntake") <
+                                    1.5) {
+                              return const Text(
+                                  'water empty calorie half okey');
+                            } else {
+                              return const Text('water empty calory not okey');
+                            }
+                          } else if (box.get('calorie').containsKey(dayTime) ==
+                              false) {
+                            return const Text('water empty calorie empty');
+                          } else {
+                            return const Text('7th else');
                           }
                         } else {
-                          return const Text('first else shown');
+                          return const Text('8th else');
                         }
                       },
                     ),

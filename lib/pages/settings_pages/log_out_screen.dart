@@ -152,31 +152,13 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       elevation: 0,
                       color: Colors.deepOrange,
                       onPressed: () async {
-                        Hive.box("userProperties").put("dailyWater", 0.0);
-                        Hive.box("userProperties").put("dailyCal", 0.0);
-                        Hive.box("userProperties").put("dailyCar", 0.0);
-                        Hive.box("userProperties").put("dailyFat", 0.0);
-                        Hive.box("userProperties").put("dailyPro", 0.0);
                         await Hive.box("likedFood").clear();
-                        await foodBox.clear();
-                        await userPropertiesBox.clear();
-
+                        await Hive.box("createdFood").clear();
+                        await Hive.box("userProperties").clear();
                         await Hive.box("userDailyValues").clear();
-                        // await Hive.box("userDailyValues").clear();
-                        debugPrint(Hive.box("userProperties")
-                            .get("dailyWater")
-                            .toString());
-                        debugPrint(Hive.box("userProperties")
-                            .get("dailyCal")
-                            .toString());
-                        debugPrint(Hive.box("userProperties")
-                            .get("dailyCar")
-                            .toString());
-                        debugPrint(Hive.box("userProperties")
-                            .get("dailyFat")
-                            .toString());
-                        debugPrint(Hive.box("userProperties")
-                            .get("dailyPro")
+
+                        debugPrint(Hive.box("userDailyValues")
+                            .get('calorie')
                             .toString());
                       },
                       height: 60,

@@ -96,8 +96,6 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
             MyButton(
                 onPressedFunction: () {
                   if (userPropertiesBox.get("userPromise") == "I Promise") {
-                    debugPrint(userPropertiesBox.toMap().toString());
-
                     RecommendedDailyIntake recommendedDailyIntake =
                         RecommendedDailyIntake(
                             userGender: userPropertiesBox.get("userGender"),
@@ -113,11 +111,18 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
                         recommendedDailyIntake
                             .recommendedDailyIntakeFunction());
 
-                    userDailyValuesBox.put('water', {dayTime: 0.0});
+                    userDailyValuesBox.put('dayTime', dayTime);
+                    userDailyValuesBox
+                        .put('water', {userDailyValuesBox.get('dayTime'): 0.0});
+                    userDailyValuesBox.put(
+                        'calorie', {userDailyValuesBox.get('dayTime'): 0.0});
+                    userDailyValuesBox.put(
+                        'protein', {userDailyValuesBox.get('dayTime'): 0.0});
+                    userDailyValuesBox.put('carbohydrate',
+                        {userDailyValuesBox.get('dayTime'): 0.0});
+                    userDailyValuesBox
+                        .put('fat', {userDailyValuesBox.get('dayTime'): 0.0});
 
-                    debugPrint(userDailyValuesBox
-                        .get("userRecommendedDailyIntake")
-                        .toStringAsFixed(0));
                     Navigator.push(
                       context,
                       MaterialPageRoute(
