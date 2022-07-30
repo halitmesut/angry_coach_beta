@@ -5,10 +5,12 @@ import 'package:angry_coach_beta/pages/log_in/auth_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:intl/intl.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:cron/cron.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +25,27 @@ Future<void> main() async {
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final cron = Cron();
+  List allWeights = Hive.box('userDailyValues').get('weight');
+  cron.schedule(
+    Schedule.parse('* * */0-23 * * *'),
+    () async => {
+      await Hive.box('userDailyValues')
+          .put('dayTime', DateFormat('yyMMddHH').format(DateTime.now())),
+      if (allWeights[allWeights.length - 1]['date'] !=
+          Hive.box("userDailyValues").get('dayTime'))
+        {
+          allWeights.add(
+            {
+              'date': Hive.box("userDailyValues").get('dayTime'),
+              'weight': Hive.box("userProperties").get("userWeight").toDouble()
+            },
+          ),
+          await Hive.box("userDailyValues").put('weight', allWeights)
+        }
+    },
   );
 
   runApp(MyApp());
