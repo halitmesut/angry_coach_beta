@@ -17,7 +17,7 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
   @override
   Widget build(BuildContext context) {
     final weight = [for (var i = 40; i <= 180; i++) i];
-    var box = Hive.box("userProperties");
+    var userPropertiesBox = Hive.box("userProperties");
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -75,7 +75,8 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
                                 .toList(),
                             onSelectedItemChanged: (index) {
                               setState(() {
-                                box.put("userWeight", weight[index]);
+                                userPropertiesBox.put(
+                                    "userWeight", weight[index]);
                               });
                             },
                           )),
@@ -86,22 +87,22 @@ class _SignUp6WeightState extends State<SignUp6Weight> {
                 },
                 textTop: '',
                 textBottom: '',
-                text: box.get("userWeight").toString() == "null"
+                text: userPropertiesBox.get("userWeight").toString() == "null"
                     ? 'Your Weight'
-                    : box.get("userWeight").toString(),
+                    : userPropertiesBox.get("userWeight").toString(),
                 buttonColor: Colors.white),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.29,
             ),
             MyButton(
                 onPressedFunction: () {
-                  if (box.get("userWeight") != null) {
+                  if (userPropertiesBox.get("userWeight") != null) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const SignUp7TargetWeight()),
                     );
-                    debugPrint(box.toMap().toString());
+                    debugPrint(userPropertiesBox.toMap().toString());
                   } else {
                     Fluttertoast.showToast(
                         msg: "You must enter your weight.",
