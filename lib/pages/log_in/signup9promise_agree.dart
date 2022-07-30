@@ -62,8 +62,6 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
                 setState(() {
                   userPropertiesBox.put("userPromise", "I Promise");
                 });
-
-                // context.read<UserProperties>().getUserPromise("I promise");
               },
               textTop: '',
               textBottom: '',
@@ -80,8 +78,6 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
                 setState(() {
                   userPropertiesBox.put("userPromise", "I Do Not");
                 });
-
-                //context.read<UserProperties>().getUserPromise("I don't");
               },
               textTop: '',
               textBottom: '',
@@ -94,7 +90,7 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
               height: MediaQuery.of(context).size.height * 0.2,
             ),
             MyButton(
-                onPressedFunction: () {
+                onPressedFunction: () async {
                   if (userPropertiesBox.get("userPromise") == "I Promise") {
                     RecommendedDailyIntake recommendedDailyIntake =
                         RecommendedDailyIntake(
@@ -106,12 +102,19 @@ class _SignUp9PromiseAgreeState extends State<SignUp9PromiseAgree> {
                             userHeight: userPropertiesBox.get("userHeight"),
                             userWeight: userPropertiesBox.get("userWeight"));
 
-                    userDailyValuesBox.put(
+                    await userDailyValuesBox.put(
                         "userRecommendedDailyIntake",
                         recommendedDailyIntake
                             .recommendedDailyIntakeFunction());
 
-                    userDailyValuesBox.put('dayTime', dayTime);
+                    await userDailyValuesBox.put('dayTime', dayTime);
+
+                    await userDailyValuesBox.put('weight', [
+                      {
+                        'date': userDailyValuesBox.get('dayTime'),
+                        'weight': userPropertiesBox.get("userWeight").toDouble()
+                      },
+                    ]);
                     userDailyValuesBox
                         .put('water', {userDailyValuesBox.get('dayTime'): 0.0});
                     userDailyValuesBox.put(
