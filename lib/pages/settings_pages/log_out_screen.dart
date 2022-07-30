@@ -152,14 +152,25 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       elevation: 0,
                       color: Colors.deepOrange,
                       onPressed: () async {
-                        await Hive.box("likedFood").clear();
-                        await Hive.box("createdFood").clear();
-                        await Hive.box("userProperties").clear();
-                        await Hive.box("userDailyValues").clear();
-
                         debugPrint(Hive.box("userDailyValues")
-                            .get('calorie')
+                            .get("weight")
                             .toString());
+
+                        // await Hive.box("userDailyValues").put('weight', [
+                        //   {
+                        //     'date': Hive.box("userDailyValues").get('dayTime'),
+                        //     'weight':
+                        //         userPropertiesBox.get("userWeight").toDouble()
+                        //   },
+                        // ]);
+                        // await Hive.box("likedFood").clear();
+                        // await Hive.box("createdFood").clear();
+                        // await Hive.box("userProperties").clear();
+                        // await Hive.box("userDailyValues").clear();
+
+                        // debugPrint(Hive.box("userDailyValues")
+                        //     .get('calorie')
+                        //     .toString());
                       },
                       height: 60,
                       shape: RoundedRectangleBorder(
@@ -194,13 +205,19 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       elevation: 0,
                       color: Colors.deepOrange,
                       onPressed: () async {
-                        FirebaseAuth.instance.signOut();
+                        await Hive.box("likedFood").clear();
+                        await Hive.box("createdFood").clear();
+                        await Hive.box("userProperties").clear();
+                        await Hive.box("userDailyValues").clear();
 
-                        Navigator.pop(context);
                         await foodBox.clear();
                         await userPropertiesBox.clear();
-                        await Hive.box("likedFood").clear();
+
                         await Hive.box("userDailyValues").clear();
+                        FirebaseAuth.instance.signOut();
+
+                        // ignore: use_build_context_synchronously
+                        Navigator.pop(context);
                       },
                       height: 60,
                       shape: RoundedRectangleBorder(
