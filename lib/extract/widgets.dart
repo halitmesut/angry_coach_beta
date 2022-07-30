@@ -30,7 +30,7 @@ class WideListBottomItem extends StatelessWidget {
             children: [
               Text(leftTitle),
               Text(
-                leftInput.toString(),
+                leftInput.toStringAsFixed(1),
                 style: const TextStyle(fontSize: 20),
                 textAlign: TextAlign.center,
               ),
